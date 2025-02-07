@@ -18,5 +18,13 @@
         "tailwindcss": "^3.2.1",
         "vite": "^6.0.11",
         "vue": "^3.4.0"
+    },
+    "dependencies": {
+        "@radix-icons/vue": "^1.0.0",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "radix-vue": "^1.9.13",
+        "tailwind-merge": "^3.0.1",
+        "tailwindcss-animate": "^1.0.7"
     }
 }
