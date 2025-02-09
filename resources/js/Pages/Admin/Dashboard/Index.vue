@@ -18,7 +18,7 @@ defineProps({
 <template>
     <Head :title="title" />
     <App>
-        <template v-slot:header>
+        <template #header>
             <h2 class="text-3xl font-bold tracking-tight">
                 Dashboard
             </h2>

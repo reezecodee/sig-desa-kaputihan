@@ -37,7 +37,7 @@ import UserNav from '@/Components/custom/UserNav.vue'
                 <slot name="header"></slot>
             </div>
             <Tabs default-value="overview" class="space-y-4">
-                <TabsList>
+                <TabsList v-if="$page.url.startsWith('/dashboard')">
                     <TabsTrigger value="overview">
                         Overview
                     </TabsTrigger>
