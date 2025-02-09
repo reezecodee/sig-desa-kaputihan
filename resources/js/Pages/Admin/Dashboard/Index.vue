@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
 import { Button } from '@/Components/ui/button'
+import { Head } from '@inertiajs/vue3';
 import {
     Card,
     CardContent,
@@ -8,9 +9,14 @@ import {
     CardHeader,
     CardTitle,
 } from '@/Components/ui/card'
+
+defineProps({
+    title: String
+})
 </script>
 
 <template>
+    <Head :title="title" />
     <App>
         <template v-slot:header>
             <h2 class="text-3xl font-bold tracking-tight">
@@ -102,27 +108,6 @@ import {
                     <p class="text-xs text-muted-foreground">
                         +201 since last hour
                     </p>
-                </CardContent>
-            </Card>
-        </div>
-        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-            <Card class="col-span-4">
-                <CardHeader>
-                    <CardTitle>Overview</CardTitle>
-                </CardHeader>
-                <CardContent class="pl-2">
-                    <!-- <Overview /> -->p
-                </CardContent>
-            </Card>
-            <Card class="col-span-3">
-                <CardHeader>
-                    <CardTitle>Recent Sales</CardTitle>
-                    <CardDescription>
-                        You made 265 sales this month.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <!-- <RecentSales /> --> p
                 </CardContent>
             </Card>
         </div>
