@@ -2,7 +2,7 @@
 import App from '@/Layouts/App.vue'
 import { Head, Link } from '@inertiajs/vue3'
 import { Button } from '@/Components/ui/button'
-import Table from '@/Components/custom/blog/Table.vue';
+import CreateBlog from '@/Components/custom/blog/CreateBlog.vue';
 
 defineProps({
     title: String
@@ -18,12 +18,14 @@ defineProps({
                 {{ title }}
             </h2>
             <div class="flex items-center space-x-2">
-                <Link :href="route('admin.blogCreate')">
-                    <Button>Buat Blog Baru</Button>
+                <Link :href="route('admin.blog')">
+                <Button>Kembali</Button>
                 </Link>
             </div>
         </template>
-        <Table></Table>
+        <div class="flex justify-center">
+            <CreateBlog />
+        </div>
     </App>
 </template>
 

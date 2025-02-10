@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
 use Inertia\Inertia;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -12,7 +11,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $title = 'Blog';
+        $title = 'Daftar Blog';
 
         return Inertia::render('Admin/Blog/Index', compact('title'));
     }
@@ -20,60 +19,6 @@ class BlogController extends Controller
     public function getBlogs(Request $request)
     {
         $data = collect([
-            [
-                'id' => '12312',
-                'judul' => 'Ambatukam makan mie gorengs',
-                'visibilitas' => 'Publik',
-                'updated_at' => '2025-05-25'
-            ],
-            [
-                'id' => '31231',
-                'judul' => 'Ambatukam makan mie goreng',
-                'visibilitas' => 'Publik',
-                'updated_at' => '2025-05-25'
-            ],
-            [
-                'id' => '31231',
-                'judul' => 'Ambatukam makan mie goreng',
-                'visibilitas' => 'Publik',
-                'updated_at' => '2025-05-25'
-            ],
-            [
-                'id' => '31231',
-                'judul' => 'Ambatukam makan mie goreng',
-                'visibilitas' => 'Publik',
-                'updated_at' => '2025-05-25'
-            ],
-            [
-                'id' => '31231',
-                'judul' => 'Ambatukam makan mie goreng',
-                'visibilitas' => 'Publik',
-                'updated_at' => '2025-05-25'
-            ],
-            [
-                'id' => '31231',
-                'judul' => 'Ambatukam makan mie goreng',
-                'visibilitas' => 'Publik',
-                'updated_at' => '2025-05-25'
-            ],
-            [
-                'id' => '31231',
-                'judul' => 'Ambatukam makan mie goreng',
-                'visibilitas' => 'Publik',
-                'updated_at' => '2025-05-25'
-            ],
-            [
-                'id' => '31231',
-                'judul' => 'Ambatukam makan mie goreng',
-                'visibilitas' => 'Publik',
-                'updated_at' => '2025-05-25'
-            ],
-            [
-                'id' => '31231',
-                'judul' => 'Ambatukam makan mie goreng',
-                'visibilitas' => 'Publik',
-                'updated_at' => '2025-05-25'
-            ],
             [
                 'id' => '31231',
                 'judul' => 'Ambatukam makan mie goreng',
@@ -113,5 +58,12 @@ class BlogController extends Controller
             })
             ->rawColumns(['action'])
             ->make(true);
+    }
+
+    public function create()
+    {
+        $title = 'Buat Blog Baru';
+
+        return Inertia::render('Admin/Blog/Create', compact('title'));
     }
 }

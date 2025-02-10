@@ -10,6 +10,8 @@ Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dash
 Route::prefix('blog')->controller(BlogController::class)->group(function(){
     Route::get('/', 'index')->name('admin.blog');
     Route::get('daftar-blog', 'getBlogs')->name('admin.blogList');
+    Route::get('buat-blog-baru', 'create')->name('admin.blogCreate');
+    Route::post('simpan-blog-baru', 'store')->name('admin.blogSave');
 });
 
 Route::prefix('profile')->controller(ProfileController::class)->group(function(){
