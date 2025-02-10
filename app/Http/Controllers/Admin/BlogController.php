@@ -66,4 +66,11 @@ class BlogController extends Controller
 
         return Inertia::render('Admin/Blog/Create', compact('title'));
     }
+
+    public function edit()
+    {
+        $title = 'Edit Blog';
+
+        return Inertia::render('Admin/Blog/Edit', compact('title'));
+    }
 }
