@@ -1,40 +1,41 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
+import { router } from '@inertiajs/vue3'
+import { Button } from '@/Components/ui/button'
 import {
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
     FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { toast } from '@/Components/ui/toast/use-toast'
+} from '@/Components/ui/form'
+import { Input } from '@/Components/ui/input'
 
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
-import { h } from 'vue'
 import * as z from 'zod'
 
 const formSchema = toTypedSchema(
     z.object({
-        current_password: z.string().max(20, "Password lama maksimal 20 karakter"),
-        new_password: z.string().min(8, "Password minimal 8 karakter").max(20, "Password maksimal 20 karakter"),
-        confirm_password: z.string(),
+        current_password: z.string({ message: 'Password saat ini harus di isi' }),
+        new_password: z.string({ message: 'Password baru harus di isi' }).min(8, "Password minimal 8 karakter").max(20, "Password maksimal 20 karakter"),
+        confirm_password: z.string({ message: 'Konfirmasi password harus di isi' }),
     })
-    .refine((data) => data.new_password === data.confirm_password, {
-        path: ["confirm_password"],
-        message: "Konfirmasi password tidak sesuai dengan password baru",
-}))
+        .refine((data) => data.new_password === data.confirm_password, {
+            path: ["confirm_password"],
+            message: "Konfirmasi password tidak sesuai dengan password baru",
+        }))
 
-const { isFieldDirty, handleSubmit } = useForm({
+defineProps<{ errors: Record<string, string> }>()
+
+const { isFieldDirty, handleSubmit, setErrors } = useForm({
     validationSchema: formSchema,
 })
 
 const onSubmit = handleSubmit((values) => {
-    toast({
-        title: 'You submitted the following values:',
-        description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
+    router.post(route('admin.changePassword'), values, {
+        onError: (backendErrors) => {
+            setErrors(backendErrors)
+        }
     })
 })
 </script>

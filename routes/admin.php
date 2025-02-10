@@ -8,4 +8,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.das
 
 Route::prefix('/profile')->controller(ProfileController::class)->group(function(){
     Route::get('/', 'index')->name('admin.profile');
+    Route::post('/edit-profile', 'editProfile')->name('admin.editProfile');
+    Route::post('/ganti-password', 'changePassword')->name('admin.changePassword');
 });
