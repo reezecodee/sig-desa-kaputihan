@@ -5,7 +5,6 @@ import { Head } from '@inertiajs/vue3';
 import {
     Card,
     CardContent,
-    CardDescription,
     CardHeader,
     CardTitle,
 } from '@/Components/ui/card'
