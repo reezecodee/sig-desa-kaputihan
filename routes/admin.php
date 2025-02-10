@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-Route::resource('blog', BlogController::class);
+Route::prefix('blog')->controller(BlogController::class)->group(function(){
+    Route::get('/', 'index')->name('admin.blog');
+    Route::get('daftar-blog', 'getBlogs')->name('admin.blogList');
+});
 
 Route::prefix('profile')->controller(ProfileController::class)->group(function(){
     Route::get('/', 'index')->name('admin.profile');

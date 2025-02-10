@@ -76,3 +76,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+.shadcn-btn {
+  padding: 0.2rem 1rem;
+  border-radius: 0.25rem;
+}
+
+.shadcn-btn.edit-btn {
+  background-color: #22C55E;
+  color: white;
+}
+
+.shadcn-btn.delete-btn {
+  background-color: #DC2626;
+  color: white;
+}

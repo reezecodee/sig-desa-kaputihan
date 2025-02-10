@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Inertia\Inertia;
+use Yajra\DataTables\Facades\DataTables;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $title = 'Blog';
@@ -18,51 +17,101 @@ class BlogController extends Controller
         return Inertia::render('Admin/Blog/Index', compact('title'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function getBlogs(Request $request)
     {
-        //
-    }
+        $data = collect([
+            [
+                'id' => '12312',
+                'judul' => 'Ambatukam makan mie gorengs',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+            [
+                'id' => '31231',
+                'judul' => 'Ambatukam makan mie goreng',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+            [
+                'id' => '31231',
+                'judul' => 'Ambatukam makan mie goreng',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+            [
+                'id' => '31231',
+                'judul' => 'Ambatukam makan mie goreng',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+            [
+                'id' => '31231',
+                'judul' => 'Ambatukam makan mie goreng',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+            [
+                'id' => '31231',
+                'judul' => 'Ambatukam makan mie goreng',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+            [
+                'id' => '31231',
+                'judul' => 'Ambatukam makan mie goreng',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+            [
+                'id' => '31231',
+                'judul' => 'Ambatukam makan mie goreng',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+            [
+                'id' => '31231',
+                'judul' => 'Ambatukam makan mie goreng',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+            [
+                'id' => '31231',
+                'judul' => 'Ambatukam makan mie goreng',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+            [
+                'id' => '31231',
+                'judul' => 'Ambatukam makan mie goreng',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+            [
+                'id' => '31231',
+                'judul' => 'Ambatukam makan mie goreng',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+            [
+                'id' => '31231',
+                'judul' => 'Ambatukam makan mie goreng',
+                'visibilitas' => 'Publik',
+                'updated_at' => '2025-05-25'
+            ],
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('judul', function ($row) {
+                return $row['judul'];
+            })
+            ->addColumn('action', function ($row) {
+                return '
+                <button class="shadcn-btn edit-btn" data-id="${row.id}">Edit</button>
+                <button class="shadcn-btn delete-btn" data-id="${row.id}">Delete</button>
+            ';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 }
