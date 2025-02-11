@@ -14,9 +14,13 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
+            \App\Http\Middleware\LandingLayoutMiddleware::class
         ]);
 
-        //
+        $middleware->alias([
+            'landing-layout' => \App\Http\Middleware\LandingLayoutMiddleware::class,
+            'app-layout' => \App\Http\Middleware\AppLayoutMiddleware::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
