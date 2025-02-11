@@ -12,10 +12,6 @@ import { Link } from '@inertiajs/vue3'
       class="text-sm font-medium transition-colors hover:text-primary" :class="{ 'text-muted-foreground': !$page.url.startsWith('/blog') }">
       Blog
     </Link>
-    <Link href="/pengaduan"
-      class="text-sm font-medium transition-colors hover:text-primary" :class="{ 'text-muted-foreground': !$page.url.startsWith('/pengaduan') }">
-      Pengaduan
-    </Link>
     <Link href="/jadwal-kegiatan"
       class="text-sm font-medium transition-colors hover:text-primary" :class="{ 'text-muted-foreground': !$page.url.startsWith('/jadwal-kegiatan') }">
       Jadwal Kegiatan
