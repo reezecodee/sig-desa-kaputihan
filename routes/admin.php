@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ComplaintController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -22,6 +23,13 @@ Route::prefix('pengaduan')->controller(ComplaintController::class)->group(functi
     Route::get('daftar-aduan', 'getComplaints')->name('admin.complaintList');
     Route::get('tanggapi', 'respond')->name('admin.respond');
     Route::post('kirim-tanggapan', 'sendRespond')->name('admin.sendRespond');
+});
+
+Route::prefix('jadwal-kegiatan')->controller(ScheduleController::class)->group(function(){
+    Route::get('/', 'index')->name('admin.schedule');
+    Route::get('daftar-jadwal', 'getSchedules')->name('admin.scheduleList');
+    Route::get('jadwal-calendar', 'getCalendars')->name('admin.calendar');
+    Route::post('tambah-jadwal', 'addSchedule')->name('admin.addSchedule');
 });
 
 Route::prefix('profile')->controller(ProfileController::class)->group(function(){

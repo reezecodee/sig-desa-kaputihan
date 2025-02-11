@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
-import { Head, Link } from '@inertiajs/vue3'
-import { Button } from '@/Components/ui/button'
+import { Head } from '@inertiajs/vue3'
 import Table from '@/Components/custom/complaint/Table.vue';
 
 defineProps({
