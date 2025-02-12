@@ -2,11 +2,17 @@
 import App from '@/Layouts/App.vue'
 import { Head, Link } from '@inertiajs/vue3'
 import { Button } from '@/Components/ui/button'
-import CreateBlog from '@/Components/custom/blog/CreateBlog.vue';
+import EditBlog from '@/Components/custom/blog/EditBlog.vue'
+import { provide, shallowReactive } from 'vue'
 
-defineProps({
-    title: String
-})
+const props = defineProps<{ 
+    title: string,               
+    blog: Record<string, string>,
+}>()
+
+const reactiveBlog = shallowReactive(props.blog)
+
+provide('blog', reactiveBlog)
 </script>
 
 <template>
@@ -24,7 +30,7 @@ defineProps({
             </div>
         </template>
         <div class="flex justify-center">
-            <CreateBlog />
+            <EditBlog />
         </div>
     </App>
 </template>

@@ -15,8 +15,9 @@ Route::middleware(['app-layout'])->group(function () {
         Route::get('daftar-blog', 'getBlogs')->name('admin.blogList');
         Route::get('buat-blog-baru', 'create')->name('admin.blogCreate');
         Route::post('simpan-blog-baru', 'store')->name('admin.blogSave');
-        Route::get('edit-blog', 'edit')->name('admin.blogEdit');
-        Route::put('perbarui-blog', 'update')->name('admin.blogUpdate');
+        Route::get('edit-blog/{id}', 'edit')->name('admin.blogEdit');
+        Route::post('perbarui-blog/{id}', 'update')->name('admin.blogUpdate');
+        Route::delete('hapus-blog/{id}', 'destroy')->name('admin.blogDestroy');
     });
 
     Route::prefix('jadwal-kegiatan')->controller(ScheduleController::class)->group(function () {

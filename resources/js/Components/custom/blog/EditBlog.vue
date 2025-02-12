@@ -18,42 +18,90 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/Components/ui/select'
-
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
+import { ref, onBeforeUnmount, inject } from 'vue'
 
-const formSchema = toTypedSchema(z.object({
-    nama: z.string({ message: 'Nama wajib di isi' }).max(255, { message: 'Nama tidak boleh lebih dari 255 karakter' }).trim(),
-}))
+const blog = inject('blog')
 
-defineProps<{ errors: Record<string, string> }>()
+// Preview gambar jika ada
+const previewUrl = ref<string | null>(blog.thumbnail ? `/storage/${blog.thumbnail}` : null)
 
-const { isFieldDirty, handleSubmit, setErrors } = useForm({
-    validationSchema: formSchema,
+onBeforeUnmount(() => {
+    if (previewUrl.value) {
+        URL.revokeObjectURL(previewUrl.value)
+    }
 })
 
+// Schema validasi untuk form
+const formSchema = toTypedSchema(z.object({
+    judul: z.string({ message: 'Judul blog wajib di isi' })
+        .max(255, { message: 'Judul tidak boleh lebih dari 255 karakter' })
+        .trim(),
+    thumbnail: z.union([
+        z.instanceof(File).refine(file => file.size < 5 * 1024 * 1024, {
+            message: 'Ukuran file maksimal 5MB'
+        }),
+        z.null()
+    ]),
+    konten: z.string({ message: 'Konten blog wajib di isi' }).trim(),
+    visibilitas: z.enum(['Publik', 'Privasi'], { message: 'Visibilitas wajib di isi' })
+}))
+
+// Properti untuk menerima errors
+defineProps<{ errors: Record<string, string[]> }>()
+
+// Inisialisasi form dengan vee-validate
+const { values, isFieldDirty, handleSubmit, setErrors, setFieldValue } = useForm({
+    validationSchema: formSchema,
+    initialValues: {
+        judul: blog.judul,
+        thumbnail: null,
+        konten: blog.konten,
+        visibilitas: blog.visibilitas
+    },
+})
+
+// Fungsi untuk menangani perubahan file
+const handleFileChange = (event: Event) => {
+    const target = event.target as HTMLInputElement
+    const file = target.files?.[0] ?? null
+
+    if (file) {
+        previewUrl.value = URL.createObjectURL(file)
+        setFieldValue('thumbnail', file)
+    } else {
+        previewUrl.value = null
+        setFieldValue('thumbnail', null)
+    }
+}
+
 const onSubmit = handleSubmit((values) => {
-    router.post(route('admin.blogSave'), values, {
+    router.post(route('admin.blogUpdate', blog.id), values, {
         onError: (backendErrors) => {
-            setErrors(backendErrors)
+            setErrors(backendErrors); 
         }
-    })
+    });
 })
 </script>
 
 <template>
     <form class="w-1/2 space-y-6" @submit="onSubmit">
-        <img src="/placeholder/blog.svg" alt="" srcset="" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover;">
-        <FormField v-slot="{ componentField }" name="judul" :validate-on-blur="!isFieldDirty">
+        <img :src="previewUrl ?? '/placeholder/blog.svg'" alt="Thumbnail"
+            style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover;">
+
+        <FormField v-slot="{ componentField }" name="thumbnail" :validate-on-blur="!isFieldDirty">
             <FormItem>
                 <FormLabel>Upload Thumbnail</FormLabel>
                 <FormControl>
-                    <Input type="file" autocomplete="off" placeholder="Upload thumbnail blog" v-bind="componentField" />
+                    <Input type="file" @change="handleFileChange" accept=".png, .jpg"
+                        placeholder="Upload thumbnail blog" />
                 </FormControl>
                 <FormMessage />
             </FormItem>
         </FormField>
+
         <FormField v-slot="{ componentField }" name="judul" :validate-on-blur="!isFieldDirty">
             <FormItem>
                 <FormLabel>Judul Blog</FormLabel>
@@ -64,6 +112,7 @@ const onSubmit = handleSubmit((values) => {
                 <FormMessage />
             </FormItem>
         </FormField>
+
         <FormField v-slot="{ componentField }" name="konten" :validate-on-blur="!isFieldDirty">
             <FormItem>
                 <FormLabel>Konten Blog</FormLabel>
@@ -74,6 +123,7 @@ const onSubmit = handleSubmit((values) => {
                 <FormMessage />
             </FormItem>
         </FormField>
+
         <FormField v-slot="{ componentField }" name="visibilitas" :validate-on-blur="!isFieldDirty">
             <FormItem>
                 <FormLabel>Visibilitas Blog</FormLabel>
@@ -98,9 +148,11 @@ const onSubmit = handleSubmit((values) => {
                 <FormMessage />
             </FormItem>
         </FormField>
+
+        <!-- Tombol Submit -->
         <div class="flex justify-end">
             <Button type="submit">
-                Buat Blog
+                Perbarui Blog
             </Button>
         </div>
     </form>
