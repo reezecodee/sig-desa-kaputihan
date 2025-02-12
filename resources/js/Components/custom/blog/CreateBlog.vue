@@ -22,15 +22,50 @@ import {
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
+import { ref, onBeforeUnmount } from 'vue'
+
+const previewUrl = ref<string | null>(null)
+
+const handleFileChange = (event: Event) => {
+    const target = event.target as HTMLInputElement
+    const file = target.files?.[0] ?? null
+    values.thumbnail = file
+
+    if (file) {
+        previewUrl.value = URL.createObjectURL(file)
+    } else {
+        previewUrl.value = null
+    }
+}
+
+onBeforeUnmount(() => {
+    if (previewUrl.value) {
+        URL.revokeObjectURL(previewUrl.value)
+    }
+})
 
 const formSchema = toTypedSchema(z.object({
-    nama: z.string({ message: 'Nama wajib di isi' }).max(255, { message: 'Nama tidak boleh lebih dari 255 karakter' }).trim(),
+    judul: z.string({ message: 'Judul blog wajib di isi' })
+        .max(255, { message: 'Judul tidak boleh lebih dari 255 karakter' })
+        .trim(),
+    thumbnail: z.instanceof(File, { message: 'Thumbnail blog wajib diunggah' })
+        .refine(file => file.size < 5 * 1024 * 1024, {
+            message: 'Ukuran file maksimal 5MB'
+        }),
+    konten: z.string({ message: 'Konten blog wajib di isi' }).trim(),
+    visibilitas: z.enum(['Publik', 'Privasi'], { message: 'Visibilitas wajib di isi' })
 }))
 
-defineProps<{ errors: Record<string, string> }>()
+defineProps<{ errors: Record<string, string[]> }>()
 
-const { isFieldDirty, handleSubmit, setErrors } = useForm({
+const { values, isFieldDirty, handleSubmit, setErrors } = useForm({
     validationSchema: formSchema,
+    initialValues: {
+        judul: null,
+        thumbnail: null,
+        konten: null,
+        visibilitas: null
+    }
 })
 
 const onSubmit = handleSubmit((values) => {
@@ -44,12 +79,14 @@ const onSubmit = handleSubmit((values) => {
 
 <template>
     <form class="w-1/2 space-y-6" @submit="onSubmit">
-        <img src="/placeholder/blog.svg" alt="" srcset="" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover;">
-        <FormField v-slot="{ componentField }" name="judul" :validate-on-blur="!isFieldDirty">
+        <img :src="previewUrl ?? '/placeholder/blog.svg'" alt="" srcset=""
+            style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover;">
+        <FormField v-slot="{ componentField }" name="thumbnail" :validate-on-blur="!isFieldDirty">
             <FormItem>
                 <FormLabel>Upload Thumbnail</FormLabel>
                 <FormControl>
-                    <Input type="file" autocomplete="off" placeholder="Upload thumbnail blog" v-bind="componentField" />
+                    <Input type="file" @change="handleFileChange" accept=".png, .jpg"
+                        placeholder="Upload thumbnail blog" v-bind="componentField" />
                 </FormControl>
                 <FormMessage />
             </FormItem>

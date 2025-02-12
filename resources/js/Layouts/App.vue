@@ -10,6 +10,8 @@ import MainNav from '@/Components/custom/MainNav.vue'
 import Search from '@/Components/custom/Search.vue'
 import DarkMode from '@/Components/custom/DarkMode.vue'
 import UserNav from '@/Components/custom/UserNav.vue'
+import SuccessAlert from '@/Components/custom/SuccessAlert.vue'
+import DangerAlert from '@/Components/custom/DangerAlert.vue'
 </script>
 
 <template>
@@ -52,6 +54,12 @@ import UserNav from '@/Components/custom/UserNav.vue'
                     </TabsTrigger>
                 </TabsList>
                 <TabsContent value="overview" class="space-y-4">
+                    <div v-if="$page.props.flash.success" class="alert">
+                        <SuccessAlert>{{ $page.props.flash.success }}</SuccessAlert>
+                    </div>
+                    <div v-if="$page.props.flash.failed" class="alert">
+                        <DangerAlert>{{ $page.props.flash.failed }}</DangerAlert>
+                    </div>
                     <slot></slot>
                 </TabsContent>
             </Tabs>
@@ -59,4 +67,5 @@ import UserNav from '@/Components/custom/UserNav.vue'
     </div>
 </template>
 
-<style></style>
+<style scoped>
+</style>

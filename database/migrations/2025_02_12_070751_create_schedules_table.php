@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('keterangan');
             $table->enum('status', ['Kegiatan', 'Keagamaan', 'Acara desa', 'Lainnya']);
-            $table->string('tgl_selesai');
+            $table->string('tgl_mulai');
             $table->string('tgl_selesai');
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->index();
             $table->text('konten');
             $table->enum('visibilitas', ['Publik', 'Privasi']);
-            $table->string('thumbnail')->nullable();
+            $table->string('thumbnail');
             $table->timestamps();
         });
     }

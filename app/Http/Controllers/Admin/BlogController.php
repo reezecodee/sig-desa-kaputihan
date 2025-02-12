@@ -3,12 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\BlogRequest;
+use App\Services\BlogService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Yajra\DataTables\Facades\DataTables;
 
 class BlogController extends Controller
 {
+    protected $blogService;
+
+    public function __construct(BlogService $blogService)
+    {
+        $this->blogService = $blogService;
+    }
+
     public function index()
     {
         $title = 'Daftar Blog';
@@ -65,6 +74,19 @@ class BlogController extends Controller
         $title = 'Buat Blog Baru';
 
         return Inertia::render('Admin/Blog/Create', compact('title'));
+    }
+
+    public function store(BlogRequest $request)
+    {
+        try {
+            $this->blogService->store($request->validated());
+
+            session()->flash('success', 'Blog berhasil disimpan.');
+            return Inertia::location(route('admin.blog'));
+        } catch (\Exception $e) {
+            session()->flash('failed', $e->getMessage());
+            return Inertia::location(route('admin.blogCreate'));
+        }
     }
 
     public function edit()
