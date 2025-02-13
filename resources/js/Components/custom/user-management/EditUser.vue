@@ -22,6 +22,9 @@ import {
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
+import { inject } from 'vue';
+
+const user = inject('user')
 
 const formSchema = toTypedSchema(z.object({
     nama: z.string({ message: 'Nama wajib di isi' })
@@ -44,12 +47,19 @@ const formSchema = toTypedSchema(z.object({
 
 defineProps<{ errors: Record<string, string> }>()
 
-const { isFieldDirty, handleSubmit, setErrors } = useForm({
+const { values, isFieldDirty, handleSubmit, setErrors } = useForm({
     validationSchema: formSchema,
+    initialValues: {
+        nama: user.nama,
+        email: user.email,
+        telepon: user.telepon,
+        alamat: user.alamat,
+        status: user.status
+    },
 })
 
 const onSubmit = handleSubmit((values) => {
-    router.post(route('admin.userSave'), values, {
+    router.put(route('admin.userUpdate', user.id), values, {
         onError: (backendErrors) => {
             setErrors(backendErrors)
         }
@@ -122,7 +132,7 @@ const onSubmit = handleSubmit((values) => {
         </FormField>
         <div class="flex justify-end">
             <Button type="submit">
-                Simpan Pengguna
+                Perbarui Pengguna
             </Button>
         </div>
     </form>

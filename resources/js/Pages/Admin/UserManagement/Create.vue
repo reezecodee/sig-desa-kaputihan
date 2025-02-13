@@ -2,7 +2,7 @@
 import App from '@/Layouts/App.vue'
 import { Head, Link } from '@inertiajs/vue3'
 import { Button } from '@/Components/ui/button'
-import CreateUser from '@/Components/custom/user-management/Createuser.vue';
+import CreateUser from '@/Components/custom/user-management/CreateUser.vue';
 
 defineProps({
     title: String

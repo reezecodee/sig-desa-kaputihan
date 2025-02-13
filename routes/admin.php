@@ -33,10 +33,10 @@ Route::middleware(['app-layout'])->group(function () {
         Route::get('/', 'index')->name('admin.userManagement');
         Route::get('daftar-pengguna', 'getUsers')->name('admin.userList');
         Route::get('tambah', 'create')->name('admin.userCreate');
-        Route::post('simpan-pengguna', 'store')->name('admin.userStore');
-        Route::get('edit', 'edit')->name('admin.userEdit');
-        Route::put('edit-pengguna', 'update')->name('admin.userUpdate');
-        Route::delete('hapus-pengguna', 'destroy')->name('admin.userDestroy');
+        Route::post('simpan-pengguna', 'store')->name('admin.userSave');
+        Route::get('pengguna/{id}/edit', 'edit')->name('admin.userEdit');
+        Route::put('edit-pengguna/{id}', 'update')->name('admin.userUpdate');
+        Route::delete('hapus-pengguna/{id}', 'destroy')->name('admin.userDestroy');
     });
 
     Route::prefix('profile')->controller(ProfileController::class)->group(function () {
