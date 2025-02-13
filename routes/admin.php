@@ -24,7 +24,9 @@ Route::middleware(['app-layout'])->group(function () {
         Route::get('/', 'index')->name('admin.schedule');
         Route::get('daftar-jadwal', 'getSchedules')->name('admin.scheduleList');
         Route::get('jadwal-calendar', 'getCalendars')->name('admin.calendar');
-        Route::post('tambah-jadwal', 'addSchedule')->name('admin.addSchedule');
+        Route::get('buat-jadwal', 'create')->name('admin.scheduleCreate');
+        Route::post('tambah-jadwal', 'store')->name('admin.scheduleSave');
+        Route::delete('hapus-jadwal/{id}', 'destroy')->name('admin.scheduleDestroy');
     });
 
     Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {
