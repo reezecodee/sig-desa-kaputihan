@@ -36,4 +36,13 @@ class AuthController extends Controller
             'login' => 'Email/Telepon atau password salah'
         ]);
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerate();
+
+        return Inertia::location(route('landing.index'));
+    }
 }

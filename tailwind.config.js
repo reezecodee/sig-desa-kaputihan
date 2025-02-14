@@ -10,7 +10,6 @@ export default {
     './resources/views/**/*.blade.php',
     './resources/js/**/*.{ts,tsx,vue}',
   ],
-
   theme: {
     container: {
       center: true,

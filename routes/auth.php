@@ -7,3 +7,5 @@ Route::prefix('auth')->middleware(['app-layout', 'guest'])->controller(AuthContr
     Route::get('login', 'login')->name('login');
     Route::post('proses-login', 'loginHandler')->name('auth.loginProcess');
 });
+
+Route::post('auth/logout', [AuthController::class, 'logout'])->name('logout');

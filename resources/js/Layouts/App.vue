@@ -12,15 +12,16 @@ import DarkMode from '@/Components/custom/DarkMode.vue'
 import UserNav from '@/Components/custom/UserNav.vue'
 import SuccessAlert from '@/Components/custom/SuccessAlert.vue'
 import DangerAlert from '@/Components/custom/DangerAlert.vue'
+
 </script>
 
 <template>
-    <div class="md:hidden">
+    <!-- <div class="md:hidden">
         <VPImage alt="Dashboard" width="1280" height="1214" class="block" :image="{
             dark: '/examples/dashboard-dark.png',
             light: '/examples/dashboard-light.png',
         }" />
-    </div>
+    </div> -->
 
     <div class="hidden flex-col md:flex">
         <div class="border-b">
@@ -30,7 +31,7 @@ import DangerAlert from '@/Components/custom/DangerAlert.vue'
                 <div class="ml-auto flex items-center space-x-4">
                     <Search />
                     <DarkMode />
-                    <UserNav />
+                    <UserNav @open-dialog="openDialog" />
                 </div>
             </div>
         </div>
@@ -67,5 +68,4 @@ import DangerAlert from '@/Components/custom/DangerAlert.vue'
     </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
