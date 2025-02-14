@@ -26,7 +26,6 @@ import {
 } from '@/Components/ui/dialog'
 import { Link, usePage, router } from '@inertiajs/vue3'
 import { computed } from 'vue'
-import { route } from '../../../../vendor/tightenco/ziggy/src/js/index';
 
 const page = usePage()
 const user = computed(() => page.props.auth.user)
@@ -68,9 +67,11 @@ const logout = () => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <Link :href="route('admin.profile')">
+          <DropdownMenuItem style="cursor: pointer;">
             Profile
           </DropdownMenuItem>
+          </Link>
           <DropdownMenuItem>
             <DialogTrigger class="w-full text-start">
               Log out
