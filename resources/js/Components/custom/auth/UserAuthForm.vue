@@ -4,54 +4,53 @@ import { Input } from '@/Components/ui/input'
 import { Label } from '@/Components/ui/label'
 
 import { cn } from '@/lib/utils'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useForm } from '@inertiajs/vue3'
+
+const form = useForm({
+  login: null,
+  password: null,
+  remember: false,
+})
 
 const isLoading = ref(false)
+
 async function onSubmit(event: Event) {
   event.preventDefault()
   isLoading.value = true
+  
+  form.post(route('auth.loginProcess'))
 
-  setTimeout(() => {
-    isLoading.value = false
-  }, 3000)
+  isLoading.value = false
 }
 </script>
 
 <template>
   <div :class="cn('grid gap-6', $attrs.class ?? '')">
     <form @submit="onSubmit">
-      <div class="grid gap-2">
+      <div class="grid gap-7">
         <div class="grid gap-1">
-          <Label class="sr-only" for="email">
-            Email
+          <Label for="login">
+            Email atau nomor telepon
           </Label>
-          <Input
-            id="email"
-            placeholder="name@example.com"
-            type="email"
-            auto-capitalize="none"
-            auto-complete="email"
-            auto-correct="off"
-            :disabled="isLoading"
-          />
+          <Input id="login" placeholder="Masukkan email atau nomor telepon" type="text" auto-capitalize="none"
+            auto-correct="off" :disabled="isLoading" v-model="form.login" />
+          <!-- Menampilkan error jika ada, pastikan errors ada sebelum mengakses -->
+          <div v-if="form.errors.login" class="text-red-500 text-sm">{{ form.errors.login }}</div>
+        </div>
+        <div class="grid gap-1">
+          <Label for="password">
+            Password
+          </Label>
+          <Input id="password" placeholder="Masukkan password" type="password" auto-capitalize="none" auto-correct="off"
+            :disabled="isLoading" v-model="form.password" />
+          <!-- Menampilkan error jika ada, pastikan errors ada sebelum mengakses -->
+          <div v-if="form.errors.password" class="text-red-500 text-sm">{{ form.errors.password }}</div>
         </div>
         <Button :disabled="isLoading">
-          Sign In with Email
+          Login
         </Button>
       </div>
     </form>
-    <div class="relative">
-      <div class="absolute inset-0 flex items-center">
-        <span class="w-full border-t" />
-      </div>
-      <div class="relative flex justify-center text-xs uppercase">
-        <span class="bg-background px-2 text-muted-foreground">
-          Or continue with
-        </span>
-      </div>
-    </div>
-    <Button variant="outline" type="button" :disabled="isLoading">
-      GitHub
-    </Button>
   </div>
 </template>

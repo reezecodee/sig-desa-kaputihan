@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['app-layout'])->group(function () {
+Route::middleware(['app-layout', 'auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::prefix('blog')->controller(BlogController::class)->group(function () {
