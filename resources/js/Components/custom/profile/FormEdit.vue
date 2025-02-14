@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { router } from '@inertiajs/vue3'
+import { router, usePage } from '@inertiajs/vue3'
 import { Button } from '@/Components/ui/button'
 import {
     FormControl,
@@ -13,6 +13,7 @@ import { Input } from '@/Components/ui/input'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
+import { computed } from 'vue'
 
 const formSchema = toTypedSchema(z.object({
     nama: z.string({ message: 'Nama wajib di isi' }).max(255, { message: 'Nama tidak boleh lebih dari 255 karakter' }).trim(),
@@ -23,8 +24,18 @@ const formSchema = toTypedSchema(z.object({
 
 defineProps<{ errors: Record<string, string> }>()
 
-const { isFieldDirty, handleSubmit, setErrors } = useForm({
+const page = usePage()
+const user = computed(() => page.props.auth.user)
+console.log(user)
+
+const { values, isFieldDirty, handleSubmit, setErrors } = useForm({
     validationSchema: formSchema,
+    initialValues: {
+        nama: user.value.nama,
+        email: user.value.email,
+        telepon: user.value.telepon,
+        alamat: user.value.alamat,
+    }
 })
 
 const onSubmit = handleSubmit((values) => {
@@ -34,6 +45,8 @@ const onSubmit = handleSubmit((values) => {
         }
     })
 })
+
+
 </script>
 
 <template>

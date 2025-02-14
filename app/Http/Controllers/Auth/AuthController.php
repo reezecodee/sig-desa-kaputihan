@@ -19,13 +19,14 @@ class AuthController extends Controller
 
     public function loginHandler(LoginRequest $request)
     {
-        $login = $request->input('login');
-        $password = $request->input('password');
+        $login = $request->login;
+        $password = $request->password;
 
         $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'telepon';
+        $credentials = [$fieldType => $login, 'password' => $password];
 
-        if (Auth::attempt([$fieldType => $login, 'password' => $password])) {
-            session()->regenerate();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
             session()->flash('success', 'Selamat datang di Sistem Informasi Desa Kaputihan');
 
             return Inertia::location(route('admin.dashboard'));

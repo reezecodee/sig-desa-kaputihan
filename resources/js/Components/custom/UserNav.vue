@@ -15,7 +15,19 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/Components/ui/dropdown-menu'
-import { Link } from '@inertiajs/vue3'
+import { Link, usePage } from '@inertiajs/vue3'
+import { computed } from 'vue'
+
+const page = usePage()
+const user = computed(() => page.props.auth.user)
+
+const initial = (): string => {
+  const names = user.value.nama.split(' ');
+  const firstNameInitial = names[0].charAt(0).toUpperCase();
+  const lastNameInitial = names[names.length - 1].charAt(0).toUpperCase(); 
+
+  return firstNameInitial + lastNameInitial;
+}
 </script>
 
 <template>
@@ -24,7 +36,7 @@ import { Link } from '@inertiajs/vue3'
       <Button variant="ghost" class="relative h-8 w-8 rounded-full">
         <Avatar class="h-8 w-8">
           <AvatarImage src="/avatars/01.png" alt="@shadcn" />
-          <AvatarFallback>SC</AvatarFallback>
+          <AvatarFallback>{{ initial() }}</AvatarFallback>
         </Avatar>
       </Button>
     </DropdownMenuTrigger>
@@ -32,19 +44,19 @@ import { Link } from '@inertiajs/vue3'
       <DropdownMenuLabel class="font-normal flex">
         <div class="flex flex-col space-y-1">
           <p class="text-sm font-medium leading-none">
-            shadcn
+            {{ user.nama }}
           </p>
           <p class="text-xs leading-none text-muted-foreground">
-            m@example.com
+            {{ user.email }}
           </p>
         </div>
       </DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuGroup>
         <Link href="/profile">
-          <DropdownMenuItem>
-            Profile
-          </DropdownMenuItem>
+        <DropdownMenuItem>
+          Profile
+        </DropdownMenuItem>
         </Link>
       </DropdownMenuGroup>
       <DropdownMenuSeparator />

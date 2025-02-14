@@ -24,7 +24,7 @@ class UpdateUserRequest extends FormRequest
         return [
             'nama' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $this->route('id'),
-            'telepon' => 'required|numeric|min_digits:12|max_digits:15',
+            'telepon' => 'required|numeric|min_digits:12|max_digits:15|unique:users,telepon,' . $this->route('id'),
             'alamat' => 'required|string|max:255',
             'status' => 'required|in:Aktif,Nonaktif',
         ];
@@ -43,6 +43,7 @@ class UpdateUserRequest extends FormRequest
             'telepon.numeric' => 'Telepon hanya boleh berisi angka.',
             'telepon.min_digits' => 'Telepon minimal berisi 12 digit angka.',
             'telepon.max_digits' => 'Telepon tidak boleh lebih dari 15 digit angka.',
+            'telepon.unique' => 'Telepon sudah terdaftar, gunakan nomor lain.',
             'alamat.required' => 'Alamat wajib di isi.',
             'alamat.max' => 'Alamat tidak boleh lebih dari 255 karakter.',
             'status.required' => 'Status wajib di isi.',
