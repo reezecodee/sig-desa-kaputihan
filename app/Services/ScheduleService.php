@@ -27,6 +27,11 @@ class ScheduleService
         }
     }
 
+    public function scheduleDates()
+    {
+        return $this->scheduleRepository->scheduleDates();
+    }
+
     public function delete($id)
     {
         try {

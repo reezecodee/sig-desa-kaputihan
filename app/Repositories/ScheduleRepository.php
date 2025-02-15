@@ -22,6 +22,17 @@ class ScheduleRepository
         }
     }
 
+    public function scheduleDates()
+    {
+        return Schedule::all()->map(function ($event) {
+            return [
+                'title' => $event->keterangan,
+                'start' => $event->tgl_mulai,
+                'end'   => $event->tgl_selesai
+            ];
+        });
+    }
+
     public function destroy($id)
     {
         try {

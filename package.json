@@ -23,6 +23,9 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
+        "@fullcalendar/core": "^6.1.15",
+        "@fullcalendar/daygrid": "^6.1.15",
+        "@fullcalendar/vue3": "^6.1.15",
         "@radix-icons/vue": "^1.0.0",
         "@tanstack/vue-table": "^8.20.5",
         "@unovis/vue": "^1.5.0",

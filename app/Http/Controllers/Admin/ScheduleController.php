@@ -26,38 +26,9 @@ class ScheduleController extends Controller
 
     public function getCalendars()
     {
-        $data = collect([
-            [
-                'id' => '31231',
-                'keterangan' => 'Ambatukam makan mie goreng',
-                'status' => 'Menunggu',
-                'tgl_mulai' => '2025-05-25',
-                'tgl_selesai' => '2025-05-25'
-            ],
-            [
-                'id' => '31231',
-                'keterangan' => 'Ambatukam makan mie goreng',
-                'status' => 'Menunggu',
-                'tgl_mulai' => '2025-05-25',
-                'tgl_selesai' => '2025-05-25'
-            ],
-            [
-                'id' => '31231',
-                'keterangan' => 'Ambatukam makan mie goreng',
-                'status' => 'Menunggu',
-                'tgl_mulai' => '2025-05-25',
-                'tgl_selesai' => '2025-05-25'
-            ],
-            [
-                'id' => '31231',
-                'keterangan' => 'Ambatukam makan mie goreng',
-                'status' => 'Menunggu',
-                'tgl_mulai' => '2025-05-25',
-                'tgl_selesai' => '2025-05-25'
-            ],
-        ]);
+        $events = $this->scheduleService->scheduleDates();
 
-        return response()->json($data);
+        return response()->json($events);
     }
 
     public function getSchedules()

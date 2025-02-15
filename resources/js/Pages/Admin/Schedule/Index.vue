@@ -4,9 +4,9 @@ import { Head, Link } from '@inertiajs/vue3';
 import { Card, CardHeader, CardTitle, CardContent } from '@/Components/ui/card';
 import { Button } from '@/Components/ui/button';
 import Table from '@/Components/custom/schedule/Table.vue';
-import Calendar from '@/Components/custom/schedule/Calendar.vue';
 import { onMounted } from 'vue'
 import axios from 'axios'
+import FullCalendar from '@/Components/custom/schedule/FullCalendar.vue';
 
 defineProps({
     title: String
@@ -57,7 +57,7 @@ onMounted(() => {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <!-- <Calendar></Calendar> -->
+                <FullCalendar></FullCalendar>
             </CardContent>
         </Card>
         <Card>
