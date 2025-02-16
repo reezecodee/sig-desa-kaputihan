@@ -35,4 +35,18 @@ class LandingController extends Controller
 
         return Inertia::render('Landing/Schedule', compact('title'));
     }
+
+    public function buildingList()
+    {
+        $title = 'Daftar Bangunan';
+
+        return Inertia::render('Landing/BuildingList', compact('title'));
+    }
+
+    public function buildingInformation()
+    {
+        $title = 'Informasi Bangunan';
+
+        return Inertia::render('Landing/BuildingInformation', compact('title'));
+    }
 }

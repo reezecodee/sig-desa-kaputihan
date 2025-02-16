@@ -5,11 +5,11 @@ import Landing from '@/Layouts/Landing.vue';
     <Landing>
         <div class="page-title light-background">
             <div class="container">
-                <h1>Blog Desa</h1>
+                <h1>Daftar Bangunan</h1>
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="index.html">Home</a></li>
-                        <li class="current">Blog Desa</li>
+                        <li class="current">Daftar Bangunan</li>
                     </ol>
                 </nav>
             </div>
