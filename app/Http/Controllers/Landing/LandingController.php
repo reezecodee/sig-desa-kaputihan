@@ -14,4 +14,25 @@ class LandingController extends Controller
 
         return Inertia::render('Landing/Index', compact('title'));
     }
+
+    public function blogList()
+    {
+        $title = 'Daftar Blog Desa Kaputihan';
+
+        return Inertia::render('Landing/BlogList', compact('title'));
+    }
+
+    public function readBlog()
+    {
+        $title = 'Baca Blog: ';
+
+        return Inertia::render('Landing/ReadBlog', compact('title'));
+    }
+
+    public function schedule()
+    {
+        $title = 'Jadwal Kegiatan Desa Kaputihan';
+
+        return Inertia::render('Landing/Schedule', compact('title'));
+    }
 }
