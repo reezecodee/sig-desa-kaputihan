@@ -1,5 +1,19 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 
+onMounted(() => {
+  const mobileNavShow = document.querySelector('.mobile-nav-toggle')
+  const mobileNavHide = document.querySelector('.mobile-nav-hide')
+
+  document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
+    el.addEventListener('click', function(event) {
+      event.preventDefault()
+      document.querySelector('body')?.classList.toggle('mobile-nav-active')
+      this.classList.toggle('bi-list')
+      this.classList.toggle('bi-x')
+    })
+  })
+})
 </script>
 
 <template>

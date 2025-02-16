@@ -1,5 +1,14 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 
+onMounted(() => {
+  new PureCounter({
+    selector: '.purecounter',
+    start: 0,
+    end: 500,
+    duration: 2,
+  })
+})
 </script>
 
 <template>
