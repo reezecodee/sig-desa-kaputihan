@@ -13,7 +13,7 @@
                     <div class="stats-item text-center w-100 h-100">
                         <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
                             class="purecounter"></span>
-                        <p>Clients</p>
+                        <p>Tempat Ibadah</p>
                     </div>
                 </div><!-- End Stats Item -->
 
@@ -21,7 +21,37 @@
                     <div class="stats-item text-center w-100 h-100">
                         <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
                             class="purecounter"></span>
-                        <p>Projects</p>
+                        <p>Bangunan Desa/Pemerintahan</p>
+                    </div>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-item text-center w-100 h-100">
+                        <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                            class="purecounter"></span>
+                        <p>Bangunan Pendidikan</p>
+                    </div>
+                </div><!-- End Stats Item -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-item text-center w-100 h-100">
+                        <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                            class="purecounter"></span>
+                        <p>Bangunan Kesehatan</p>
+                    </div>
+                </div><!-- End Stats Item -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-item text-center w-100 h-100">
+                        <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                            class="purecounter"></span>
+                        <p>Tempat Usaha/Bisnis</p>
+                    </div>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-item text-center w-100 h-100">
+                        <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                            class="purecounter"></span>
+                        <p>Tempat Olahraga</p>
                     </div>
                 </div><!-- End Stats Item -->
 
@@ -29,7 +59,7 @@
                     <div class="stats-item text-center w-100 h-100">
                         <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1"
                             class="purecounter"></span>
-                        <p>Hours Of Support</p>
+                        <p>Pos Keamanan</p>
                     </div>
                 </div><!-- End Stats Item -->
 
@@ -37,7 +67,7 @@
                     <div class="stats-item text-center w-100 h-100">
                         <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1"
                             class="purecounter"></span>
-                        <p>Workers</p>
+                        <p>Bangunan Lainnya</p>
                     </div>
                 </div><!-- End Stats Item -->
 

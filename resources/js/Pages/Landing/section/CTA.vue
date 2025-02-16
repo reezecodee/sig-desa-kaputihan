@@ -9,13 +9,13 @@
 
             <div class="row content justify-content-center align-items-center position-relative">
                 <div class="col-lg-8 mx-auto text-center">
-                    <h2 class="display-4 mb-4">Maecenas tempus tellus eget condimentum</h2>
-                    <p class="mb-4">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-                        Curae; Donec velit neque, auctor sit amet aliquam vel</p>
-                    <a href="#" class="btn btn-cta">Call To Action</a>
+                    <h2 class="display-4 mb-4">Statistik Desa Kaputihan</h2>
+                    <p class="mb-4">Temukan informasi lengkap mengenai statistik seperti kependudukan, pendidikan,
+                        lahan, sarana
+                        & prasarana, dan lain-lain.</p>
+                    <a href="#" class="btn btn-cta">Lihat Statistik</a>
                 </div>
 
-                <!-- Abstract Background Elements -->
                 <div class="shape shape-1">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -32,7 +32,6 @@
                     </svg>
                 </div>
 
-                <!-- Dot Pattern Groups -->
                 <div class="dots dots-1">
                     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <pattern id="dot-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">

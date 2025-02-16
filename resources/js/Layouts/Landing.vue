@@ -5,9 +5,9 @@ import Footer from '@/Components/custom/landing/Footer.vue'
 
 <template>
     <Navbar />
-        <main class="main">
-            <slot></slot>
-        </main>
+    <main class="main">
+        <slot></slot>
+    </main>
     <Footer />
 </template>
 

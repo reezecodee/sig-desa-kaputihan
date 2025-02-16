@@ -22,13 +22,9 @@
 
     <link href="/css/main.css" rel="stylesheet">
 
-    <!-- External -->
-    {{-- <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script> --}}
-
     <!-- Scripts -->
     @routes
-    @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
+    @vite(['resources/js/landing.js', "resources/js/Pages/{$page['component']}.vue"])
     @inertiaHead
 </head>
 
@@ -36,18 +32,16 @@
     @inertia
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
-    <!-- Vendor JS Files -->
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/vendor/php-email-form/validate.js"></script>
     <script src="/vendor/aos/aos.js"></script>
     <script src="/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
 
-    <!-- Main JS File -->
-    <script src="/js/main.js"></script>
 
+    <script src="/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </body>
 
 </html>

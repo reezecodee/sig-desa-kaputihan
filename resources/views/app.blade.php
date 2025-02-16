@@ -28,7 +28,6 @@
 
         <script>
             $(document).ready(function() {
-                // Inisialisasi DataTable untuk tabel dengan ID myTable
                 $('#myTable').DataTable();
             });
         </script>

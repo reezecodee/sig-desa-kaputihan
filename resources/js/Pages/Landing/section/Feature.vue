@@ -7,8 +7,8 @@
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <h2>Features</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+            <h2>Batas Wilayah</h2>
+            <p>Informasi Batas Wilayah Seperti Batas Desa, Dusun dan RT/RW</p>
         </div><!-- End Section Title -->
 
         <div class="container">
@@ -19,19 +19,19 @@
 
                     <li class="nav-item">
                         <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
-                            <h4>Modisit</h4>
+                            <h4>Batas Desa</h4>
                         </a>
                     </li><!-- End tab nav item -->
 
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
-                            <h4>Praesenti</h4>
+                            <h4>Batas Dusun</h4>
                         </a><!-- End tab nav item -->
 
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
-                            <h4>Explica</h4>
+                            <h4>Batas RT/RW</h4>
                         </a>
                     </li><!-- End tab nav item -->
 
@@ -42,80 +42,31 @@
             <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
 
                 <div class="tab-pane fade active show" id="features-tab-1">
-                    <div class="row">
-                        <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                            <h3>Voluptatem dignissimos provident</h3>
-                            <p class="fst-italic">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore
-                                magna aliqua.
-                            </p>
-                            <ul>
-                                <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat.</span></li>
-                                <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in
-                                        voluptate velit.</span></li>
-                                <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate trideta
-                                        storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6 order-1 order-lg-2 text-center">
-                            <img src="/img/features-illustration-1.webp" alt="" class="img-fluid">
-                        </div>
+                    <div class="embed-container"><iframe width="500" height="400" frameborder="0" scrolling="no"
+                            marginheight="0" marginwidth="0" title="Batas RT-RW"
+                            src="//www.arcgis.com/apps/Embed/index.html?webmap=4b81724f0ed943e5958afdaa62e5903c&extent=108.2301,-7.4766,108.2707,-7.4549&home=true&zoom=true&previewImage=false&scale=true&details=true&legend=true&active_panel=details&basemap_gallery=true&disable_scroll=true&theme=dark"></iframe>
                     </div>
                 </div><!-- End tab content item -->
 
                 <div class="tab-pane fade" id="features-tab-2">
-                    <div class="row">
-                        <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                            <h3>Neque exercitationem debitis</h3>
-                            <p class="fst-italic">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore
-                                magna aliqua.
-                            </p>
-                            <ul>
-                                <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat.</span></li>
-                                <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in
-                                        voluptate velit.</span></li>
-                                <li><i class="bi bi-check2-all"></i> <span>Provident mollitia neque rerum asperiores
-                                        dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</span></li>
-                                <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate trideta
-                                        storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6 order-1 order-lg-2 text-center">
-                            <img src="/img/features-illustration-2.webp" alt="" class="img-fluid">
-                        </div>
+                    <div class="embed-container"><small><a
+                                href="//www.arcgis.com/apps/Embed/index.html?webmap=4b81724f0ed943e5958afdaa62e5903c&extent=108.2301,-7.4766,108.2707,-7.4549&home=true&zoom=true&scale=true&details=true&legend=true&active_panel=details&basemap_gallery=true&disable_scroll=true&theme=dark"
+                                style="color:#0000FF;text-align:left" target="_blank">View larger
+                                map</a></small><br><iframe width="500" height="400" frameborder="0" scrolling="no"
+                            marginheight="0" marginwidth="0" title="Batas RT-RW"
+                            src="//www.arcgis.com/apps/Embed/index.html?webmap=4b81724f0ed943e5958afdaa62e5903c&extent=108.2301,-7.4766,108.2707,-7.4549&home=true&zoom=true&previewImage=false&scale=true&details=true&legend=true&active_panel=details&basemap_gallery=true&disable_scroll=true&theme=dark"></iframe>
                     </div>
                 </div><!-- End tab content item -->
 
                 <div class="tab-pane fade" id="features-tab-3">
-                    <div class="row">
-                        <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                            <h3>Voluptatibus commodi accusamu</h3>
-                            <ul>
-                                <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat.</span></li>
-                                <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in
-                                        voluptate velit.</span></li>
-                                <li><i class="bi bi-check2-all"></i> <span>Provident mollitia neque rerum asperiores
-                                        dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</span></li>
-                            </ul>
-                            <p class="fst-italic">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore
-                                magna aliqua.
-                            </p>
-                        </div>
-                        <div class="col-lg-6 order-1 order-lg-2 text-center">
-                            <img src="/img/features-illustration-3.webp" alt="" class="img-fluid">
-                        </div>
+                    <div class="embed-container"><small><a
+                                href="//www.arcgis.com/apps/Embed/index.html?webmap=4b81724f0ed943e5958afdaa62e5903c&extent=108.2301,-7.4766,108.2707,-7.4549&home=true&zoom=true&scale=true&details=true&legend=true&active_panel=details&basemap_gallery=true&disable_scroll=true&theme=dark"
+                                style="color:#0000FF;text-align:left" target="_blank">View larger
+                                map</a></small><br><iframe width="500" height="400" frameborder="0" scrolling="no"
+                            marginheight="0" marginwidth="0" title="Batas RT-RW"
+                            src="//www.arcgis.com/apps/Embed/index.html?webmap=4b81724f0ed943e5958afdaa62e5903c&extent=108.2301,-7.4766,108.2707,-7.4549&home=true&zoom=true&previewImage=false&scale=true&details=true&legend=true&active_panel=details&basemap_gallery=true&disable_scroll=true&theme=dark"></iframe>
                     </div>
-                </div><!-- End tab content item -->
+                </div>
 
             </div>
 
@@ -124,4 +75,28 @@
     </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+.embed-container {
+    position: relative;
+    padding-bottom: 80%;
+    height: 0;
+    max-width: 100%;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+small {
+    position: absolute;
+    z-index: 40;
+    bottom: 0;
+    margin-bottom: -15px;
+}
+</style>

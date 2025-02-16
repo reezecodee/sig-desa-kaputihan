@@ -12,34 +12,34 @@
                 <div class="col-xl-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="feature-box orange">
                         <i class="bi bi-award"></i>
-                        <h4>Corporis voluptates</h4>
-                        <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                        <h4>Lokasi Desa</h4>
+                        <p>Desa Kaputihan berlokasi di Kecamatan Jatiwaras, Tasikmalaya, Jawa Barat, Indonesia.</p>
                     </div>
-                </div><!-- End Feature Borx-->
+                </div>
 
                 <div class="col-xl-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                     <div class="feature-box blue">
                         <i class="bi bi-patch-check"></i>
-                        <h4>Explicabo consectetur</h4>
-                        <p>Est autem dicta beatae suscipit. Sint veritatis et sit quasi ab aut inventore</p>
+                        <h4>Jumlah Dusun</h4>
+                        <p>Desa Kaputihan memiliki 4 dusun diantaranya: Cikopo, Unara, Cidua, dan Pasarbitung.</p>
                     </div>
-                </div><!-- End Feature Borx-->
+                </div>
 
                 <div class="col-xl-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
                     <div class="feature-box green">
                         <i class="bi bi-sunrise"></i>
-                        <h4>Ullamco laboris</h4>
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                        <h4>Jumlah RT</h4>
+                        <p>Desa Kaputihan memiliki 31 RT (Rukun Tetangga)</p>
                     </div>
-                </div><!-- End Feature Borx-->
+                </div>
 
                 <div class="col-xl-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
                     <div class="feature-box red">
                         <i class="bi bi-shield-check"></i>
-                        <h4>Labore consequatur</h4>
-                        <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                        <h4>Jumlah RW</h4>
+                        <p>Desa Kaputihan memiliki 14 RW (Rukun Warga)</p>
                     </div>
-                </div><!-- End Feature Borx-->
+                </div>
 
             </div>
 
