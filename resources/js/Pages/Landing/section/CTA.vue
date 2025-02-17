@@ -13,7 +13,7 @@
                     <p class="mb-4">Temukan informasi lengkap mengenai statistik seperti kependudukan, pendidikan,
                         lahan, sarana
                         & prasarana, dan lain-lain.</p>
-                    <a href="#" class="btn btn-cta">Lihat Statistik</a>
+                    <a href="https://kaputihan.desa.id/tentang/statistik/" class="btn btn-cta">Lihat Statistik</a>
                 </div>
 
                 <div class="shape shape-1">

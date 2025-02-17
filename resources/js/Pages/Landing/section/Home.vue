@@ -38,7 +38,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-trophy"></i>
+                            <i class="bi bi-rulers"></i>
                         </div>
                         <div class="stat-content">
                             <h4>Lokasi Elevasi</h4>
@@ -49,7 +49,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-briefcase"></i>
+                            <i class="bi bi-thermometer-high"></i>
                         </div>
                         <div class="stat-content">
                             <h4>Suhu rata-rata</h4>
@@ -60,7 +60,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-graph-up"></i>
+                            <i class="bi bi-arrows-fullscreen"></i>
                         </div>
                         <div class="stat-content">
                             <h4>Luas Wilayah</h4>
@@ -71,7 +71,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-award"></i>
+                            <i class="bi bi-people-fill"></i>
                         </div>
                         <div class="stat-content">
                             <h4>Jumlah Penduduk</h4>

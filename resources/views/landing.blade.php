@@ -21,7 +21,6 @@
     <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <link href="/css/main.css" rel="stylesheet">
-
     <!-- Scripts -->
     @routes
     @vite(['resources/js/landing.js', "resources/js/Pages/{$page['component']}.vue"])
