@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <section id="features-cards" class="features-cards section">
+    <section id="batas-wilayah-cards" class="features-cards section">
 
         <div class="container">
 
@@ -21,7 +21,7 @@
                     <div class="feature-box blue">
                         <i class="bi bi-patch-check"></i>
                         <h4>Jumlah Dusun</h4>
-                        <p>Desa Kaputihan memiliki 4 dusun diantaranya: Cikopo, Unara, Cidua, dan Pasarbitung.</p>
+                        <p>Desa Kaputihan memiliki 4 dusun diantaranya: Cikopo, Unara, Cidua, Sirnasari, dan Pasarbitung.</p>
                     </div>
                 </div>
 

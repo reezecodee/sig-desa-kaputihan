@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref, onBeforeUnmount, nextTick } from 'vue'
+import { Link } from '@inertiajs/vue3'
 
 onMounted(() => {
   const mobileNavShow = document.querySelector('.mobile-nav-toggle')
   const mobileNavHide = document.querySelector('.mobile-nav-hide')
 
   document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
-    el.addEventListener('click', function(event) {
+    el.addEventListener('click', function (event) {
       event.preventDefault()
       document.querySelector('body')?.classList.toggle('mobile-nav-active')
       this.classList.toggle('bi-list')
@@ -14,32 +15,64 @@ onMounted(() => {
     })
   })
 })
+
+const currentHash = ref('')
+const currentPath = ref('')
+
+const updateHash = () => {
+  currentHash.value = window.location.hash || ''
+}
+
+onMounted(() => {
+  currentPath.value = window.location.pathname
+  currentHash.value = window.location.hash || ''
+
+  window.addEventListener('hashchange', updateHash)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('hashchange', updateHash)
+})
 </script>
 
 <template>
-   <header id="header" class="header d-flex align-items-center fixed-top">
+  <header id="header" class="header d-flex align-items-center fixed-top">
     <div
       class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">GISKA</h1>
-      </a>
+      <Link href="" class="logo d-flex align-items-center me-auto me-xl-0">
+      <!-- <img src="assets/img/logo.png" alt=""> -->
+      <h1 class="sitename">GISKA</h1>
+      </Link>
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#features">Batas Wilayah</a></li>
-          <li><a href="#services">Kependudukan</a></li>
-          <li><a href="#pricing">Bangunan</a></li>
-          <li><a href="#pricing">Blog Desa</a></li>
-          <li><a href="#contact">Jadwal Kegiatan</a></li>
+          <li>
+            <a href="/#home" :class="{ active: currentHash === '#home' }">Home</a>
+          </li>
+          <li>
+            <a href="/#batas-wilayah" :class="{ 'active': currentHash === '#batas-wilayah' }">Batas Wilayah</a>
+          </li>
+          <li>
+            <a href="/#data-desa" :class="{ 'active': currentHash === '#data-desa' }">Data Desa</a>
+          </li>
+          <li>
+            <a href="/#bangunan"
+              :class="{ 'active': currentHash === '#bangunan' || $page.url.startsWith('/bangunan') }">Bangunan</a>
+          </li>
+          <li>
+            <Link :href="route('landing.blog')" :class="{ 'active': $page.url.startsWith('/blog-desa') }">Blog Desa
+            </Link>
+          </li>
+          <li>
+            <Link :href="route('landing.schedule')"
+              :class="{ 'active': $page.url.startsWith('/jadwal-kegiatan-desa') }">Jadwal Kegiatan</Link>
+          </li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="index.html#about">Ayo Mulai</a>
+      <a class="btn-getstarted" :href="route('login')">Ayo Mulai</a>
 
     </div>
   </header>

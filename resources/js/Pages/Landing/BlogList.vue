@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import Landing from '@/Layouts/Landing.vue';
+
+defineProps({
+    title: String
+})
 </script>
 <template>
-    <Landing>
+    <Landing :title="title">
         <div class="page-title light-background">
             <div class="container">
                 <h1>Blog Desa</h1>

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <section id="features" class="features section">
+    <section id="batas-wilayah" class="features section">
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">

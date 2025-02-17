@@ -1,9 +1,8 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
-    <section id="hero" class="hero section">
+    <section id="home" class="hero section">
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -23,7 +22,7 @@
                         </p>
 
                         <div class="hero-buttons">
-                            <a href="#about" class="btn btn-primary me-0 me-sm-2 mx-1">Ayo Mulai</a>
+                            <a :href="route('login')" class="btn btn-primary me-0 me-sm-2 mx-1">Ayo Mulai</a>
                         </div>
                     </div>
                 </div>

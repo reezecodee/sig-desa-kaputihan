@@ -3,10 +3,10 @@
 </script>
 
 <template>
-    <section id="services" class="services section light-background">
+    <section id="bangunan" class="services section light-background">
 
         <div class="container section-title" data-aos="fade-up">
-            <h2>Bangunan Kesehatan</h2>
+            <h2>Bangunan Umum</h2>
             <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
         </div>
 

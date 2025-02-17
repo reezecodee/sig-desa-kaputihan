@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <section id="service-details" class="service-details section mt-5">
+    <section id="building-info" class="service-details section mt-5">
         <div class="container">
             <div class="row gy-5">
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">

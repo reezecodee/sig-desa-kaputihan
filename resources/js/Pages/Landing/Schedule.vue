@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import Landing from '@/Layouts/Landing.vue';
-import FullCalendar from '@/Components/custom/schedule/FullCalendar.vue';
+import Landing from '@/Layouts/Landing.vue'
+import FullCalendar from '@/Components/custom/schedule/FullCalendar.vue'
+
+defineProps({
+    title: String
+})
 </script>
 <template>
-    <Landing>
+    <Landing :title="title">
         <div class="page-title light-background">
             <div class="container">
                 <h1>Jadwal Kegiatan</h1>
