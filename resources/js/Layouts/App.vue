@@ -16,13 +16,6 @@ import DangerAlert from '@/Components/custom/DangerAlert.vue'
 </script>
 
 <template>
-    <!-- <div class="md:hidden">
-        <VPImage alt="Dashboard" width="1280" height="1214" class="block" :image="{
-            dark: '/examples/dashboard-dark.png',
-            light: '/examples/dashboard-light.png',
-        }" />
-    </div> -->
-
     <div class="hidden flex-col md:flex">
         <div class="border-b">
             <div class="flex h-16 items-center px-4">
@@ -39,30 +32,55 @@ import DangerAlert from '@/Components/custom/DangerAlert.vue'
             <div class="flex items-center justify-between space-y-2">
                 <slot name="header"></slot>
             </div>
-            <Tabs default-value="overview" class="space-y-4">
-                <TabsList v-if="$page.url.startsWith('/dashboard')">
-                    <TabsTrigger value="overview">
-                        Overview
+            <div v-if="$page.props.flash.success" class="alert">
+                <SuccessAlert>{{ $page.props.flash.success }}</SuccessAlert>
+            </div>
+            <div v-if="$page.props.flash.failed" class="alert">
+                <DangerAlert>{{ $page.props.flash.failed }}</DangerAlert>
+            </div>
+            <Tabs :default-value="!$page.url.startsWith('/bangunan') ? 'overview' : 'ibadah'" class="space-y-4">
+                <TabsList v-if="$page.url.startsWith('/bangunan')">
+                    <TabsTrigger value="ibadah">
+                        Ibadah
                     </TabsTrigger>
-                    <TabsTrigger value="analytics" disabled>
-                        Analytics
+                    <TabsTrigger value="pemerintahan">
+                        Desa/Pemerintah
                     </TabsTrigger>
-                    <TabsTrigger value="reports" disabled>
-                        Reports
+                    <TabsTrigger value="pendidikan">
+                        Pendidikan
                     </TabsTrigger>
-                    <TabsTrigger value="notifications" disabled>
-                        Notifications
+                    <TabsTrigger value="kesehatan">
+                        Kesehatan
+                    </TabsTrigger>
+                    <TabsTrigger value="usaha">
+                        Usaha/Bisnis
+                    </TabsTrigger>
+                    <TabsTrigger value="olahraga">
+                        Olahraga
+                    </TabsTrigger>
+                    <TabsTrigger value="lainnya">
+                        Lainnya
                     </TabsTrigger>
                 </TabsList>
-                <TabsContent value="overview" class="space-y-4">
-                    <div v-if="$page.props.flash.success" class="alert">
-                        <SuccessAlert>{{ $page.props.flash.success }}</SuccessAlert>
-                    </div>
-                    <div v-if="$page.props.flash.failed" class="alert">
-                        <DangerAlert>{{ $page.props.flash.failed }}</DangerAlert>
-                    </div>
-                    <slot></slot>
-                </TabsContent>
+                <div v-if="!$page.url.startsWith('/bangunan')">
+                    <TabsContent value="overview" class="space-y-4">
+                        <slot></slot>
+                    </TabsContent>
+                </div>
+                <div v-if="$page.url.startsWith('/bangunan')">
+                    <TabsContent value="ibadah" class="space-y-4">
+                        p
+                        <slot></slot>
+                    </TabsContent>
+                    <TabsContent value="pemerintahan" class="space-y-4">
+                        q
+                        <slot></slot>
+                    </TabsContent>
+                    <TabsContent value="pendidikan" class="space-y-4">
+                        r
+                        <slot></slot>
+                    </TabsContent>
+                </div>
             </Tabs>
         </div>
     </div>

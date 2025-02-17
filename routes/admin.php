@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\BuildingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ScheduleController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +29,15 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
         Route::get('buat-jadwal', 'create')->name('admin.scheduleCreate');
         Route::post('tambah-jadwal', 'store')->name('admin.scheduleSave');
         Route::delete('hapus-jadwal/{id}', 'destroy')->name('admin.scheduleDestroy');
+    });
+
+    Route::prefix('bangunan')->controller(BuildingController::class)->group(function () {
+        Route::get('/', 'index')->name('admin.building');
+        Route::get('/tambah-bangunan', 'create')->name('admin.buildingCreate');
+    });
+
+    Route::prefix('pengaturan-desa')->controller(SettingController::class)->group(function () {
+        Route::get('/', 'index')->name('admin.setting');
     });
 
     Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {
