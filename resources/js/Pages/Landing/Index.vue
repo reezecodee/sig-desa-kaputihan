@@ -24,8 +24,8 @@ defineProps({
         <Region />
         <RegionCard />
         <CTA />
-        <Stats />
         <PublicBuilding />
+        <Stats />
         <FAQ />
     </Landing>
 </template>
