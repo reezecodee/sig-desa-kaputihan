@@ -44,7 +44,6 @@ async function onSubmit(event: Event) {
           </Label>
           <Input id="password" placeholder="Masukkan password" type="password" auto-capitalize="none" auto-correct="off"
             :disabled="isLoading" v-model="form.password" />
-          <!-- Menampilkan error jika ada, pastikan errors ada sebelum mengakses -->
           <div v-if="form.errors.password" class="text-red-500 text-sm">{{ form.errors.password }}</div>
         </div>
         <Button :disabled="isLoading">

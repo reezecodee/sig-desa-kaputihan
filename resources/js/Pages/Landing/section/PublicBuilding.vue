@@ -13,56 +13,56 @@ const buildings: IPublicBuilding = [
     {
         delay: 100,
         title: 'Bangunan Ibadah',
-        description: 'Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.',
+        description: 'Desa Kaputihan memiliki beberapa bangunan ibadah yang menjadi pusat kegiatan keagamaan dan sosial bagi masyarakat setempat.',
         link: route('landing.buildingList'),
         icon: 'fa-solid fa-mosque'
     },
     {
         delay: 200,
         title: 'Bangunan Desa/Pemerintahan',
-        description: 'Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.',
+        description: 'Desa Kaputihan memiliki beberapa bangunan desa atau pemerintahan yang berfungsi sebagai pusat administrasi dan pelayanan masyarakat.',
         link: route('landing.buildingList'),
         icon: 'fa-solid fa-building-columns'
     },
     {
         delay: 300,
         title: 'Bangunan Pendidikan',
-        description: 'Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.',
+        description: 'Desa Kaputihan memiliki sejumlah bangunan pendidikan yang menjadi pusat kegiatan belajar-mengajar bagi generasi muda.',
         link: route('landing.buildingList'),
         icon: 'fa-solid fa-school'
     },
     {
         delay: 400,
         title: 'Bangunan Kesehatan',
-        description: 'Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.',
+        description: 'Desa Kaputihan memiliki fasilitas kesehatan yang bertujuan untuk memberikan pelayanan kesehatan yang optimal bagi masyarakat.',
         link: route('landing.buildingList'),
         icon: 'fa-solid fa-hospital'
     },
     {
         delay: 100,
         title: 'Tempat Usaha/Bisnis',
-        description: 'Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.',
+        description: 'Desa Kaputihan memiliki berbagai tempat usaha dan pusat bisnis yang mendukung perekonomian lokal seperti pasar atau kegiatan usaha milik warga.',
         link: route('landing.buildingList'),
         icon: 'fa-solid fa-cart-shopping'
     },
     {
         delay: 200,
         title: 'Tempat Olahraga',
-        description: 'Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.',
+        description: 'Desa Kaputihan memiliki beberapa fasilitas olahraga yang digunakan untuk mendukung kesehatan dan kebugaran masyarakat.',
         link: route('landing.buildingList'),
         icon: 'fa-solid fa-building'
     },
     {
         delay: 300,
         title: 'Pos Keamanan',
-        description: 'Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.',
+        description: 'Desa Kaputihan memiliki beberapa pos keamanan yang berfungsi untuk menjaga ketertiban dan keamanan lingkungan.',
         link: route('landing.buildingList'),
         icon: 'fa-solid fa-building-shield'
     },
     {
         delay: 400,
         title: 'Bangunan Lainnya',
-        description: 'Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.',
+        description: 'Selain bangunan utama seperti fasilitas ibadah, pendidikan, kesehatan, dan keamanan, Desa Kaputihan juga memiliki bangunan lainnya yang mendukung aktivitas sosial.',
         link: route('landing.buildingList'),
         icon: 'fa-solid fa-building-circle-arrow-right'
     },

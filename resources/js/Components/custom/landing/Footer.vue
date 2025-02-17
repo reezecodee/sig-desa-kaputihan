@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { Link } from '@inertiajs/vue3'
 
+const year: Date = new Date().getFullYear()
 </script>
 
 <template>
@@ -8,64 +10,62 @@
         <div class="container footer-top">
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="index.html" class="logo d-flex align-items-center">
-                        <span class="sitename">iLanding</span>
+                    <a href="" class="logo d-flex align-items-center">
+                        <span class="sitename">GISKA</span>
                     </a>
                     <div class="footer-contact pt-3">
-                        <p>A108 Adam Street</p>
-                        <p>New York, NY 535022</p>
-                        <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
-                    </div>
-                    <div class="social-links d-flex mt-4">
-                        <a href=""><i class="bi bi-twitter-x"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
+                        <p>Jalan Kaputihan, Desa Kaputihan</p>
+                        <p>Kabupaten Tasikmalaya, Jawa Barat</p>
+                        <p class="mt-3"><strong>Telepon:</strong> <span>
+                                +62 81320800480</span></p>
+                        <p><strong>Email:</strong> <span>sdgsdesakaputihan@gmail.com</span></p>
                     </div>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Useful Links</h4>
+                    <h4>Link Website</h4>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Terms of service</a></li>
-                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#batas-wilayah">Batas Wilayah</a></li>
+                        <li><a href="#statistik-desa">Statistik Desa</a></li>
+                        <li><a href="#bangunan">Bangunan</a></li>
+                        <li>
+                            <Link :href="route('landing.blog')">Blog Desa</Link>
+                        </li>
+                        <li>
+                            <Link :href="route('landing.schedule')">Jadwal Kegiatan</Link>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
+                    <h4>Layanan Desa</h4>
                     <ul>
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Product Management</a></li>
-                        <li><a href="#">Marketing</a></li>
-                        <li><a href="#">Graphic Design</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/permohonan/">Permohonan Online</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/kontak/">Lapor, Aduan, dan Saran</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/produk-warga/">Produk Desa</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Hic solutasetp</h4>
+                    <h4>Tentang Desa</h4>
                     <ul>
-                        <li><a href="#">Molestiae accusamus iure</a></li>
-                        <li><a href="#">Excepturi dignissimos</a></li>
-                        <li><a href="#">Suscipit distinctio</a></li>
-                        <li><a href="#">Dilecta</a></li>
-                        <li><a href="#">Sit quas consectetur</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/tentang/sejarah/">Sejarah Desa</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/tentang/wilayah/">Wilayah</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/tentang/statistik/">Statistik</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/kategori/potensi-desa/">Potensi</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Nobis illum</h4>
+                    <h4>Lembaga Desa</h4>
                     <ul>
-                        <li><a href="#">Ipsam</a></li>
-                        <li><a href="#">Laudantium dolorum</a></li>
-                        <li><a href="#">Dinera</a></li>
-                        <li><a href="#">Trodelas</a></li>
-                        <li><a href="#">Flexo</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/pemerintahan/">Pemerintahan</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/bpd/">BPD</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/lpm/">LPM</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/posyandu/">Posyandu</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/pkk/">PKK</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/karang-taruna/">Karang Taruna</a></li>
                     </ul>
                 </div>
 
@@ -73,11 +73,10 @@
         </div>
 
         <div class="container copyright text-center mt-4">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">iLanding</strong> <span>All Rights Reserved</span>
+            <p>©{{ year }} Desa Kaputihan. Semua hak cipta dilindungi.
             </p>
             <div class="credits">
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed By <a
-                    href="https://themewagon.com">ThemeWagon</a>
+                Bekerja sama dengan Tim BSI Explore 2025 Universitas BSI Kampus Kota Tasikmalaya 
             </div>
         </div>
 

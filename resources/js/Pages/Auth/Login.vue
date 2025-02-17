@@ -12,13 +12,6 @@ defineProps({
 <template>
 
   <Head :title="title" />
-  <div class="md:hidden">
-    <VPImage alt="Authentication" width="1280" height="1214" class="block" :image="{
-      dark: '/placeholder/login-bg.jpg',
-      light: '/placeholder/login-bg.jpg',
-    }" />
-  </div>
-
   <div
   class="container hidden min-h-screen overflow-hidden flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
   <div class="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
@@ -46,15 +39,14 @@ defineProps({
       </div>
       <UserAuthForm />
       <p class="px-8 text-center text-sm text-muted-foreground">
-        By clicking continue, you agree to our
-        <a href="/terms" class="underline underline-offset-4 hover:text-primary">
-          Terms of Service
+        Dengan mengklik login kamu setuju dengan
+        <a href="https://kaputihan.desa.id/kebijakan-privasi/" target="_blank" class="underline underline-offset-4 hover:text-primary">
+          Kebijakan Privasi
         </a>
-        and
-        <a href="/privacy" class="underline underline-offset-4 hover:text-primary">
-          Privacy Policy
-        </a>
-        .
+        dan
+        <a href="https://kaputihan.desa.id/syarat-ketentuan/" target="_blank" class="underline underline-offset-4 hover:text-primary">
+          Syarat dan Ketentuan
+        </a>.
       </p>
     </div>
   </div>

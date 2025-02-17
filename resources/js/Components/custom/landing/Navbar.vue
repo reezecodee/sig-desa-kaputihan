@@ -54,7 +54,7 @@ onBeforeUnmount(() => {
             <a href="/#batas-wilayah" :class="{ 'active': currentHash === '#batas-wilayah' }">Batas Wilayah</a>
           </li>
           <li>
-            <a href="/#data-desa" :class="{ 'active': currentHash === '#data-desa' }">Data Desa</a>
+            <a href="/#statistik-desa" :class="{ 'active': currentHash === '#statistik-desa' }">Statistik Desa</a>
           </li>
           <li>
             <a href="/#bangunan"

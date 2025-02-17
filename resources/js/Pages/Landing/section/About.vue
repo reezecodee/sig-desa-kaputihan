@@ -30,7 +30,7 @@
                             <div class="col-lg-12">
                                 <div class="profile d-flex align-items-center gap-3">
                                     <img src="https://kaputihan.desa.id/wp-content/webp-express/webp-images/uploads/2023/10/IMG_20231014_181956.png.webp"
-                                        alt="CEO Profile" class="profile-image border">
+                                        alt="Kepala Desa" class="profile-image border">
                                     <div>
                                         <h4 class="profile-name">Ujang Herman RN</h4>
                                         <p class="profile-position">Kepala Desa Kaputihan, Periode 2021-2027</p>

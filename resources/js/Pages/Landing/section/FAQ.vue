@@ -22,8 +22,28 @@ interface IFAQ {
 
 const faqs: IFAQ = [
     {
-        quest: 'baskdkasdasdasda?',
-        answer: 'askndasndasndkasd'
+        quest: 'Apa itu GIS Desa Kaputihan?',
+        answer: 'GIS (Geographic Information System) Desa Kaputihan adalah platform pemetaan digital yang menampilkan batas wilayah, fasilitas umum, dan informasi geografis lainnya terkait Desa Kaputihan.'
+    },
+    {
+        quest: 'Informasi apa saja yang tersedia di GIS Desa Kaputihan?',
+        answer: 'Anda dapat melihat batas wilayah desa, lokasi fasilitas umum seperti sekolah, masjid, puskesmas, serta informasi geografis lainnya yang relevan dengan Desa Kaputihan.'
+    },
+    {
+        quest: 'Bagaimana cara menggunakan peta di website ini?',
+        answer: 'Anda bisa menggunakan fitur zoom in dan zoom out untuk memperbesar atau memperkecil peta. Klik pada ikon atau area tertentu untuk melihat informasi detail.'
+    },
+    {
+        quest: 'Apakah data pada peta ini akurat dan terbaru?',
+        answer: 'Kami berusaha untuk menyediakan data yang akurat dan terus memperbarui informasi secara berkala. Namun, jika Anda menemukan ketidaksesuaian, silakan hubungi pihak pengelola.'
+    },
+    {
+        quest: 'Siapa yang mengelola GIS Desa Kaputihan?',
+        answer: 'GIS Desa Kaputihan dikelola oleh tim pengelola desa yang bekerja sama dengan pihak terkait untuk memastikan keakuratan data dan pemutakhiran informasi.'
+    },
+    {
+        quest: 'Apakah data di GIS Desa Kaputihan dapat diunduh?',
+        answer: 'Saat ini, data yang ditampilkan hanya untuk keperluan informasi dan belum tersedia untuk diunduh.'
     }
 ]
 </script>
@@ -36,9 +56,7 @@ const faqs: IFAQ = [
 
                 <div class="col-lg-5" data-aos="fade-up">
                     <h2 class="faq-title">Ada yang ingin ditanyakan seputar WebGIS kami? </h2>
-                    <p class="faq-description">Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero
-                        sit amet
-                        adipiscing sem neque sed ipsum.</p>
+                    <p class="faq-description">Pertanyaan yang sering ditanyakan oleh para pengujung website Desa Kaputihan kami.</p>
                     <div class="faq-arrow d-none d-lg-block" data-aos="fade-up" data-aos-delay="200">
                         <svg class="faq-arrow" width="200" height="211" viewBox="0 0 200 211" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -51,20 +69,8 @@ const faqs: IFAQ = [
 
                 <div class="col-lg-7" data-aos="fade-up" data-aos-delay="300">
                     <div class="faq-container">
-
                         <FAQItem v-for="(faq, index) in faqs" :key="index" :quest="faq.quest" :answer="faq.answer"
                             @click="toggleActiveFaq" />
-                        <!-- <div class="faq-item" @click="toggleActiveFaq">
-                            <h3>Non consectetur a erat nam at lectus urna duis?</h3>
-                            <div class="faq-content">
-                                <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet
-                                    non curabitur
-                                    gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-                                </p>
-                            </div>
-                            <i class="faq-toggle bi bi-chevron-right"></i>
-                        </div> -->
-
                     </div>
                 </div>
 
