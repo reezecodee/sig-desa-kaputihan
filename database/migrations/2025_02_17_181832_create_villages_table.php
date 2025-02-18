@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('jumlah_penduduk');
             $table->string('nama_kades');
             $table->string('periode');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->string('nama_aplikasi');
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->enum('logo_aktif', ['On', 'Off']);
             $table->string('telepon');
             $table->string('email');

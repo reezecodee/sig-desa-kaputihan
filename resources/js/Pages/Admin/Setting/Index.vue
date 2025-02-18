@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
-import { Head } from '@inertiajs/vue3';
-import { Button } from '@/Components/ui/button';
+import { Head } from '@inertiajs/vue3'
+import { Button } from '@/Components/ui/button'
+import FormSetting from '@/Components/custom/setting/FormSetting.vue'
+import { provide, shallowReactive } from 'vue'
 
-defineProps({
-    title: String
-})
 
+const props = defineProps<{ 
+    title: string,               
+    village: Record<string, string>,
+}>()
+
+const reactiveVillage = shallowReactive(props.village)
+
+provide('village', reactiveVillage)
 </script>
 
 <template>
@@ -18,6 +25,7 @@ defineProps({
                 {{ title }}
             </h2>
         </template>
+        <FormSetting />
     </App>
 </template>
 

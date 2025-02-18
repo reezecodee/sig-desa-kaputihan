@@ -43,6 +43,7 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
 
     Route::prefix('pengaturan-desa')->controller(SettingController::class)->group(function () {
         Route::get('/', 'index')->name('admin.setting');
+        Route::post('perbarui-pengaturan', 'update')->name('admin.settingUpdate');
     });
 
     Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {
