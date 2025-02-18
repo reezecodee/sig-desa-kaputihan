@@ -87,6 +87,11 @@
   color: white;
 }
 
+.shadcn-btn.detail-btn {
+  background-color: #3B82F6;
+  color: white;
+}
+
 .shadcn-btn.delete-btn {
   background-color: #DC2626;
   color: white;

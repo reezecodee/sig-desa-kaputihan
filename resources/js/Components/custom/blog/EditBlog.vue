@@ -25,7 +25,6 @@ import { ref, onBeforeUnmount, inject } from 'vue'
 
 const blog = inject('blog')
 
-// Preview gambar jika ada
 const previewUrl = ref<string | null>(blog.thumbnail ? `/storage/${blog.thumbnail}` : null)
 
 onBeforeUnmount(() => {
@@ -34,7 +33,6 @@ onBeforeUnmount(() => {
     }
 })
 
-// Schema validasi untuk form
 const formSchema = toTypedSchema(z.object({
     judul: z.string({ message: 'Judul blog wajib di isi' })
         .max(255, { message: 'Judul tidak boleh lebih dari 255 karakter' })
@@ -49,10 +47,8 @@ const formSchema = toTypedSchema(z.object({
     visibilitas: z.enum(['Publik', 'Privasi'], { message: 'Visibilitas wajib di isi' })
 }))
 
-// Properti untuk menerima errors
 defineProps<{ errors: Record<string, string[]> }>()
 
-// Inisialisasi form dengan vee-validate
 const { values, isFieldDirty, handleSubmit, setErrors, setFieldValue } = useForm({
     validationSchema: formSchema,
     initialValues: {
@@ -63,7 +59,6 @@ const { values, isFieldDirty, handleSubmit, setErrors, setFieldValue } = useForm
     },
 })
 
-// Fungsi untuk menangani perubahan file
 const handleFileChange = (event: Event) => {
     const target = event.target as HTMLInputElement
     const file = target.files?.[0] ?? null

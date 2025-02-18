@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
-import { Head, Link, usePage, router } from '@inertiajs/vue3'
+import { Head, Link, router } from '@inertiajs/vue3'
 import { Button } from '@/Components/ui/button'
 import Table from '@/Components/custom/blog/Table.vue';
 import { onMounted } from 'vue'
@@ -9,8 +9,6 @@ import axios from 'axios'
 defineProps({
   title: String
 })
-
-const { props } = usePage()
 
 const redirectToEdit = (id) => {
   router.visit(route('admin.blogEdit', id), {

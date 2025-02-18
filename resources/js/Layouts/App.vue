@@ -12,6 +12,7 @@ import DarkMode from '@/Components/custom/DarkMode.vue'
 import UserNav from '@/Components/custom/UserNav.vue'
 import SuccessAlert from '@/Components/custom/SuccessAlert.vue'
 import DangerAlert from '@/Components/custom/DangerAlert.vue'
+import BuildingTable from '@/Components/custom/building/BuildingTable.vue'
 
 </script>
 
@@ -38,8 +39,8 @@ import DangerAlert from '@/Components/custom/DangerAlert.vue'
             <div v-if="$page.props.flash.failed" class="alert">
                 <DangerAlert>{{ $page.props.flash.failed }}</DangerAlert>
             </div>
-            <Tabs :default-value="!$page.url.startsWith('/bangunan') ? 'overview' : 'ibadah'" class="space-y-4">
-                <TabsList v-if="$page.url.startsWith('/bangunan')">
+            <Tabs :default-value="$page.url !== '/bangunan' ? 'overview' : 'ibadah'" class="space-y-4">
+                <TabsList v-if="$page.url === '/bangunan'">
                     <TabsTrigger value="ibadah">
                         Ibadah
                     </TabsTrigger>
@@ -62,22 +63,38 @@ import DangerAlert from '@/Components/custom/DangerAlert.vue'
                         Lainnya
                     </TabsTrigger>
                 </TabsList>
-                <div v-if="!$page.url.startsWith('/bangunan')">
+                <div v-if="$page.url !== '/bangunan'">
                     <TabsContent value="overview" class="space-y-4">
                         <slot></slot>
                     </TabsContent>
                 </div>
-                <div v-if="$page.url.startsWith('/bangunan')">
+                <div v-if="$page.url === '/bangunan'">
                     <TabsContent value="ibadah" class="space-y-4">
-                        p
+                        <BuildingTable category="ibadah" />
                         <slot></slot>
                     </TabsContent>
                     <TabsContent value="pemerintahan" class="space-y-4">
-                        q
+                        <BuildingTable category="pemerintahan" />
                         <slot></slot>
                     </TabsContent>
                     <TabsContent value="pendidikan" class="space-y-4">
-                        r
+                        <BuildingTable category="pendidikan" />
+                        <slot></slot>
+                    </TabsContent>
+                    <TabsContent value="kesehatan" class="space-y-4">
+                        <BuildingTable category="kesehatan" />
+                        <slot></slot>
+                    </TabsContent>
+                    <TabsContent value="usaha" class="space-y-4">
+                        <BuildingTable category="usaha" />
+                        <slot></slot>
+                    </TabsContent>
+                    <TabsContent value="olahraga" class="space-y-4">
+                        <BuildingTable category="olahraga" />
+                        <slot></slot>
+                    </TabsContent>
+                    <TabsContent value="lainnya" class="space-y-4">
+                        <BuildingTable category="lainnya" />
                         <slot></slot>
                     </TabsContent>
                 </div>

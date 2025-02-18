@@ -33,7 +33,12 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
 
     Route::prefix('bangunan')->controller(BuildingController::class)->group(function () {
         Route::get('/', 'index')->name('admin.building');
-        Route::get('/tambah-bangunan', 'create')->name('admin.buildingCreate');
+        Route::get('tambah-bangunan', 'create')->name('admin.buildingCreate');
+        Route::post('tambah-bangunan-baru', 'store')->name('admin.buildingSave');
+        Route::get('daftar-bangunan/{category}', 'getBuildings')->name('admin.buildingList');
+        Route::get('edit-bangunan/{id}', 'edit')->name('admin.buildingEdit');
+        Route::post('update-bangunan/{id}', 'update')->name('admin.buildingUpdate');
+        Route::delete('hapus-bangunan/{id}', 'destroy')->name('admin.buildingDestroy');
     });
 
     Route::prefix('pengaturan-desa')->controller(SettingController::class)->group(function () {

@@ -10,14 +10,14 @@ class BlogService
 {
     protected $blogRepository;
 
-    public function find($id)
-    {
-        return $this->blogRepository->find($id);
-    }
-
     public function __construct(BlogRepository $blogRepository)
     {
         $this->blogRepository = $blogRepository;
+    }
+
+    public function find($id)
+    {
+        return $this->blogRepository->find($id);
     }
 
     public function getBlogs()
@@ -57,7 +57,8 @@ class BlogService
                 $filePath = $data['thumbnail']->storeAs('thumbnail', $uniqueFileName, 'public');
 
                 $data['thumbnail'] = $filePath;
-            } else {
+            } 
+            else {
                 $data['thumbnail'] = $blog->thumbnail;
             }
 
