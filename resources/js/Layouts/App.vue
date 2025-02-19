@@ -10,8 +10,7 @@ import MainNav from '@/Components/custom/MainNav.vue'
 import Search from '@/Components/custom/Search.vue'
 import DarkMode from '@/Components/custom/DarkMode.vue'
 import UserNav from '@/Components/custom/UserNav.vue'
-import SuccessAlert from '@/Components/custom/SuccessAlert.vue'
-import DangerAlert from '@/Components/custom/DangerAlert.vue'
+import Alert from '@/Components/custom/Alert.vue'
 import BuildingTable from '@/Components/custom/building/BuildingTable.vue'
 
 </script>
@@ -34,10 +33,10 @@ import BuildingTable from '@/Components/custom/building/BuildingTable.vue'
                 <slot name="header"></slot>
             </div>
             <div v-if="$page.props.flash.success" class="alert">
-                <SuccessAlert>{{ $page.props.flash.success }}</SuccessAlert>
+                <Alert background="green">{{ $page.props.flash.success }}</Alert>
             </div>
             <div v-if="$page.props.flash.failed" class="alert">
-                <DangerAlert>{{ $page.props.flash.failed }}</DangerAlert>
+                <Alert background="red">{{ $page.props.flash.failed }}</Alert>
             </div>
             <Tabs :default-value="$page.url !== '/bangunan' ? 'overview' : 'ibadah'" class="space-y-4">
                 <TabsList v-if="$page.url === '/bangunan'">

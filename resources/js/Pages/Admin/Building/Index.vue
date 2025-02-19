@@ -2,12 +2,22 @@
 import App from '@/Layouts/App.vue'
 import { Head, Link, router } from '@inertiajs/vue3';
 import { Button } from '@/Components/ui/button';
-import { onMounted } from 'vue';
-import axios from 'axios'
+import { onMounted, ref } from 'vue';
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction
+} from "@/Components/ui/alert-dialog";
 
 
 defineProps({
-    title: String
+  title: String
 })
 
 const redirectToEdit = (id) => {
@@ -16,25 +26,26 @@ const redirectToEdit = (id) => {
   })
 }
 
-const deleteData = (id) => {
-  if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-    axios.delete(route('admin.buildingDestroy', id))
-      .then(response => {
-        alert('Data berhasil dihapus.')
-        location.reload()
-      })
-      .catch(error => {
-        console.error(error)
-        alert('Gagal menghapus data.')
-      })
-  }
-}
+const showDialog = ref(false);
+const selectedId = ref(null);
+
+const confirmDelete = (id) => {
+  selectedId.value = id;
+  showDialog.value = true;
+};
+
+const deleteData = () => {
+  if (!selectedId.value) return;
+
+  router.delete(route("admin.buildingDestroy", selectedId.value))
+  showDialog.value = false;
+};
 
 onMounted(() => {
   document.addEventListener('click', function (event) {
     if (event.target.classList.contains('delete-btn')) {
       const id = event.target.getAttribute('data-id')
-      deleteData(id)
+      confirmDelete(id)
     } else if (event.target.classList.contains('edit-btn')) {
       const id = event.target.getAttribute('data-id')
       redirectToEdit(id)
@@ -46,19 +57,33 @@ onMounted(() => {
 
 <template>
 
-    <Head :title="title" />
-    <App>
-        <template #header>
-            <h2 class="text-3xl font-bold tracking-tight">
-                {{ title }}
-            </h2>
-            <div class="flex items-center space-x-2">
-                <Link :href="route('admin.buildingCreate')">
-                <Button>Tambah Bangunan Baru</Button>
-                </Link>
-            </div>
-        </template>
-    </App>
+  <Head :title="title" />
+  <App>
+    <template #header>
+      <h2 class="text-3xl font-bold tracking-tight">
+        {{ title }}
+      </h2>
+      <div class="flex items-center space-x-2">
+        <Link :href="route('admin.buildingCreate')">
+        <Button>Tambah Bangunan Baru</Button>
+        </Link>
+      </div>
+    </template>
+    <AlertDialog v-model:open="showDialog">
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Konfirmasi Penghapusan</AlertDialogTitle>
+          <AlertDialogDescription>
+            Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat dibatalkan.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel @click="showDialog = false">Batal</AlertDialogCancel>
+          <AlertDialogAction @click="deleteData">Hapus</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  </App>
 </template>
 
 <style scoped></style>
