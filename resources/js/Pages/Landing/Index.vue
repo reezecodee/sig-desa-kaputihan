@@ -9,16 +9,22 @@ import Stats from '@/Pages/Landing/section/Stats.vue'
 import PublicBuilding from '@/Pages/Landing/section/PublicBuilding.vue'
 import FAQ from '@/Pages/Landing/section/FAQ.vue'
 import { Head } from '@inertiajs/vue3'
+import { provide, toRefs } from 'vue';
 
-defineProps({
-    title: String
-})
+const props = defineProps({
+    title: String,
+    village: Object as () => Record<string, string>,
+    buildings: Array as () => string[]
+});
+
+provide('props', toRefs(props));
+provide('buildings', toRefs(props));
 </script>
 
 <template>
 
     <Head :title="title" />
-    <Landing>
+    <Landing :village="village">
         <Home />
         <About />
         <Region />

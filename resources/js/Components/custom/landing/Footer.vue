@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3'
+import { inject } from 'vue'
+
+const village = inject('village');
 
 const year: Date = new Date().getFullYear()
 </script>
@@ -11,14 +14,14 @@ const year: Date = new Date().getFullYear()
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
                     <a href="" class="logo d-flex align-items-center">
-                        <span class="sitename">GISKA</span>
+                        <span class="sitename">{{ village.nama_aplikasi }}</span>
                     </a>
                     <div class="footer-contact pt-3">
                         <p>Jalan Kaputihan, Desa Kaputihan</p>
                         <p>Kabupaten Tasikmalaya, Jawa Barat</p>
                         <p class="mt-3"><strong>Telepon:</strong> <span>
-                                +62 81320800480</span></p>
-                        <p><strong>Email:</strong> <span>sdgsdesakaputihan@gmail.com</span></p>
+                                {{ village.telepon }}</span></p>
+                        <p><strong>Email:</strong> <span>{{ village.email }}</span></p>
                     </div>
                 </div>
 
@@ -60,12 +63,14 @@ const year: Date = new Date().getFullYear()
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Lembaga Desa</h4>
                     <ul>
-                        <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/pemerintahan/">Pemerintahan</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/pemerintahan/">Pemerintahan</a>
+                        </li>
                         <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/bpd/">BPD</a></li>
                         <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/lpm/">LPM</a></li>
                         <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/posyandu/">Posyandu</a></li>
                         <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/pkk/">PKK</a></li>
-                        <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/karang-taruna/">Karang Taruna</a></li>
+                        <li><a target="_blank" href="https://kaputihan.desa.id/lembaga/karang-taruna/">Karang Taruna</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -76,7 +81,7 @@ const year: Date = new Date().getFullYear()
             <p>©{{ year }} Desa Kaputihan. Semua hak cipta dilindungi.
             </p>
             <div class="credits">
-                Bekerja sama dengan Tim BSI Explore 2025 Universitas BSI Kampus Kota Tasikmalaya 
+                Bekerja sama dengan Tim BSI Explore 2025 Universitas BSI Kampus Kota Tasikmalaya
             </div>
         </div>
 

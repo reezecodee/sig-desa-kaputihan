@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { inject } from 'vue'
+
+const props = inject('props');
+const village = props?.village?.value;
 </script>
 
 <template>
@@ -75,7 +79,7 @@
                         </div>
                         <div class="stat-content">
                             <h4>Jumlah Penduduk</h4>
-                            <p class="mb-0">7863 Jiwa</p>
+                            <p class="mb-0">{{ village.jumlah_penduduk }} Jiwa</p>
                         </div>
                     </div>
                 </div>

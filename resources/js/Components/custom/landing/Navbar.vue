@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, onBeforeUnmount, nextTick } from 'vue'
+import { onMounted, ref, onBeforeUnmount, nextTick, inject } from 'vue'
 import { Link } from '@inertiajs/vue3'
 
 onMounted(() => {
@@ -15,6 +15,8 @@ onMounted(() => {
     })
   })
 })
+
+const village = inject('village');
 
 const currentHash = ref('')
 const currentPath = ref('')
@@ -41,8 +43,8 @@ onBeforeUnmount(() => {
       class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <Link href="" class="logo d-flex align-items-center me-auto me-xl-0">
-      <!-- <img src="assets/img/logo.png" alt=""> -->
-      <h1 class="sitename">GISKA</h1>
+      <img v-if="village.logo_aktif === 'On'" src="/img/logo.png" alt="">
+      <h1 v-if="village.logo_aktif === 'Off'" class="sitename">{{ village.nama_aplikasi }}</h1>
       </Link>
 
       <nav id="navmenu" class="navmenu">
