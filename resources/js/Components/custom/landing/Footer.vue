@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3'
-import { inject } from 'vue'
+import { Link, usePage } from '@inertiajs/vue3'
+import { computed } from 'vue';
 
-const village = inject('village');
+const village = computed(() => usePage().props.village)
 
 const year: Date = new Date().getFullYear()
 </script>

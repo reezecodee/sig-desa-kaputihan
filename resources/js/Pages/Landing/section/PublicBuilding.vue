@@ -5,7 +5,7 @@ interface IPublicBuilding {
     delay: number,
     title: string,
     description: string,
-    link: string,
+    category: string,
     icon: string
 }
 
@@ -14,56 +14,56 @@ const buildings: IPublicBuilding = [
         delay: 100,
         title: 'Bangunan Ibadah',
         description: 'Desa Kaputihan memiliki beberapa bangunan ibadah yang menjadi pusat kegiatan keagamaan dan sosial bagi masyarakat setempat.',
-        link: '/bangunan',
+        category: 'ibadah',
         icon: 'fa-solid fa-mosque'
     },
     {
         delay: 200,
         title: 'Bangunan Desa/Pemerintahan',
         description: 'Desa Kaputihan memiliki beberapa bangunan desa atau pemerintahan yang berfungsi sebagai pusat administrasi dan pelayanan masyarakat.',
-        link: '/bangunan',
+        category: 'pemerintahan',
         icon: 'fa-solid fa-building-columns'
     },
     {
         delay: 300,
         title: 'Bangunan Pendidikan',
         description: 'Desa Kaputihan memiliki sejumlah bangunan pendidikan yang menjadi pusat kegiatan belajar-mengajar bagi generasi muda.',
-        link: '/bangunan',
+        category: 'pendidikan',
         icon: 'fa-solid fa-school'
     },
     {
         delay: 400,
         title: 'Bangunan Kesehatan',
         description: 'Desa Kaputihan memiliki fasilitas kesehatan yang bertujuan untuk memberikan pelayanan kesehatan yang optimal bagi masyarakat.',
-        link: '/bangunan',
+        category: 'kesehatan',
         icon: 'fa-solid fa-hospital'
     },
     {
         delay: 100,
         title: 'Tempat Usaha/Bisnis',
         description: 'Desa Kaputihan memiliki berbagai tempat usaha dan pusat bisnis yang mendukung perekonomian lokal seperti pasar atau kegiatan usaha milik warga.',
-        link: '/bangunan',
+        category: 'usaha',
         icon: 'fa-solid fa-cart-shopping'
     },
     {
         delay: 200,
         title: 'Tempat Olahraga',
         description: 'Desa Kaputihan memiliki beberapa fasilitas olahraga yang digunakan untuk mendukung kesehatan dan kebugaran masyarakat.',
-        link: '/bangunan',
+        category: 'olahraga',
         icon: 'fa-solid fa-building'
     },
     {
         delay: 300,
         title: 'Pos Keamanan',
         description: 'Desa Kaputihan memiliki beberapa pos keamanan yang berfungsi untuk menjaga ketertiban dan keamanan lingkungan.',
-        link: '/bangunan',
+        category: 'keamanan',
         icon: 'fa-solid fa-building-shield'
     },
     {
         delay: 400,
         title: 'Bangunan Lainnya',
         description: 'Selain bangunan utama seperti fasilitas ibadah, pendidikan, kesehatan, dan keamanan, Desa Kaputihan juga memiliki bangunan lainnya yang mendukung aktivitas sosial.',
-        link: '/bangunan',
+        category: 'lainnya',
         icon: 'fa-solid fa-building-circle-arrow-right'
     },
 ]
@@ -81,7 +81,7 @@ const buildings: IPublicBuilding = [
 
             <div class="row g-4">
                 <PublicBuildingCard v-for="building in buildings" :key="building.title" :delay="building.delay"
-                    :title="building.title" :icon="building.icon" :description="building.description" :link="building.link" />
+                    :title="building.title" :icon="building.icon" :description="building.description" :category="building.category" />
             </div>
 
         </div>

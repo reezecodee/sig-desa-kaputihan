@@ -13,18 +13,16 @@ import { provide, toRefs } from 'vue';
 
 const props = defineProps({
     title: String,
-    village: Object as () => Record<string, string>,
     buildings: Array as () => string[]
 });
 
-provide('props', toRefs(props));
 provide('buildings', toRefs(props));
 </script>
 
 <template>
 
     <Head :title="title" />
-    <Landing :village="village">
+    <Landing>
         <Home />
         <About />
         <Region />

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+import { Link, usePage } from '@inertiajs/vue3'
+import { computed } from 'vue';
 
-const props = inject('props');
-const village = props?.village?.value;
+const village = computed(() => usePage().props.village)
 </script>
 
 <template>

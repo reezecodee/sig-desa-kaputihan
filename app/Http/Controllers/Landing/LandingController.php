@@ -19,10 +19,9 @@ class LandingController extends Controller
     public function index()
     {
         $title = 'Selamat Datang di Sistem Infromasi Desa Kaputihan';
-        $village = $this->landingService->getDataVillage();
         $buildings = $this->landingService->getBuildingsCount();
 
-        return Inertia::render('Landing/Index', compact('title', 'village', 'buildings'));
+        return Inertia::render('Landing/Index', compact('title', 'buildings'));
     }
 
     public function blogList()

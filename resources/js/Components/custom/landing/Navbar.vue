@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref, onBeforeUnmount, nextTick, inject } from 'vue'
-import { Link } from '@inertiajs/vue3'
+import { onMounted, ref, onBeforeUnmount, nextTick, computed } from 'vue'
+import { Link, usePage } from '@inertiajs/vue3'
 
 onMounted(() => {
   const mobileNavShow = document.querySelector('.mobile-nav-toggle')
@@ -16,7 +16,7 @@ onMounted(() => {
   })
 })
 
-const village = inject('village');
+const village = computed(() => usePage().props.village)
 
 const currentHash = ref('')
 const currentPath = ref('')

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, inject } from 'vue'
 
-const props = inject('props');
+const props = inject('buildings');
 const building = props?.buildings?.value;
 
 onMounted(() => {

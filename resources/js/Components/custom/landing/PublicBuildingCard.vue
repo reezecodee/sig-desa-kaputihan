@@ -4,7 +4,7 @@ defineProps({
     delay: Number,
     title: String,
     description: String,
-    link: String,
+    category: String,
     icon: String
 })
 </script>
@@ -18,7 +18,7 @@ defineProps({
             <div>
                 <h3>{{ title }}</h3>
                 <p>{{ description }}</p>
-                <Link :href="link" class="read-more">Lihat bangunan <i class="bi bi-arrow-right"></i></Link>
+                <Link :href="route('landing.buildingList', category)" class="read-more">Lihat bangunan <i class="bi bi-arrow-right"></i></Link>
             </div>
         </div>
     </div>

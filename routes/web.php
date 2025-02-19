@@ -10,8 +10,8 @@ Route::middleware(['landing-layout'])->controller(LandingController::class)->gro
         Route::get('/baca-blog', 'readBlog')->name('landing.readBlog');
     });
     Route::get('jadwal-kegiatan-desa', 'schedule')->name('landing.schedule');
-    Route::prefix('bangunan')->group(function(){
-        Route::get('/', 'buildingList')->name('landing.buildingList');
+    Route::prefix('bangunan-desa')->group(function(){
+        Route::get('/{category}', 'buildingList')->name('landing.buildingList');
         Route::get('informasi', 'buildingInformation')->name('landing.buildingInformation');
     });
 });
