@@ -29,7 +29,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             session()->flash('success', 'Selamat datang di Sistem Informasi Desa Kaputihan');
 
-            return Inertia::location(route('admin.dashboard'));
+            return redirect()->route('admin.dashboard');
         }
 
         return back()->withErrors([

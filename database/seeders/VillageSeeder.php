@@ -17,9 +17,9 @@ class VillageSeeder extends Seeder
             'jumlah_penduduk' => '7863',
             'nama_kades' => 'Ujang Herman RN',
             'periode' => '2021-2027',
-            'foto' => 'https://kaputihan.desa.id/wp-content/webp-express/webp-images/uploads/2023/10/IMG_20231014_181956.png.webp',
+            'foto' => null,
             'nama_aplikasi' => 'GISKA',
-            'logo' => 'https://kaputihan.desa.id/wp-content/webp-express/webp-images/uploads/2023/11/logo-desa-k.png.webp',
+            'logo' => null,
             'logo_aktif' => 'Off',
             'telepon' => '+62 81320800480',
             'email' => 'sdgsdesakaputihan@gmail.com'

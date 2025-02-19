@@ -47,7 +47,7 @@ const onSubmit = handleSubmit((values) => {
                 <FormItem>
                     <FormLabel>Password Saat Ini</FormLabel>
                     <FormControl>
-                        <Input type="text" autocomplete="off" placeholder="Masukkan password saat ini"
+                        <Input type="password" autocomplete="off" placeholder="Masukkan password saat ini"
                             v-bind="componentField" />
                     </FormControl>
                     <FormMessage />
@@ -57,7 +57,7 @@ const onSubmit = handleSubmit((values) => {
                 <FormItem>
                     <FormLabel>Password Baru</FormLabel>
                     <FormControl>
-                        <Input type="text" autocomplete="off" placeholder="Masukkan password baru"
+                        <Input type="password" autocomplete="off" placeholder="Masukkan password baru"
                             v-bind="componentField" />
                     </FormControl>
                     <FormMessage />
@@ -67,7 +67,7 @@ const onSubmit = handleSubmit((values) => {
                 <FormItem>
                     <FormLabel>Konfirmasi Password</FormLabel>
                     <FormControl>
-                        <Input type="text" autocomplete="off" placeholder="Konfirmasi password baru"
+                        <Input type="password" autocomplete="off" placeholder="Konfirmasi password baru"
                             v-bind="componentField" />
                     </FormControl>
                     <FormMessage />

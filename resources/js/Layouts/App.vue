@@ -59,6 +59,9 @@ import BuildingTable from '@/Components/custom/building/BuildingTable.vue'
                     <TabsTrigger value="olahraga">
                         Olahraga
                     </TabsTrigger>
+                    <TabsTrigger value="keamanan">
+                        Keamanan
+                    </TabsTrigger>
                     <TabsTrigger value="lainnya">
                         Lainnya
                     </TabsTrigger>
@@ -91,6 +94,10 @@ import BuildingTable from '@/Components/custom/building/BuildingTable.vue'
                     </TabsContent>
                     <TabsContent value="olahraga" class="space-y-4">
                         <BuildingTable category="olahraga" />
+                        <slot></slot>
+                    </TabsContent>
+                    <TabsContent value="keamanan" class="space-y-4">
+                        <BuildingTable category="keamanan" />
                         <slot></slot>
                     </TabsContent>
                     <TabsContent value="lainnya" class="space-y-4">

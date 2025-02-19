@@ -92,7 +92,7 @@
   color: white;
 }
 
-.shadcn-btn.delete-btn {
+.shadcn-btn.delete-btn, .shadcn-btn.logout-btn {
   background-color: #DC2626;
   color: white;
 }

@@ -35,6 +35,9 @@ class BlogController extends Controller
             ->addColumn('judul', function ($row) {
                 return $row->judul;
             })
+            ->addColumn('created_at', function ($row) {
+                return \Carbon\Carbon::parse($row->created_at)->translatedFormat('d F Y');;
+            })
             ->addColumn('action', function ($row) {
                 return '
                 <button class="shadcn-btn edit-btn" data-id="' . $row->id . '">Edit</button>

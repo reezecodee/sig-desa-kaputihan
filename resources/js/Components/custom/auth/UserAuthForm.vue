@@ -35,7 +35,6 @@ async function onSubmit(event: Event) {
           </Label>
           <Input id="login" placeholder="Masukkan email atau nomor telepon" type="text" auto-capitalize="none"
             auto-correct="off" :disabled="isLoading" v-model="form.login" />
-          <!-- Menampilkan error jika ada, pastikan errors ada sebelum mengakses -->
           <div v-if="form.errors.login" class="text-red-500 text-sm">{{ form.errors.login }}</div>
         </div>
         <div class="grid gap-1">

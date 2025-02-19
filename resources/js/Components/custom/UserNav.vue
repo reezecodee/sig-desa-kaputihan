@@ -90,7 +90,7 @@ const logout = () => {
       </DialogHeader>
       <DialogFooter>
         <div>
-          <Button class="shadcn-btn delete-btn" @click="logout">Logout</Button>
+          <Button class="shadcn-btn logout-btn" @click="logout">Logout</Button>
         </div>
       </DialogFooter>
     </DialogContent>

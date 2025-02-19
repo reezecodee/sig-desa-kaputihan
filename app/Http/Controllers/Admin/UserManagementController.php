@@ -32,10 +32,13 @@ class UserManagementController extends Controller
         return DataTables::of($users)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
-                return '
-                <button class="shadcn-btn edit-btn" data-id="' . $row->id . '">Edit</button>
-                <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Delete</button>
-            ';
+                if ($row->status == 'Nonaktif') {
+                    return '
+                    <button class="shadcn-btn edit-btn" data-id="' . $row->id . '">Edit</button>
+                    <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Delete</button>
+                ';} else{
+                    return 'Akun sudah aktif';
+                }
             })
             ->rawColumns(['action'])
             ->make(true);
@@ -54,7 +57,7 @@ class UserManagementController extends Controller
             $this->userService->store($request->validated());
 
             session()->flash('success', 'Pengguna Baru Berhasil di Tambahkan');
-            return Inertia::location(route('admin.userManagement'));
+            return redirect()->route('admin.userManagement');
         } catch (\Exception $e) {
             session()->flash('failed', $e->getMessage());
             return Inertia::location(route('admin.userCreate'));
@@ -69,7 +72,7 @@ class UserManagementController extends Controller
         return Inertia::render('Admin/UserManagement/Edit', compact('title', 'user'));
     }
 
-    public function update(UpdateUserRequest $request, $id) 
+    public function update(UpdateUserRequest $request, $id)
     {
         try {
             $this->userService->update($request->validated(), $id);

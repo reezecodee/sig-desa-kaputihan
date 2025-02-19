@@ -28,8 +28,8 @@ const props = defineProps<{
 }>()
 
 const village = inject('village')
-const previewKepdes = ref<string | null>(village.foto ? `${village.foto}` : null)
-const previewLogo = ref<string | null>(village.logo ? `${village.logo}` : null)
+const previewKepdes = ref<string>(village.foto ? `/storage/${village.foto}` : '/placeholder/kepdes.webp')
+const previewLogo = ref<string>(village.logo ? `/storage/${village.logo}` : '/placeholder/logo.webp')
 
 onBeforeUnmount(() => {
     if (previewKepdes.value || previewLogo.value) {
@@ -130,7 +130,7 @@ const onSubmit = handleSubmit((values) => {
                     </CardHeader>
                     <CardContent>
                         <div class="w-full flex justify-center">
-                            <img :src="previewKepdes ?? ''" alt="Gambar" class="w-48 h-auto rounded-md">
+                            <img :src="previewKepdes ?? ''" alt="Gambar kepdes" class="w-48 h-auto rounded-md">
                         </div>
                         <p class="text-center text-gray-700 font-medium text-sm mt-2">{{ values.nama_kades }}</p>
                     </CardContent>
