@@ -27,15 +27,17 @@ class LandingController extends Controller
     public function blogList()
     {
         $title = 'Daftar Blog Desa Kaputihan';
+        $blogs = $this->landingService->blogPaginate();
 
-        return Inertia::render('Landing/BlogList', compact('title'));
+        return Inertia::render('Landing/BlogList', compact('title', 'blogs'));
     }
 
-    public function readBlog()
+    public function readBlog($slug)
     {
         $title = 'Baca Blog: ';
+        $blog = $this->landingService->getBlogWithSlug($slug);
 
-        return Inertia::render('Landing/ReadBlog', compact('title'));
+        return Inertia::render('Landing/ReadBlog', compact('title', 'blog'));
     }
 
     public function schedule()
@@ -45,17 +47,19 @@ class LandingController extends Controller
         return Inertia::render('Landing/Schedule', compact('title'));
     }
 
-    public function buildingList()
+    public function buildingList($category)
     {
         $title = 'Daftar Bangunan';
+        $buildings = $this->landingService->buildingPaginate($category);
 
-        return Inertia::render('Landing/BuildingList', compact('title'));
+        return Inertia::render('Landing/BuildingList', compact('title', 'buildings'));
     }
 
-    public function buildingInformation()
+    public function buildingInformation($id)
     {
         $title = 'Informasi Bangunan';
+        $building = $this->landingService->getBuildingWithId($id);
 
-        return Inertia::render('Landing/BuildingInformation', compact('title'));
+        return Inertia::render('Landing/BuildingInformation', compact('title', 'building'));
     }
 }

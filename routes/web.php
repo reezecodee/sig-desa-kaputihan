@@ -7,12 +7,12 @@ Route::middleware(['landing-layout'])->controller(LandingController::class)->gro
     Route::get('/', 'index')->name('landing.index');
     Route::prefix('blog-desa')->group(function(){
         Route::get('/', 'blogList')->name('landing.blog');
-        Route::get('/baca-blog', 'readBlog')->name('landing.readBlog');
+        Route::get('/baca-blog/{slug}', 'readBlog')->name('landing.readBlog');
     });
     Route::get('jadwal-kegiatan-desa', 'schedule')->name('landing.schedule');
     Route::prefix('bangunan-desa')->group(function(){
         Route::get('/{category}', 'buildingList')->name('landing.buildingList');
-        Route::get('informasi', 'buildingInformation')->name('landing.buildingInformation');
+        Route::get('informasi/{id}', 'buildingInformation')->name('landing.buildingInformation');
     });
 });
 

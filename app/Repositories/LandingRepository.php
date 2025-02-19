@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Blog;
 use App\Models\Building;
 use App\Models\Village;
 use Illuminate\Support\Facades\DB;
@@ -38,5 +39,25 @@ class LandingRepository
         } catch (\Exception $e) {
             throw new \Exception('Gagal mengambil data: ' . $e->getMessage());
         }
+    }
+
+    public function paginateBlogs()
+    {
+        return Blog::paginate(4);
+    }
+
+    public function paginateBuildings($category)
+    {
+        return Building::where('kategori_bangunan', $category)->paginate(4);
+    }
+
+    public function getBlog($slug)
+    {
+        return Blog::where('slug', $slug)->first();
+    }
+
+    public function getBuilding($id)
+    {
+        return Building::findOrFail($id);
     }
 }

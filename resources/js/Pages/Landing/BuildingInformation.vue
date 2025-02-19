@@ -2,10 +2,13 @@
 import Landing from '@/Layouts/Landing.vue'
 import Building from '@/Pages/Landing/section/Building.vue'
 import { Head } from '@inertiajs/vue3'
+import { provide } from 'vue'
 
-defineProps({
-    title: String
+const props = defineProps({
+    title: String,
+    building: Object
 })
+provide('building', props.building)
 </script>
 <template>
 
