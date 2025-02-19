@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import Landing from '@/Layouts/Landing.vue';
+import Landing from '@/Layouts/Landing.vue'
+import {Head} from '@inertiajs/vue3'
 
 defineProps({
     title: String
 })
 </script>
 <template>
-    <Landing :title="title">
+    <Head :title="title"/>
+    <Landing>
         <div class="page-title light-background">
             <div class="container">
                 <h1>Daftar Bangunan</h1>

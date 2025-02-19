@@ -20,7 +20,6 @@ provide('buildings', toRefs(props));
 </script>
 
 <template>
-
     <Head :title="title" />
     <Landing>
         <Home />
