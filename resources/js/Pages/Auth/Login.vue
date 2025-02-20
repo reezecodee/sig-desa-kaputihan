@@ -13,7 +13,7 @@ defineProps({
 
   <Head :title="title" />
   <div
-  class="container hidden min-h-screen overflow-hidden flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+  class="container min-h-screen overflow-hidden flex flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
   <div class="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
     <img src="/placeholder/login-bg.jpg" class="absolute inset-0" alt="" srcset="">
     <div class="relative z-20 mt-auto">
@@ -45,8 +45,8 @@ defineProps({
         </a>
         dan
         <a href="https://kaputihan.desa.id/syarat-ketentuan/" target="_blank" class="underline underline-offset-4 hover:text-primary">
-          Syarat dan Ketentuan
-        </a>.
+          Syarat dan Ketentuan.
+        </a>
       </p>
     </div>
   </div>
