@@ -2,6 +2,7 @@
 import App from '@/Layouts/App.vue'
 import { Button } from '@/Components/ui/button'
 import { Head } from '@inertiajs/vue3';
+import SmallMap from '@/Components/custom/landing/SmallMap.vue';
 import {
     Card,
     CardContent,
@@ -10,105 +11,125 @@ import {
 } from '@/Components/ui/card'
 
 defineProps({
-    title: String
+    title: String,
+    data: Object
 })
 </script>
 
 <template>
+
     <Head :title="title" />
     <App>
         <template #header>
             <h2 class="text-3xl font-bold tracking-tight">
                 Dashboard
             </h2>
-            <div class="flex items-center space-x-2">
-                <Button>Download</Button>
-            </div>
         </template>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <Card>
                 <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle class="text-sm font-medium">
-                        Total Revenue
+                        Total Penduduk Desa
                     </CardTitle>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                        class="h-4 w-4 text-muted-foreground">
-                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-users">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
                     </svg>
                 </CardHeader>
                 <CardContent>
                     <div class="text-2xl font-bold">
-                        $45,231.89
+                        {{ data.penduduk }}
                     </div>
-                    <p class="text-xs text-muted-foreground">
-                        +20.1% from last month
-                    </p>
                 </CardContent>
             </Card>
             <Card>
                 <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle class="text-sm font-medium">
-                        Subscriptions
+                        Total Blog Desa
                     </CardTitle>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                        class="h-4 w-4 text-muted-foreground">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                        <circle cx="9" cy="7" r="4" />
-                        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-blockquote">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M6 15h15" />
+                        <path d="M21 19h-15" />
+                        <path d="M15 11h6" />
+                        <path d="M21 7h-6" />
+                        <path d="M9 9h1a1 1 0 1 1 -1 1v-2.5a2 2 0 0 1 2 -2" />
+                        <path d="M3 9h1a1 1 0 1 1 -1 1v-2.5a2 2 0 0 1 2 -2" />
                     </svg>
                 </CardHeader>
                 <CardContent>
                     <div class="text-2xl font-bold">
-                        +2350
+                        {{ data.blog }}
                     </div>
-                    <p class="text-xs text-muted-foreground">
-                        +180.1% from last month
-                    </p>
                 </CardContent>
             </Card>
             <Card>
                 <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle class="text-sm font-medium">
-                        Sales
+                        Total Keseluruhan Bangunan
                     </CardTitle>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                        class="h-4 w-4 text-muted-foreground">
-                        <rect width="20" height="14" x="2" y="5" rx="2" />
-                        <path d="M2 10h20" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-buildings">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M4 21v-15c0 -1 1 -2 2 -2h5c1 0 2 1 2 2v15" />
+                        <path d="M16 8h2c1 0 2 1 2 2v11" />
+                        <path d="M3 21h18" />
+                        <path d="M10 12v0" />
+                        <path d="M10 16v0" />
+                        <path d="M10 8v0" />
+                        <path d="M7 12v0" />
+                        <path d="M7 16v0" />
+                        <path d="M7 8v0" />
+                        <path d="M17 12v0" />
+                        <path d="M17 16v0" />
                     </svg>
                 </CardHeader>
                 <CardContent>
                     <div class="text-2xl font-bold">
-                        +12,234
+                        {{ data.bangunan }}
                     </div>
-                    <p class="text-xs text-muted-foreground">
-                        +19% from last month
-                    </p>
                 </CardContent>
             </Card>
             <Card>
                 <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle class="text-sm font-medium">
-                        Active Now
+                        Total Admin
                     </CardTitle>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                        class="h-4 w-4 text-muted-foreground">
-                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-user-shield">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M6 21v-2a4 4 0 0 1 4 -4h2" />
+                        <path d="M22 16c0 4 -2.5 6 -3.5 6s-3.5 -2 -3.5 -6c1 0 2.5 -.5 3.5 -1.5c1 1 2.5 1.5 3.5 1.5z" />
+                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                     </svg>
                 </CardHeader>
                 <CardContent>
                     <div class="text-2xl font-bold">
-                        +573
+                        {{ data.admin }}
                     </div>
-                    <p class="text-xs text-muted-foreground">
-                        +201 since last hour
-                    </p>
                 </CardContent>
             </Card>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+            <div>
+                <SmallMap />
+            </div>
+            <div>
+                <div class="embed-container">
+                    <iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                        title="Batas RT-RW dan Dusun"
+                        src="//www.arcgis.com/apps/Embed/index.html?webmap=4b81724f0ed943e5958afdaa62e5903c&extent=108.2301,-7.4766,108.2707,-7.4549&home=true&zoom=true&previewImage=false&scale=true&details=true&legend=true&active_panel=details&basemap_gallery=true&disable_scroll=true&theme=dark"></iframe>
+                </div>
+            </div>
         </div>
     </App>
 </template>

@@ -7,7 +7,14 @@ const search = ref<string>('')
 
 const onSubmit = () => {
   if (!search.value.trim()) return
-  router.visit(`/${encodeURIComponent(search.value)}`)
+
+  const slug = search.value
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '-') 
+    .replace(/[^a-z0-9-]/g, '')
+
+  window.location.href = `/${encodeURIComponent(slug)}`
 }
 </script>
 
