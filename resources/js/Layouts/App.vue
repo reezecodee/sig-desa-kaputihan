@@ -16,7 +16,7 @@ import BuildingTable from '@/Components/custom/building/BuildingTable.vue'
 </script>
 
 <template>
-    <div class="hidden flex-col md:flex">
+    <div class="flex-col md:flex">
         <div class="border-b">
             <div class="flex h-16 items-center px-4">
                 <!-- <TeamSwitcher /> -->

@@ -27,6 +27,7 @@ class ScheduleRepository
         return Schedule::all()->map(function ($event) {
             return [
                 'title' => $event->keterangan,
+                'status' => $event->status,
                 'start' => $event->tgl_mulai,
                 'end'   => $event->tgl_selesai
             ];

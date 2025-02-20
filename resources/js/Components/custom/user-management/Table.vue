@@ -20,20 +20,20 @@ onMounted(() => {
 </script>
 
 <template>
-    <table id="myTable" class="table table-striped">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Telepon</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-    </table>
+    <div class="w-full overflow-x-auto">
+        <table id="myTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Telepon</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

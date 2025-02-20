@@ -45,7 +45,7 @@ async function onSubmit(event: Event) {
             :disabled="isLoading" v-model="form.password" />
           <div v-if="form.errors.password" class="text-red-500 text-sm">{{ form.errors.password }}</div>
         </div>
-        <Button :disabled="isLoading">
+        <Button class="shadcn-btn detail-btn" :disabled="isLoading">
           Login
         </Button>
       </div>

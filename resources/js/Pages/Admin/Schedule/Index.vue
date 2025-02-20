@@ -57,7 +57,7 @@ onMounted(() => {
             </h2>
             <div class="flex items-center space-x-2">
                 <Link :href="route('admin.scheduleCreate')">
-                <Button>Buat Jadwal Baru</Button>
+                <Button class="shadcn-btn detail-btn">Buat Jadwal Baru</Button>
                 </Link>
             </div>
         </template>

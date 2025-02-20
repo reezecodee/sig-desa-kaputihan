@@ -47,9 +47,11 @@ class BuildingController extends Controller
             })
             ->addColumn('action', function ($row) {
                 return '
+                <a href="'. route('landing.buildingInformation', $row->id) .'">
                 <button class="shadcn-btn detail-btn">Lihat</button>
+                </a>
                 <button class="shadcn-btn edit-btn" data-id="' . $row->id . '">Edit</button>
-                <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Delete</button>
+                <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Hapus</button>
             ';
             })
             ->rawColumns(['foto_bangunan', 'action'])

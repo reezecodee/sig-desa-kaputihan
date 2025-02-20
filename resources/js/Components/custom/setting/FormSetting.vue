@@ -270,7 +270,7 @@ const onSubmit = handleSubmit((values) => {
                     </FormField>
                 </CardContent>
                 <CardFooter class="text-right">
-                    <Button>Perbarui Data</Button>
+                    <Button class="shadcn-btn detail-btn">Perbarui Data</Button>
                 </CardFooter>
             </Card>
         </div>

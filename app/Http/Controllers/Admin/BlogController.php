@@ -41,7 +41,7 @@ class BlogController extends Controller
             ->addColumn('action', function ($row) {
                 return '
                 <button class="shadcn-btn edit-btn" data-id="' . $row->id . '">Edit</button>
-                <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Delete</button>
+                <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Hapus</button>
             ';
             })
             ->rawColumns(['action'])

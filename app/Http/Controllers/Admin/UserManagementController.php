@@ -35,7 +35,7 @@ class UserManagementController extends Controller
                 if ($row->status == 'Nonaktif') {
                     return '
                     <button class="shadcn-btn edit-btn" data-id="' . $row->id . '">Edit</button>
-                    <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Delete</button>
+                    <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Hapus</button>
                 ';} else{
                     return 'Akun sudah aktif';
                 }

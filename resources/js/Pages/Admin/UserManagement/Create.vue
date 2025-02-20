@@ -19,7 +19,7 @@ defineProps({
             </h2>
             <div class="flex items-center space-x-2">
                 <Link :href="route('admin.userManagement')">
-                <Button>Kembali</Button>
+                <Button class="shadcn-btn delete-btn">Kembali</Button>
                 </Link>
             </div>
         </template>

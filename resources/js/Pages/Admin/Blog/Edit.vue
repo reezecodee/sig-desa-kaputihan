@@ -25,11 +25,11 @@ provide('blog', reactiveBlog)
             </h2>
             <div class="flex items-center space-x-2">
                 <Link :href="route('admin.blog')">
-                <Button>Kembali</Button>
+                <Button class="shadcn-btn delete-btn">Kembali</Button>
                 </Link>
             </div>
         </template>
-        <div class="flex justify-center">
+        <div class="flex justify-center w-full">
             <EditBlog />
         </div>
     </App>

@@ -85,7 +85,7 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-    <form class="w-1/2 space-y-6" @submit.prevent="onSubmit">
+    <form class="w-full md:w-1/2 space-y-6" @submit.prevent="onSubmit">
         <img :src="previewUrl ?? '/placeholder/blog.svg'" alt="" srcset=""
             style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover;">
         <FormField v-slot="{ componentField }" name="foto_bangunan" :validate-on-blur="!isFieldDirty">
@@ -180,7 +180,7 @@ const onSubmit = handleSubmit((values) => {
             </FormItem>
         </FormField>
         <div class="flex justify-end">
-            <Button type="submit">
+            <Button class="shadcn-btn detail-btn" type="submit">
                 Simpan Bangunan
             </Button>
         </div>

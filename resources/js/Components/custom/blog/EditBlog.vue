@@ -82,7 +82,7 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-    <form class="w-1/2 space-y-6" @submit="onSubmit">
+    <form class="w-full md:w-1/2 space-y-6" @submit="onSubmit">
         <img :src="previewUrl ?? '/placeholder/blog.svg'" alt="Thumbnail"
             style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover;">
 
@@ -146,7 +146,7 @@ const onSubmit = handleSubmit((values) => {
 
         <!-- Tombol Submit -->
         <div class="flex justify-end">
-            <Button type="submit">
+            <Button class="shadcn-btn detail-btn" type="submit">
                 Perbarui Blog
             </Button>
         </div>

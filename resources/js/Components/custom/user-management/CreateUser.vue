@@ -58,7 +58,7 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-    <form class="w-1/2 space-y-6" @submit="onSubmit">
+    <form class="w-full md:w-1/2 space-y-6" @submit="onSubmit">
         <FormField v-slot="{ componentField }" name="nama" :validate-on-blur="!isFieldDirty">
             <FormItem>
                 <FormLabel>Nama Lengkap</FormLabel>
@@ -121,7 +121,7 @@ const onSubmit = handleSubmit((values) => {
             </FormItem>
         </FormField>
         <div class="flex justify-end">
-            <Button type="submit">
+            <Button class="shadcn-btn detail-btn" type="submit">
                 Simpan Pengguna
             </Button>
         </div>

@@ -19,19 +19,19 @@ onMounted(() => {
 </script>
 
 <template>
-    <table id="myTable" class="table table-striped">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Judul</th>
-                <th>Visibilitas</th>
-                <th>Ditambahkan Pada</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-    </table>
+    <div class="w-full overflow-x-auto">
+        <table id="myTable" class="table table-striped min-w-full">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Judul</th>
+                    <th>Visibilitas</th>
+                    <th>Ditambahkan Pada</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
