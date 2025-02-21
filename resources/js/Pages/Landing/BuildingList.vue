@@ -34,7 +34,7 @@ const truncatedText = (text, length) => {
             <div class="container" data-aos="fade-up">
                 <div class="row">
                     <div class="col-md-3 mb-3" v-for="building in buildings.data" :key="building.id">
-                        <Link :href="route('landing.buildingInformation', building.id)">
+                        <Link :href="route('landing.buildingInformation', building.slug)">
                         <div class="card w-full">
                             <div style="width: 100%; aspect-ratio: 16 / 9; overflow: hidden;">
                                 <img :src="building.foto_bangunan ? `/storage/${building.foto_bangunan}` : '/placeholder/blog.svg'"
@@ -42,8 +42,8 @@ const truncatedText = (text, length) => {
                                     style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">{{ truncatedText(building.nama_bangunan, 50) }}</h5>
-                                <p class="card-text">{{ truncatedText(building.deskripsi, 120) }}</p>
+                                <h5 class="card-title fw-bold">{{ truncatedText(building.nama_bangunan, 50) }}</h5>
+                                <p class="card-text small">{{ truncatedText(building.deskripsi, 120) }}</p>
                             </div>
                         </div>
                         </Link>

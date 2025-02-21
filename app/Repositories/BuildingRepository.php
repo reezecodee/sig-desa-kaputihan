@@ -19,6 +19,11 @@ class BuildingRepository
         return $blogs;
     }
 
+    public function existsBySlug(string $slug): bool
+    {
+        return Building::where('slug', $slug)->exists();
+    }
+
     public function store($data)
     {
         try {

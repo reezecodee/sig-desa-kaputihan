@@ -22,7 +22,7 @@ defineProps({
           &ldquo;Kami senang Anda sudah berkunjung ke website desa kami, semoga melalui situs web ini kami dapat memberikan segala informasi yang aktual.&rdquo;
         </p>
         <footer class="text-sm">
-          Ujang Herman RN - Kepala Desa Kaputihan
+          Ujang Herman RN - Kepala Desa Kaputihan Periode 2021-2027
         </footer>
       </blockquote>
     </div>

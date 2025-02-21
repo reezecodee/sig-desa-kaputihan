@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('buildings', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('slug')->index();
             $table->string('nama_bangunan');
             $table->string('foto_bangunan')->nullable();
             $table->text('deskripsi');

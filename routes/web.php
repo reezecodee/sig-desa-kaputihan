@@ -12,7 +12,7 @@ Route::middleware(['landing-layout'])->controller(LandingController::class)->gro
     Route::get('jadwal-kegiatan-desa', 'schedule')->name('landing.schedule');
     Route::prefix('bangunan-desa')->group(function(){
         Route::get('/{category}', 'buildingList')->name('landing.buildingList');
-        Route::get('informasi/{id}', 'buildingInformation')->name('landing.buildingInformation');
+        Route::get('informasi/{slug}', 'buildingInformation')->name('landing.buildingInformation');
     });
 });
 

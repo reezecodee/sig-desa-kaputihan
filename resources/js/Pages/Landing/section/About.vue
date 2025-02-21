@@ -32,7 +32,7 @@ const village = computed(() => usePage().props.village)
                         <div class="row gy-4">
                             <div class="col-lg-12">
                                 <div class="profile d-flex align-items-center gap-3">
-                                    <img :src="`/storage/${village.foto}`"
+                                    <img :src="village.foto ? `/storage/${village.foto}` : '/placeholder/kepdes.webp'"
                                         alt="Kepala Desa" class="profile-image border">
                                     <div>
                                         <h4 class="profile-name">{{ village.nama_kades }}</h4>

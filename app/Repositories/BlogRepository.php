@@ -19,6 +19,11 @@ class BlogRepository
         return $blogs;
     }
 
+    public function existsBySlug(string $slug): bool
+    {
+        return Blog::where('slug', $slug)->exists();
+    }
+
     public function store($data)
     {
         try {
@@ -32,7 +37,7 @@ class BlogRepository
     {
         try {
             $blog = Blog::findOrFail($id);
-            
+
             return $blog->update($data);
         } catch (\Exception $e) {
             throw new \Exception('Gagal memperbarui data: ' . $e->getMessage());

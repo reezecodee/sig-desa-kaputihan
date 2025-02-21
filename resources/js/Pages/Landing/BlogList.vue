@@ -44,8 +44,8 @@ const truncatedText = (text, length) => {
                                     style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">{{ truncatedText(blog.judul, 50) }}</h5>
-                                <p class="card-text">{{ truncatedText(blog.konten, 120) }}</p>
+                                <h5 class="card-title fw-bold">{{ truncatedText(blog.judul, 50) }}</h5>
+                                <p class="card-text small">{{ truncatedText(blog.konten, 120) }}</p>
                             </div>
                         </div>
                         </Link>

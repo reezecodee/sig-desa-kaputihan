@@ -54,8 +54,8 @@ class LandingService
         return $this->landingRepository->getBlog($slug);
     }
 
-    public function getBuildingWithId($id)
+    public function getBuildingWithSlug($slug)
     {
-        return $this->landingRepository->getBuilding($id);
+        return $this->landingRepository->getBuilding($slug);
     }
 }

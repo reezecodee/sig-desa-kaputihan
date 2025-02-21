@@ -28,7 +28,15 @@ class BlogService
     public function store($data)
     {
         try {
-            $data['slug'] = Str::slug($data['judul']);
+            $slug = Str::slug($data['judul']);
+
+            $originalSlug = $slug;
+
+            while ($this->blogRepository->existsBySlug($slug)) {
+                $slug = $originalSlug . '-' . uniqid();
+            }
+
+            $data['slug'] = $slug;
 
             $originalExtension = $data['thumbnail']->getClientOriginalExtension();
             $uniqueFileName = uniqid() . '.' . $originalExtension;
@@ -44,8 +52,20 @@ class BlogService
     public function update($data, $id)
     {
         try {
-            $data['slug'] = Str::slug($data['judul']);
             $blog = $this->blogRepository->find($id);
+
+            if ($data['judul'] !== $blog->judul) {
+                $originalSlug = Str::slug($data['judul']);
+                $slug = $originalSlug;
+
+                while ($this->blogRepository->existsBySlug($slug, $id)) {
+                    $slug = $originalSlug . '-' . uniqid();
+                }
+
+                $data['slug'] = $slug;
+            } else {
+                $data['slug'] = $blog->slug;
+            }
 
             if (isset($data['thumbnail'])) {
                 if ($blog->thumbnail && Storage::disk('public')->exists($blog->thumbnail)) {
@@ -57,8 +77,7 @@ class BlogService
                 $filePath = $data['thumbnail']->storeAs('thumbnail', $uniqueFileName, 'public');
 
                 $data['thumbnail'] = $filePath;
-            } 
-            else {
+            } else {
                 $data['thumbnail'] = $blog->thumbnail;
             }
 

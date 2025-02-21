@@ -43,7 +43,7 @@ class LandingRepository
 
     public function paginateBlogs()
     {
-        return Blog::paginate(4);
+        return Blog::where('visibilitas', 'Publik')->paginate(4);
     }
 
     public function paginateBuildings($category)
@@ -56,8 +56,8 @@ class LandingRepository
         return Blog::where('slug', $slug)->first();
     }
 
-    public function getBuilding($id)
+    public function getBuilding($slug)
     {
-        return Building::findOrFail($id);
+        return Building::where('slug', $slug)->first();
     }
 }

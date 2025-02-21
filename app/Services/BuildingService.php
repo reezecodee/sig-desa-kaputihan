@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\BuildingRepository;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BuildingService
 {
@@ -27,6 +28,16 @@ class BuildingService
     public function store($data)
     {
         try {
+            $slug = Str::slug($data['nama_bangunan']);
+
+            $originalSlug = $slug;
+
+            while ($this->buildingRepository->existsBySlug($slug)) {
+                $slug = $originalSlug . '-' . uniqid();
+            }
+
+            $data['slug'] = $slug;
+
             if (isset($data['foto_bangunan'])) {
                 $originalExtension = $data['foto_bangunan']->getClientOriginalExtension();
                 $uniqueFileName = uniqid() . '.' . $originalExtension;
@@ -45,6 +56,19 @@ class BuildingService
     {
         try {
             $building = $this->buildingRepository->find($id);
+
+            if ($data['nama_bangunan'] !== $building->nama_bangunan) {
+                $originalSlug = Str::slug($data['nama_bangunan']);
+                $slug = $originalSlug;
+
+                while ($this->buildingRepository->existsBySlug($slug, $id)) {
+                    $slug = $originalSlug . '-' . uniqid();
+                }
+
+                $data['slug'] = $slug;
+            } else {
+                $data['slug'] = $building->slug;
+            }
 
             if (isset($data['foto_bangunan'])) {
                 if ($building->foto_bangunan && Storage::disk('public')->exists($building->foto_bangunan)) {

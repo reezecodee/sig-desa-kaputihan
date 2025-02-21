@@ -29,7 +29,7 @@ const props = defineProps<{
 
 const village = inject('village')
 const previewKepdes = ref<string>(village.foto ? `/storage/${village.foto}` : '/placeholder/kepdes.webp')
-const previewLogo = ref<string>(village.logo ? `/storage/${village.logo}` : '/placeholder/logo.webp')
+const previewLogo = ref<string>(village.logo ? `/storage/${village.logo}` : '/placeholder/logo-desa.webp')
 
 onBeforeUnmount(() => {
     if (previewKepdes.value || previewLogo.value) {

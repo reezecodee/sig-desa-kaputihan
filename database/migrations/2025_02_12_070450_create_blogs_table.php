@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('judul');
             $table->string('slug')->index();
+            $table->string('judul');
             $table->text('konten');
             $table->enum('visibilitas', ['Publik', 'Privasi']);
             $table->string('thumbnail');

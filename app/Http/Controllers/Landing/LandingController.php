@@ -54,10 +54,10 @@ class LandingController extends Controller
         return Inertia::render('Landing/BuildingList', compact('buildings'));
     }
 
-    public function buildingInformation($id)
+    public function buildingInformation($slug)
     {
         $title = 'Informasi Bangunan';
-        $building = $this->landingService->getBuildingWithId($id);
+        $building = $this->landingService->getBuildingWithSlug($slug);
 
         return Inertia::render('Landing/BuildingInformation', compact('title', 'building'));
     }
