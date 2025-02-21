@@ -18,7 +18,6 @@ class UsersSeeder extends Seeder
             'email' => 'admindesa@gmail.com',
             'telepon' => '0812345678910',
             'alamat' => 'Jl. Kaputihan, Desa Kaputihan',
-            'status' => 'Aktif',
             'password' => bcrypt('12345678')
         ]);
     }

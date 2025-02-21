@@ -41,8 +41,7 @@ const formSchema = toTypedSchema(z.object({
         .trim(),
     alamat: z.string({ message: 'Alamat wajib di isi' })
         .max(255, { message: 'Alamat tidak boleh lebih dari 255 karakter' })
-        .trim(),
-    status: z.enum(['Aktif', 'Nonaktif'], { message: 'Status wajib di isi' }),
+        .trim()
 }));
 
 defineProps<{ errors: Record<string, string> }>()
@@ -53,8 +52,7 @@ const { values, isFieldDirty, handleSubmit, setErrors } = useForm({
         nama: user.nama,
         email: user.email,
         telepon: user.telepon,
-        alamat: user.alamat,
-        status: user.status
+        alamat: user.alamat
     },
 })
 
@@ -102,30 +100,6 @@ const onSubmit = handleSubmit((values) => {
                 <FormLabel>Alamat Lengkap</FormLabel>
                 <FormControl>
                     <Textarea placeholder="Masukan alamat lengkap" class="resize-none" v-bind="componentField" />
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-        </FormField>
-        <FormField v-slot="{ componentField }" name="status" :validate-on-blur="!isFieldDirty">
-            <FormItem>
-                <FormLabel>Status Akun</FormLabel>
-                <FormControl>
-                    <Select v-bind="componentField">
-                        <SelectTrigger>
-                            <SelectValue placeholder="Pilih status akun" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectGroup>
-                                <SelectLabel>Status</SelectLabel>
-                                <SelectItem value="Aktif">
-                                    Aktif
-                                </SelectItem>
-                                <SelectItem value="Nonaktif">
-                                    Nonaktif
-                                </SelectItem>
-                            </SelectGroup>
-                        </SelectContent>
-                    </Select>
                 </FormControl>
                 <FormMessage />
             </FormItem>

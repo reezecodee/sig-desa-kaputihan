@@ -32,11 +32,12 @@ class UserManagementController extends Controller
         return DataTables::of($users)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
-                if ($row->status == 'Nonaktif') {
+                if (!$row->email_verified_at) {
                     return '
                     <button class="shadcn-btn edit-btn" data-id="' . $row->id . '">Edit</button>
                     <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Hapus</button>
-                ';} else{
+                ';
+                } else {
                     return 'Akun sudah aktif';
                 }
             })

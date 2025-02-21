@@ -25,8 +25,7 @@ class UserRequest extends FormRequest
             'nama' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
             'telepon' => 'required|numeric|min_digits:12|max_digits:15',
-            'alamat' => 'required|string|max:255',
-            'status' => 'required|in:Aktif,Nonaktif',
+            'alamat' => 'required|string|max:255'
         ];
     }
 
@@ -45,8 +44,6 @@ class UserRequest extends FormRequest
             'telepon.max_digits' => 'Telepon tidak boleh lebih dari 15 digit angka.',
             'alamat.required' => 'Alamat wajib di isi.',
             'alamat.max' => 'Alamat tidak boleh lebih dari 255 karakter.',
-            'status.required' => 'Status wajib di isi.',
-            'status.in' => 'Status yang dipilih tidak valid.',
         ];
     }
 }

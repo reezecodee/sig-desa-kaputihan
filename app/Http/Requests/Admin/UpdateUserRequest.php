@@ -26,7 +26,6 @@ class UpdateUserRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:users,email,' . $this->route('id'),
             'telepon' => 'required|numeric|min_digits:12|max_digits:15|unique:users,telepon,' . $this->route('id'),
             'alamat' => 'required|string|max:255',
-            'status' => 'required|in:Aktif,Nonaktif',
         ];
     }
 
@@ -46,8 +45,6 @@ class UpdateUserRequest extends FormRequest
             'telepon.unique' => 'Telepon sudah terdaftar, gunakan nomor lain.',
             'alamat.required' => 'Alamat wajib di isi.',
             'alamat.max' => 'Alamat tidak boleh lebih dari 255 karakter.',
-            'status.required' => 'Status wajib di isi.',
-            'status.in' => 'Status yang dipilih tidak valid.',
         ];
     }
 }

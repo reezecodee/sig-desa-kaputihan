@@ -27,6 +27,11 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            if (is_null(Auth::user()->email_verified_at)) {
+                Auth::user()->update(['email_verified_at' => now()]);
+            }
+            
             session()->flash('success', 'Selamat datang di Sistem Informasi Desa Kaputihan');
 
             return redirect()->route('admin.dashboard');

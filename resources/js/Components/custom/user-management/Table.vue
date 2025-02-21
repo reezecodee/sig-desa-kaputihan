@@ -12,7 +12,6 @@ onMounted(() => {
             { data: 'nama', name: 'nama' },
             { data: 'email', name: 'email' },
             { data: 'telepon', name: 'telepon' },
-            { data: 'status', name: 'status' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ]
     });
@@ -28,7 +27,6 @@ onMounted(() => {
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Telepon</th>
-                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
