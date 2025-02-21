@@ -7,7 +7,7 @@ import { onMounted } from 'vue';
 import L from 'leaflet';
 
 onMounted(async () => {
-    const map = L.map('map').setView([-7.46706, 108.256], 15);
+    const map = L.map('map', { scrollWheelZoom: false }).setView([-7.46706, 108.256], 15);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
@@ -32,14 +32,14 @@ onMounted(async () => {
             }).addTo(map);
         });
     const redIcon = L.icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png', // Marker merah
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png', 
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-        iconSize: [25, 41], // Ukuran ikon
-        iconAnchor: [12, 41], // Posisi anchor
-        popupAnchor: [1, -34] // Posisi popup
+        iconSize: [25, 41], 
+        iconAnchor: [12, 41], 
+        popupAnchor: [1, -34] 
     });
 
-    L.marker([-7.4652199, 108.2420134], { icon: redIcon }) // Gunakan ikon merah
+    L.marker([-7.4652199, 108.2420134], { icon: redIcon }) 
         .addTo(map)
         .bindPopup(`
       <b>Kantor Kepala Desa Kaputihan</b><br><br>

@@ -7,7 +7,7 @@ import { onMounted } from 'vue';
 import L from 'leaflet';
 
 onMounted(async () => {
-    const map = L.map('map').setView([-7.46706, 108.256], 15);
+    const map = L.map('map', { scrollWheelZoom: false }).setView([-7.46706, 108.256], 15);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
