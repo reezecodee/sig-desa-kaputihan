@@ -24,8 +24,11 @@ const blog = inject('blog')
                 </div>
 
                 <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
-                    <img :src="blog.thumbnail ? `/storage/${blog.thumbnail}` : '/placeholder/blog.svg'" alt="" class="img-fluid services-img">
-                    <h3>{{ blog.judul }}
+                    <div style="width: 100%; aspect-ratio: 16 / 9; overflow: hidden;">
+                        <img :src="blog.thumbnail ? `/storage/${blog.thumbnail}` : '/placeholder/blog.svg'" alt=""
+                            class="img-fluid services-img" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <h3 class="mt-4">{{ blog.judul }}
                     </h3>
                     <p>
                         {{ blog.konten }}

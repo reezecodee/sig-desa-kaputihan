@@ -10,10 +10,17 @@ const props = defineProps({
 })
 
 provide('blog', props.blog)
+
+const truncatedText = (text) => {
+  return text.length > 150 ? text.slice(0, 150) + "" : text;
+};
 </script>
 <template>
 
-    <Head :title="title" />
+    <Head>
+        <title>{{ `${blog.judul} - ${title} Desa Kaputihan` }}</title>
+        <meta name="description" :content="truncatedText(blog.konten)" />
+    </Head>
     <Landing>
         <Blog></Blog>
     </Landing>

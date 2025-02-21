@@ -2,21 +2,28 @@
 import Landing from '@/Layouts/Landing.vue'
 import { Head, Link } from '@inertiajs/vue3'
 
-defineProps({
-    title: String,
+const props = defineProps({
     buildings: Object
 })
+
+const truncatedText = (text, length) => {
+  return text.length > length ? text.slice(0, length) + "" : text;
+};
 </script>
 <template>
 
-    <Head :title="title" />
+    <Head>
+        <title>{{ `Daftar Bangunan ${buildings.data?.[0]?.kategori_bangunan} - Desa Kaputihan` }}</title>
+        <meta name="description" :content="'Daftar Bangunan ' + buildings.data?.[0]?.kategori_bangunan + ' yang ada di Desa Kaputihan'" />
+    </Head>
+
     <Landing>
         <div class="page-title light-background">
             <div class="container">
                 <h1>Daftar Bangunan</h1>
                 <nav class="breadcrumbs">
                     <ol>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li class="current">Daftar Bangunan</li>
                     </ol>
                 </nav>
@@ -29,11 +36,14 @@ defineProps({
                     <div class="col-md-3 mb-3" v-for="building in buildings.data" :key="building.id">
                         <Link :href="route('landing.buildingInformation', building.id)">
                         <div class="card w-full">
-                            <img
-                                :src="building.foto_bangunan ? `/storage/${building.foto_bangunan}` : '/placeholder/blog.svg'">
+                            <div style="width: 100%; aspect-ratio: 16 / 9; overflow: hidden;">
+                                <img :src="building.foto_bangunan ? `/storage/${building.foto_bangunan}` : '/placeholder/blog.svg'"
+                                    class="card-img-top" alt="..."
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
                             <div class="card-body">
-                                <h5 class="card-title">{{ building.nama_bangunan }}</h5>
-                                <p class="card-text">{{ building.deskripsi }}</p>
+                                <h5 class="card-title">{{ truncatedText(building.nama_bangunan, 50) }}</h5>
+                                <p class="card-text">{{ truncatedText(building.deskripsi, 120) }}</p>
                             </div>
                         </div>
                         </Link>
@@ -44,7 +54,8 @@ defineProps({
                         <ul class="pagination">
                             <template v-for="building in buildings.links" :key="building.label">
                                 <li class="page-item" :class="{ 'active': building.active, 'disabled': !building.url }">
-                                    <Link v-if="building.url" :href="building.url" class="page-link" v-html="building.label" />
+                                    <Link v-if="building.url" :href="building.url" class="page-link"
+                                        v-html="building.label" />
                                     <span v-else class="page-link" v-html="building.label" />
                                 </li>
                             </template>

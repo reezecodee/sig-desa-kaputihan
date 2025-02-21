@@ -9,14 +9,17 @@ defineProps({
 </script>
 <template>
 
-    <Head :title="title" />
+    <Head>
+        <title>{{ title }}</title>
+        <meta name="description" content="Kalender jadwal kegiatan desa kaputihan" />
+    </Head>
     <Landing>
         <div class="page-title light-background">
             <div class="container">
                 <h1>Jadwal Kegiatan</h1>
                 <nav class="breadcrumbs">
                     <ol>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li class="current">Jadwal Kegiatan</li>
                     </ol>
                 </nav>

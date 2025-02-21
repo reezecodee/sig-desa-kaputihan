@@ -34,7 +34,7 @@ class LandingController extends Controller
 
     public function readBlog($slug)
     {
-        $title = 'Baca Blog: ';
+        $title = 'Baca Blog';
         $blog = $this->landingService->getBlogWithSlug($slug);
 
         return Inertia::render('Landing/ReadBlog', compact('title', 'blog'));
@@ -49,10 +49,9 @@ class LandingController extends Controller
 
     public function buildingList($category)
     {
-        $title = 'Daftar Bangunan';
         $buildings = $this->landingService->buildingPaginate($category);
 
-        return Inertia::render('Landing/BuildingList', compact('title', 'buildings'));
+        return Inertia::render('Landing/BuildingList', compact('buildings'));
     }
 
     public function buildingInformation($id)

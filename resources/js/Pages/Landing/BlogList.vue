@@ -6,18 +6,26 @@ defineProps({
     title: String,
     blogs: Object
 })
+
+const truncatedText = (text, length) => {
+    return text.length > length ? text.slice(0, length) + "..." : text;
+};
 </script>
 
 <template>
 
-    <Head :title="title" />
+    <Head>
+        <title>{{ title }} - Desa Kaputihan</title>
+        <meta name="description"
+            content="Daftar Blog Desa Kaputihan" />
+    </Head>
     <Landing>
         <div class="page-title light-background">
             <div class="container">
                 <h1>Blog Desa</h1>
                 <nav class="breadcrumbs">
                     <ol>
-                        <li><a href="">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li class="current">Blog Desa</li>
                     </ol>
                 </nav>
@@ -29,14 +37,17 @@ defineProps({
                 <div class="row">
                     <div class="col-md-3 mb-3" v-for="blog in blogs.data" :key="blog.id">
                         <Link :href="route('landing.readBlog', blog.slug)">
-                            <div class="card w-full">
+                        <div class="card w-full">
+                            <div style="width: 100%; aspect-ratio: 16 / 9; overflow: hidden;">
                                 <img :src="blog.thumbnail ? `/storage/${blog.thumbnail}` : '/placeholder/blog.svg'"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ blog.judul }}</h5>
-                                    <p class="card-text">{{ blog.konten }}</p>
-                                </div>
+                                    class="card-img-top" alt="..."
+                                    style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ truncatedText(blog.judul, 50) }}</h5>
+                                <p class="card-text">{{ truncatedText(blog.konten, 120) }}</p>
+                            </div>
+                        </div>
                         </Link>
                     </div>
                 </div>

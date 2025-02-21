@@ -9,10 +9,17 @@ const props = defineProps({
     building: Object
 })
 provide('building', props.building)
+
+const truncatedText = (text) => {
+  return text.length > 150 ? text.slice(0, 150) + "" : text;
+};
 </script>
 <template>
 
-    <Head :title="title" />
+    <Head>
+        <title>{{ `${building.nama_bangunan} - ${title} Desa Kaputihan` }}</title>
+        <meta name="description" :content="truncatedText(building.deskripsi)" />
+    </Head>
     <Landing>
         <div class="page-title light-background">
             <div class="container">

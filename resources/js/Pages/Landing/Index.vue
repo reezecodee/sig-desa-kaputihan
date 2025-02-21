@@ -20,7 +20,10 @@ provide('buildings', toRefs(props));
 </script>
 
 <template>
-    <Head :title="title" />
+    <Head>
+        <title>{{ title }}</title>
+        <meta name="description" content="Sistem Informasi Geografis (GIS) Desa Kaputihan menyajikan data wilayah, fasilitas, dan informasi penting lainnya dalam peta interaktif untuk kemudahan akses masyarakat dan pengelolaan desa." />
+    </Head>
     <Landing>
         <Home />
         <About />
