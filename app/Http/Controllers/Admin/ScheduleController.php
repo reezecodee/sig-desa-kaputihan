@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ScheduleRequest;
 use App\Services\ScheduleService;
+use Carbon\Carbon;
 use Inertia\Inertia;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -36,6 +37,17 @@ class ScheduleController extends Controller
 
         return DataTables::of($schedules)
             ->addIndexColumn()
+            ->addColumn('tgl_mulai', function($row){
+                return Carbon::parse($row->tgl_mulai)->translatedFormat('j F Y');
+            })
+            ->addColumn('tgl_selesai', function($row){
+                if($row->tgl_mulai !== $row->tgl_selesai){
+                    $modify = Carbon::parse($row->tgl_selesai)->subDay()->format('Y-m-d');
+                    return Carbon::parse($modify)->translatedFormat('j F Y');
+                }
+
+                return Carbon::parse($row->tgl_selesai)->translatedFormat('j F Y');
+            })
             ->addColumn('action', function ($row) {
                 return '
                 <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Hapus</button>

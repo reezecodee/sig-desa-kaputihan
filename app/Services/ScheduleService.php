@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\ScheduleRepository;
+use Carbon\Carbon;
 
 class ScheduleService
 {
@@ -21,6 +22,10 @@ class ScheduleService
     public function store($data) 
     {
         try {
+            if ($data['tgl_mulai'] !== $data['tgl_selesai']) {
+                $data['tgl_selesai'] = Carbon::parse($data['tgl_selesai'])->addDay()->format('Y-m-d');
+            }
+
             return $this->scheduleRepository->store($data);
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());

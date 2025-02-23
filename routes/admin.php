@@ -9,7 +9,8 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('lokasi/daftar-lokasi/{type}', [LocationController::class, 'getLocations'])->name('admin.locationList');
+Route::get('daftar-lokasi/{type}', [LocationController::class, 'getLocations'])->name('admin.locationList');
+Route::get('jadwal-calendar', [ScheduleController::class ,'getCalendars'])->name('admin.calendar');
 
 Route::middleware(['app-layout', 'auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -22,7 +23,6 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
     Route::prefix('jadwal-kegiatan')->controller(ScheduleController::class)->group(function () {
         Route::get('/', 'index')->name('admin.schedule');
         Route::get('daftar-jadwal', 'getSchedules')->name('admin.scheduleList');
-        Route::get('jadwal-calendar', 'getCalendars')->name('admin.calendar');
         Route::get('buat-jadwal', 'create')->name('admin.scheduleCreate');
         Route::post('tambah-jadwal', 'store')->name('admin.scheduleSave');
         Route::delete('hapus-jadwal/{id}', 'destroy')->name('admin.scheduleDestroy');
