@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Models\Blog;
 use App\Models\Building;
 use App\Models\Village;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +13,7 @@ class LandingRepository
         try {
             return Village::first();
         } catch (\Exception $e) {
-            throw new \Exception('Gagal mengambil data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba mengambil data');
         }
     }
 
@@ -37,23 +36,13 @@ class LandingRepository
                 'lainnya' => $counts['Lainnya'] ?? 0,
             ];
         } catch (\Exception $e) {
-            throw new \Exception('Gagal mengambil data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba mengambil data');
         }
-    }
-
-    public function paginateBlogs()
-    {
-        return Blog::where('visibilitas', 'Publik')->paginate(4);
     }
 
     public function paginateBuildings($category)
     {
         return Building::where('kategori_bangunan', $category)->paginate(4);
-    }
-
-    public function getBlog($slug)
-    {
-        return Blog::where('slug', $slug)->first();
     }
 
     public function getBuilding($slug)

@@ -29,7 +29,7 @@ class BuildingRepository
         try {
             return Building::create($data);
         } catch (\Exception $e) {
-            throw new \Exception('Gagal menambahkan data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba menambahkan data');
         }
     }
 
@@ -39,7 +39,7 @@ class BuildingRepository
             $building = Building::findOrFail($id);
             return $building->update($data);
         } catch (\Exception $e) {
-            throw new \Exception('Gagal menambahkan data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba memperbarui data');
         }
     }
 
@@ -54,7 +54,7 @@ class BuildingRepository
 
             return $building->delete();
         } catch (\Exception $e) {
-            throw new \Exception('Gagal menghapus data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba menghapus data');
         }
     }
 }

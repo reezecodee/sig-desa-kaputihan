@@ -31,15 +31,6 @@ class LandingService
         }
     }
 
-    public function blogPaginate()
-    {
-        try {
-            return $this->landingRepository->paginateBlogs();
-        } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
-        }
-    }
-
     public function buildingPaginate($category)
     {
         try {
@@ -47,11 +38,6 @@ class LandingService
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
-    }
-
-    public function getBlogWithSlug($slug)
-    {
-        return $this->landingRepository->getBlog($slug);
     }
 
     public function getBuildingWithSlug($slug)

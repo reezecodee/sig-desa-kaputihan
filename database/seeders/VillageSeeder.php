@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Village;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class VillageSeeder extends Seeder
@@ -18,7 +17,7 @@ class VillageSeeder extends Seeder
             'nama_kades' => 'Ujang Herman RN',
             'periode' => '2021-2027',
             'foto' => null,
-            'nama_aplikasi' => 'GISKA',
+            'nama_aplikasi' => 'SIGKA',
             'logo' => null,
             'logo_aktif' => 'Off',
             'telepon' => '+62 81320800480',

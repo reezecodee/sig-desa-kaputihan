@@ -11,7 +11,7 @@ class SettingRepository
         try {
             return Village::first();
         } catch (\Exception $e) {
-            throw new \Exception('Gagal mengambil data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba mengambil data');
         }
     }
 
@@ -22,7 +22,7 @@ class SettingRepository
             
             return $village->update($data);
         } catch (\Exception $e) {
-            throw new \Exception('Gagal memperbarui data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba memperbarui data');
         }
     }
 }

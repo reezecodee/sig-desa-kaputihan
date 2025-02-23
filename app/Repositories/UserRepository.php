@@ -23,7 +23,7 @@ class UserRepository
         try {
             return User::create($data);
         } catch (\Exception $e) {
-            throw new \Exception('Gagal menambahkan data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba menambahkan data');
         }
     }
 
@@ -34,7 +34,7 @@ class UserRepository
             
             return $user->update($data);
         } catch (\Exception $e) {
-            throw new \Exception('Gagal memperbarui data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba memperbarui data');
         }
     }
 
@@ -45,7 +45,7 @@ class UserRepository
 
             return $user->delete();
         } catch (\Exception $e) {
-            throw new \Exception('Gagal menghapus data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba menghapus data');
         }
     }
 }

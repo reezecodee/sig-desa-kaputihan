@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Village;
 use Closure;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -17,6 +18,11 @@ class LandingLayoutMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         Inertia::setRootView('landing');
+        
+        $village = Village::first();
+        Inertia::share([
+            'village' => fn () => $village
+        ]);
 
         return $next($request);
     }

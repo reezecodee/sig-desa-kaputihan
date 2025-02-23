@@ -11,7 +11,7 @@ class LocationRepository
         try {
             return Map::create($data);
         } catch (\Exception $e) {
-            throw new \Exception('Gagal menambahkan data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba menambahkan data');
         }
     }
 
@@ -29,7 +29,7 @@ class LocationRepository
 
             return $location->delete();
         } catch (\Exception $e) {
-            throw new \Exception('Gagal menghapus data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba menghapus data');
         }
     }
 }

@@ -18,7 +18,7 @@ class ScheduleRepository
         try {
             return Schedule::create($data);
         } catch (\Exception $e) {
-            throw new \Exception('Gagal menambahkan data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saatn mencoba menambahkan data');
         }
     }
 
@@ -41,7 +41,7 @@ class ScheduleRepository
 
             return $schedule->delete();
         } catch (\Exception $e) {
-            throw new \Exception('Gagal menghapus data: ' . $e->getMessage());
+            throw new \Exception('Terjadi kesalahan saat mencoba menghapus data');
         }
     }
 }
