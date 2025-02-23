@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
 use App\Services\LandingService;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class LandingController extends Controller
@@ -18,26 +17,10 @@ class LandingController extends Controller
 
     public function index()
     {
-        $title = 'Selamat Datang di Sistem Infromasi Desa Kaputihan';
+        $title = 'Selamat Datang di Sistem Infromasi Geografis Desa Kaputihan';
         $buildings = $this->landingService->getBuildingsCount();
 
         return Inertia::render('Landing/Index', compact('title', 'buildings'));
-    }
-
-    public function blogList()
-    {
-        $title = 'Daftar Blog Desa Kaputihan';
-        $blogs = $this->landingService->blogPaginate();
-
-        return Inertia::render('Landing/BlogList', compact('title', 'blogs'));
-    }
-
-    public function readBlog($slug)
-    {
-        $title = 'Baca Blog';
-        $blog = $this->landingService->getBlogWithSlug($slug);
-
-        return Inertia::render('Landing/ReadBlog', compact('title', 'blog'));
     }
 
     public function schedule()
