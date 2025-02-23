@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ChangePasswordRequest;
 use App\Http\Requests\Admin\EditProfileRequest;
 use App\Services\UserService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
@@ -52,7 +51,6 @@ class ProfileController extends Controller
             ]);
         }
 
-        // Update password baru
         $user = Auth::user();
         $user->password = Hash::make($validated['new_password']);
         $user->save();

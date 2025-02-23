@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\BuildingController;
 use App\Http\Controllers\Admin\LocationController;

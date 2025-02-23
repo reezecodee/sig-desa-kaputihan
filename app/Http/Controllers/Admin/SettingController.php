@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SettingRequest;
 use App\Services\SettingService;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class SettingController extends Controller
