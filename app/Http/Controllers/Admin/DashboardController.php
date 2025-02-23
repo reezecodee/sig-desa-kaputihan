@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Building;
+use App\Models\Schedule;
 use App\Models\User;
 use App\Models\Village;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class DashboardController extends Controller
         $title = 'Dashboard';
         $data = [
             'penduduk' => Village::value('jumlah_penduduk'),
-            'blog' => Blog::count(),
+            'jadwal' => Schedule::whereYear('created_at', date('Y'))->count(),
             'bangunan' => Building::count(),
             'admin' => User::count()
         ];

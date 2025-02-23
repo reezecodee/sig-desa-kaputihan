@@ -14,8 +14,8 @@ const village = computed(() => usePage().props.village)
                 <div class="col-lg-6">
                     <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
                         <h1 class="mb-4">
-                            Selamat Datang di <br>
-                            Sistem Informasi GIS <br>
+                            Website Sistem <br>
+                            Informasi Geografis <br>
                             <span class="accent-text">Desa Kaputihan</span>
                         </h1>
 

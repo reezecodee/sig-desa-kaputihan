@@ -33,9 +33,6 @@ const year: Date = new Date().getFullYear()
                         <li><a href="#statistik-desa">Statistik Desa</a></li>
                         <li><a href="#bangunan">Bangunan</a></li>
                         <li>
-                            <Link :href="route('landing.blog')">Blog Desa</Link>
-                        </li>
-                        <li>
                             <Link :href="route('landing.schedule')">Jadwal Kegiatan</Link>
                         </li>
                     </ul>

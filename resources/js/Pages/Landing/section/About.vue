@@ -6,7 +6,7 @@ const village = computed(() => usePage().props.village)
 </script>
 
 <template>
-    <section id="about" class="about section">
+    <section id="tentang" class="about section">
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
 

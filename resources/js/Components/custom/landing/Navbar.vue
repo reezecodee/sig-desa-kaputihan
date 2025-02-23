@@ -53,22 +53,25 @@ onBeforeUnmount(() => {
             <a href="/#home" :class="{ active: currentHash === '#home' }">Home</a>
           </li>
           <li>
-            <a href="/#batas-wilayah" :class="{ 'active': currentHash === '#batas-wilayah' }">Batas Wilayah</a>
+            <a href="/#tentang" :class="{ active: currentHash === '#tentang' }">Tentang Desa</a>
           </li>
           <li>
-            <a href="/#statistik-desa" :class="{ 'active': currentHash === '#statistik-desa' }">Statistik Desa</a>
+            <a href="/#batas-wilayah" :class="{ active: currentHash === '#batas-wilayah' }">Batas Wilayah</a>
+          </li>
+          <li>
+            <a href="/#statistik-desa" :class="{ active: currentHash === '#statistik-desa' }">Statistik Desa</a>
           </li>
           <li>
             <a href="/#bangunan"
-              :class="{ 'active': currentHash === '#bangunan' || $page.url.startsWith('/bangunan') }">Bangunan</a>
-          </li>
-          <li>
-            <Link :href="route('landing.blog')" :class="{ 'active': $page.url.startsWith('/blog-desa') }">Blog Desa
-            </Link>
+              :class="{ active: currentHash === '#bangunan' || $page.url.startsWith('/bangunan') }">Bangunan</a>
           </li>
           <li>
             <Link :href="route('landing.schedule')"
-              :class="{ 'active': $page.url.startsWith('/jadwal-kegiatan-desa') }">Jadwal Kegiatan</Link>
+              :class="{ active: $page.url.startsWith('/jadwal-kegiatan-desa') }">Jadwal Kegiatan</Link>
+          </li>
+          <li>
+            <a href="/#faq"
+              :class="{ active: currentHash === '#faq' || $page.url.startsWith('/faq') }">F.A.Q</a>
           </li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

@@ -12,16 +12,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['app-layout', 'auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::prefix('blog')->controller(BlogController::class)->group(function () {
-        Route::get('/', 'index')->name('admin.blog');
-        Route::get('daftar-blog', 'getBlogs')->name('admin.blogList');
-        Route::get('buat-blog-baru', 'create')->name('admin.blogCreate');
-        Route::post('simpan-blog-baru', 'store')->name('admin.blogSave');
-        Route::get('edit-blog/{id}', 'edit')->name('admin.blogEdit');
-        Route::post('perbarui-blog/{id}', 'update')->name('admin.blogUpdate');
-        Route::delete('hapus-blog/{id}', 'destroy')->name('admin.blogDestroy');
-    });
-
     Route::prefix('jadwal-kegiatan')->controller(ScheduleController::class)->group(function () {
         Route::get('/', 'index')->name('admin.schedule');
         Route::get('daftar-jadwal', 'getSchedules')->name('admin.scheduleList');
