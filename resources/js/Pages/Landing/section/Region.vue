@@ -29,7 +29,7 @@ import MapVillage from '@/Components/custom/landing/MapVillage.vue'
 
                 <div class="tab-pane fade active show" id="map-tab-1">
                     <div class="embed-container">
-                        <MapVillage />
+                        <MapVillage height="900" />
                     </div>
                 </div>
                 <div class="tab-pane fade" id="map-tab-2">

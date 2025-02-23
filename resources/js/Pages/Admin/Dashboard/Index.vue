@@ -2,7 +2,7 @@
 import App from '@/Layouts/App.vue'
 import { Button } from '@/Components/ui/button'
 import { Head } from '@inertiajs/vue3';
-import SmallMap from '@/Components/custom/landing/SmallMap.vue';
+import MapVillage from '@/Components/custom/landing/MapVillage.vue';
 import {
     Card,
     CardContent,
@@ -128,7 +128,7 @@ const currentYear: Date = new Date().getFullYear()
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
             <div>
-                <SmallMap />
+                <MapVillage height="500" />
             </div>
             <div>
                 <div class="embed-container">
