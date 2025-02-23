@@ -1,14 +1,27 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
-import { Button } from '@/Components/ui/button'
-import { Head } from '@inertiajs/vue3';
-import MapVillage from '@/Components/custom/landing/MapVillage.vue';
+import { Head, Link, router } from '@inertiajs/vue3'
+import { ref, onMounted } from 'vue'
+import MapVillage from '@/Components/custom/landing/MapVillage.vue'
+import MapTable from '@/Components/custom/dashboard/MapTable.vue'
+import FormLocation from '@/Components/custom/dashboard/FormLocation.vue'
 import {
     Card,
     CardContent,
     CardHeader,
     CardTitle,
 } from '@/Components/ui/card'
+import {
+    AlertDialog,
+    AlertDialogTrigger,
+    AlertDialogContent,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogCancel,
+    AlertDialogAction
+} from "@/Components/ui/alert-dialog";
 
 defineProps({
     title: String,
@@ -16,6 +29,30 @@ defineProps({
 })
 
 const currentYear: Date = new Date().getFullYear()
+
+const showDialog = ref(false);
+const selectedId = ref(null);
+
+const confirmDelete = (id) => {
+    selectedId.value = id;
+    showDialog.value = true;
+};
+
+const deleteData = () => {
+    if (!selectedId.value) return;
+
+    router.delete(route("admin.locationDestroy", selectedId.value))
+    showDialog.value = false;
+};
+
+onMounted(() => {
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('delete-btn')) {
+            const id = event.target.getAttribute('data-id')
+            confirmDelete(id)
+        }
+    })
+})
 </script>
 
 <template>
@@ -26,6 +63,9 @@ const currentYear: Date = new Date().getFullYear()
             <h2 class="text-3xl font-bold tracking-tight">
                 Dashboard
             </h2>
+            <div class="flex items-center space-x-2">
+                <FormLocation />
+            </div>
         </template>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <Card>
@@ -138,6 +178,21 @@ const currentYear: Date = new Date().getFullYear()
                 </div>
             </div>
         </div>
+        <MapTable />
+        <AlertDialog v-model:open="showDialog">
+            <AlertDialogContent>
+                <AlertDialogHeader>
+                    <AlertDialogTitle>Konfirmasi Penghapusan</AlertDialogTitle>
+                    <AlertDialogDescription>
+                        Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat dibatalkan.
+                    </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                    <AlertDialogCancel @click="showDialog = false">Batal</AlertDialogCancel>
+                    <AlertDialogAction @click="deleteData">Hapus</AlertDialogAction>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+        </AlertDialog>
     </App>
 </template>
 

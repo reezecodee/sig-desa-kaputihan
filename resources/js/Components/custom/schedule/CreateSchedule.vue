@@ -48,7 +48,7 @@ const formSchema = toTypedSchema(z.object({
     keterangan: z.string({ message: 'Keterangan jadwal wajib di isi' })
         .max(255, { message: 'Keterangan tidak boleh lebih dari 255 karakter' })
         .trim(),
-    status: z.enum(['Kegiatan', 'Keagamaan', 'Acara Desa', 'Lainnya'], { message: 'Status wajib di isi' }),
+    status: z.enum(['Kegiatan', 'Keagamaan', 'Acara desa', 'Lainnya'], { message: 'Status wajib di isi' }),
     tgl_mulai: z.string({ message: 'Tanggal mulai wajib di isi' })
         .refine((value) => {
             const dateRegex = /^\d{4}-\d{2}-\d{2}$/;

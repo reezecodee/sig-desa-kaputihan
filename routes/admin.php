@@ -3,14 +3,22 @@
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\BuildingController;
+use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('lokasi/daftar-lokasi/{type}', [LocationController::class, 'getLocations'])->name('admin.locationList');
+
 Route::middleware(['app-layout', 'auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    Route::prefix('lokasi')->controller(LocationController::class)->group(function(){
+        Route::post('simpan-lokasi', 'store')->name('admin.locationSave');
+        Route::delete('hapus-lokasi/{id}', 'destroy')->name('admin.locationDestroy');
+    });
 
     Route::prefix('jadwal-kegiatan')->controller(ScheduleController::class)->group(function () {
         Route::get('/', 'index')->name('admin.schedule');
