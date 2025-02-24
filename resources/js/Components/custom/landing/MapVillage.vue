@@ -48,7 +48,7 @@ onMounted(async () => {
     })
   };
 
-  L.marker([-7.4652199, 108.2420134], { icon: getIcon('red') })
+  L.marker([-7.465070961927788, 108.24454005036246], { icon: getIcon('red') })
     .addTo(map)
     .bindPopup(`
       <b>Kantor Kepala Desa Kaputihan</b><br><br>
