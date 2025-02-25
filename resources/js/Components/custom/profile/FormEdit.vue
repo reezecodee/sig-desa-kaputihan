@@ -26,7 +26,6 @@ defineProps<{ errors: Record<string, string> }>()
 
 const page = usePage()
 const user = computed(() => page.props.auth.user)
-console.log(user)
 
 const { values, isFieldDirty, handleSubmit, setErrors } = useForm({
     validationSchema: formSchema,

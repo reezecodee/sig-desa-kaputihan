@@ -21,7 +21,8 @@ class VillageSeeder extends Seeder
             'logo' => null,
             'logo_aktif' => 'Off',
             'telepon' => '+62 81320800480',
-            'email' => 'sdgsdesakaputihan@gmail.com'
+            'email' => 'sdgsdesakaputihan@gmail.com',
+            'organisasi' => null,
         ]);
     }
 }

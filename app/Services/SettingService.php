@@ -56,6 +56,31 @@ class SettingService
                 $data['logo'] = $building->logo;
             }
 
+            if (isset($data['organisasi'])) {
+                if ($building->organisasi && Storage::disk('public')->exists($building->organisasi)) {
+                    Storage::disk('public')->delete($building->organisasi);
+                }
+
+                $originalExtension = $data['organisasi']->getClientOriginalExtension();
+                $uniqueFileName = uniqid() . '.' . $originalExtension;
+                $filePath = $data['organisasi']->storeAs('organisasi', $uniqueFileName, 'public');
+
+                $data['organisasi'] = $filePath;
+            } else {
+                $data['organisasi'] = $building->organisasi;
+            }
+
+            if (isset($data['favicon'])) {
+                $publicPath = public_path('favicon.ico');
+                
+                if (file_exists($publicPath)) {
+                    unlink($publicPath);
+                }
+                $data['favicon']->move(public_path(), 'favicon.ico');
+
+                unset($data['favicon']);
+            }
+
             $this->settingRepository->update($data);
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());

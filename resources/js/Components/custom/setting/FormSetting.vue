@@ -30,11 +30,13 @@ const props = defineProps<{
 const village = inject('village')
 const previewKepdes = ref<string>(village.foto ? `/storage/${village.foto}` : '/placeholder/kepdes.webp')
 const previewLogo = ref<string>(village.logo ? `/storage/${village.logo}` : '/placeholder/logo-desa.webp')
+const previewOrganisasi = ref<string>(village.organisasi ? `/storage/${village.organisasi}` : '/placeholder/organisasi.png')
 
 onBeforeUnmount(() => {
     if (previewKepdes.value || previewLogo.value) {
         URL.revokeObjectURL(previewKepdes.value)
         URL.revokeObjectURL(previewLogo.value)
+        URL.revokeObjectURL(previewOrganisasi.value)
     }
 })
 
@@ -70,6 +72,18 @@ const formSchema = toTypedSchema(z.object({
     email: z.string({ message: 'Email desa wajib di isi' })
         .max(255, { message: 'Email tidak boleh lebih dari 255 karakter' })
         .trim(),
+    organisasi: z.union([
+        z.instanceof(File).refine(file => file.size < 5 * 1024 * 1024, {
+            message: 'Ukuran file maksimal 5MB'
+        }),
+        z.null()
+    ]),
+    favicon: z.union([
+        z.instanceof(File).refine(file => file.size < 5 * 1024 * 1024, {
+            message: 'Ukuran file maksimal 5MB'
+        }),
+        z.null()
+    ]),
 }))
 
 const { values, isFieldDirty, handleSubmit, setErrors, setFieldValue } = useForm({
@@ -83,7 +97,9 @@ const { values, isFieldDirty, handleSubmit, setErrors, setFieldValue } = useForm
         logo: null,
         logo_aktif: village.logo_aktif,
         telepon: village.telepon,
-        email: village.email
+        email: village.email,
+        organisasi: null,
+        favicon: null,
     },
 })
 
@@ -95,17 +111,27 @@ const handleFileChange = (type: string, event: Event) => {
         if (type === 'foto') {
             previewKepdes.value = URL.createObjectURL(file)
             setFieldValue('foto', file)
-        } else {
+        } else if (type === 'logo') {
             previewLogo.value = URL.createObjectURL(file)
             setFieldValue('logo', file)
+        } else if (type === 'organisasi') {
+            previewOrganisasi.value = URL.createObjectURL(file)
+            setFieldValue('organisasi', file)
+        } else {
+            setFieldValue('favicon', file)
         }
     } else {
         if (type === 'foto') {
             previewKepdes.value = 'null'
             setFieldValue('foto', 'null')
-        } else {
+        } else if (type === 'logo') {
             previewLogo.value = 'null'
             setFieldValue('logo', 'null')
+        } else if (type === 'organisasi') {
+            previewOrganisasi.value = 'null'
+            setFieldValue('organisasi', 'null')
+        }else{
+            setFieldValue('favicon', 'null')
         }
     }
 }
@@ -135,7 +161,7 @@ const onSubmit = handleSubmit((values) => {
                         <p class="text-center text-gray-700 font-medium text-sm mt-2">{{ values.nama_kades }}</p>
                     </CardContent>
                 </Card>
-                <Card class="shadow-md">
+                <Card class="shadow-md mb-7">
                     <CardHeader>
                         <CardTitle class="text-xl font-bold">Logo Aplikasi</CardTitle>
                         <CardDescription class="text-gray-500">Logo aplikasi: {{ values.logo_aktif == 'On' ?
@@ -146,6 +172,18 @@ const onSubmit = handleSubmit((values) => {
                             <img :src="previewLogo ?? ''" alt="Gambar" class="w-48 h-auto rounded-md">
                         </div>
                         <p class="text-center text-gray-700 font-medium text-sm mt-2">Logo Aplikasi</p>
+                    </CardContent>
+                </Card>
+                <Card class="shadow-md">
+                    <CardHeader>
+                        <CardTitle class="text-xl font-bold">Struktur Organisasi</CardTitle>
+                        <CardDescription class="text-gray-500">Struktur organisasi saat ini</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div class="w-full flex justify-center">
+                            <img :src="previewOrganisasi ?? ''" alt="Gambar" class="w-48 h-auto rounded-md">
+                        </div>
+                        <p class="text-center text-gray-700 font-medium text-sm mt-2">Struktur Organisasi</p>
                     </CardContent>
                 </Card>
             </div>
@@ -214,6 +252,16 @@ const onSubmit = handleSubmit((values) => {
                             <FormMessage />
                         </FormItem>
                     </FormField>
+                    <FormField v-slot="{ componentField }" name="favicon" :validate-on-blur="!isFieldDirty">
+                        <FormItem>
+                            <FormLabel>Upload Favicon Aplikasi</FormLabel>
+                            <FormControl>
+                                <Input type="file" @change="(event) => handleFileChange('favicon', event)" accept=".ico" placeholder="Upload favicon" v-bind="componentField"
+                                    :key="fileInputKey" />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    </FormField>
                     <FormField v-slot="{ componentField }" name="nama_aplikasi" :validate-on-blur="!isFieldDirty">
                         <FormItem>
                             <FormLabel>Nama Aplikasi (gunakan singkatan)</FormLabel>
@@ -244,10 +292,21 @@ const onSubmit = handleSubmit((values) => {
                     </FormField>
                 </CardContent>
                 <CardHeader>
-                    <CardTitle class="text-xl font-bold">Data Kontak Desa</CardTitle>
+                    <CardTitle class="text-xl font-bold">Data Organisasi & Kontak Desa</CardTitle>
                     <CardDescription class="text-gray-500">Masukkan data berikut:</CardDescription>
                 </CardHeader>
                 <CardContent>
+                    <FormField v-slot="{ componentField }" name="organisasi" :validate-on-blur="!isFieldDirty">
+                        <FormItem>
+                            <FormLabel>Upload Struktur Organisasi Desa</FormLabel>
+                            <FormControl>
+                                <Input type="file" @change="(event) => handleFileChange('organisasi', event)"
+                                    accept=".png, .jpg" placeholder="Upload organisasi" v-bind="componentField"
+                                    :key="fileInputKey" />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    </FormField>
                     <FormField v-slot="{ componentField }" name="email" :validate-on-blur="!isFieldDirty">
                         <FormItem>
                             <FormLabel>Email Desa</FormLabel>

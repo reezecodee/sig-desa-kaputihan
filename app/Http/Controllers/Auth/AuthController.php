@@ -32,7 +32,7 @@ class AuthController extends Controller
                 Auth::user()->update(['email_verified_at' => now()]);
             }
             
-            session()->flash('success', 'Selamat datang di Sistem Informasi Desa Kaputihan');
+            session()->flash('success', 'Selamat datang di Sistem Informasi Geografis Desa Kaputihan');
 
             return redirect()->route('admin.dashboard');
         }

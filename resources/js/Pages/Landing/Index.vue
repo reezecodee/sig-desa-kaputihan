@@ -2,6 +2,7 @@
 import Landing from '@/Layouts/Landing.vue'
 import Home from '@/Pages/Landing/section/Home.vue'
 import About from '@/Pages/Landing/section/About.vue'
+import StructureOrganization from '@/Pages/Landing/section/StructureOrganization.vue'
 import Region from '@/Pages/Landing/section/Region.vue'
 import RegionCard from '@/Pages/Landing/section/RegionCard.vue'
 import CTA from '@/Pages/Landing/section/CTA.vue'
@@ -20,13 +21,17 @@ provide('buildings', toRefs(props));
 </script>
 
 <template>
+
     <Head>
         <title>{{ title }}</title>
-        <meta name="description" content="Sistem Informasi Geografis (GIS) Desa Kaputihan menyajikan data wilayah, fasilitas, dan informasi penting lainnya dalam peta interaktif untuk kemudahan akses masyarakat dan pengelolaan desa." />
+        <meta name="keywords" content="geografis, desa, kaputihan, tasikmalaya, sig">
+        <meta name="description"
+            content="Sistem Informasi Geografis (GIS) Desa Kaputihan menyajikan data wilayah, fasilitas, dan informasi penting lainnya dalam peta interaktif untuk kemudahan akses masyarakat dan pengelolaan desa." />
     </Head>
     <Landing>
         <Home />
         <About />
+        <StructureOrganization />
         <Region />
         <RegionCard />
         <CTA />

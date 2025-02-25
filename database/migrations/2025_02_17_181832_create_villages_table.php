@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('logo_aktif', ['On', 'Off']);
             $table->string('telepon');
             $table->string('email');
+            $table->string('organisasi')->nullable();
             $table->timestamps();
         });
     }

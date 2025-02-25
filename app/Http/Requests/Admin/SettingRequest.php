@@ -31,6 +31,8 @@ class SettingRequest extends FormRequest
             'logo_aktif' => 'required|in:On,Off',
             'telepon' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
+            'organisasi' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'favicon' => 'nullable|mimes:ico|max:5120',
         ];
     }
 
@@ -58,6 +60,11 @@ class SettingRequest extends FormRequest
             'email.required' => 'Email desa wajib di isi',
             'email.email' => 'Format email tidak valid',
             'email.max' => 'Email tidak boleh lebih dari 255 karakter',
+            'organisasi.image' => 'File harus berupa gambar',
+            'organisasi.mimes' => 'Format gambar tidak didukung',
+            'organisasi.max' => 'Ukuran file maksimal 5MB',
+            'favicon.mimes' => 'Format favicon tidak didukung',
+            'favicon.max' => 'Ukuran file maksimal 5MB',
         ];
     }
 }

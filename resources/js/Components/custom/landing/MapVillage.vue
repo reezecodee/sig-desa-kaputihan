@@ -92,4 +92,8 @@ onMounted(async () => {
 
 <style>
 @import 'leaflet/dist/leaflet.css';
+
+.leaflet-control-attribution{
+  display: none;
+}
 </style>
