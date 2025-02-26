@@ -23,7 +23,7 @@ class ScheduleRequest extends FormRequest
     {
         return [
             'keterangan' => 'required|string|max:255',
-            'status' => 'required|in:Kegiatan,Keagamaan,Acara Desa,Lainnya',
+            'status' => 'required|in:Kegiatan,Keagamaan,Acara desa,Lainnya',
             'tgl_mulai' => 'required|date|after_or_equal:today',
             'tgl_selesai' => 'required|date|after_or_equal:tgl_mulai',
         ];

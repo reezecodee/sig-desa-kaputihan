@@ -21,7 +21,7 @@
                     <div class="feature-box blue">
                         <i class="bi bi-house-fill"></i>
                         <h4>Jumlah Dusun</h4>
-                        <p>Desa Kaputihan memiliki 4 dusun diantaranya: Cikopo, Unara, Cidua, Sirnasari, dan Pasarbitung.</p>
+                        <p>Desa Kaputihan memiliki 5 dusun diantaranya: Cikopo, Unara, Cidua, Sirnasari, dan Pasarbitung.</p>
                     </div>
                 </div>
 

@@ -152,7 +152,7 @@ const onSubmit = handleSubmit((values) => {
                                     <SelectItem value="Keagamaan">
                                         Keagamaan
                                     </SelectItem>
-                                    <SelectItem value="Acara Desa">
+                                    <SelectItem value="Acara desa">
                                         Acara Desa
                                     </SelectItem>
                                     <SelectItem value="Lainnya">
