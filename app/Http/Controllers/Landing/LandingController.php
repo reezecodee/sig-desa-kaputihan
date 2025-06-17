@@ -20,7 +20,7 @@ class LandingController extends Controller
         $title = 'Selamat Datang di Sistem Infromasi Geografis Desa Kaputihan';
         $buildings = $this->landingService->getBuildingsCount();
 
-        return Inertia::render('Landing/Index', compact('title', 'buildings'));
+        return Inertia::render('LandingV2/Index', compact('title', 'buildings'));
     }
 
     // public function schedule()
