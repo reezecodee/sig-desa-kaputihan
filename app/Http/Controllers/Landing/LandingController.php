@@ -23,25 +23,25 @@ class LandingController extends Controller
         return Inertia::render('Landing/Index', compact('title', 'buildings'));
     }
 
-    public function schedule()
-    {
-        $title = 'Jadwal Kegiatan Desa Kaputihan';
+    // public function schedule()
+    // {
+    //     $title = 'Jadwal Kegiatan Desa Kaputihan';
 
-        return Inertia::render('Landing/Schedule', compact('title'));
-    }
+    //     return Inertia::render('LandingSecond/Schedule', compact('title'));
+    // }
 
-    public function buildingList($category)
-    {
-        $buildings = $this->landingService->buildingPaginate($category);
+    // public function buildingList($category)
+    // {
+    //     $buildings = $this->landingService->buildingPaginate($category);
 
-        return Inertia::render('Landing/BuildingList', compact('buildings'));
-    }
+    //     return Inertia::render('LandingSecond/BuildingList', compact('buildings'));
+    // }
 
-    public function buildingInformation($slug)
-    {
-        $title = 'Informasi Bangunan';
-        $building = $this->landingService->getBuildingWithSlug($slug);
+    // public function buildingInformation($slug)
+    // {
+    //     $title = 'Informasi Bangunan';
+    //     $building = $this->landingService->getBuildingWithSlug($slug);
 
-        return Inertia::render('Landing/BuildingInformation', compact('title', 'building'));
-    }
+    //     return Inertia::render('LandingSecond/BuildingInformation', compact('title', 'building'));
+    // }
 }

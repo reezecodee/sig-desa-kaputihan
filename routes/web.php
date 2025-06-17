@@ -12,5 +12,9 @@ Route::middleware(['landing-layout'])->controller(LandingController::class)->gro
     });
 });
 
+Route::get('testing', function(){
+    return view('test');
+});
+
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

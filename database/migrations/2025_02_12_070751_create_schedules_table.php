@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schedules', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('keterangan');
-            $table->enum('status', ['Kegiatan', 'Keagamaan', 'Acara desa', 'Lainnya']);
-            $table->string('tgl_mulai');
-            $table->string('tgl_selesai');
-            $table->timestamps();
-        });
+        // Schema::create('schedules', function (Blueprint $table) {
+        //     $table->uuid('id')->primary();
+        //     $table->string('keterangan');
+        //     $table->enum('status', ['Kegiatan', 'Keagamaan', 'Acara desa', 'Lainnya']);
+        //     $table->string('tgl_mulai');
+        //     $table->string('tgl_selesai');
+        //     $table->timestamps();
+        // });
     }
 
     /**
