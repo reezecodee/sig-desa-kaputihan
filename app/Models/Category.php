@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Building extends Model
+class Category extends Model
 {
     use HasUuids;
 
     protected $guarded = ['id'];
 
-    public function category(): BelongsTo
+    public function buildings(): HasMany
     {
-        return $this->belongsTo(Category::class, 'kategori_id');
+        return $this->hasMany(Building::class, 'kategori_id');
     }
 }

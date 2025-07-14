@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('buildings', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('kategori_id')->constrained('categories')->cascadeOnDelete();
-            $table->string('slug')->index();
-            $table->string('nama_bangunan');
-            $table->string('foto_bangunan')->nullable();
+            $table->string('nama_kategori');
+            $table->text('icon');
             $table->text('deskripsi');
-            $table->text('google_maps');
-            $table->text('link_lokasi')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('buildings');
+        Schema::dropIfExists('categories');
     }
 };

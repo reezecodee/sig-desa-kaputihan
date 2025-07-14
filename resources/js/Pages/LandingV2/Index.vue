@@ -1,126 +1,15 @@
 <script setup lang="ts">
 import LandingV2 from '@/Layouts/LandingV2.vue';
+import Hero from '@/Pages/LandingV2/section/Hero.vue';
+import About from '@/Pages/LandingV2/section/About.vue';
+import OrganizationStructure from '@/Pages/LandingV2/section/OrganizationStructure.vue';
 </script>
 
 <template>
     <LandingV2>
-        <!-- ======= Hero =======-->
-        <section class="hero__v6 section" id="home">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 mb-4 mb-lg-0">
-                        <div class="row">
-                            <div class="col-lg-11"><span class="hero-subtitle text-uppercase" data-aos="fade-up"
-                                    data-aos-delay="0">Innovative Fintech Solutions</span>
-                                <h1 class="hero-title mb-3" data-aos="fade-up" data-aos-delay="100">Secure,
-                                    Efficient, and User-Friendly Financial Services</h1>
-                                <p class="hero-description mb-4 mb-lg-5" data-aos="fade-up" data-aos-delay="200">
-                                    Experience the future of finance with our secure, efficient, and user-friendly
-                                    financial services.</p>
-                                <div class="cta d-flex gap-2 mb-4 mb-lg-5" data-aos="fade-up" data-aos-delay="300">
-                                    <a class="btn" href="#">Get Started Now</a><a class="btn btn-white-outline"
-                                        href="#">Learn More
-                                        <svg class="lucide lucide-arrow-up-right" xmlns="http://www.w3.org/2000/svg"
-                                            width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M7 7h10v10"></path>
-                                            <path d="M7 17 17 7"></path>
-                                        </svg></a>
-                                </div>
-                                <div class="logos mb-4" data-aos="fade-up" data-aos-delay="400"><span
-                                        class="logos-title text-uppercase mb-4 d-block">Trusted by major companies
-                                        worldwide</span>
-                                    <div class="logos-images d-flex gap-4 align-items-center"><img
-                                            class="img-fluid js-img-to-inline-svg"
-                                            src="assets/images/logo/actual-size/logo-air-bnb__black.svg" alt="Company 1"
-                                            style="width: 110px;"><img class="img-fluid js-img-to-inline-svg"
-                                            src="assets/images/logo/actual-size/logo-ibm__black.svg" alt="Company 2"
-                                            style="width: 80px;"><img class="img-fluid js-img-to-inline-svg"
-                                            src="assets/images/logo/actual-size/logo-google__black.svg" alt="Company 3"
-                                            style="width: 110px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="hero-img"><img class="img-card img-fluid" src="assets/images/card-expenses.png"
-                                alt="Image card" data-aos="fade-down" data-aos-delay="600"><img
-                                class="img-main img-fluid rounded-4" src="assets/images/hero-img-1-min.jpg"
-                                alt="Hero Image" data-aos="fade-in" data-aos-delay="500"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Hero-->
-        </section>
-        <!-- End Hero-->
-
-        <!-- ======= About =======-->
-        <section class="about__v4 section" id="about">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 order-md-2">
-                        <div class="row justify-content-end">
-                            <div class="col-md-11 mb-4 mb-md-0"><span class="subtitle text-uppercase mb-3"
-                                    data-aos="fade-up" data-aos-delay="0">About us</span>
-                                <h2 class="mb-4" data-aos="fade-up" data-aos-delay="100">Experience the future of
-                                    finance with our secure, efficient, and user-friendly financial services</h2>
-                                <div data-aos="fade-up" data-aos-delay="200">
-                                    <p>Founded with the vision of revolutionizing the financial industry, we are a
-                                        leading fintech company dedicated to providing innovative and secure
-                                        financial solutions.</p>
-                                    <p>Our cutting-edge platform ensures your transactions are safe, streamlined,
-                                        and easy to manage, empowering you to take control of your financial journey
-                                        with confidence and convenience.</p>
-                                </div>
-                                <h4 class="small fw-bold mt-4 mb-3" data-aos="fade-up" data-aos-delay="300">Key
-                                    Values and Vision</h4>
-                                <ul class="d-flex flex-row flex-wrap list-unstyled gap-3 features" data-aos="fade-up"
-                                    data-aos-delay="400">
-                                    <li class="d-flex align-items-center gap-2"><span
-                                            class="icon rounded-circle text-center"><i
-                                                class="bi bi-check"></i></span><span class="text">Innovation</span>
-                                    </li>
-                                    <li class="d-flex align-items-center gap-2"><span
-                                            class="icon rounded-circle text-center"><i
-                                                class="bi bi-check"></i></span><span class="text">Security</span>
-                                    </li>
-                                    <li class="d-flex align-items-center gap-2"><span
-                                            class="icon rounded-circle text-center"><i
-                                                class="bi bi-check"></i></span><span class="text">User-Centric
-                                            Design </span></li>
-                                    <li class="d-flex align-items-center gap-2"><span
-                                            class="icon rounded-circle text-center"><i
-                                                class="bi bi-check"></i></span><span class="text">Transparency</span>
-                                    </li>
-                                    <li class="d-flex align-items-center gap-2"><span
-                                            class="icon rounded-circle text-center"><i
-                                                class="bi bi-check"></i></span><span class="text">Empowerment</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="img-wrap position-relative"><img class="img-fluid rounded-4"
-                                src="assets/images/about_2-min.jpg" alt="FreeBootstrap.net image placeholder"
-                                data-aos="fade-up" data-aos-delay="0">
-                            <div class="mission-statement p-4 rounded-4 d-flex gap-4" data-aos="fade-up"
-                                data-aos-delay="100">
-                                <div class="mission-icon text-center rounded-circle"><i
-                                        class="bi bi-lightbulb fs-4"></i></div>
-                                <div>
-                                    <h3 class="text-uppercase fw-bold">Mission Statement</h3>
-                                    <p class="fs-5 mb-0">Our mission is to empower individuals and businesses by
-                                        delivering secure, efficient, and user-friendly financial services.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End About-->
-
+        <Hero/>
+        <About/>
+        <OrganizationStructure/>
         <!-- ======= Features =======-->
         <section class="section features__v2" id="features">
             <div class="container">

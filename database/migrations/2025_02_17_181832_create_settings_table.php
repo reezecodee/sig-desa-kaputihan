@@ -11,18 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('villages', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('jumlah_penduduk');
             $table->string('nama_kades');
             $table->string('periode');
-            $table->string('foto')->nullable();
+            $table->string('foto_kades')->nullable();
             $table->string('nama_aplikasi');
             $table->string('logo')->nullable();
             $table->enum('logo_aktif', ['On', 'Off']);
             $table->string('telepon');
             $table->string('email');
-            $table->string('organisasi')->nullable();
+            $table->string('foto_organisasi')->nullable();
             $table->timestamps();
         });
     }
