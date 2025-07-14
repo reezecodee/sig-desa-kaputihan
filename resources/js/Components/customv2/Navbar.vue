@@ -3,12 +3,12 @@ import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <header class="fbs__net-navbar navbar navbar-expand-lg dark" aria-label="freebootstrap.net navbar">
+    <header class="fbs__net-navbar navbar navbar-expand-lg dark">
         <div class="container d-flex align-items-center justify-content-between">
             <a class="navbar-brand w-auto" href="">
-                <img class="logo dark img-fluid" src="assets/images/logo-dark.svg"
+                <img class="logo dark img-fluid" src="landingv2/images/logo-dark.svg"
                     alt="FreeBootstrap.net image placeholder">
-                <img class="logo light img-fluid" src="assets/images/logo-light.svg"
+                <img class="logo light img-fluid" src="landingv2/images/logo-light.svg"
                     alt="FreeBootstrap.net image placeholder">
             </a>
 
@@ -17,9 +17,9 @@ import { Link } from '@inertiajs/vue3';
                 <div class="offcanvas-header">
                     <div class="offcanvas-header-logo">
                         <a class="logo-link" id="fbs__net-navbarsLabel" href="index.html">
-                            <img class="logo dark img-fluid" src="assets/images/logo-dark.svg"
+                            <img class="logo dark img-fluid" src="landingv2/images/logo-dark.svg"
                                 alt="FreeBootstrap.net image placeholder">
-                            <img class="logo light img-fluid" src="assets/images/logo-light.svg"
+                            <img class="logo light img-fluid" src="landingv2/images/logo-light.svg"
                                 alt="FreeBootstrap.net image placeholder">
                         </a>
                     </div>
@@ -34,11 +34,6 @@ import { Link } from '@inertiajs/vue3';
                         <li class="nav-item">
                             <Link class="nav-link scroll-link active" aria-current="page" :href="route('landing.home')">
                                 Home
-                            </Link>
-                        </li>
-                        <li class="nav-item">
-                            <Link class="nav-link scroll-link" href="">
-                                Tentang Desa
                             </Link>
                         </li>
                         <li class="nav-item">

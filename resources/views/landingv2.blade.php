@@ -14,15 +14,15 @@
     <!-- End Google Font-->
 
     <!-- ======= Styles =======-->
-    <link href="/assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/vendors/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="/assets/vendors/glightbox/glightbox.min.css" rel="stylesheet">
-    <link href="/assets/vendors/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="/assets/vendors/aos/aos.css" rel="stylesheet">
+    <link href="/landingv2/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="/landingv2/vendors/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="/landingv2/vendors/glightbox/glightbox.min.css" rel="stylesheet">
+    <link href="/landingv2/vendors/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/landingv2/vendors/aos/aos.css" rel="stylesheet">
     <!-- End Styles-->
 
     <!-- ======= Theme Style =======-->
-    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/landingv2/css/style.css" rel="stylesheet">
     <!-- End Theme Style-->
 
     <script>
@@ -43,10 +43,10 @@
     <button id="back-to-top"><i class="bi bi-arrow-up-short"></i></button>
 
     <!-- ======= Javascripts =======-->
-    <script src="/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="/assets/vendors/swiper/swiper-bundle.min.js"></script>
-    <script src="/assets/vendors/aos/aos.js"></script>
-    <script src="/assets/js/custom.js"></script>
+    <script src="/landingv2/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/landingv2/vendors/swiper/swiper-bundle.min.js"></script>
+    <script src="/landingv2/vendors/aos/aos.js"></script>
+    <script src="/landingv2/js/custom.js"></script>
     <!-- End JavaScripts-->
 </body>
 

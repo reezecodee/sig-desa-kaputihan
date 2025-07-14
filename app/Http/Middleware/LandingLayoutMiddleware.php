@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Village;
+use App\Models\Setting;
 use Closure;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -20,7 +20,7 @@ class LandingLayoutMiddleware
         // Inertia::setRootView('landing');
         Inertia::setRootView('landingv2');
         
-        $village = Village::first();
+        $village = Setting::first();
         Inertia::share([
             'village' => fn () => $village
         ]);

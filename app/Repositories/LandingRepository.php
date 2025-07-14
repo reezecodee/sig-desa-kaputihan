@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Building;
-use App\Models\Village;
+use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 
 class LandingRepository
@@ -11,7 +11,7 @@ class LandingRepository
     public function dataVillage()
     {
         try {
-            return Village::first();
+            return Setting::first();
         } catch (\Exception $e) {
             throw new \Exception('Terjadi kesalahan saat mencoba mengambil data');
         }
@@ -20,10 +20,11 @@ class LandingRepository
     public function buildingsCount()
     {
         try {
-            $counts = Building::select('kategori_bangunan', DB::raw('COUNT(*) as total'))
-                ->whereIn('kategori_bangunan', ['Ibadah', 'Pemerintahan', 'Pendidikan', 'Kesehatan', 'Usaha', 'Olahraga', 'Keamanan', 'Lainnya'])
-                ->groupBy('kategori_bangunan')
-                ->pluck('total', 'kategori_bangunan');
+            // $counts = Building::select('kategori_bangunan', DB::raw('COUNT(*) as total'))
+            //     ->whereIn('kategori_bangunan', ['Ibadah', 'Pemerintahan', 'Pendidikan', 'Kesehatan', 'Usaha', 'Olahraga', 'Keamanan', 'Lainnya'])
+            //     ->groupBy('kategori_bangunan')
+            //     ->pluck('total', 'kategori_bangunan');
+            $counts = [];
 
             return [
                 'ibadah' => $counts['Ibadah'] ?? 0,
