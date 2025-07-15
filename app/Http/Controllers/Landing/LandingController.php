@@ -23,25 +23,24 @@ class LandingController extends Controller
         return Inertia::render('LandingV2/Index', compact('title', 'buildings'));
     }
 
-    // public function schedule()
-    // {
-    //     $title = 'Jadwal Kegiatan Desa Kaputihan';
+    public function territoryBoundary()
+    {
+        $title = 'Peta batas-batas wilayah di Desa Kaputihan';
 
-    //     return Inertia::render('LandingSecond/Schedule', compact('title'));
-    // }
+        return Inertia::render('LandingV2/TerritoryBoundary', compact('title'));
+    }
 
-    // public function buildingList($category)
-    // {
-    //     $buildings = $this->landingService->buildingPaginate($category);
+    public function statisticVillage()
+    {
+        $title = 'Statistik Desa';
 
-    //     return Inertia::render('LandingSecond/BuildingList', compact('buildings'));
-    // }
+        return Inertia::render('LandingV2/StatisticVillage', compact('title'));
+    }
 
-    // public function buildingInformation($slug)
-    // {
-    //     $title = 'Informasi Bangunan';
-    //     $building = $this->landingService->getBuildingWithSlug($slug);
+    public function buildings()
+    {
+        $title = 'Bangunan-bangunan di Desa Kaputihan';
 
-    //     return Inertia::render('LandingSecond/BuildingInformation', compact('title', 'building'));
-    // }
+        return Inertia::render('LandingV2/Buildings', compact('title'));
+    }
 }

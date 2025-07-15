@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import LandingV2 from '@/Layouts/LandingV2.vue';
 import Hero from '@/Pages/LandingV2/section/Hero.vue';
 import About from '@/Pages/LandingV2/section/About.vue';

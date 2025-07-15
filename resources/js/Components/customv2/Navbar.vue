@@ -32,23 +32,30 @@ import { Link } from '@inertiajs/vue3';
                 <div class="offcanvas-body align-items-lg-center">
                     <ul class="navbar-nav nav me-auto ps-lg-5 mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <Link class="nav-link scroll-link active" aria-current="page" :href="route('landing.home')">
-                                Home
+                            <Link class="nav-link scroll-link" :class="{ 'active': $page.url === '/' }"
+                                aria-current="page" :href="route('landing.home')">
+                            Home
                             </Link>
                         </li>
                         <li class="nav-item">
-                            <Link class="nav-link scroll-link" href="">
-                                Batas Wilayah
+                            <Link class="nav-link scroll-link"
+                                :class="{ 'active': $page.url.startsWith('/batas-wilayah') }"
+                                :href="route('landing.map')">
+                            Batas Wilayah
                             </Link>
                         </li>
                         <li class="nav-item">
-                            <Link class="nav-link scroll-link" href="">
-                                Statistik Desa
+                            <Link class="nav-link scroll-link"
+                                :class="{ 'active': $page.url.startsWith('/statistik-desa') }"
+                                :href="route('landing.statistics')">
+                            Statistik Desa
                             </Link>
                         </li>
                         <li class="nav-item">
-                            <Link class="nav-link scroll-link" href="">
-                                Bangunan Desa
+                            <Link class="nav-link scroll-link"
+                                :class="{ 'active': $page.url.startsWith('/bangunan-desa') }"
+                                :href="route('landing.buildings')">
+                            Bangunan Desa
                             </Link>
                         </li>
                     </ul>
