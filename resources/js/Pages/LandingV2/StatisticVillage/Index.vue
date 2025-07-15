@@ -1,11 +1,11 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import LandingV2 from '@/Layouts/LandingV2.vue';
-import NightiangleChart from '@/Components/customv2/charts/NightiangleChart.vue';
-import PieChart from '@/Components/customv2/charts/PieChart.vue';
-import BarChart from '@/Components/customv2/charts/BarChart.vue';
-import WorldPopulationChart from '@/Components/customv2/charts/WorldPopulationChart.vue';
-import StackedLineChart from '@/Components/customv2/charts/StackedLineChart.vue';
+import NightiangleChart from '@/Pages/LandingV2/StatisticVillage/charts/NightiangleChart.vue';
+import PieChart from '@/Pages/LandingV2/StatisticVillage/charts/PieChart.vue';
+import BarChart from '@/Pages/LandingV2/StatisticVillage/charts/BarChart.vue';
+import WorldPopulationChart from '@/Pages/LandingV2/StatisticVillage/charts/WorldPopulationChart.vue';
+import StackedLineChart from '@/Pages/LandingV2/StatisticVillage/charts/StackedLineChart.vue';
 
 defineProps({
     title: String

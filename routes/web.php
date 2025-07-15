@@ -9,6 +9,7 @@ Route::middleware(['landing-layout'])->controller(LandingController::class)->gro
     Route::get('statistik-desa', 'statisticVillage')->name('landing.statistics');
     Route::prefix('bangunan-desa')->group(function(){
         Route::get('/', 'buildings')->name('landing.buildings');
+        Route::get('detail/{slug}', 'detailBuilding')->name('landing.detailBuilding');
     });
 });
 

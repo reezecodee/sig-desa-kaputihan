@@ -80,7 +80,7 @@
                 </div>
                 <div
                     class="col-xl-4 justify-content-start justify-content-xl-end quick-links d-flex flex-column flex-xl-row text-center text-xl-start gap-1">
-                    Bekerjasama dengan Universitas BSI Kota Tasikmalaya.
+                    Bekerja sama dengan Universitas BSI Kota Tasikmalaya.
                 </div>
             </div>
         </div>

@@ -6,21 +6,17 @@ import { Link } from '@inertiajs/vue3';
     <header class="fbs__net-navbar navbar navbar-expand-lg dark">
         <div class="container d-flex align-items-center justify-content-between">
             <a class="navbar-brand w-auto" href="">
-                <img class="logo dark img-fluid" src="landingv2/images/logo-dark.svg"
-                    alt="FreeBootstrap.net image placeholder">
-                <img class="logo light img-fluid" src="landingv2/images/logo-light.svg"
-                    alt="FreeBootstrap.net image placeholder">
+                <img class="logo dark img-fluid" src="landingv2/images/logo-dark.svg">
+                <img class="logo light img-fluid" src="landingv2/images/logo-light.svg">
             </a>
 
             <div class="offcanvas offcanvas-start w-75" id="fbs__net-navbars" tabindex="-1"
                 aria-labelledby="fbs__net-navbarsLabel">
                 <div class="offcanvas-header">
                     <div class="offcanvas-header-logo">
-                        <a class="logo-link" id="fbs__net-navbarsLabel" href="index.html">
-                            <img class="logo dark img-fluid" src="landingv2/images/logo-dark.svg"
-                                alt="FreeBootstrap.net image placeholder">
-                            <img class="logo light img-fluid" src="landingv2/images/logo-light.svg"
-                                alt="FreeBootstrap.net image placeholder">
+                        <a class="logo-link" id="fbs__net-navbarsLabel" href="">
+                            <img class="logo dark img-fluid" src="landingv2/images/logo-dark.svg">
+                            <img class="logo light img-fluid" src="landingv2/images/logo-light.svg">
                         </a>
                     </div>
 
