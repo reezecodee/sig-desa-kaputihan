@@ -1,3 +1,9 @@
+<script setup>
+import { Link } from '@inertiajs/vue3';
+
+const year = new Date().getFullYear();
+</script>
+
 <template>
     <footer class="footer pt-5 pb-5">
         <div class="container">
@@ -5,7 +11,8 @@
                 <div class="col-md-5 mb-5 mb-lg-0">
                     <h3 class="mb-3">Tentang</h3>
                     <p class="mb-4">
-                        Nama Desa Kaputihan di Jatiwaras, Tasikmalaya, tidak berasal dari kabut, melainkan dari fenomena keramat "nampak putih" yang muncul di makam leluhurnya, Entol Wiraha, pada tahun 1912.
+                        Nama Desa Kaputihan di Jatiwaras, Tasikmalaya, tidak berasal dari kabut, melainkan dari fenomena
+                        keramat "nampak putih" yang muncul di makam leluhurnya, Entol Wiraha, pada tahun 1912.
                     </p>
                 </div>
                 <div class="col-md-7">
@@ -14,28 +21,28 @@
                             <h3 class="mb-3">Pintasan Cepat</h3>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="">Home</a>
+                                    <a :href="route('landing.home') + '#home'">Home</a>
                                 </li>
                                 <li>
-                                    <a href="">Tentang Desa</a>
+                                    <a :href="route('landing.home') + '#about'">Tentang Desa</a>
                                 </li>
                                 <li>
-                                    <a href="">Struktur Organisasi</a>
+                                    <a :href="route('landing.home') + '#organization'">Struktur Organisasi</a>
                                 </li>
                                 <li>
-                                    <a href="">Kondisi Desa</a>
+                                    <a :href="route('landing.home') + '#condition'">Kondisi Desa</a>
                                 </li>
                                 <li>
-                                    <a href="">Data Jumlah</a>
+                                    <a :href="route('landing.home') + '#count-village'">Data Jumlah</a>
                                 </li>
                                 <li>
-                                    <a href="">Kategori Bangunan</a>
+                                    <a :href="route('landing.home') + '#building-category'">Kategori Bangunan</a>
                                 </li>
                                 <li>
-                                    <a href="">FAQ</a>
+                                    <a :href="route('landing.home') + '#faq'">FAQ</a>
                                 </li>
                                 <li>
-                                    <a href="">Laporkan Masalah</a>
+                                    <a :href="route('landing.home') + '#report'">Laporkan Masalah</a>
                                 </li>
                             </ul>
                         </div>
@@ -43,16 +50,16 @@
                             <h3 class="mb-3">Tautan Aplikasi</h3>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="">Home</a>
+                                    <Link :href="route('landing.home')">Home</Link>
                                 </li>
                                 <li>
-                                    <a href="">Batas Wilayah</a>
+                                    <Link :href="route('landing.map')">Batas Wilayah</Link>
                                 </li>
                                 <li>
-                                    <a href="">Statistik Desa</a>
+                                    <Link :href="route('landing.statistics')">Statistik Desa</Link>
                                 </li>
                                 <li>
-                                    <a href="">Bangunan Desa</a>
+                                    <Link :href="route('landing.buildings')">Bangunan Desa</Link>
                                 </li>
                             </ul>
                         </div>
@@ -66,7 +73,7 @@
                                 <i class="bi bi-telephone-fill me-3"></i>
                                 <span>+1 (234) 5678 9900</span>
                             </a>
-                            <a class="d-flex mb-3" href="https://freebootstrap.net">
+                            <a class="d-flex mb-3" href="">
                                 <i class="bi bi-globe me-3"></i>
                                 <span>FreeBootstrap.net</span>
                             </a>
@@ -76,7 +83,7 @@
             </div>
             <div class="row credits pt-3">
                 <div class="col-xl-8 text-center text-xl-start mb-3 mb-xl-0">
-                    &copy; 2025 Desa Kaputihan. All rights reserved.
+                    &copy; {{ year }} Desa Kaputihan. All rights reserved.
                 </div>
                 <div
                     class="col-xl-4 justify-content-start justify-content-xl-end quick-links d-flex flex-column flex-xl-row text-center text-xl-start gap-1">

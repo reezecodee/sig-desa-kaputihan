@@ -1,5 +1,5 @@
 <template>
-    <section class="section howitworks__v1" id="how-it-works">
+    <section class="section howitworks__v1" id="count-village">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-md-6 text-center mx-auto">

@@ -11,10 +11,18 @@ defineProps({
 
     <Head :title="title" />
     <LandingV2>
-        <section class="hero__v6 section" id="home">
+        <section class="services__v3 section" id="home">
             <div class="container">
-                <h1 class="text-center mb-4">Bangunan Desa</h1>
-
+                 <div class="row mb-5 mt-5">
+                    <div class="col-md-8 mx-auto text-center">
+                        <span class="subtitle text-uppercase mb-3" data-aos="fade-up" data-aos-delay="0">
+                            Bangunan
+                        </span>
+                        <h2 class="mb-3" data-aos="fade-up" data-aos-delay="100">
+                            Bangunan di Desa Kaputihan
+                        </h2>
+                    </div>
+                </div>
                 <div class="row justify-content-center mb-5">
                     <div class="col-md-6">
                         <div class="input-group">

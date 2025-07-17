@@ -87,7 +87,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div id="map" class="w-full z-10" :style="style"></div>
+  <div id="map" class="w-full z-10 rounded" :style="style"></div>
 </template>
 
 <style>

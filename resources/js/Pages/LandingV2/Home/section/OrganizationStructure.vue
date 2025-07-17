@@ -1,5 +1,5 @@
 <template>
-    <section class="about__v4 section" id="about">
+    <section class="about__v4 section" id="organization">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

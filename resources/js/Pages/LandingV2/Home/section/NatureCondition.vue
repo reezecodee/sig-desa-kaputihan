@@ -1,5 +1,5 @@
 <template>
-    <section class="section features__v2" id="features">
+    <section class="section features__v2" id="condition">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -22,8 +22,8 @@
                                             </div>
                                             <div class="align-self-start">
                                                 <a class="glightbox btn btn-play d-inline-flex align-items-center gap-2"
-                                                    href="https://maps.app.goo.gl/ua96PjPbuxVyDtED8" target="_blank" data-gallery="video">
-                                                    Cek kami di Google Maps
+                                                    href="https://maps.app.goo.gl/ua96PjPbuxVyDtED8" target="_blank">
+                                                    <i class="bi bi-geo-alt-fill"></i> Cek kami di Google Maps
                                                 </a>
                                             </div>
                                         </div>
@@ -36,7 +36,7 @@
                                         <div class="row">
                                             <div class="col-sm-6" data-aos="fade-up" data-aos-delay="0">
                                                 <div class="icon text-center mb-4">
-                                                    <i class="bi bi-person-check fs-4"></i>
+                                                    <i class="bi bi-thermometer-sun fs-4"></i>
                                                 </div>
                                                 <h3 class="fs-6 fw-bold mb-3">
                                                     Suhu Rata-rata
@@ -47,7 +47,7 @@
                                             </div>
                                             <div class="col-sm-6" data-aos="fade-up" data-aos-delay="100">
                                                 <div class="icon text-center mb-4">
-                                                    <i class="bi bi-graph-up fs-4"></i>
+                                                    <i class="bi bi-pin-map-fill fs-4"></i>
                                                 </div>
                                                 <h3 class="fs-6 fw-bold mb-3">
                                                     Lokasi Elevasi
@@ -59,7 +59,7 @@
                                             </div>
                                             <div class="col-sm-6" data-aos="fade-up" data-aos-delay="200">
                                                 <div class="icon text-center mb-4">
-                                                    <i class="bi bi-headset fs-4"></i>
+                                                    <i class="bi bi-map-fill fs-4"></i>
                                                 </div>
                                                 <h3 class="fs-6 fw-bold mb-3">
                                                     Luas Wilayah
@@ -71,7 +71,7 @@
                                             </div>
                                             <div class="col-sm-6" data-aos="fade-up" data-aos-delay="300">
                                                 <div class="icon text-center mb-4">
-                                                    <i class="bi bi-shield-lock fs-4"></i>
+                                                    <i class="bi bi-geo-alt-fill fs-4"></i>
                                                 </div>
                                                 <h3 class="fs-6 fw-bold mb-3">
                                                     Lokasi Desa

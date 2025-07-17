@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('kontak_pelapor')->nullable();
             $table->string('judul_laporan');
             $table->enum('kategori_laporan', [
-                'Titik Kerusakan Infrastruktur',
-                'Objek Mengganggu',
-                'Potensi Bencana',
-                'Perubahan Lingkungan'
+                'Titik lokasi tidak akurat',
+                'Informasi web tidak akurat',
+                'Menambahkan lokasi bangunan baru',
+                'Perubahan nama bangunan'
             ]);
             $table->text('pesan_laporan');
             $table->enum('status', ['Dikirim', 'Diverifikasi', 'Diproses', 'Selesai', 'Ditolak'])->default('Dikirim');

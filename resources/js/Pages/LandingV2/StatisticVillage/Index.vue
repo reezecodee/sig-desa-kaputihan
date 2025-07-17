@@ -13,10 +13,21 @@ defineProps({
 </script>
 
 <template>
+
     <Head :title="title" />
     <LandingV2>
-        <section class="hero__v6 section" id="home">
+        <section class="services__v3 section" id="home">
             <div class="container">
+                <div class="row mb-5 mt-5">
+                    <div class="col-md-8 mx-auto text-center">
+                        <span class="subtitle text-uppercase mb-3" data-aos="fade-up" data-aos-delay="0">
+                            Statistik
+                        </span>
+                        <h2 class="mb-3" data-aos="fade-up" data-aos-delay="100">
+                            Statistik Desa Kaputihan
+                        </h2>
+                    </div>
+                </div>
                 <div class="row">
 
                     <div class="col-12 col-lg-6 mb-4">
