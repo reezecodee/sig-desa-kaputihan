@@ -50,4 +50,11 @@ class LandingController extends Controller
 
         return Inertia::render('LandingV2/Buildings/Detail', compact('title'));
     }
+
+    public function schedule()
+    {
+        $title = 'Jadwal Kegiatan Desa';
+
+        return Inertia::render('LandingV2/Schedule/Index', compact('title'));
+    }
 }

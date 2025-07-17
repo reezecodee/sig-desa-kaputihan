@@ -54,6 +54,13 @@ import { Link } from '@inertiajs/vue3';
                             Bangunan Desa
                             </Link>
                         </li>
+                        <li class="nav-item">
+                            <Link class="nav-link scroll-link"
+                                :class="{ 'active': $page.url.startsWith('/jadwal-kegiatan') }"
+                                :href="route('landing.schedule')">
+                            Jadwal Kegiatan
+                            </Link>
+                        </li>
                     </ul>
 
                 </div>

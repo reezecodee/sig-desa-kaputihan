@@ -11,6 +11,7 @@ Route::middleware(['landing-layout'])->controller(LandingController::class)->gro
         Route::get('/', 'buildings')->name('landing.buildings');
         Route::get('detail/{slug}', 'detailBuilding')->name('landing.detailBuilding');
     });
+    Route::get('jadwal-kegiatan', 'schedule')->name('landing.schedule');
 });
 
 require __DIR__.'/auth.php';
