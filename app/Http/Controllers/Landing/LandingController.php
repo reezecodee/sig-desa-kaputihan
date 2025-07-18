@@ -18,9 +18,13 @@ class LandingController extends Controller
     public function index()
     {
         $title = 'Selamat Datang di Sistem Infromasi Geografis Desa Kaputihan';
-        $buildings = $this->landingService->getBuildingsCount();
 
-        return Inertia::render('LandingV2/Home/Index', compact('title', 'buildings'));
+        $landingPageData = [
+            'buildingCounts' => $this->landingService->getBuildingsCount(),
+            'villageProfile' => $this->landingService->getVillageProfile(),
+        ];
+
+        return Inertia::render('LandingV2/Home/Index', compact('title', 'landingPageData'));
     }
 
     public function territoryBoundary()

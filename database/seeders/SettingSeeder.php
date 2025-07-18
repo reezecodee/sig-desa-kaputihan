@@ -17,7 +17,6 @@ class SettingSeeder extends Seeder
             'nama_kades' => 'Ujang Herman RN',
             'periode' => '2021-2027',
             'foto_kades' => null,
-            'nama_aplikasi' => 'SIGKA',
             'logo' => null,
             'logo_aktif' => 'Off',
             'telepon' => '+62 81320800480',

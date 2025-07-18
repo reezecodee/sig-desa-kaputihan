@@ -20,6 +20,7 @@
                                 Seamless and secure transactions through various digital platforms,
                                 enabling quick and convenient payments for businesses and consumers alike.
                             </p>
+                            <p class="fw-bold">Jumlah: 10</p>
                         </div>
                         <a class="special-link d-inline-flex gap-2 align-items-center text-decoration-none" href="#">
                             <span class="icons">
@@ -41,6 +42,7 @@
                                 Seamless and secure transactions through various digital platforms,
                                 enabling quick and convenient payments for businesses and consumers alike.
                             </p>
+                            <p class="fw-bold">Jumlah: 10</p>
                         </div>
                         <a class="special-link d-inline-flex gap-2 align-items-center text-decoration-none" href="#">
                             <span class="icons">
@@ -62,6 +64,7 @@
                                 Seamless and secure transactions through various digital platforms,
                                 enabling quick and convenient payments for businesses and consumers alike.
                             </p>
+                            <p class="fw-bold">Jumlah: 10</p>
                         </div>
                         <a class="special-link d-inline-flex gap-2 align-items-center text-decoration-none" href="#">
                             <span class="icons">
@@ -83,6 +86,7 @@
                                 Seamless and secure transactions through various digital platforms,
                                 enabling quick and convenient payments for businesses and consumers alike.
                             </p>
+                            <p class="fw-bold">Jumlah: 10</p>
                         </div>
                         <a class="special-link d-inline-flex gap-2 align-items-center text-decoration-none" href="#">
                             <span class="icons">
@@ -104,6 +108,7 @@
                                 Seamless and secure transactions through various digital platforms,
                                 enabling quick and convenient payments for businesses and consumers alike.
                             </p>
+                            <p class="fw-bold">Jumlah: 10</p>
                         </div>
                         <a class="special-link d-inline-flex gap-2 align-items-center text-decoration-none" href="#">
                             <span class="icons">
@@ -125,6 +130,7 @@
                                 Seamless and secure transactions through various digital platforms,
                                 enabling quick and convenient payments for businesses and consumers alike.
                             </p>
+                            <p class="fw-bold">Jumlah: 10</p>
                         </div>
                         <a class="special-link d-inline-flex gap-2 align-items-center text-decoration-none" href="#">
                             <span class="icons">
@@ -135,6 +141,12 @@
                         </a>
                     </div>
                 </div>
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <button class="btn btn-md btn-outline-primary">
+                    Lihat lainnya
+                    <i class="bi bi-arrow-right-circle-fill"></i>
+                </button>
             </div>
         </div>
     </section>

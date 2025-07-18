@@ -44,4 +44,9 @@ class LandingService
     {
         return $this->landingRepository->getBuilding($slug);
     }
+    
+    public function getVillageProfile()
+    {
+        return $this->landingRepository->villageProfile();
+    }
 }

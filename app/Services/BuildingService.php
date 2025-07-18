@@ -98,4 +98,9 @@ class BuildingService
             throw new \Exception($e->getMessage());
         }
     }
+
+    public function getCategories()
+    {
+        return $this->buildingRepository->categories();
+    }
 }

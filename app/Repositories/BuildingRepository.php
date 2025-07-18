@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Building;
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 class BuildingRepository
@@ -56,5 +57,12 @@ class BuildingRepository
         } catch (\Exception $e) {
             throw new \Exception('Terjadi kesalahan saat mencoba menghapus data');
         }
+    }
+
+    public function categories()
+    {
+        $categories = Category::all();
+
+        return $categories;
     }
 }

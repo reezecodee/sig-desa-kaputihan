@@ -16,6 +16,7 @@ Route::middleware(['landing-layout'])->controller(LandingController::class)->gro
 });
 
 Route::get('jadwal-landing-page', [APIController::class, 'scheduleForLanding'])->name('landing.scheduleForLanding');
+Route::get('kategori-bangunan', [APIController::class, 'buildingCategories'])->name('landing.buildingCategories');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
