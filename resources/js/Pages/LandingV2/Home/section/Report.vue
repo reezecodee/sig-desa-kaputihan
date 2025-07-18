@@ -1,3 +1,33 @@
+
+<script setup>
+import { onMounted, onUnmounted, ref } from 'vue';
+
+// Buat ref untuk menampung elemen div reCAPTCHA
+const recaptchaContainer = ref(null);
+let widgetId = null;
+
+// Ganti dengan Site Key Anda
+const siteKey = '6LfiRYcrAAAAALrE2NNis2jL7dYKEvDwMllQKg2M';
+
+onMounted(() => {
+  // Pastikan script Google sudah siap
+  if (window.grecaptcha && window.grecaptcha.render) {
+    // Render widget di dalam elemen div yang sudah kita siapkan
+    widgetId = window.grecaptcha.render(recaptchaContainer.value, {
+      'sitekey': siteKey,
+      // 'callback': (response) => { console.log('Sukses!', response); } // Opsional
+    });
+  }
+});
+
+onUnmounted(() => {
+  // Reset widget saat komponen dihancurkan untuk membersihkan memori
+  if (widgetId !== null) {
+    window.grecaptcha.reset(widgetId);
+  }
+});
+</script>
+
 <template>
     <section class="section contact__v2" id="report">
         <div class="container">
@@ -15,15 +45,18 @@
                         <div class="row gap-3 mb-3">
                             <div class="col-md-12">
                                 <label class="mb-2 fw-bold" for="name">Nama pelapor</label>
-                                <input class="form-control" id="name" type="text" placeholder="Masukkan nama Anda" required>
+                                <input class="form-control" id="name" type="text" placeholder="Masukkan nama Anda"
+                                    required>
                             </div>
                             <div class="col-md-12">
                                 <label class="mb-2 fw-bold" for="contact-person">Kontak (Telepon/Email)</label>
-                                <input class="form-control" id="contact-person" type="contact-person" placeholder="Masukkan email atau no. telepon Anda" required>
+                                <input class="form-control" id="contact-person" type="contact-person"
+                                    placeholder="Masukkan email atau no. telepon Anda" required>
                             </div>
                             <div class="col-md-12">
                                 <label class="mb-2 fw-bold" for="subject">Judul laporan</label>
-                                <input class="form-control" id="subject" type="subject" placeholder="Masukkan judul laporan Anda" required>
+                                <input class="form-control" id="subject" type="subject"
+                                    placeholder="Masukkan judul laporan Anda" required>
                             </div>
                             <div class="col-md-12">
                                 <label class="mb-2 fw-bold" for="category">Kategori laporan</label>
@@ -50,10 +83,13 @@
                     <div class="form-wrapper" data-aos="fade-up" data-aos-delay="300">
                         <div class="row gap-3 gap-md-0 mb-3">
                             <div class="col-md-12">
-                                <label class="mb-2 fw-bold" for="message">Message</label>
-                                <textarea class="form-control" id="message" name="message" rows="8" placeholder="Isi pesan laporan..." required></textarea>
+                                <label class="mb-2 fw-bold" for="message">Pesan laporan</label>
+                                <textarea class="form-control" id="message" name="message" rows="8"
+                                    placeholder="Isi pesan laporan..." required></textarea>
                             </div>
                         </div>
+                        <div ref="recaptchaContainer"></div>
+                        <br />
                         <button class="btn btn-primary fw-semibold" type="submit">
                             <i class="bi bi-send-fill"></i>
                             Kirim laporan
