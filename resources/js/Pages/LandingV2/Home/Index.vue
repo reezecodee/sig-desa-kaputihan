@@ -10,9 +10,25 @@ import BuildingCategory from '@/Pages/LandingV2/Home/section/BuildingCategory.vu
 import FAQ from '@/Pages/LandingV2/Home/section/FAQ.vue';
 import Report from '@/Pages/LandingV2/Home/section/Report.vue';
 
-defineProps({
-    title: String
+const props = defineProps({
+    title: String,
+    landingPageData: Object
 });
+
+function pickFromObject(sourceObject, keys) {
+  return keys.reduce((newObj, key) => {
+    if (sourceObject && sourceObject.hasOwnProperty(key)) {
+      newObj[key] = sourceObject[key];
+    }
+    return newObj;
+  }, {});
+}
+
+const orgKeys = ['jumlah_penduduk', 'jumlah_dusun', 'jumlah_rt', 'jumlah_rw'];
+const profileKeys = ['suhu_rata_rata', 'lokasi_elevasi', 'luas_wilayah', 'alamat_desa'];
+
+const countOrg = pickFromObject(props.landingPageData.villageProfile, orgKeys);
+const villageProfile = pickFromObject(props.landingPageData.villageProfile, profileKeys);
 </script>
 
 <template>
@@ -21,8 +37,8 @@ defineProps({
         <Hero/>
         <About/>
         <OrganizationStructure/>
-        <NatureCondition/>
-        <CountVillage/>
+        <NatureCondition :villageProfile="villageProfile"/>
+        <CountVillage :count="countOrg"/>
         <BuildingCategory/>
         <FAQ/>
         <Report/>

@@ -20,7 +20,6 @@ class LandingController extends Controller
         $title = 'Selamat Datang di Sistem Infromasi Geografis Desa Kaputihan';
 
         $landingPageData = [
-            'buildingCounts' => $this->landingService->getBuildingsCount(),
             'villageProfile' => $this->landingService->getVillageProfile(),
         ];
 

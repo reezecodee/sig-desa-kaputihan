@@ -13,5 +13,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         UsersSeeder::run();
+        VillageProfileSeeder::run();
+        SettingSeeder::run();
+        CategorySeeder::run();
     }
 }

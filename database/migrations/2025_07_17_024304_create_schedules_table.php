@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('kegiatan');
             $table->string('mulai');
             $table->string('selesai');
-            $table->string('kegiatan');
             $table->enum('kategori', ['Kegiatan Sosial', 'Keagamaan', 'Acara Desa', 'Lainnya']);
             $table->string('keterangan');
             $table->timestamps();

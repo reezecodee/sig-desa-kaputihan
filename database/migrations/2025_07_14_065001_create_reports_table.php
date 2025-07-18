@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('nama_pelapor')->nullable();
+            $table->string('nama_pelapor')->nullable()->index();
             $table->string('kontak_pelapor')->nullable();
             $table->string('judul_laporan');
             $table->enum('kategori_laporan', [

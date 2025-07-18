@@ -1,3 +1,9 @@
+<script setup>
+defineProps({
+    villageProfile: Object
+});
+</script>
+
 <template>
     <section class="section features__v2" id="condition">
         <div class="container">
@@ -42,7 +48,7 @@
                                                     Suhu Rata-rata
                                                 </h3>
                                                 <p>
-                                                    Easy navigation with responsive design for various devices.
+                                                    Suhu rata-rata {{ villageProfile.suhu_rata_rata }} derajat celcius.
                                                 </p>
                                             </div>
                                             <div class="col-sm-6" data-aos="fade-up" data-aos-delay="100">
@@ -53,8 +59,7 @@
                                                     Lokasi Elevasi
                                                 </h3>
                                                 <p>
-                                                    Budget tracking, expense categorization, and personalized
-                                                    insights.
+                                                    Desa Kaputihan berada di ketinggian {{ villageProfile.lokasi_elevasi }}.
                                                 </p>
                                             </div>
                                             <div class="col-sm-6" data-aos="fade-up" data-aos-delay="200">
@@ -65,8 +70,7 @@
                                                     Luas Wilayah
                                                 </h3>
                                                 <p>
-                                                    24/7 service via chat, email, phone, and a detailed help
-                                                    center.
+                                                    Luas wilayah Desa Kaputihan berkisar {{ villageProfile.luas_wilayah }}
                                                 </p>
                                             </div>
                                             <div class="col-sm-6" data-aos="fade-up" data-aos-delay="300">
@@ -77,7 +81,7 @@
                                                     Lokasi Desa
                                                 </h3>
                                                 <p>
-                                                    Data encryption, fraud detection, and prevention mechanisms.
+                                                    {{ villageProfile.alamat_desa }}
                                                 </p>
                                             </div>
                                         </div>

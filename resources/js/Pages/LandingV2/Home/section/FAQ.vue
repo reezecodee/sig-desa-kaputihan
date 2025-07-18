@@ -19,77 +19,82 @@
                                 <h2 class="accordion-header">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                                        aria-controls="panelsStayOpen-collapseOne"> What services does your web
-                                        agency offer? </button>
+                                        aria-controls="panelsStayOpen-collapseOne"> Apa itu aplikasi SIG Desa Kaputihan? </button>
                                 </h2>
                                 <div class="accordion-collapse collapse show" id="panelsStayOpen-collapseOne">
-                                    <div class="accordion-body">Our web agency offers a comprehensive range of
-                                        services including web design and development, e-commerce solutions, SEO
-                                        optimization, content creation, website maintenance, and digital
-                                        marketing strategies. We tailor our services to meet the unique needs of
-                                        each client, ensuring a customized approach to every project.</div>
+                                    <div class="accordion-body">SID Desa Kaputihan adalah platform digital yang menyajikan informasi geografis (spasial) mengenai wilayah Desa Kaputihan. Aplikasi ini berfungsi sebagai peta interaktif yang menampilkan lokasi-lokasi penting seperti fasilitas umum, batas wilayah, statistik desa, dan data kependudukan yang mudah diakses.</div>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                                        aria-controls="panelsStayOpen-collapseTwo"> How
-                                        much does it cost to build a website? </button>
+                                        aria-controls="panelsStayOpen-collapseTwo"> Informasi apa saja yang bisa saya temukan di aplikasi ini? </button>
                                 </h2>
                                 <div class="accordion-collapse collapse" id="panelsStayOpen-collapseTwo">
-                                    <div class="accordion-body">The cost of building a website can vary widely
-                                        depending on the complexity, features, and specific requirements of your
-                                        project. We offer several pricing packages to accommodate different
-                                        budgets and needs. After an initial consultation, we can provide a
-                                        detailed quote based on your specific goals and objectives.</div>
+                                    <div class="accordion-body">
+                                        Anda dapat menemukan berbagai informasi, di antaranya:
+                                        <ul>
+                                            <li>
+                                                <b>Fasilitas Umum:</b> Anda bisa menemukan informasi detail terkait bangunan umum yang menjadi vital desa.
+                                            </li>
+                                            <li>
+                                                <b>Batas Wilayah::</b> Anda dapat melihat batas wilayah desa beserta titik lokasi, dusun, dan RT/RW.
+                                            </li>
+                                            <li>
+                                                <b>Statistik Desa:</b> Anda bisa melihat data statistik desa dengan grafik interaktif seperti kependudukan, bangunan, dan lain-lain.
+                                            </li>
+                                            <li>
+                                                <b>Jadwal Kegiatan:</b> Anda bisa melihat jadwal apa saja yang direncanakan oleh pihak desa dalam bentuk kalender beserta keterangannya.
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
-                                        aria-controls="panelsStayOpen-collapseThree"> How
-                                        long does it take to design and develop a website? </button>
+                                        aria-controls="panelsStayOpen-collapseThree"> Bagaimana cara mencari bangunan tertentu? </button>
                                 </h2>
                                 <div class="accordion-collapse collapse" id="panelsStayOpen-collapseThree">
-                                    <div class="accordion-body">The timeline for designing and developing a
-                                        website depends on the project&apos;s complexity and scope. Typically, a
-                                        standard business website takes about 4-6 weeks to complete, while more
-                                        complex projects like e-commerce sites or custom applications may take
-                                        longer. We work closely with our clients to establish a realistic
-                                        timeline and keep you informed throughout the process.</div>
+                                    <div class="accordion-body">
+                                        Anda bisa menggunakan fitur pencarian (ikon kaca pembesar) di halaman Bangunan Desa dengan mengetikkan nama lokasi yang ingin dicari, misalnya "Kantor kepala desa kaputihan".
+                                    </div>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
-                                        aria-controls="panelsStayOpen-collapseFour"> Will
-                                        my website be mobile-friendly? </button>
+                                        aria-controls="panelsStayOpen-collapseFour">  Apakah data yang ditampilkan dijamin akurat? </button>
                                 </h2>
                                 <div class="accordion-collapse collapse" id="panelsStayOpen-collapseFour">
-                                    <div class="accordion-body">Absolutely! All the websites we design and
-                                        develop are fully responsive, meaning they are optimized to work
-                                        seamlessly across all devices, including desktops, tablets, and
-                                        smartphones. Ensuring a great user experience on mobile devices is a top
-                                        priority in our development process.</div>
+                                    <div class="accordion-body">Data dikelola langsung oleh tim dari Pemerintah Desa Kaputihan dan diupayakan untuk diperbarui secara berkala. Namun, perubahan kondisi di lapangan mungkin terjadi. Jika Anda menemukan data yang tidak sesuai atau keliru, kami sangat menghargai laporan Anda untuk perbaikan</div>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false"
-                                        aria-controls="panelsStayOpen-collapseFive"> Do
-                                        you provide ongoing support and maintenance for websites? </button>
+                                        aria-controls="panelsStayOpen-collapseFive"> Tempat usaha saya belum ada di peta, bagaimana cara menambahkannya? </button>
                                 </h2>
                                 <div class="accordion-collapse collapse" id="panelsStayOpen-collapseFive">
-                                    <div class="accordion-body">Yes, we offer ongoing support and maintenance
-                                        services to ensure your website remains up-to-date, secure, and
-                                        functioning smoothly. Our maintenance packages can include regular
-                                        updates, security monitoring, backups, and technical support to address
-                                        any issues that may arise. We&apos;re here to help you keep your website
-                                        running efficiently long after it&apos;s launched.</div>
+                                    <div class="accordion-body">
+                                        Kami menyambut partisipasi warga. Anda dapat mengajukan lokasi baru dengan datang ke Kantor Kepala Desa Kaputihan. Tim kami akan melakukan verifikasi terlebih dahulu sebelum lokasi tersebut ditampilkan di peta untuk memastikan validitas data.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseSix"> Siapa yang harus saya hubungi jika menemukan kesalahan data? </button>
+                                </h2>
+                                <div class="accordion-collapse collapse" id="panelsStayOpen-collapseSix">
+                                    <div class="accordion-body">
+                                        Jika Anda menemukan kesalahan informasi (misalnya, salah nama, salah titik lokasi, atau deskripsi keliru), silakan gunakan fitur "Laporkan Masalah" yang ada pada halaman ini. Anda juga bisa menghubungi kami melalui email tertera pada bagian bawah halaman (footer) aplikasi ini.
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('kategori_id')->constrained('categories')->cascadeOnDelete();
             $table->string('slug')->index();
-            $table->string('nama_bangunan');
+            $table->string('nama_bangunan')->index();
             $table->string('foto_bangunan')->nullable();
             $table->text('deskripsi');
             $table->text('google_maps');

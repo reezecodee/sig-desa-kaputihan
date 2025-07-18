@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('nama_kategori');
+            $table->string('nama_kategori')->index();
             $table->text('icon');
             $table->text('deskripsi');
             $table->timestamps();

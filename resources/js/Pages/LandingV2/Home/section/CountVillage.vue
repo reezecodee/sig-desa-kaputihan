@@ -1,3 +1,9 @@
+<script setup>
+defineProps({
+    count: Object
+});
+</script>
+
 <template>
     <section class="section howitworks__v1" id="count-village">
         <div class="container">
@@ -24,7 +30,7 @@
                                 src="/landingv2/images/arch-line.svg">
                         </div>
                         <span class="step-number rounded-circle text-center fw-bold mb-5 mx-auto">
-                            1
+                            {{ count.jumlah_dusun }}
                         </span>
                         <div>
                             <h3 class="fs-5 mb-4">Jumlah Dusun</h3>
@@ -42,7 +48,7 @@
                                 src="/landingv2/images/arch-line-reverse.svg">
                         </div>
                         <span class="step-number rounded-circle text-center fw-bold mb-5 mx-auto">
-                            2
+                            {{ count.jumlah_rw }}
                         </span>
                         <h3 class="fs-5 mb-4">Jumlah RW</h3>
                         <p>
@@ -57,7 +63,7 @@
                                 src="/landingv2/images/arch-line.svg">
                         </div>
                         <span class="step-number rounded-circle text-center fw-bold mb-5 mx-auto">
-                            3
+                            {{ count.jumlah_rt }}
                         </span>
                         <h3 class="fs-5 mb-4">Jumlah RT</h3>
                         <p>
@@ -69,7 +75,7 @@
                     <div
                         class="step-card last text-center h-100 d-flex flex-column justify-content-start position-relative">
                         <span class="step-number rounded-circle text-center fw-bold mb-5 mx-auto">
-                            4
+                            {{ count.jumlah_penduduk }}
                         </span>
                         <div>
                             <h3 class="fs-5 mb-4">Jumlah Penduduk</h3>
