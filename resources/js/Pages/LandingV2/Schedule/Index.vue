@@ -24,7 +24,7 @@ defineProps({
                         </h2>
                     </div>
                 </div>
-                <FullCalendar/>
+                <FullCalendar :endpoint="route('landing.scheduleForLanding')"/>
             </div>
         </section>
     </LandingV2>

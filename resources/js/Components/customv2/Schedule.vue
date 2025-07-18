@@ -3,27 +3,47 @@ import FullCalendar from '@fullcalendar/vue3';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import idLocale from '@fullcalendar/core/locales/id';
 
+const props = defineProps({
+  endpoint: {
+    type: String,
+    default: '/'
+  },
+  start: {
+    type: String,
+    default: ''
+  },
+  center: {
+    type: String,
+    default: ''
+  },
+  end: {
+    type: String,
+    default: ''
+  }
+});
+
 const calendarOptions = {
   plugins: [dayGridPlugin],
   initialView: 'dayGridMonth',
   locale: idLocale,
   dayHeaderFormat: { weekday: 'long' },
-  events: '',
+  events: props.endpoint,
   headerToolbar: {
-    start: '', // Judul di kiri
-    center: '',      // Tengah dikosongkan
-    end: ''   // Tombol 'today' di kanan (tanpa panah prev/next)
+    start: props.start, // Judul di kiri
+    center: props.center,      // Tengah dikosongkan
+    end: props.end   // Tombol 'today' di kanan (tanpa panah prev/next)
   },
   eventContent: function (info) {
     console.log(info.event.extendedProps);
 
     let bgColor = '';
+    let activityCategory = info.event.extendedProps.kategori;
 
-    if (info.event.extendedProps.status === 'Kegiatan') {
+    if (activityCategory === 'Kegiatan Sosial') {
       bgColor = '#007bff'; // Biru
-    } else if (info.event.extendedProps.status === 'Keagamaan') {
+    } else if (activityCategory === 'Keagamaan') {
       bgColor = '#28a745'; // Hijau
-    } else if (info.event.extendedProps.status === 'Acara desa') {
+    } else if (activityCategory === 'Acara Desa') {
       bgColor = '#ffc107'; // Kuning
     } else {
       bgColor = '#dc3545'; // Merah (Lainnya)
@@ -40,7 +60,7 @@ const calendarOptions = {
   <div class="legend-container">
     <div class="legend-item">
       <span class="legend-color" style="background-color: #007bff;"></span>
-      <span>Kegiatan</span>
+      <span>Kegiatan Sosial</span>
     </div>
     <div class="legend-item">
       <span class="legend-color" style="background-color: #28a745;"></span>

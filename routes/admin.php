@@ -6,9 +6,12 @@ use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserManagementController;
+use App\Http\Controllers\API\APIController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('daftar-lokasi/{type}', [LocationController::class, 'getLocations'])->name('admin.locationList');
+Route::get('jadwal-admin-page', [APIController::class, 'scheduleForAdmin'])->name('landing.scheduleForAdmin');
+
 
 Route::middleware(['app-layout', 'auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');

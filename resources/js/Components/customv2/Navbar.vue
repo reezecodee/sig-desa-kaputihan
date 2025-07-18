@@ -7,7 +7,6 @@ import { Link } from '@inertiajs/vue3';
         <div class="container d-flex align-items-center justify-content-between">
             <a class="navbar-brand w-auto" href="">
                 <img class="logo dark img-fluid" src="landingv2/images/logo-dark.svg">
-                <img class="logo light img-fluid" src="landingv2/images/logo-light.svg">
             </a>
 
             <div class="offcanvas offcanvas-start w-75" id="fbs__net-navbars" tabindex="-1"
@@ -16,7 +15,6 @@ import { Link } from '@inertiajs/vue3';
                     <div class="offcanvas-header-logo">
                         <a class="logo-link" id="fbs__net-navbarsLabel" href="">
                             <img class="logo dark img-fluid" src="landingv2/images/logo-dark.svg">
-                            <img class="logo light img-fluid" src="landingv2/images/logo-light.svg">
                         </a>
                     </div>
 

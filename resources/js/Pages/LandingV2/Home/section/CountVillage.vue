@@ -21,7 +21,7 @@
                         data-aos="fade-up" data-aos-delay="0">
                         <div data-aos="fade-right" data-aos-delay="500">
                             <img class="arch-line"
-                                src="/landingv2/images/arch-line.svg" alt="FreeBootstrap.net image placeholder">
+                                src="/landingv2/images/arch-line.svg">
                         </div>
                         <span class="step-number rounded-circle text-center fw-bold mb-5 mx-auto">
                             1
@@ -39,7 +39,7 @@
                         class="step-card reverse text-center h-100 d-flex flex-column justify-content-start position-relative">
                         <div data-aos="fade-right" data-aos-delay="1100">
                             <img class="arch-line reverse"
-                                src="/landingv2/images/arch-line-reverse.svg" alt="FreeBootstrap.net image placeholder">
+                                src="/landingv2/images/arch-line-reverse.svg">
                         </div>
                         <span class="step-number rounded-circle text-center fw-bold mb-5 mx-auto">
                             2
@@ -54,7 +54,7 @@
                     <div class="step-card text-center h-100 d-flex flex-column justify-content-start position-relative">
                         <div data-aos="fade-right" data-aos-delay="1700">
                             <img class="arch-line"
-                                src="/landingv2/images/arch-line.svg" alt="FreeBootstrap.net image placeholder">
+                                src="/landingv2/images/arch-line.svg">
                         </div>
                         <span class="step-number rounded-circle text-center fw-bold mb-5 mx-auto">
                             3
