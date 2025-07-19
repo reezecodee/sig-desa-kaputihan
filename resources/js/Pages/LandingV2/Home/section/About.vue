@@ -1,3 +1,9 @@
+<script setup>
+defineProps({
+    data: Object
+});
+</script>
+
 <template>
     <section class="about__v4 section" id="about">
         <div class="container">
@@ -43,10 +49,10 @@
                             </div>
                             <div>
                                 <h3 class="text-uppercase fw-bold">
-                                    Kepala Desa Kaputihan Periode 2025 - 2027
+                                    Kepala Desa Kaputihan Periode {{ data.periode }}
                                 </h3>
                                 <p class="fs-6 mb-0">
-                                    Mari kita jadikan sejarah ini sebagai cermin untuk introspeksi dan sebagai cambuk penyemangat untuk membangun Kaputihan menjadi desa yang lebih maju, sejahtera, dan berwibawa, sesuai dengan amanat namanya.
+                                    {{ data.pesan_kades }}
                                 </p>
                             </div>
                         </div>

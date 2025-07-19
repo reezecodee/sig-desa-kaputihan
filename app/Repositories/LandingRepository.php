@@ -27,4 +27,11 @@ class LandingRepository
 
         return $categories;
     }
+
+    public function setting()
+    {
+        $setting = Setting::select(['nama_kades', 'periode', 'pesan_kades', 'logo', 'logo_aktif', 'foto_organisasi'])->firstOrFail();
+
+        return $setting;
+    }
 }

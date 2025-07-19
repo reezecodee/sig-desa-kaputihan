@@ -35,8 +35,8 @@ const villageProfile = pickFromObject(props.landingPageData.villageProfile, prof
     <Head :title="title" />
     <LandingV2>
         <Hero/>
-        <About/>
-        <OrganizationStructure/>
+        <About :data="landingPageData.setting"/>
+        <OrganizationStructure :organization="landingPageData.setting.foto_organisasi"/>
         <NatureCondition :villageProfile="villageProfile"/>
         <CountVillage :count="countOrg"/>
         <BuildingCategory/>

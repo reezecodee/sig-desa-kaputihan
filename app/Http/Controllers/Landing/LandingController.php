@@ -21,6 +21,7 @@ class LandingController extends Controller
 
         $landingPageData = [
             'villageProfile' => $this->landingService->getVillageProfile(),
+            'setting' => $this->landingService->getSetting(),
         ];
 
         return Inertia::render('LandingV2/Home/Index', compact('title', 'landingPageData'));

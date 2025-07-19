@@ -1,3 +1,9 @@
+<script setup>
+defineProps({
+    organization: String
+});
+</script>
+
 <template>
     <section class="about__v4 section" id="organization">
         <div class="container">
@@ -5,7 +11,7 @@
                 <div class="col-md-12">
                     <div class="img-wrap position-relative">
                         <img class="img-fluidrounded-4"
-                            src="/placeholder/organisasi.png"
+                            :src="`/placeholder/${organization}`"
                             data-aos="fade-up" data-aos-delay="0">
                     </div>
                 </div>

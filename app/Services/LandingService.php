@@ -27,4 +27,9 @@ class LandingService
     {
         return $this->landingRepository->categories($perPage);
     }
+
+    public function getSetting()
+    {
+        return $this->landingRepository->setting();
+    }
 }

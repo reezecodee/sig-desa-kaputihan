@@ -19,10 +19,11 @@ class LandingLayoutMiddleware
     {
         // Inertia::setRootView('landing');
         Inertia::setRootView('landingv2');
-        
-        $village = Setting::first();
+
         Inertia::share([
-            'village' => fn () => $village
+            'village' => function () {
+                return Setting::select(['email', 'telepon'])->first();
+            }
         ]);
 
         return $next($request);

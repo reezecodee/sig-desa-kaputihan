@@ -1,5 +1,9 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+
+const page = usePage();
+const village = computed(() => page.props.village);
 
 const year = new Date().getFullYear();
 </script>
@@ -67,15 +71,11 @@ const year = new Date().getFullYear();
                             <h3 class="mb-3">Kontak Kami</h3>
                             <a class="d-flex mb-3" href="mailto:info@mydomain.com">
                                 <i class="bi bi-envelope-fill me-3"></i>
-                                <span>info@mydomain.com</span>
+                                <span>{{ village.email }}</span>
                             </a>
                             <a class="d-flex mb-3" href="tel://+123456789900">
                                 <i class="bi bi-telephone-fill me-3"></i>
-                                <span>+1 (234) 5678 9900</span>
-                            </a>
-                            <a class="d-flex mb-3" href="">
-                                <i class="bi bi-globe me-3"></i>
-                                <span>FreeBootstrap.net</span>
+                                <span>{{ village.telepon }}</span>
                             </a>
                         </div>
                     </div>

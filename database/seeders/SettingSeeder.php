@@ -16,12 +16,12 @@ class SettingSeeder extends Seeder
         Setting::create([
             'nama_kades' => 'Ujang Herman RN',
             'periode' => '2021-2027',
-            'foto_kades' => null,
+            'pesan_kades' => 'Mari kita jadikan sejarah ini sebagai cermin untuk introspeksi dan sebagai cambuk penyemangat untuk membangun Kaputihan menjadi desa yang lebih maju, sejahtera, dan berwibawa, sesuai dengan amanat namanya.',
             'logo' => null,
             'logo_aktif' => 'Off',
             'telepon' => '+62 81320800480',
             'email' => 'sdgsdesakaputihan@gmail.com',
-            'foto_organisasi' => null,
+            'foto_organisasi' => 'organisasi.png',
         ]);
     }
 }
