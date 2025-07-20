@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         VillageProfileSeeder::run();
         SettingSeeder::run();
         CategorySeeder::run();
+        BuildingSeeder::run();
     }
 }

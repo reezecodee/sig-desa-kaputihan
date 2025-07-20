@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
+use App\Models\Building;
 use App\Services\LandingService;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class LandingController extends Controller
@@ -41,11 +43,25 @@ class LandingController extends Controller
         return Inertia::render('LandingV2/StatisticVillage/Index', compact('title'));
     }
 
-    public function buildings()
+    public function buildings(Request $request)
     {
         $title = 'Bangunan-bangunan di Desa Kaputihan';
+        $filters = $request->only('search');
 
-        return Inertia::render('LandingV2/Buildings/Index', compact('title'));
+        $paginatedResult = Building::query()
+            ->select(['id', 'kategori_id', 'slug', 'nama_bangunan', 'foto_bangunan', 'deskripsi'])
+            ->with('category')
+            ->when($request->input('search'), function ($query, $search) {
+                $query->where('nama_bangunan', 'like', "%{$search}%")
+                    ->orWhereHas('category', function ($kategoriQuery) use ($search) {
+                        $kategoriQuery->where('nama_kategori', 'like', "%{$search}%");
+                    });
+            })->latest()
+            ->paginate(6);
+
+        $buildings = $paginatedResult->withQueryString();
+
+        return Inertia::render('LandingV2/Buildings/Index', compact('title', 'buildings', 'filters'));
     }
 
     public function detailBuilding()
