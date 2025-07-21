@@ -37,7 +37,7 @@ const calendarOptions = {
     console.log(info.event.extendedProps);
 
     let bgColor = '';
-    let activityCategory = info.event.extendedProps.kategori;
+    let activityCategory = info.event.extendedProps.category;
 
     if (activityCategory === 'Kegiatan Sosial') {
       bgColor = '#007bff'; // Biru
@@ -50,7 +50,13 @@ const calendarOptions = {
     }
 
     return {
-      html: `<div title="${info.event.title}" class="overflow-hidden text-white p-1" style="background: ${bgColor}">${info.event.title}</div>`
+      html: `<div 
+           title="Kegiatan: ${info.event.title}\nKeterangan: ${info.event.extendedProps.description}"
+           class="overflow-hidden text-white p-1"
+           style="background: ${bgColor}"
+         >
+           ${info.event.title}
+         </div>`
     };
   }
 }

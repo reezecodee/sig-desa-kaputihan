@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Setting;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,6 +23,8 @@ class SettingSeeder extends Seeder
             'telepon' => '+62 81320800480',
             'email' => 'sdgsdesakaputihan@gmail.com',
             'foto_organisasi' => 'organisasi.png',
+            'created_at'  => Carbon::now(),
+            'updated_at'  => Carbon::now(),
         ]);
     }
 }

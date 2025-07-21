@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\VillageProfile;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,7 +23,8 @@ class VillageProfileSeeder extends Seeder
             'lokasi_elevasi' => '500-700 mdpl',
             'luas_wilayah' => '806 Hektar',
             'alamat_desa' => 'Jalan Kaputihan, Desa Kaputihan Kabupaten Tasikmalaya, Jawa Barat',
+            'created_at'  => Carbon::now(),
+            'updated_at'  => Carbon::now(),
         ]);
     }
 }
-

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
 use App\Models\Building;
+use App\Models\BuildingPhoto;
 use App\Services\LandingService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -64,11 +65,20 @@ class LandingController extends Controller
         return Inertia::render('LandingV2/Buildings/Index', compact('title', 'buildings', 'filters'));
     }
 
-    public function detailBuilding()
+    public function detailBuilding(string $slug)
     {
-        $title = 'Detail Bangunan';
+        $detailBuilding = Building::select(['id', 'kategori_id', 'nama_bangunan', 'deskripsi', 'foto_bangunan', 'google_maps', 'link_lokasi'])
+            ->with('category')
+            ->where('slug', $slug)
+            ->firstOrFail();
 
-        return Inertia::render('LandingV2/Buildings/Detail', compact('title'));
+        $buildingPhotos = BuildingPhoto::select(['nama_file'])
+            ->where('bangunan_id', $detailBuilding->id)
+            ->get();
+
+        $title = 'Detail ' . $detailBuilding->category->nama_kategori . ': ' . $detailBuilding->nama_bangunan;
+
+        return Inertia::render('LandingV2/Buildings/Detail', compact('title', 'detailBuilding', 'buildingPhotos'));
     }
 
     public function schedule()

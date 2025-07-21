@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('building_photos', function (Blueprint $table) {
             $table->uuid('id');
             $table->foreignUuid('bangunan_id')->constrained('buildings')->cascadeOnDelete();
+            $table->string('nama_file');
             $table->timestamps();
         });
     }

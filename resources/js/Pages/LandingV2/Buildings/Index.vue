@@ -1,6 +1,6 @@
 <script setup>
 import LandingV2 from '@/Layouts/LandingV2.vue';
-import { Head, router } from '@inertiajs/vue3';
+import { Head, router, Link } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 import debounce from 'lodash/debounce';
 import Pagination from '@/Components/customv2/Pagination.vue';
@@ -57,7 +57,7 @@ watch(search, debounce(value => {
                                 </div>
                                 <h5 class="card-title">{{ building.nama_bangunan }}</h5>
                                 <p class="card-text">{{ building.deskripsi }}</p>
-                                <a href="#" class="btn btn-primary mt-auto">Lihat Detail</a>
+                                <Link :href="route('landing.detailBuilding', building.slug)" class="btn btn-primary mt-auto">Lihat Detail</Link>
                             </div>
                         </div>
                     </div>

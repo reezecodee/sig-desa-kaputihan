@@ -3,6 +3,12 @@ import { Head } from '@inertiajs/vue3';
 import LandingV2 from '@/Layouts/LandingV2.vue';
 import FullCalendar from '@/Components/customv2/Schedule.vue';
 
+const date = new Date();
+const year = date.getFullYear();
+const month = new Intl.DateTimeFormat('id-ID', {
+  month: 'long' 
+}).format(date);
+
 defineProps({
     title: String
 })
@@ -20,7 +26,7 @@ defineProps({
                             Jadwal Kegiatan
                         </span>
                         <h2 class="mb-3" data-aos="fade-up" data-aos-delay="100">
-                            Jadwal Kegiatan Bulan Juli
+                            Jadwal Kegiatan Bulan {{ month }} {{ year }}
                         </h2>
                     </div>
                 </div>

@@ -13,7 +13,7 @@ class ScheduleRepository
             ->map(function ($event) {
                 return [
                     'title'       => $event->kegiatan,
-                    'kategori'    => $event->kategori,
+                    'category'    => $event->kategori,
                     'start'       => $event->mulai,
                     'end'         => $event->selesai,
                     'description' => $event->keterangan
@@ -30,7 +30,7 @@ class ScheduleRepository
             ->map(function ($event) {
                 return [
                     'title'       => $event->kegiatan,
-                    'kategori'    => $event->kategori,
+                    'category'    => $event->kategori,
                     'start'       => $event->mulai,
                     'end'         => $event->selesai,
                     'description' => $event->keterangan

@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         SettingSeeder::run();
         CategorySeeder::run();
         BuildingSeeder::run();
+        BuildingPhotoSeeder::run();
+        ScheduleSeeder::run();
     }
 }
