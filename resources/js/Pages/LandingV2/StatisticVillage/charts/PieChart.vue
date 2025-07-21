@@ -2,6 +2,11 @@
 import * as echarts from 'echarts';
 import { onMounted, onUnmounted, ref } from 'vue';
 
+const props = defineProps({
+    title: String,
+    endpoint: String,
+})
+
 // 1. Gunakan 'ref' untuk menampung elemen DOM chart.
 //    Ini cara yang lebih deklaratif dan aman di Vue.
 const chartRef = ref(null);
@@ -16,8 +21,7 @@ onMounted(() => {
     // 3. Gunakan 'const' untuk option karena tidak akan di-assign ulang
     const option = {
         title: {
-            text: 'Sumber Pengunjung Website', // Judul yang lebih deskriptif
-            subtext: 'Data Fiktif',
+            text: props.title, // Judul yang lebih deskriptif
             left: 'center'
         },
         tooltip: {
@@ -25,8 +29,8 @@ onMounted(() => {
             formatter: '{a} <br/>{b}: {c} ({d}%)' // Tooltip yang lebih informatif
         },
         legend: {
-            orient: 'vertical',
-            left: 'left'
+            orient: 'horizontal',
+            bottom: 'bottom'
         },
         series: [
             {

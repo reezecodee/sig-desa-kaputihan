@@ -3,6 +3,11 @@ import * as echarts from 'echarts';
 // 1. Perbaiki typo dan pastikan semua yang dibutuhkan di-import
 import { ref, onMounted, onUnmounted } from 'vue';
 
+const props = defineProps({
+    title: String,
+    endpoint: String,
+});
+
 // Siapkan ref untuk elemen DOM
 const chartRef = ref(null);
 
@@ -23,7 +28,7 @@ onMounted(() => {
     // Gunakan const untuk option
     const option = {
         title: {
-            text: 'Tren Akses Mingguan'
+            text: props.title
         },
         tooltip: {
             trigger: 'axis'

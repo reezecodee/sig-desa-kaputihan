@@ -2,6 +2,11 @@
 import * as echarts from 'echarts';
 import { onMounted, onUnmounted, ref } from 'vue';
 
+const props = defineProps({
+    title: String,
+    endpoint: String,
+})
+
 // 1. Siapkan ref untuk elemen DOM chart
 const chartRef = ref(null);
 
@@ -22,7 +27,7 @@ onMounted(() => {
     // Gunakan const untuk option
     const option = {
         title: {
-            text: 'Data Penjualan Mingguan',
+            text: props.title,
             left: 'center'
         },
         tooltip: {

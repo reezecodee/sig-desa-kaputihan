@@ -28,34 +28,56 @@ defineProps({
                         </h2>
                     </div>
                 </div>
+                
                 <div class="row">
-
                     <div class="col-12 col-lg-6 mb-4">
-                        <NightiangleChart />
+                        <BarChart title="Sarana Pendidikan" :endpoint="'/test'" />
                     </div>
-
                     <div class="col-12 col-lg-6 mb-4">
-                        <BarChart />
+                        <BarChart title="Tenaga Pengajar" :endpoint="'/test'" />
                     </div>
-
                     <div class="col-12 col-lg-6 mb-4">
-                        <WorldPopulationChart />
+                        <BarChart title="Sarana Kesehatan" :endpoint="'/test'" />
                     </div>
-
                     <div class="col-12 col-lg-6 mb-4">
-                        <PieChart />
+                        <BarChart title="Sarana dan Prasaran lain" :endpoint="'/test'" />
                     </div>
+                </div>
 
+                <div class="mb-5">
+                    <NightiangleChart title="Mata Pencaharian Penduduk" :endpoint="'/test'" />
                 </div>
                 <br>
-                <div class="row">
+
+                <div class="row mb-5">
                     <div class="col-12 col-lg-6 mb-4">
-                        <StackedLineChart />
+                        <PieChart title="Potensi Penduduk" :endpoint="'/test'" />
                     </div>
                     <div class="col-12 col-lg-6 mb-4">
-                        <StackedLineChart />
+                        <PieChart title="Pendidikan Penduduk" :endpoint="'/test'" />
                     </div>
                 </div>
+                <br>
+
+                <div class="row mb-5">
+                    <div class="col-12 col-lg-6 mb-4">
+                        <StackedLineChart title="Penduduk yang Pindah dan Datang" :endpoint="'/test'" />
+                    </div>
+                    <div class="col-12 col-lg-6 mb-4">
+                        <StackedLineChart title="Penduduk Berdasarkan Mata Pencaharian" :endpoint="'/test'" />
+                    </div>
+                </div>
+                <br>
+
+                <div class="row mb-5">
+                    <div class="col-12 col-lg-6 mb-4">
+                        <WorldPopulationChart title="Data Penduduk Berdasarkan Jenis Kelamin" :endpoint="'/test'" />
+                    </div>
+                    <div class="col-12 col-lg-6 mb-4">
+                        <WorldPopulationChart title="Kelompok Penduduk Berdasarkan Umur" :endpoint="'/test'" />
+                    </div>
+                </div>
+                <br>
             </div>
         </section>
     </LandingV2>

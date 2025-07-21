@@ -3,6 +3,11 @@ import * as echarts from 'echarts';
 // 1. Perbaiki typo import dan tambahkan 'ref'
 import { ref, onMounted, onUnmounted } from 'vue';
 
+const props = defineProps({
+    title: String,
+    endpoint: String,
+})
+
 // Siapkan ref untuk elemen DOM
 const chartRef = ref(null);
 
@@ -23,7 +28,8 @@ onMounted(() => {
     // Gunakan const untuk option
     const option = {
         title: {
-            text: 'Populasi Dunia'
+            text: props.title,
+            left: 'center',
         },
         tooltip: {
             trigger: 'axis',
@@ -33,12 +39,12 @@ onMounted(() => {
         },
         legend: {
             // Pindahkan legend ke atas agar lebih rapi
-            top: '5%'
+            bottom: 'bottom'
         },
         grid: {
             left: '3%',
             right: '4%',
-            bottom: '3%',
+            bottom: '10%',
             containLabel: true
         },
         xAxis: {

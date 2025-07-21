@@ -15,7 +15,7 @@ const year = new Date().getFullYear();
                 <div class="col-md-5 mb-5 mb-lg-0">
                     <h3 class="mb-3">Tentang</h3>
                     <p class="mb-4">
-                        Nama Desa Kaputihan di Jatiwaras, Tasikmalaya, tidak berasal dari kabut, melainkan dari fenomena
+                        Nama Desa Kaputihan di Jatiwaras, Tasikmalaya, berasal dari fenomena
                         keramat "nampak putih" yang muncul di makam leluhurnya, Entol Wiraha, pada tahun 1912.
                     </p>
                 </div>
