@@ -4,8 +4,10 @@ import { onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps({
     title: String,
-    endpoint: String,
+    data: Object,
 })
+
+console.log(props.data);
 
 // 1. Siapkan ref untuk elemen DOM chart
 const chartRef = ref(null);
@@ -36,21 +38,32 @@ onMounted(() => {
                 type: 'shadow'
             }
         },
+        grid: {
+            containLabel: true // <-- INI YANG PALING PENTING
+        },
         xAxis: {
             type: 'category',
-            data: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']
+            data: props.data?.label,
+            axisLabel: {
+                interval: 0,
+                rotate: 30
+            }
         },
         yAxis: {
             type: 'value'
         },
         series: [
             {
-                name: 'Penjualan',
-                data: [120, 200, 150, 80, 70, 110, 130],
+                name: 'Sarana & Prasarana',
+                data: props.data?.jumlah,
                 type: 'bar',
                 barWidth: '60%',
                 itemStyle: {
-                    borderRadius: [5, 5, 0, 0] // Membuat sudut atas bar menjadi tumpul
+                    borderRadius: [5, 5, 0, 0], // Membuat sudut atas bar menjadi tumpul
+                    color: function (params) {
+                        const hue = (params.dataIndex * 45) % 360; // Mengubah hue tiap bar
+                        return `hsl(${hue}, 70%, 60%)`; // Format warna HSL otomatis
+                    }
                 }
             }
         ]

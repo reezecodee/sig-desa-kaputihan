@@ -1,14 +1,27 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import LandingV2 from '@/Layouts/LandingV2.vue';
-import NightiangleChart from '@/Pages/LandingV2/StatisticVillage/charts/NightiangleChart.vue';
 import PieChart from '@/Pages/LandingV2/StatisticVillage/charts/PieChart.vue';
 import BarChart from '@/Pages/LandingV2/StatisticVillage/charts/BarChart.vue';
 import WorldPopulationChart from '@/Pages/LandingV2/StatisticVillage/charts/WorldPopulationChart.vue';
 import StackedLineChart from '@/Pages/LandingV2/StatisticVillage/charts/StackedLineChart.vue';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
 
 defineProps({
     title: String
+});
+
+let chartsData = ref([]);
+
+onMounted(async () => {
+    try {
+        let response = await axios.get('/charts');
+        chartsData.value = response.data;
+        console.log(chartsData.value);
+    } catch (e) {
+        console.error("Terjadi error saat fetch data:", e);
+    }
 });
 </script>
 
@@ -28,49 +41,53 @@ defineProps({
                         </h2>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-12 col-lg-6 mb-4">
-                        <BarChart title="Sarana Pendidikan" :endpoint="'/test'" />
+                        <BarChart v-if="chartsData.educationalFacilities" title="Sarana Pendidikan"
+                            :data="chartsData.educationalFacilities" />
                     </div>
                     <div class="col-12 col-lg-6 mb-4">
-                        <BarChart title="Tenaga Pengajar" :endpoint="'/test'" />
+                        <BarChart v-if="chartsData.educators" title="Tenaga Pengajar" :data="chartsData.educators" />
                     </div>
                     <div class="col-12 col-lg-6 mb-4">
-                        <BarChart title="Sarana Kesehatan" :endpoint="'/test'" />
+                        <BarChart v-if="chartsData.healthFacilities" title="Sarana Kesehatan"
+                            :data="chartsData.healthFacilities" />
                     </div>
                     <div class="col-12 col-lg-6 mb-4">
-                        <BarChart title="Sarana dan Prasaran lain" :endpoint="'/test'" />
+                        <BarChart v-if="chartsData.otherFacilities" title="Sarana dan Prasaran lain"
+                            :data="chartsData.otherFacilities" />
                     </div>
                 </div>
 
                 <div class="mb-5">
-                    <NightiangleChart title="Mata Pencaharian Penduduk" :endpoint="'/test'" />
+                    <PieChart v-if="chartsData.mainOccupations" title="Mata Pencaharian Penduduk"
+                        :data="chartsData.mainOccupations" />
                 </div>
                 <br>
 
                 <div class="row mb-5">
                     <div class="col-12 col-lg-6 mb-4">
-                        <PieChart title="Potensi Penduduk" :endpoint="'/test'" />
+                        <PieChart v-if="chartsData.populationPotential" title="Potensi Penduduk" :data="chartsData.populationPotential" />
                     </div>
                     <div class="col-12 col-lg-6 mb-4">
-                        <PieChart title="Pendidikan Penduduk" :endpoint="'/test'" />
+                        <PieChart v-if="chartsData.educationalAttainment" title="Pendidikan Penduduk" :data="chartsData.educationalAttainment" />
                     </div>
                 </div>
                 <br>
 
                 <div class="row mb-5">
                     <div class="col-12 col-lg-6 mb-4">
-                        <StackedLineChart title="Penduduk yang Pindah dan Datang" :endpoint="'/test'" />
+                        <StackedLineChart v-if="chartsData.populationMigration" title="Penduduk yang Pindah dan Datang" :data="chartsData.populationMigration" />
                     </div>
                     <div class="col-12 col-lg-6 mb-4">
-                        <StackedLineChart title="Penduduk Berdasarkan Mata Pencaharian" :endpoint="'/test'" />
+                        <StackedLineChart v-if="chartsData.populationByOccupation" title="Penduduk Berdasarkan Mata Pencaharian" :data="chartsData.populationByOccupation" />
                     </div>
                 </div>
                 <br>
 
                 <div class="mb-5">
-                    <WorldPopulationChart title="Kelompok Penduduk Berdasarkan Umur" :endpoint="'/test'" />
+                    <WorldPopulationChart v-if="chartsData.populationByAgeGroup" title="Kelompok Penduduk Berdasarkan Umur" :data="chartsData.populationByAgeGroup" />
                 </div>
                 <br>
             </div>

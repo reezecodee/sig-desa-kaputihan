@@ -4,7 +4,7 @@ import { onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps({
     title: String,
-    endpoint: String,
+    data: Object,
 })
 
 // 1. Gunakan 'ref' untuk menampung elemen DOM chart.
@@ -15,8 +15,12 @@ const chartRef = ref(null);
 let myChart = null;
 
 onMounted(() => {
+    const sortedData = props.data.sort((a, b) => b.value - a.value);
+    console.log(sortedData);
+
     // 2. Inisialisasi chart menggunakan '.value' dari ref
     myChart = echarts.init(chartRef.value);
+
 
     // 3. Gunakan 'const' untuk option karena tidak akan di-assign ulang
     const option = {
@@ -32,18 +36,17 @@ onMounted(() => {
             orient: 'horizontal',
             bottom: 'bottom'
         },
+        label: {
+            show: true,
+            formatter: '{d}%', // {d} adalah untuk persentase
+            position: 'inside',
+        },
         series: [
             {
-                name: 'Sumber Akses',
+                name: 'Data',
                 type: 'pie',
                 radius: '50%',
-                data: [
-                    { value: 1048, name: 'Mesin Pencari' },
-                    { value: 735, name: 'Langsung' },
-                    { value: 580, name: 'Email' },
-                    { value: 484, name: 'Iklan Afiliasi' },
-                    { value: 300, name: 'Iklan Video' }
-                ],
+                data: sortedData,
                 emphasis: {
                     itemStyle: {
                         shadowBlur: 10,

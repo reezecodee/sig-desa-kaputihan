@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\StatsMainOccupation;
 use App\Models\SurveyYear;
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -16,84 +15,41 @@ class StatMainOccupationSeeder extends Seeder
      */
     public static function run(): void
     {
-        StatsMainOccupation::insert([
-            [
+        $rawData = [
+            ['label' => 'Petani Pemilik Tanah', 'jumlah' => 2616],
+            ['label' => 'Peternak', 'jumlah' => 127],
+            ['label' => 'Buruh Tani', 'jumlah' => 1996],
+            ['label' => 'Buruh Harian Lepas', 'jumlah' => 835],
+            ['label' => 'Pengusaha Kecil dan Menengah', 'jumlah' => 230],
+            ['label' => 'Dukun Kampung Terlatih', 'jumlah' => 5],
+            ['label' => 'PNS', 'jumlah' => 21],
+            ['label' => 'TNI', 'jumlah' => 0],
+            ['label' => 'POLISI', 'jumlah' => 0],
+        ];
+
+        $surveyId = self::getSurveyId();
+        $timestamp = now();
+        $dataToInsert = [];
+
+        foreach ($rawData as $item) {
+            $dataToInsert[] = [
                 'id' => Str::uuid(),
-                'survey_id' => self::getSurveyId(),
-                'label' => 'Petani Pemilik Tanah',
-                'jumlah' => 2616,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'id' => Str::uuid(),
-                'survey_id' => self::getSurveyId(),
-                'label' => 'Peternak',
-                'jumlah' => 127,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'id' => Str::uuid(),
-                'survey_id' => self::getSurveyId(),
-                'label' => 'Buruh Tani',
-                'jumlah' => 1996,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'id' => Str::uuid(),
-                'survey_id' => self::getSurveyId(),
-                'label' => 'Buruh Harian Lepas',
-                'jumlah' => 835,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'id' => Str::uuid(),
-                'survey_id' => self::getSurveyId(),
-                'label' => 'Pengusaha Kecil dan Menengah',
-                'jumlah' => 230,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'id' => Str::uuid(),
-                'survey_id' => self::getSurveyId(),
-                'label' => 'Dukun Kampung Terlatih',
-                'jumlah' => 5,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'id' => Str::uuid(),
-                'survey_id' => self::getSurveyId(),
-                'label' => 'PNS',
-                'jumlah' => 21,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'id' => Str::uuid(),
-                'survey_id' => self::getSurveyId(),
-                'label' => 'TNI',
-                'jumlah' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'id' => Str::uuid(),
-                'survey_id' => self::getSurveyId(),
-                'label' => 'POLISI',
-                'jumlah' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-        ]);
+                'survey_id' => $surveyId,
+                'label' => $item['label'],
+                'jumlah' => $item['jumlah'],
+                'created_at' => $timestamp->copy(),
+                'updated_at' => $timestamp->copy(),
+            ];
+
+            $timestamp->addSecond();
+        }
+
+        StatsMainOccupation::query()->delete();
+        StatsMainOccupation::insert($dataToInsert);
     }
 
     public static function getSurveyId()
     {
-        return SurveyYear::first()->id;
+        return SurveyYear::firstOrFail()->id;
     }
 }

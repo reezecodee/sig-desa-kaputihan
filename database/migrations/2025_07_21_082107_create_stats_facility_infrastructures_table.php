@@ -21,7 +21,7 @@ return new class extends Migration
                 'Tenaga Pengajar',
                 'Sarana Kesehatan',
                 'Sarana dan Prasarana Lain'
-            ]);
+            ])->index();
             $table->timestamps();
         });
     }

@@ -5,7 +5,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 const props = defineProps({
     title: String,
-    endpoint: String,
+    data: Object,
 })
 
 // Siapkan ref untuk elemen DOM
@@ -53,18 +53,18 @@ onMounted(() => {
         },
         yAxis: {
             type: 'category',
-            data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'Dunia']
+            data: props.data.rentang_umur
         },
         series: [
             {
-                name: '2011',
+                name: 'Laki-laki',
                 type: 'bar',
-                data: [18203, 23489, 29034, 104970, 131744, 630230]
+                data: props.data.laki_laki
             },
             {
-                name: '2012',
+                name: 'Perempuan',
                 type: 'bar',
-                data: [19325, 23438, 31000, 121594, 134141, 681807]
+                data: props.data.perempuan
             }
         ]
     };
