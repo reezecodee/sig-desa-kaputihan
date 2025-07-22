@@ -49,8 +49,8 @@ watch(search, debounce(value => {
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6" v-for="building in buildings.data" :key="building.id">
                         <div class="card h-100">
-                            <img src="https://placehold.co/600x400/0d6efd/white?text=Masjid" class="card-img-top"
-                                alt="Foto Masjid Al-Ikhlas">
+                            <img :src="`/storage/foto-bangunan/${building.foto_bangunan}`" class="card-img-top"
+                                :alt="`Foto ${building.nama_bangunan}`">
                             <div class="card-body d-flex flex-column">
                                 <div>
                                     <span class="badge rounded-pill text-bg-primary mb-2">{{ building.category?.nama_kategori }}</span>
