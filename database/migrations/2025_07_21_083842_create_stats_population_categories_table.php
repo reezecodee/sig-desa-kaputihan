@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('label')->index();
             $table->string('tahun');
             $table->integer('jumlah');
-            $table->string('jenis_data');
+            $table->enum('jenis_data', [
+                'Berdasarkan yang Pindah dan Datang',
+                'Berdasarkan Mata Pencaharian'
+            ]);
             $table->timestamps();
         });
     }

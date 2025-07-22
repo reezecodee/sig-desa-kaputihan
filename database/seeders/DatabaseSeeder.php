@@ -19,5 +19,11 @@ class DatabaseSeeder extends Seeder
         BuildingSeeder::run();
         BuildingPhotoSeeder::run();
         ScheduleSeeder::run();
+        SurveyYearSeeder::run();
+        StatFacilityInfrastructureSeeder::run();
+        StatMainOccupationSeeder::run();
+        StatGeneralDataSeeder::run();
+        StatPopulationCategorySeeder::run();
+        StatPopulationGroupSeeder::run();
     }
 }

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('stats_general_data', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('survey_id')->constrained('survey_years')->cascadeOnDelete();
-            $table->string('label')->unique()->index();
+            $table->string('label')->index();
             $table->integer('jumlah');
             $table->string('satuan');
-            $table->string('jenis_data');
+            $table->enum('jenis_data', ['Potensi Penduduk', 'Pendidikan Penduduk']);
             $table->timestamps();
         });
     }

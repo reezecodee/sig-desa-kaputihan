@@ -69,13 +69,8 @@ defineProps({
                 </div>
                 <br>
 
-                <div class="row mb-5">
-                    <div class="col-12 col-lg-6 mb-4">
-                        <WorldPopulationChart title="Data Penduduk Berdasarkan Jenis Kelamin" :endpoint="'/test'" />
-                    </div>
-                    <div class="col-12 col-lg-6 mb-4">
-                        <WorldPopulationChart title="Kelompok Penduduk Berdasarkan Umur" :endpoint="'/test'" />
-                    </div>
+                <div class="mb-5">
+                    <WorldPopulationChart title="Kelompok Penduduk Berdasarkan Umur" :endpoint="'/test'" />
                 </div>
                 <br>
             </div>

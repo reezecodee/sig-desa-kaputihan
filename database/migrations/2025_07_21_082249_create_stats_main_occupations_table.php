@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('stats_main_occupations', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('survey_id')->constrained('survey_years')->cascadeOnDelete();
-            $table->string('label')->unique()->index();
+            $table->string('label')->index();
             $table->integer('jumlah');
             $table->timestamps();
         });

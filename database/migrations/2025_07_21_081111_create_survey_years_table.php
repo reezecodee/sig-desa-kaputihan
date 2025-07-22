@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('survey_years', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('tahun_survey')->unique()->index();
-            $table->string('diaktifkan', ['Ya', 'Tidak'])->unique()->index();
+            $table->enum('diaktifkan', ['Ya', 'Tidak'])->index();
             $table->timestamps();
         });
     }

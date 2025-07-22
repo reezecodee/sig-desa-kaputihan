@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('stats_population_groups', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('survey_id')->constrained('survey_years')->cascadeOnDelete();
-            $table->string('nama_dusun')->index();
-            $table->string('rentang_umur');
-            $table->string('jenis_kelamin');
-            $table->integer('jumlah');
+            $table->string('rentang_umur')->index();
+            $table->integer('laki_laki');
+            $table->integer('perempuan');
             $table->timestamps();
         });
     }

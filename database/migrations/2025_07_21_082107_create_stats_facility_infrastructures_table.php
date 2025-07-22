@@ -16,7 +16,12 @@ return new class extends Migration
             $table->foreignUuid('survey_id')->constrained('survey_years')->cascadeOnDelete();
             $table->string('label')->index();
             $table->integer('jumlah');
-            $table->string('jenis_sapras'); // belum
+            $table->enum('jenis_sapras', [
+                'Sarana Pendidikan',
+                'Tenaga Pengajar',
+                'Sarana Kesehatan',
+                'Sarana dan Prasarana Lain'
+            ]);
             $table->timestamps();
         });
     }
