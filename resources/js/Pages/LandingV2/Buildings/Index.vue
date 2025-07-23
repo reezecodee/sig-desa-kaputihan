@@ -14,7 +14,7 @@ const props = defineProps({
 let search = ref(props.filters.search);
 
 watch(search, debounce(value => {
-    router.get('/bangunan-desa', { search: value }, {
+    router.get(route('landing.buildings'), { search: value }, {
         preserveState: true,
         replace: true
     })
@@ -41,7 +41,7 @@ watch(search, debounce(value => {
                     <div class="col-md-6">
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" id="searchInput" class="form-control form-control-lg" v-model="search"
+                            <input type="text" id="searchInput" class="form-control form-control-lg" v-model="search" autocomplete="off"
                                 placeholder="Cari nama atau kategori bangunan...">
                         </div>
                     </div>

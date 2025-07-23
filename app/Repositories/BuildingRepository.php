@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Building;
+use App\Models\BuildingPhoto;
 use Illuminate\Support\Facades\Storage;
 
 class BuildingRepository
@@ -56,5 +57,42 @@ class BuildingRepository
         } catch (\Exception $e) {
             throw new \Exception('Terjadi kesalahan saat mencoba menghapus data');
         }
+    }
+
+    public function paginated($id, $search)
+    {
+        $query = Building::query()
+            ->select(['id', 'kategori_id', 'slug', 'nama_bangunan', 'foto_bangunan', 'deskripsi']);
+
+        if ($id) {
+            $query->where('kategori_id', $id);
+        }
+
+        $buildingPaginated = $query->with('category')
+            ->when($search, function ($query, $search) {
+                $query->where('nama_bangunan', 'like', "%{$search}%")
+                    ->orWhereHas('category', function ($kategoriQuery) use ($search) {
+                        $kategoriQuery->where('nama_kategori', 'like', "%{$search}%");
+                    });
+            })->latest()
+            ->paginate(6)->withQueryString();
+
+        return $buildingPaginated;
+    }
+
+    public function buildingData(string $slug)
+    {
+        $building = Building::select(['id', 'kategori_id', 'nama_bangunan', 'deskripsi', 'foto_bangunan', 'google_maps', 'link_lokasi'])
+            ->with('category')
+            ->where('slug', $slug)
+            ->firstOrFail();
+        $photos = BuildingPhoto::select(['nama_file'])
+            ->where('bangunan_id', $building->id)
+            ->get();
+
+        return [
+            'building' => $building,
+            'photos' => $photos,
+        ];
     }
 }

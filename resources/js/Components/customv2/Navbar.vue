@@ -1,12 +1,16 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+
+const page = usePage();
+const village = computed(() => page.props.village);
 </script>
 
 <template>
     <header class="fbs__net-navbar navbar navbar-expand-lg dark">
         <div class="container d-flex align-items-center justify-content-between">
             <a class="navbar-brand w-auto" href="">
-                <img class="logo dark img-fluid" src="landingv2/images/logo-dark.svg">
+                <img class="logo dark img-fluid" :src="`/placeholder/${village.logo ?? 'logo-desa.webp'}`" width="120">
             </a>
 
             <div class="offcanvas offcanvas-start w-75" id="fbs__net-navbars" tabindex="-1"
@@ -14,7 +18,7 @@ import { Link } from '@inertiajs/vue3';
                 <div class="offcanvas-header">
                     <div class="offcanvas-header-logo">
                         <a class="logo-link" id="fbs__net-navbarsLabel" href="">
-                            <img class="logo dark img-fluid" src="landingv2/images/logo-dark.svg">
+                            <img class="logo dark img-fluid" :src="`/placeholder/${village.logo ?? 'logo-desa.webp'}`" width="120">
                         </a>
                     </div>
 

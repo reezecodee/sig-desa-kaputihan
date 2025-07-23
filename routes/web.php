@@ -10,7 +10,7 @@ Route::middleware(['landing-layout'])->controller(LandingController::class)->gro
     Route::get('batas-wilayah', 'territoryBoundary')->name('landing.map');
     Route::get('statistik-desa', 'statisticVillage')->name('landing.statistics');
     Route::prefix('bangunan-desa')->group(function(){
-        Route::get('/', 'buildings')->name('landing.buildings');
+        Route::get('daftar/{id?}', 'buildings')->name('landing.buildings');
         Route::get('detail/{slug}', 'detailBuilding')->name('landing.detailBuilding');
     });
     Route::get('jadwal-kegiatan', 'schedule')->name('landing.schedule');

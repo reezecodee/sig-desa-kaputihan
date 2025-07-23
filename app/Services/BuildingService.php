@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Building;
 use App\Repositories\BuildingRepository;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -99,8 +100,13 @@ class BuildingService
         }
     }
 
-    public function getCategories()
+    public function paginatedResult($id, $search)
     {
-        return $this->buildingRepository->categories();
+        return $this->buildingRepository->paginated($id, $search);
+    }
+    
+    public function buildingData(string $slug)
+    {
+        return $this->buildingRepository->buildingData($slug);
     }
 }

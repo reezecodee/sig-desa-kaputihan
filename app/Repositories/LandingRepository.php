@@ -23,6 +23,7 @@ class LandingRepository
     public function categories(int $perPage = 6)
     {
         $categories = Category::select(['id', 'nama_kategori', 'icon', 'deskripsi'])
+            ->withCount('buildings')
             ->simplePaginate($perPage);
 
         return $categories;

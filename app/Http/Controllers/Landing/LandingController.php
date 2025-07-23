@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Landing;
 use App\Http\Controllers\Controller;
 use App\Models\Building;
 use App\Models\BuildingPhoto;
+use App\Services\BuildingService;
 use App\Services\LandingService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -12,10 +13,12 @@ use Inertia\Inertia;
 class LandingController extends Controller
 {
     protected $landingService;
+    protected $buildingService;
 
-    public function __construct(LandingService $landingService)
+    public function __construct(LandingService $landingService, BuildingService $buildingService)
     {
         $this->landingService = $landingService;
+        $this->buildingService = $buildingService;
     }
 
     public function index()
@@ -44,37 +47,21 @@ class LandingController extends Controller
         return Inertia::render('LandingV2/StatisticVillage/Index', compact('title'));
     }
 
-    public function buildings(Request $request)
+    public function buildings(Request $request, $id = null)
     {
         $title = 'Bangunan-bangunan di Desa Kaputihan';
+        $search = $request->input('search');
+        $buildings = $this->buildingService->paginatedResult($id, $search);
         $filters = $request->only('search');
-
-        $paginatedResult = Building::query()
-            ->select(['id', 'kategori_id', 'slug', 'nama_bangunan', 'foto_bangunan', 'deskripsi'])
-            ->with('category')
-            ->when($request->input('search'), function ($query, $search) {
-                $query->where('nama_bangunan', 'like', "%{$search}%")
-                    ->orWhereHas('category', function ($kategoriQuery) use ($search) {
-                        $kategoriQuery->where('nama_kategori', 'like', "%{$search}%");
-                    });
-            })->latest()
-            ->paginate(6);
-
-        $buildings = $paginatedResult->withQueryString();
 
         return Inertia::render('LandingV2/Buildings/Index', compact('title', 'buildings', 'filters'));
     }
 
     public function detailBuilding(string $slug)
     {
-        $detailBuilding = Building::select(['id', 'kategori_id', 'nama_bangunan', 'deskripsi', 'foto_bangunan', 'google_maps', 'link_lokasi'])
-            ->with('category')
-            ->where('slug', $slug)
-            ->firstOrFail();
-
-        $buildingPhotos = BuildingPhoto::select(['nama_file'])
-            ->where('bangunan_id', $detailBuilding->id)
-            ->get();
+        $building = $this->buildingService->buildingData($slug);
+        $detailBuilding = $building['building'];
+        $buildingPhotos = $building['photos'];
 
         $title = 'Detail ' . $detailBuilding->category->nama_kategori . ': ' . $detailBuilding->nama_bangunan;
 

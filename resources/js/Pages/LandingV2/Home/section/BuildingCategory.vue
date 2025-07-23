@@ -55,10 +55,10 @@ const seeMoreCategories = () => {
                             <p>
                                 {{ item.deskripsi }}
                             </p>
-                            <p class="fw-bold">Jumlah: 10</p>
+                            <p class="fw-bold">Jumlah: {{ item.buildings_count  }}</p>
                         </div>
                         <Link class="special-link d-inline-flex gap-2 align-items-center text-decoration-none"
-                            :href="item.id">
+                            :href="route('landing.buildings', item.id)">
                         <span class="icons">
                             <i class="icon-1 bi bi-arrow-right-short"></i>
                             <i class="icon-2 bi bi-arrow-right-short"></i>
