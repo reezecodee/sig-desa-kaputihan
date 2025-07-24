@@ -18,7 +18,7 @@
                             </p>
                             <div class="cta d-flex gap-2 mb-4 mb-lg-5" data-aos="fade-up" data-aos-delay="300">
                                 <a class="btn" :href="route('login')">Mulai Sekarang</a>
-                                <a class="btn btn-white-outline" href="#">
+                                <a class="btn btn-white-outline" href="https://kaputihan.desa.id/" target="_blank">
                                     Lihat Website Utama
                                     <svg class="lucide lucide-arrow-up-right" xmlns="http://www.w3.org/2000/svg"
                                         width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor"
@@ -33,8 +33,8 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-img">
-                        <img class="img-main img-fluid" src="/img/hero-1.png" alt="Hero Image"
-                            data-aos="fade-in" data-aos-delay="500">
+                        <img class="img-main img-fluid" src="/img/hero-1.png" alt="Hero Image" data-aos="fade-in"
+                            data-aos-delay="500">
                     </div>
                 </div>
             </div>

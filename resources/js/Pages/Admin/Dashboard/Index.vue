@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
-import { Head, Link, router } from '@inertiajs/vue3'
+import { Head, router } from '@inertiajs/vue3'
 import { ref, onMounted } from 'vue'
 import MapVillage from '@/Components/custom/landing/MapVillage.vue'
 import MapTable from '@/Components/custom/dashboard/MapTable.vue'
@@ -13,7 +13,6 @@ import {
 } from '@/Components/ui/card'
 import {
     AlertDialog,
-    AlertDialogTrigger,
     AlertDialogContent,
     AlertDialogHeader,
     AlertDialogTitle,
@@ -28,7 +27,7 @@ defineProps({
     data: Object
 })
 
-const currentYear: Date = new Date().getFullYear()
+const currentYear: number = new Date().getFullYear()
 
 const showDialog = ref(false);
 const selectedId = ref(null);

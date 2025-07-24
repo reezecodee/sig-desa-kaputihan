@@ -4,7 +4,7 @@ import L from 'leaflet'
 import axios from 'axios'
 
 const props = defineProps({
-  height: Number
+  height: String
 })
 
 const style = {

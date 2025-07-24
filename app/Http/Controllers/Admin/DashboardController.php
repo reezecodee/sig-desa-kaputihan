@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Building;
 use App\Models\Schedule;
 use App\Models\User;
-use App\Models\Village;
+use App\Models\VillageProfile;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
@@ -15,7 +15,7 @@ class DashboardController extends Controller
     {
         $title = 'Dashboard';
         $data = [
-            'penduduk' => Village::value('jumlah_penduduk'),
+            'penduduk' => VillageProfile::value('jumlah_penduduk'),
             'jadwal' => Schedule::whereYear('created_at', date('Y'))->count(),
             'bangunan' => Building::count(),
             'admin' => User::count()

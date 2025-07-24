@@ -11,8 +11,12 @@ import { Link } from '@inertiajs/vue3'
       Dashboard
       </Link>
       <Link :href="route('admin.schedule')" class="text-sm font-medium transition-colors hover:text-primary"
-        :class="{ 'text-muted-foreground': !$page.url.startsWith('/jadwal-kegiatan') }">
-      Jadwal Kegiatan
+        :class="{ 'text-muted-foreground': !$page.url.startsWith('/jadwal-desa') }">
+      Jadwal Desa
+      </Link>
+      <Link :href="route('admin.building')" class="text-sm font-medium transition-colors hover:text-primary"
+        :class="{ 'text-muted-foreground': !$page.url.startsWith('/bangunan') }">
+      Statistik Data
       </Link>
       <Link :href="route('admin.building')" class="text-sm font-medium transition-colors hover:text-primary"
         :class="{ 'text-muted-foreground': !$page.url.startsWith('/bangunan') }">

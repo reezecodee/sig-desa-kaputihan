@@ -37,4 +37,31 @@ class ScheduleRepository
                 ];
             });
     }
+
+    public function store($data)
+    {
+        try {
+            return Schedule::create($data);
+        } catch (\Exception $e) {
+            throw new \Exception('Terjadi kesalahan saatn mencoba menambahkan data');
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $schedule = Schedule::findOrFail($id);
+
+            return $schedule->delete();
+        } catch (\Exception $e) {
+            throw new \Exception('Terjadi kesalahan saat mencoba menghapus data');
+        }
+    }
+
+    public function lists()
+    {
+        $blogs = Schedule::orderBy('created_at', 'desc')->get();
+
+        return $blogs;
+    }
 }

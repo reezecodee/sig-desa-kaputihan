@@ -18,7 +18,7 @@ const isLoading = ref(false)
 async function onSubmit(event: Event) {
   event.preventDefault()
   isLoading.value = true
-  
+
   form.post(route('auth.loginProcess'))
 
   isLoading.value = false

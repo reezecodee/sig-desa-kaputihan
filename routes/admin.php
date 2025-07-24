@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\BuildingController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\API\APIController;
@@ -34,6 +35,14 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
     Route::prefix('pengaturan-desa')->controller(SettingController::class)->group(function () {
         Route::get('/', 'index')->name('admin.setting');
         Route::post('perbarui-pengaturan', 'update')->name('admin.settingUpdate');
+    });
+
+    Route::prefix('jadwal-desa')->controller(ScheduleController::class)->group(function () {
+        Route::get('/', 'index')->name('admin.schedule');
+        Route::get('daftar-jadwal', 'getSchedules')->name('admin.scheduleList');
+        Route::get('buat-jadwal', 'create')->name('admin.scheduleCreate');
+        Route::post('tambah-jadwal', 'store')->name('admin.scheduleSave');
+        Route::delete('hapus-jadwal/{id}', 'destroy')->name('admin.scheduleDestroy');
     });
 
     Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {
