@@ -3,9 +3,7 @@ import App from '@/Layouts/App.vue'
 import { Head, Link, router } from '@inertiajs/vue3';
 import { Card, CardHeader, CardTitle, CardContent } from '@/Components/ui/card';
 import { Button } from '@/Components/ui/button';
-import Table from '@/Components/custom/schedule/Table.vue';
 import { onMounted, ref } from 'vue'
-import FullCalendar from '@/Components/customv2/Schedule.vue';
 import {
     AlertDialog,
     AlertDialogContent,
@@ -56,28 +54,13 @@ onMounted(() => {
             </h2>
             <div class="flex items-center space-x-2">
                 <Link :href="route('admin.scheduleCreate')">
-                <Button class="shadcn-btn detail-btn">Buat Jadwal Baru</Button>
+                <Button class="shadcn-btn detail-btn">Buat Survey Baru</Button>
                 </Link>
             </div>
         </template>
         <Card>
-            <CardHeader>
-                <CardTitle>
-                    Kalender Kegiatan
-                </CardTitle>
-            </CardHeader>
             <CardContent>
-                <FullCalendar :endpoint="route('admin.scheduleForAdminPage')" start="prev,next" end="title" />
-            </CardContent>
-        </Card>
-        <Card>
-            <CardHeader>
-                <CardTitle>
-                    Daftar Jadwal yang Sudah Dibuat
-                </CardTitle>
-            </CardHeader>
-            <CardContent>
-                <Table/>
+                
             </CardContent>
         </Card>
         <AlertDialog v-model:open="showDialog">

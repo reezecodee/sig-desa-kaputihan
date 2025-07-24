@@ -63,7 +63,7 @@ const calendarOptions = {
 </script>
 
 <template>
-  <div class="legend-container">
+  <div class="legend-container mb-5">
     <div class="legend-item">
       <span class="legend-color" style="background-color: #007bff;"></span>
       <span>Kegiatan Sosial</span>

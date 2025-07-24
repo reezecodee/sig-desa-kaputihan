@@ -60,8 +60,8 @@ class ScheduleRepository
 
     public function lists()
     {
-        $blogs = Schedule::orderBy('created_at', 'desc')->get();
+        $schedules = Schedule::orderBy('created_at', 'desc')->get();
 
-        return $blogs;
+        return $schedules;
     }
 }

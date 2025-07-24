@@ -6,8 +6,10 @@ use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\API\APIController;
+use App\Http\Controllers\Datatable\ScheduleDatatableController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('daftar-lokasi/{type}', [LocationController::class, 'getLocations'])->name('admin.locationList');
@@ -17,7 +19,7 @@ Route::get('jadwal-admin-page', [APIController::class, 'scheduleForAdmin'])->nam
 Route::middleware(['app-layout', 'auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::prefix('lokasi')->controller(LocationController::class)->group(function(){
+    Route::prefix('lokasi')->controller(LocationController::class)->group(function () {
         Route::post('simpan-lokasi', 'store')->name('admin.locationSave');
         Route::delete('hapus-lokasi/{id}', 'destroy')->name('admin.locationDestroy');
     });
@@ -37,12 +39,15 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
         Route::post('perbarui-pengaturan', 'update')->name('admin.settingUpdate');
     });
 
-    Route::prefix('jadwal-desa')->controller(ScheduleController::class)->group(function () {
+    Route::prefix('jadwal-kegiatan-desa')->controller(ScheduleController::class)->group(function () {
         Route::get('/', 'index')->name('admin.schedule');
-        Route::get('daftar-jadwal', 'getSchedules')->name('admin.scheduleList');
         Route::get('buat-jadwal', 'create')->name('admin.scheduleCreate');
         Route::post('tambah-jadwal', 'store')->name('admin.scheduleSave');
         Route::delete('hapus-jadwal/{id}', 'destroy')->name('admin.scheduleDestroy');
+    });
+
+    Route::prefix('statistik-data-desa')->controller(StatisticsController::class)->group(function () {
+        Route::get('/', 'index')->name('admin.statistics');
     });
 
     Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {
@@ -60,4 +65,8 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
         Route::post('edit-profile', 'editProfile')->name('admin.editProfile');
         Route::post('ganti-password', 'changePassword')->name('admin.changePassword');
     });
+
+    Route::get('daftar-jadwal', [ScheduleDatatableController::class, 'getSchedules'])->name('datatable.schedule');
+
+    Route::get('jadwal-admin-page', [APIController::class, 'scheduleForAdminPage'])->name('admin.scheduleForAdminPage');
 });

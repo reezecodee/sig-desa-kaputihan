@@ -5,13 +5,14 @@ onMounted(() => {
     $('#myTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: route('admin.scheduleList'),
+        ajax: route('datatable.schedule'),
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+            { data: 'kegiatan', name: 'kegiatan' },
+            { data: 'kategori', name: 'kategori' },
+            { data: 'mulai', name: 'mulai' },
+            { data: 'selesai', name: 'selesai' },
             { data: 'keterangan', name: 'keterangan' },
-            { data: 'status', name: 'status' },
-            { data: 'tgl_mulai', name: 'tgl_mulai' },
-            { data: 'tgl_selesai', name: 'tgl_selesai' },
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ]
     });
@@ -24,10 +25,11 @@ onMounted(() => {
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Keterangan</th>
-                    <th>Status</th>
+                    <th>Kegiatan</th>
+                    <th>Kategori</th>
                     <th>Tanggal Mulai</th>
                     <th>Tanggal Selesai</th>
+                    <th>Keterangan</th>
                     <th>Action</th>
                 </tr>
             </thead>
