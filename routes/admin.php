@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\API\APIController;
 use App\Http\Controllers\Datatable\ScheduleDatatableController;
+use App\Http\Controllers\Datatable\StatisticsDatatableController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('daftar-lokasi/{type}', [LocationController::class, 'getLocations'])->name('admin.locationList');
@@ -47,6 +48,7 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
 
     Route::prefix('statistik-data-desa')->controller(StatisticsController::class)->group(function () {
         Route::get('/', 'index')->name('admin.statistics');
+        Route::get('menu-charts/{surveyID}', 'chartMenu')->name('admin.chartMenu');
     });
 
     Route::prefix('kategori-bangunan-desa')->controller(CategoryController::class)->group(function () {
@@ -71,6 +73,7 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
 
     Route::get('daftar-jadwal', [ScheduleDatatableController::class, 'getSchedules'])->name('datatable.schedule');
     Route::get('daftar-bangunan/{categoryID}', [ScheduleDatatableController::class, 'getBuildings'])->name('datatable.buildings');
+    Route::get('daftar-survey', [StatisticsDatatableController::class, 'getSurveys'])->name('datatable.surveys');
 
     Route::get('jadwal-admin-page', [APIController::class, 'scheduleForAdminPage'])->name('admin.scheduleForAdminPage');
 });

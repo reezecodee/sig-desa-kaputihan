@@ -14,4 +14,11 @@ class StatisticsController extends Controller
 
         return Inertia::render('Admin/Statistics/Index', compact('title'));
     }
+
+    public function chartMenu()
+    {
+        $title = 'Menu Charts Statistik';
+
+        return Inertia::render('Admin/Statistics/ChartMenu', compact('title'));
+    }
 }

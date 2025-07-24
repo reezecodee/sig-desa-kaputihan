@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
-import { Head, Link, router } from '@inertiajs/vue3';
-import { Card, CardHeader, CardTitle, CardContent } from '@/Components/ui/card';
-import { Button } from '@/Components/ui/button';
+import { Head, router } from '@inertiajs/vue3';
+import { Card, CardHeader, CardContent, CardTitle } from '@/Components/ui/card';
 import { onMounted, ref } from 'vue'
+import Table from '@/Components/custom/statistics/Table.vue';
 import {
     AlertDialog,
     AlertDialogContent,
@@ -14,6 +14,7 @@ import {
     AlertDialogCancel,
     AlertDialogAction
 } from "@/Components/ui/alert-dialog";
+import FormStatistics from '@/Components/custom/statistics/FormStatistics.vue';
 
 defineProps({
     title: String
@@ -53,14 +54,17 @@ onMounted(() => {
                 {{ title }}
             </h2>
             <div class="flex items-center space-x-2">
-                <Link :href="route('admin.scheduleCreate')">
-                <Button class="shadcn-btn detail-btn">Buat Survey Baru</Button>
-                </Link>
+                <FormStatistics />
             </div>
         </template>
         <Card>
+            <CardHeader>
+                <CardTitle>
+                    Daftar tahun survey
+                </CardTitle>
+            </CardHeader>
             <CardContent>
-                
+                <Table />
             </CardContent>
         </Card>
         <AlertDialog v-model:open="showDialog">
