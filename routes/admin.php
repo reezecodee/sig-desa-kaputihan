@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\BuildingController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ScheduleController;
@@ -28,7 +29,6 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
         Route::get('/', 'index')->name('admin.building');
         Route::get('tambah-bangunan', 'create')->name('admin.buildingCreate');
         Route::post('tambah-bangunan-baru', 'store')->name('admin.buildingSave');
-        Route::get('daftar-bangunan/{category}', 'getBuildings')->name('admin.buildingList');
         Route::get('edit-bangunan/{id}', 'edit')->name('admin.buildingEdit');
         Route::post('update-bangunan/{id}', 'update')->name('admin.buildingUpdate');
         Route::delete('hapus-bangunan/{id}', 'destroy')->name('admin.buildingDestroy');
@@ -41,13 +41,16 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
 
     Route::prefix('jadwal-kegiatan-desa')->controller(ScheduleController::class)->group(function () {
         Route::get('/', 'index')->name('admin.schedule');
-        Route::get('buat-jadwal', 'create')->name('admin.scheduleCreate');
         Route::post('tambah-jadwal', 'store')->name('admin.scheduleSave');
         Route::delete('hapus-jadwal/{id}', 'destroy')->name('admin.scheduleDestroy');
     });
 
     Route::prefix('statistik-data-desa')->controller(StatisticsController::class)->group(function () {
         Route::get('/', 'index')->name('admin.statistics');
+    });
+
+    Route::prefix('kategori-bangunan-desa')->controller(CategoryController::class)->group(function () {
+        Route::get('/', 'index')->name('admin.category');
     });
 
     Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {
@@ -67,6 +70,7 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
     });
 
     Route::get('daftar-jadwal', [ScheduleDatatableController::class, 'getSchedules'])->name('datatable.schedule');
+    Route::get('daftar-bangunan/{categoryID}', [ScheduleDatatableController::class, 'getBuildings'])->name('datatable.buildings');
 
     Route::get('jadwal-admin-page', [APIController::class, 'scheduleForAdminPage'])->name('admin.scheduleForAdminPage');
 });

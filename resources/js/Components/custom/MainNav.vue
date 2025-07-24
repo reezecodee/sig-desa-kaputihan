@@ -18,9 +18,9 @@ import { Link } from '@inertiajs/vue3'
         :class="{ 'text-muted-foreground': !$page.url.startsWith('/statistik-data-desa') }">
       Statistik Desa
       </Link>
-      <Link :href="route('admin.building')" class="text-sm font-medium transition-colors hover:text-primary"
-        :class="{ 'text-muted-foreground': !$page.url.startsWith('/bangunan') }">
-      Bangunan
+      <Link :href="route('admin.category')" class="text-sm font-medium transition-colors hover:text-primary"
+        :class="{ 'text-muted-foreground': !$page.url.startsWith('/kategori-bangunan-desa') }">
+      Kategori
       </Link>
       <Link :href="route('admin.userManagement')" class="text-sm font-medium transition-colors hover:text-primary"
         :class="{ 'text-muted-foreground': !$page.url.startsWith('/manajemen-pengguna') }">

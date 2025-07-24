@@ -16,8 +16,11 @@ Route::middleware(['landing-layout'])->controller(LandingController::class)->gro
     Route::get('jadwal-kegiatan', 'schedule')->name('landing.schedule');
 });
 
-Route::get('jadwal-landing-page', [APIController::class, 'scheduleForLanding'])->name('landing.scheduleForLanding');
-Route::get('kategori-bangunan', [APIController::class, 'buildingCategories'])->name('landing.buildingCategories');
+Route::controller(APIController::class)->group(function(){
+    Route::get('jadwal-landing-page', 'scheduleForLanding')->name('landing.scheduleForLanding');
+    Route::get('kategori-bangunan', 'buildingCategories')->name('landing.buildingCategories');
+});
+
 Route::get('charts', [ChartAPIController::class, 'charts'])->name('landing.charts');
 
 require __DIR__.'/auth.php';
