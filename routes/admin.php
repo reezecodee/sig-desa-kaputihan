@@ -10,9 +10,15 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\API\APIController;
+use App\Http\Controllers\Datatable\FacilityDatatableController;
+use App\Http\Controllers\Datatable\GeneralDatatableController;
+use App\Http\Controllers\Datatable\OccupationDatatableController;
+use App\Http\Controllers\Datatable\PopuCategoryDatatableController;
+use App\Http\Controllers\Datatable\PopuGroupDatatableController;
 use App\Http\Controllers\Datatable\ScheduleDatatableController;
 use App\Http\Controllers\Datatable\StatisticsDatatableController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::get('daftar-lokasi/{type}', [LocationController::class, 'getLocations'])->name('admin.locationList');
 Route::get('jadwal-admin-page', [APIController::class, 'scheduleForAdmin'])->name('landing.scheduleForAdmin');
@@ -75,5 +81,16 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
     Route::get('daftar-bangunan/{categoryID}', [ScheduleDatatableController::class, 'getBuildings'])->name('datatable.buildings');
     Route::get('daftar-survey', [StatisticsDatatableController::class, 'getSurveys'])->name('datatable.surveys');
 
+    Route::get('daftar-fasilitas/{categoryFacility}/{usingFor}', [FacilityDatatableController::class, 'getFacilities'])->name('datatable.facilities');
+    Route::get('daftar-data-umum/{category}/{usingFor}', [GeneralDatatableController::class, 'getGeneralData'])->name('datatable.generalData');
+    Route::get('daftar-mata-pencaharian/{usingFor}', [OccupationDatatableController::class, 'getOccupations'])->name('datatable.occupations');
+    Route::get('daftar-kategori-populasi/{category}/{usingFor}', [PopuCategoryDatatableController::class, 'getPopulationCategories'])->name('datatable.populationCategories');
+    Route::get('daftar-kelompok-populasi/{usingFor}', [PopuGroupDatatableController::class, 'getPopulationGroups'])->name('datatable.populationGroups');
+
     Route::get('jadwal-admin-page', [APIController::class, 'scheduleForAdminPage'])->name('admin.scheduleForAdminPage');
+
+    Route::get('testis', function(){
+        $categoryFacility = 'Sarana Pendidikan';
+        return Inertia::render('Admin/Statistics/ChartMenuPage/Index', compact('categoryFacility'));
+    });
 });

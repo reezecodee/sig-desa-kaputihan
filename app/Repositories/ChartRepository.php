@@ -2,125 +2,152 @@
 
 namespace App\Repositories;
 
+use App\Models\StatsFacilityInfrastructure;
 use App\Models\StatsGeneralData;
 use App\Models\StatsMainOccupation;
+use App\Models\StatsPopulationCategory;
 use App\Models\StatsPopulationGroup;
 use App\Models\SurveyYear;
 
 class ChartRepository
 {
-    private $surveyID;
+    private $survey;
 
     public function __construct()
     {
-        $this->surveyID = SurveyYear::select(['id'])->where('diaktifkan', 'Ya')->first()->id;
+        $this->survey = SurveyYear::select(['id'])->where('diaktifkan', 'Ya')->first();
     }
 
-    public function facilities($model, $category)
+    public function facilities($usingFor, $category)
     {
-        $attributes = ['label', 'jumlah'];
-        $components = [];
-        $rawData = $model::select($attributes)->where('jenis_sapras', $category)->where('survey_id', $this->surveyID)->orderBy('created_at', 'asc')->get();
+        $attributes = ['id', 'label', 'jumlah', 'jenis_sapras'];
+        $rawData = StatsFacilityInfrastructure::select($attributes)->where('jenis_sapras', $category)->where('survey_id', $this->survey->id)->orderBy('created_at', 'asc');
 
-        foreach ($rawData as $item) {
-            $components['label'][] = $item->label;
-            $components['jumlah'][] = $item->jumlah;
+        if ($usingFor == 'json') {
+            $items = $rawData->get();
+            $components = [];
+            foreach ($items as $item) {
+                $components['label'][] = $item->label;
+                $components['jumlah'][] = $item->jumlah;
+            }
+
+            return $components;
         }
 
-        return $components;
+        return $rawData;
     }
 
-    public function mainOccupations()
+    public function mainOccupations($usingFor)
     {
-        $attributes = ['label', 'jumlah'];
-        $components = [];
-        $rawData = StatsMainOccupation::select($attributes)->where('survey_id', $this->surveyID)->orderBy('created_at', 'asc')->get();
+        $attributes = ['id', 'label', 'jumlah'];
+        $rawData = StatsMainOccupation::select($attributes)->where('survey_id', $this->survey->id)->orderBy('created_at', 'asc');
 
-        foreach ($rawData as $item) {
-            $components[] = [
-                'name' => $item->label,
-                'value' => $item->jumlah,
-            ];
+        if ($usingFor == 'json') {
+            $items = $rawData->get();
+            $components = [];
+            foreach ($items as $item) {
+                $components[] = [
+                    'name' => $item->label,
+                    'value' => $item->jumlah,
+                ];
+            }
+
+            return $components;
         }
 
-        return $components;
+        return $rawData;
     }
 
-    public function generalData($model, $category)
+    public function generalData($usingFor, $category)
     {
-        $attributes = ['label', 'jumlah', 'satuan'];
-        $components = [];
-        $rawData = $model::select($attributes)->where('jenis_data', $category)->where('survey_id', $this->surveyID)->orderBy('created_at', 'asc')->get();
+        $attributes = ['id', 'label', 'jumlah', 'satuan'];
+        $rawData = StatsGeneralData::select($attributes)->where('jenis_data', $category)->where('survey_id', $this->survey->id)->orderBy('created_at', 'asc');
 
-        foreach ($rawData as $item) {
-            $components[] = [
-                'name' => "{$item->label} ({$item->satuan})",
-                'value' => $item->jumlah,
-            ];
+        if ($usingFor == 'json') {
+            $items = $rawData->get();
+            $components = [];
+            foreach ($items as $item) {
+                $components[] = [
+                    'name' => "{$item->label} ({$item->satuan})",
+                    'value' => $item->jumlah,
+                ];
+            }
+
+            return $components;
         }
 
-        return $components;
+        return $rawData;
     }
 
-    public function populationGroup($model, $category)
+    public function populationCategory($usingFor, $category)
     {
-        $attributes = ['label', 'tahun', 'jumlah'];
-        $rawData = $model::select($attributes)
+        $attributes = ['id', 'label', 'tahun', 'jumlah'];
+        $rawData = StatsPopulationCategory::select($attributes)
             ->where('jenis_data', $category)
-            ->where('survey_id', $this->surveyID)
-            ->orderBy('label') 
-            ->orderBy('tahun') 
-            ->get();
+            ->where('survey_id', $this->survey->id)
+            ->orderBy('label')
+            ->orderBy('tahun');
 
-        $groupedData = [];
-        $uniqueTahun = [];
-        $uniqueLabel = [];
+        if ($usingFor == 'json') {
+            $items = $rawData->get();
+            $groupedData = [];
+            $uniqueTahun = [];
+            $uniqueLabel = [];
 
-        foreach ($rawData as $item) {
-            $groupedData[$item->label][] = $item->jumlah;
+            foreach ($items as $item) {
+                $groupedData[$item->label][] = $item->jumlah;
 
-            if (!in_array($item->tahun, $uniqueTahun)) {
-                $uniqueTahun[] = $item->tahun;
+                if (!in_array($item->tahun, $uniqueTahun)) {
+                    $uniqueTahun[] = $item->tahun;
+                }
+
+                if (!in_array($item->label, $uniqueLabel)) {
+                    $uniqueLabel[] = $item->label;
+                }
             }
 
-            if (!in_array($item->label, $uniqueLabel)) {
-                $uniqueLabel[] = $item->label;
+            sort($uniqueTahun);
+
+            $series = [];
+            foreach ($groupedData as $label => $jumlahs) {
+                $series[] = [
+                    'name'  => $label,
+                    'type'  => 'line',
+                    'stack' => 'Total',
+                    'data'  => $jumlahs,
+                ];
             }
-        }
 
-        sort($uniqueTahun);
-
-        $series = [];
-        foreach ($groupedData as $label => $jumlahs) {
-            $series[] = [
-                'name'  => $label,
-                'type'  => 'line',    
-                'stack' => 'Total',  
-                'data'  => $jumlahs, 
+            $components = [
+                'series' => $series,
+                'label'  => $uniqueLabel,
+                'tahun'  => $uniqueTahun,
             ];
+
+            return $components;
         }
 
-        $components = [
-            'series' => $series,
-            'label'  => $uniqueLabel, 
-            'tahun'  => $uniqueTahun, 
-        ];
-
-        return $components;
+        return $rawData;
     }
 
-    public function populationByAgeGroup()
+    public function populationByAgeGroup($usingFor)
     {
-        $attributes = ['rentang_umur', 'laki_laki', 'perempuan'];
-        $components = [];
-        $rawData = StatsPopulationGroup::select($attributes)->where('survey_id', $this->surveyID)->orderBy('created_at', 'asc')->get();
+        $attributes = ['id', 'rentang_umur', 'laki_laki', 'perempuan'];
+        $rawData = StatsPopulationGroup::select($attributes)->where('survey_id', $this->survey->id)->orderBy('created_at', 'asc');
 
-        foreach ($rawData as $item) {
-            $components['rentang_umur'][] = $item->rentang_umur;
-            $components['laki_laki'][] = $item->laki_laki;
-            $components['perempuan'][] = $item->perempuan;
+        if ($usingFor == 'json') {
+            $items = $rawData->get();
+            $components = [];
+
+            foreach ($items as $item) {
+                $components['rentang_umur'][] = $item->rentang_umur;
+                $components['laki_laki'][] = $item->laki_laki;
+                $components['perempuan'][] = $item->perempuan;
+            }
+
+            return $components;
         }
 
-        return $components;
+        return $rawData;
     }
 }

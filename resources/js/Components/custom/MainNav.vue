@@ -12,11 +12,11 @@ import { Link } from '@inertiajs/vue3'
       </Link>
       <Link :href="route('admin.schedule')" class="text-sm font-medium transition-colors hover:text-primary"
         :class="{ 'text-muted-foreground': !$page.url.startsWith('/jadwal-kegiatan-desa') }">
-      Jadwal Kegiatan
+      Jadwal
       </Link>
       <Link :href="route('admin.statistics')" class="text-sm font-medium transition-colors hover:text-primary"
         :class="{ 'text-muted-foreground': !$page.url.startsWith('/statistik-data-desa') }">
-      Statistik Desa
+      Statistik
       </Link>
       <Link :href="route('admin.category')" class="text-sm font-medium transition-colors hover:text-primary"
         :class="{ 'text-muted-foreground': !$page.url.startsWith('/kategori-bangunan-desa') }">
@@ -24,11 +24,15 @@ import { Link } from '@inertiajs/vue3'
       </Link>
       <Link :href="route('admin.userManagement')" class="text-sm font-medium transition-colors hover:text-primary"
         :class="{ 'text-muted-foreground': !$page.url.startsWith('/manajemen-pengguna') }">
-      Manajemen Pengguna
+      Pengguna
+      </Link>
+      <Link :href="route('admin.userManagement')" class="text-sm font-medium transition-colors hover:text-primary"
+        :class="{ 'text-muted-foreground': !$page.url.startsWith('/manajemen-pengguna') }">
+      Laporan
       </Link>
       <Link :href="route('admin.setting')" class="text-sm font-medium transition-colors hover:text-primary"
         :class="{ 'text-muted-foreground': !$page.url.startsWith('/pengaturan-desa') }">
-      Pengaturan Desa
+      Pengaturan
       </Link>
     </nav>
   </div>

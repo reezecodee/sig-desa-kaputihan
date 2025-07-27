@@ -18,16 +18,16 @@ class ChartAPIController extends Controller
     public function charts()
     {
         $charts = [
-            'educationalFacilities' => $this->chartService->getFacilities('Sarana Pendidikan'),
-            'educators' => $this->chartService->getFacilities('Tenaga Pengajar'),
-            'healthFacilities' => $this->chartService->getFacilities('Sarana Kesehatan'),
-            'otherFacilities' => $this->chartService->getFacilities('Sarana dan Prasarana Lain'),
-            'mainOccupations' => $this->chartService->getMainOccupations(),
-            'populationPotential' => $this->chartService->getGeneralData('Potensi Penduduk'),
-            'educationalAttainment' => $this->chartService->getGeneralData('Pendidikan Penduduk'),
-            'populationMigration' => $this->chartService->getPopulationCategory('Berdasarkan yang Pindah dan Datang'),
-            'populationByOccupation' => $this->chartService->getPopulationCategory('Berdasarkan Mata Pencaharian'),
-            'populationByAgeGroup' => $this->chartService->getPopulationByAgeGroup(),
+            'educationalFacilities' => $this->chartService->getFacilities('json', 'Sarana Pendidikan'),
+            'educators' => $this->chartService->getFacilities('json', 'Tenaga Pengajar'),
+            'healthFacilities' => $this->chartService->getFacilities('json', 'Sarana Kesehatan'),
+            'otherFacilities' => $this->chartService->getFacilities('json', 'Sarana dan Prasarana Lain'),
+            'mainOccupations' => $this->chartService->getMainOccupations('json'),
+            'populationPotential' => $this->chartService->getGeneralData('json', 'Potensi Penduduk'),
+            'educationalAttainment' => $this->chartService->getGeneralData('json', 'Pendidikan Penduduk'),
+            'populationMigration' => $this->chartService->getPopulationCategory('json', 'Berdasarkan yang Pindah dan Datang'),
+            'populationByOccupation' => $this->chartService->getPopulationCategory('json', 'Berdasarkan Mata Pencaharian'),
+            'populationByAgeGroup' => $this->chartService->getPopulationByAgeGroup('json'),
         ];
 
         return response()->json($charts);
