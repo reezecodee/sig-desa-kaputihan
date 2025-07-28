@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 
+const props = defineProps({
+    surveyID: String
+});
+
 onMounted(() => {
     $('#myTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: route('datatable.populationGroups', 'datatable'),
+        ajax: route('datatable.populationGroups', props.surveyID),
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
             { data: 'rentang_umur', name: 'rentang_umur' },

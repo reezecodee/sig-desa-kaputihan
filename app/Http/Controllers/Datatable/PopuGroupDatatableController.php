@@ -16,9 +16,9 @@ class PopuGroupDatatableController extends Controller
         $this->chartService = $chartService;
     }
 
-    public function getPopulationGroup($usingFor)
+    public function getPopulationGroup($surveyID)
     {
-        $populationCategories = $this->chartService->getPopulationByAgeGroup($usingFor);
+        $populationCategories = $this->chartService->getPopulationByAgeGroup('datatable', $surveyID);
 
         return DataTables::of($populationCategories)
             ->addIndexColumn()

@@ -34,15 +34,6 @@ const deleteData = () => {
     router.delete(route("admin.scheduleDestroy", selectedId.value))
     showDialog.value = false;
 };
-
-onMounted(() => {
-    document.addEventListener('click', function (event) {
-        if (event.target.classList.contains('delete-btn')) {
-            const id = event.target.getAttribute('data-id')
-            confirmDelete(id)
-        }
-    })
-})
 </script>
 
 <template>

@@ -3,8 +3,6 @@
 namespace App\Services;
 
 use App\Repositories\ChartRepository;
-use App\Models\StatsGeneralData;
-use App\Models\StatsPopulationCategory;
 
 class ChartService
 {
@@ -15,28 +13,28 @@ class ChartService
         $this->chartRepository = $chartRepository;
     }
 
-    public function getFacilities($usingFor, $category) 
+    public function getFacilities($usingFor, $category, $id = null) 
     {
-        return $this->chartRepository->facilities($usingFor, $category);
+        return $this->chartRepository->facilities($usingFor, $category, $id);
     }
 
-    public function getMainOccupations($usingFor) 
+    public function getMainOccupations($usingFor, $id = null) 
     {
-        return $this->chartRepository->mainOccupations($usingFor);
+        return $this->chartRepository->mainOccupations($usingFor, $id);
     }
 
-    public function getGeneralData($usingFor, $category) 
+    public function getGeneralData($usingFor, $category, $id = null) 
     {
-        return $this->chartRepository->generalData($usingFor, $category);
+        return $this->chartRepository->generalData($usingFor, $category, $id);
     }
 
-    public function getPopulationCategory($usingFor, $category) 
+    public function getPopulationCategory($usingFor, $category, $id = null) 
     {   
-        return $this->chartRepository->populationCategory($usingFor, $category);
+        return $this->chartRepository->populationCategory($usingFor, $category, $id);
     }
 
-    public function getPopulationByAgeGroup($usingFor) 
+    public function getPopulationByAgeGroup($usingFor, $id = null) 
     {
-        return $this->chartRepository->populationByAgeGroup($usingFor);
+        return $this->chartRepository->populationByAgeGroup($usingFor, $id);
     }
 }

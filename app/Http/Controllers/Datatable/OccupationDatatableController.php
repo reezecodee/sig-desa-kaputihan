@@ -16,9 +16,9 @@ class OccupationDatatableController extends Controller
         $this->chartService = $chartService;
     }
 
-    public function getOccupations($usingFor)
+    public function getOccupations($surveyID)
     {
-        $occupations = $this->chartService->getMainOccupations($usingFor);
+        $occupations = $this->chartService->getMainOccupations('datatable', $surveyID);
 
         return DataTables::of($occupations)
             ->addIndexColumn()

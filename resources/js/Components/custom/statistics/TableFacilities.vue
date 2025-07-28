@@ -2,7 +2,8 @@
 import { onMounted } from 'vue';
 
 const props = defineProps({
-    categoryFacility: String
+    surveyID: String,
+    category: String
 });
 
 onMounted(() => {
@@ -10,8 +11,8 @@ onMounted(() => {
         processing: true,
         serverSide: true,
         ajax: route('datatable.facilities', {
-            usingFor: 'datatable',
-            categoryFacility: props.categoryFacility
+            surveyID: props.surveyID,
+            category: props.category,
         }),
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },

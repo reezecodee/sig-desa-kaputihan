@@ -16,9 +16,9 @@ class FacilityDatatableController extends Controller
         $this->chartService = $chartService;
     }
 
-    public function getFacilities($categoryFacility, $usingFor)
+    public function getFacilities($surveyID, $categoryFacility)
     {
-        $facilities = $this->chartService->getFacilities($usingFor, $categoryFacility);
+        $facilities = $this->chartService->getFacilities('datatable', $categoryFacility, $surveyID);
 
         return DataTables::of($facilities)
             ->addIndexColumn()

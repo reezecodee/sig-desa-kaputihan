@@ -16,9 +16,9 @@ class GeneralDatatableController extends Controller
         $this->chartService = $chartService;
     }
 
-    public function getGeneralData($category, $usingFor)
+    public function getGeneralData($surveyID, $category)
     {
-        $occupations = $this->chartService->getGeneralData($usingFor, $category);
+        $occupations = $this->chartService->getGeneralData('datatable', $category, $surveyID);
 
         return DataTables::of($occupations)
             ->addIndexColumn()

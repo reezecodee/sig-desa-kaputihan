@@ -18,10 +18,11 @@ class ChartRepository
         $this->survey = SurveyYear::select(['id'])->where('diaktifkan', 'Ya')->first();
     }
 
-    public function facilities($usingFor, $category)
+    public function facilities($usingFor, $category, $id)
     {
+        $id = $id ?? $this->survey->id;
         $attributes = ['id', 'label', 'jumlah', 'jenis_sapras'];
-        $rawData = StatsFacilityInfrastructure::select($attributes)->where('jenis_sapras', $category)->where('survey_id', $this->survey->id)->orderBy('created_at', 'asc');
+        $rawData = StatsFacilityInfrastructure::select($attributes)->where('jenis_sapras', $category)->where('survey_id', $id)->orderBy('created_at', 'asc');
 
         if ($usingFor == 'json') {
             $items = $rawData->get();
@@ -37,10 +38,11 @@ class ChartRepository
         return $rawData;
     }
 
-    public function mainOccupations($usingFor)
+    public function mainOccupations($usingFor, $id)
     {
+        $id = $id ?? $this->survey->id;
         $attributes = ['id', 'label', 'jumlah'];
-        $rawData = StatsMainOccupation::select($attributes)->where('survey_id', $this->survey->id)->orderBy('created_at', 'asc');
+        $rawData = StatsMainOccupation::select($attributes)->where('survey_id', $id)->orderBy('created_at', 'asc');
 
         if ($usingFor == 'json') {
             $items = $rawData->get();
@@ -58,10 +60,11 @@ class ChartRepository
         return $rawData;
     }
 
-    public function generalData($usingFor, $category)
+    public function generalData($usingFor, $category, $id)
     {
+        $id = $id ?? $this->survey->id;
         $attributes = ['id', 'label', 'jumlah', 'satuan'];
-        $rawData = StatsGeneralData::select($attributes)->where('jenis_data', $category)->where('survey_id', $this->survey->id)->orderBy('created_at', 'asc');
+        $rawData = StatsGeneralData::select($attributes)->where('jenis_data', $category)->where('survey_id', $id)->orderBy('created_at', 'asc');
 
         if ($usingFor == 'json') {
             $items = $rawData->get();
@@ -79,12 +82,13 @@ class ChartRepository
         return $rawData;
     }
 
-    public function populationCategory($usingFor, $category)
+    public function populationCategory($usingFor, $category, $id)
     {
+        $id = $id ?? $this->survey->id;
         $attributes = ['id', 'label', 'tahun', 'jumlah'];
         $rawData = StatsPopulationCategory::select($attributes)
             ->where('jenis_data', $category)
-            ->where('survey_id', $this->survey->id)
+            ->where('survey_id', $id)
             ->orderBy('label')
             ->orderBy('tahun');
 
@@ -130,10 +134,11 @@ class ChartRepository
         return $rawData;
     }
 
-    public function populationByAgeGroup($usingFor)
+    public function populationByAgeGroup($usingFor, $id)
     {
+        $id = $id ?? $this->survey->id;
         $attributes = ['id', 'rentang_umur', 'laki_laki', 'perempuan'];
-        $rawData = StatsPopulationGroup::select($attributes)->where('survey_id', $this->survey->id)->orderBy('created_at', 'asc');
+        $rawData = StatsPopulationGroup::select($attributes)->where('survey_id', $id)->orderBy('created_at', 'asc');
 
         if ($usingFor == 'json') {
             $items = $rawData->get();

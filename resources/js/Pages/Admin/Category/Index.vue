@@ -53,9 +53,7 @@ onMounted(() => {
                 {{ title }}
             </h2>
             <div class="flex items-center space-x-2">
-                <Link :href="route('admin.scheduleCreate')">
                 <Button class="shadcn-btn detail-btn">Buat Kategori Baru</Button>
-                </Link>
             </div>
         </template>
         <Card>

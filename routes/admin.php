@@ -25,72 +25,104 @@ Route::get('jadwal-admin-page', [APIController::class, 'scheduleForAdmin'])->nam
 
 
 Route::middleware(['app-layout', 'auth'])->group(function () {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::name('admin.')->group(function () {
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::prefix('lokasi')->controller(LocationController::class)->group(function () {
-        Route::post('simpan-lokasi', 'store')->name('admin.locationSave');
-        Route::delete('hapus-lokasi/{id}', 'destroy')->name('admin.locationDestroy');
+        Route::prefix('lokasi')->controller(LocationController::class)->group(function () {
+            Route::post('simpan-lokasi', 'store')->name('locationSave');
+            Route::delete('hapus-lokasi/{id}', 'destroy')->name('locationDestroy');
+        });
+
+        Route::prefix('bangunan')->controller(BuildingController::class)->group(function () {
+            Route::get('/', 'index')->name('building');
+            Route::get('tambah-bangunan', 'create')->name('buildingCreate');
+            Route::post('tambah-bangunan-baru', 'store')->name('buildingSave');
+            Route::get('edit-bangunan/{id}', 'edit')->name('buildingEdit');
+            Route::post('update-bangunan/{id}', 'update')->name('buildingUpdate');
+            Route::delete('hapus-bangunan/{id}', 'destroy')->name('buildingDestroy');
+        });
+
+        Route::prefix('pengaturan-desa')->controller(SettingController::class)->group(function () {
+            Route::get('/', 'index')->name('setting');
+            Route::post('perbarui-pengaturan', 'update')->name('settingUpdate');
+        });
+
+        Route::prefix('jadwal-kegiatan-desa')->controller(ScheduleController::class)->group(function () {
+            Route::get('/', 'index')->name('schedule');
+            Route::post('tambah-jadwal', 'store')->name('scheduleSave');
+            Route::delete('hapus-jadwal/{id}', 'destroy')->name('scheduleDestroy');
+        });
+
+        Route::prefix('statistik-data-desa')->controller(StatisticsController::class)->group(function () {
+            Route::get('/', 'index')->name('statistics');
+            Route::get('menu-charts/{surveyID}', 'chartMenu')->name('chartMenu');
+
+            Route::name('chart.')->group(function () {
+                Route::get('grafik-fasilitas/{surveyID}/{category}', 'facility')->name('facility');
+                Route::get('grafik-data-umum/{surveyID}/{category}', 'generalData')->name('generalData');
+                Route::get('grafik-mata-pencaharian/{surveyID}', 'occupation')->name('occupation');
+                Route::get('grafik-kategori-populasi/{surveyID}/{category}', 'populationCategory')->name('populationCategory');
+                Route::get('grafik-kelompok-populasi/{surveyID}', 'populationGroup')->name('populationGroup');
+            });
+        });
+
+        Route::prefix('kategori-bangunan-desa')->controller(CategoryController::class)->group(function () {
+            Route::get('/', 'index')->name('category');
+        });
+
+        Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {
+            Route::get('/', 'index')->name('userManagement');
+            Route::get('daftar-pengguna', 'getUsers')->name('userList');
+            Route::get('tambah', 'create')->name('userCreate');
+            Route::post('simpan-pengguna', 'store')->name('userSave');
+            Route::get('pengguna/{id}/edit', 'edit')->name('userEdit');
+            Route::put('edit-pengguna/{id}', 'update')->name('userUpdate');
+            Route::delete('hapus-pengguna/{id}', 'destroy')->name('userDestroy');
+        });
+
+        Route::prefix('profile')->controller(ProfileController::class)->group(function () {
+            Route::get('/', 'index')->name('profile');
+            Route::post('edit-profile', 'editProfile')->name('editProfile');
+            Route::post('ganti-password', 'changePassword')->name('changePassword');
+        });
     });
 
-    Route::prefix('bangunan')->controller(BuildingController::class)->group(function () {
-        Route::get('/', 'index')->name('admin.building');
-        Route::get('tambah-bangunan', 'create')->name('admin.buildingCreate');
-        Route::post('tambah-bangunan-baru', 'store')->name('admin.buildingSave');
-        Route::get('edit-bangunan/{id}', 'edit')->name('admin.buildingEdit');
-        Route::post('update-bangunan/{id}', 'update')->name('admin.buildingUpdate');
-        Route::delete('hapus-bangunan/{id}', 'destroy')->name('admin.buildingDestroy');
+
+    Route::name('datatable.')->group(function () {
+        Route::get(
+            'daftar-jadwal',
+            [ScheduleDatatableController::class, 'getSchedules']
+        )->name('schedule');
+        Route::get(
+            'daftar-bangunan/{categoryID}',
+            [ScheduleDatatableController::class, 'getBuildings']
+        )->name('buildings');
+        Route::get(
+            'daftar-survey',
+            [StatisticsDatatableController::class, 'getSurveys']
+        )->name('surveys');
+
+        Route::get(
+            'daftar-fasilitas/{surveyID}/{category}',
+            [FacilityDatatableController::class, 'getFacilities']
+        )->name('facilities');
+        Route::get(
+            'daftar-data-umum/{surveyID}/{category}',
+            [GeneralDatatableController::class, 'getGeneralData']
+        )->name('generalData');
+        Route::get(
+            'daftar-mata-pencaharian/{surveyID}',
+            [OccupationDatatableController::class, 'getOccupations']
+        )->name('occupations');
+        Route::get(
+            'daftar-kategori-populasi/{surveyID}/{category}',
+            [PopuCategoryDatatableController::class, 'getPopulationCategories']
+        )->name('populationCategories');
+        Route::get(
+            'daftar-kelompok-populasi/{surveyID}',
+            [PopuGroupDatatableController::class, 'getPopulationGroups']
+        )->name('populationGroups');
     });
-
-    Route::prefix('pengaturan-desa')->controller(SettingController::class)->group(function () {
-        Route::get('/', 'index')->name('admin.setting');
-        Route::post('perbarui-pengaturan', 'update')->name('admin.settingUpdate');
-    });
-
-    Route::prefix('jadwal-kegiatan-desa')->controller(ScheduleController::class)->group(function () {
-        Route::get('/', 'index')->name('admin.schedule');
-        Route::post('tambah-jadwal', 'store')->name('admin.scheduleSave');
-        Route::delete('hapus-jadwal/{id}', 'destroy')->name('admin.scheduleDestroy');
-    });
-
-    Route::prefix('statistik-data-desa')->controller(StatisticsController::class)->group(function () {
-        Route::get('/', 'index')->name('admin.statistics');
-        Route::get('menu-charts/{surveyID}', 'chartMenu')->name('admin.chartMenu');
-    });
-
-    Route::prefix('kategori-bangunan-desa')->controller(CategoryController::class)->group(function () {
-        Route::get('/', 'index')->name('admin.category');
-    });
-
-    Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {
-        Route::get('/', 'index')->name('admin.userManagement');
-        Route::get('daftar-pengguna', 'getUsers')->name('admin.userList');
-        Route::get('tambah', 'create')->name('admin.userCreate');
-        Route::post('simpan-pengguna', 'store')->name('admin.userSave');
-        Route::get('pengguna/{id}/edit', 'edit')->name('admin.userEdit');
-        Route::put('edit-pengguna/{id}', 'update')->name('admin.userUpdate');
-        Route::delete('hapus-pengguna/{id}', 'destroy')->name('admin.userDestroy');
-    });
-
-    Route::prefix('profile')->controller(ProfileController::class)->group(function () {
-        Route::get('/', 'index')->name('admin.profile');
-        Route::post('edit-profile', 'editProfile')->name('admin.editProfile');
-        Route::post('ganti-password', 'changePassword')->name('admin.changePassword');
-    });
-
-    Route::get('daftar-jadwal', [ScheduleDatatableController::class, 'getSchedules'])->name('datatable.schedule');
-    Route::get('daftar-bangunan/{categoryID}', [ScheduleDatatableController::class, 'getBuildings'])->name('datatable.buildings');
-    Route::get('daftar-survey', [StatisticsDatatableController::class, 'getSurveys'])->name('datatable.surveys');
-
-    Route::get('daftar-fasilitas/{categoryFacility}/{usingFor}', [FacilityDatatableController::class, 'getFacilities'])->name('datatable.facilities');
-    Route::get('daftar-data-umum/{category}/{usingFor}', [GeneralDatatableController::class, 'getGeneralData'])->name('datatable.generalData');
-    Route::get('daftar-mata-pencaharian/{usingFor}', [OccupationDatatableController::class, 'getOccupations'])->name('datatable.occupations');
-    Route::get('daftar-kategori-populasi/{category}/{usingFor}', [PopuCategoryDatatableController::class, 'getPopulationCategories'])->name('datatable.populationCategories');
-    Route::get('daftar-kelompok-populasi/{usingFor}', [PopuGroupDatatableController::class, 'getPopulationGroups'])->name('datatable.populationGroups');
 
     Route::get('jadwal-admin-page', [APIController::class, 'scheduleForAdminPage'])->name('admin.scheduleForAdminPage');
-
-    Route::get('testis', function(){
-        $categoryFacility = 'Sarana Pendidikan';
-        return Inertia::render('Admin/Statistics/ChartMenuPage/Index', compact('categoryFacility'));
-    });
 });

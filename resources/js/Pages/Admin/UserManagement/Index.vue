@@ -6,7 +6,6 @@ import Table from '@/Components/custom/user-management/Table.vue';
 import { onMounted, ref } from 'vue'
 import {
   AlertDialog,
-  AlertDialogTrigger,
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,

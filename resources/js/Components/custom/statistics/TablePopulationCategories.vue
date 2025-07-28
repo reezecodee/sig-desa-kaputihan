@@ -2,6 +2,7 @@
 import { onMounted } from 'vue';
 
 const props = defineProps({
+    surveyID: String,
     category: String
 })
 
@@ -10,7 +11,7 @@ onMounted(() => {
         processing: true,
         serverSide: true,
         ajax: route('datatable.populationCategories', {
-            usingFor: 'datatable',
+            surveyID: props.surveyID,
             category: props.category,
         }),
         columns: [
