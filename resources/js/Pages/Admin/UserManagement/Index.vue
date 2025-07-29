@@ -63,7 +63,7 @@ onMounted(() => {
       </h2>
       <div class="flex items-center space-x-2">
         <Link :href="route('admin.userCreate')">
-        <Button class="shadcn-btn detail-btn">Tambah Pengguna Baru</Button>
+        <Button class="shadcn-btn edit-btn">Tambah Pengguna Baru</Button>
         </Link>
       </div>
     </template>

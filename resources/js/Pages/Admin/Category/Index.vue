@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
 import { Head, router } from '@inertiajs/vue3';
-import { Card, CardContent } from '@/Components/ui/card';
-import Button from '@/components/ui/button/Button.vue';
+import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
+import FormCategory from '@/Components/custom/category/FormCategory.vue';
 import { onMounted, ref } from 'vue'
 import {
     AlertDialog,
@@ -14,6 +14,7 @@ import {
     AlertDialogCancel,
     AlertDialogAction
 } from "@/Components/ui/alert-dialog";
+import Table from '@/Components/custom/category/Table.vue';
 
 defineProps({
     title: String
@@ -53,12 +54,17 @@ onMounted(() => {
                 {{ title }}
             </h2>
             <div class="flex items-center space-x-2">
-                <Button class="shadcn-btn detail-btn">Buat Kategori Baru</Button>
+                <FormCategory/>
             </div>
         </template>
         <Card>
+            <CardHeader>
+                <CardTitle>
+                    Daftar kategori bangunan
+                </CardTitle>
+            </CardHeader>
             <CardContent>
-                
+                <Table/>
             </CardContent>
         </Card>
         <AlertDialog v-model:open="showDialog">

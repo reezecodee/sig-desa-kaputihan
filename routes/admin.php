@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\API\APIController;
+use App\Http\Controllers\Datatable\CategoryDatatableController;
 use App\Http\Controllers\Datatable\FacilityDatatableController;
 use App\Http\Controllers\Datatable\GeneralDatatableController;
 use App\Http\Controllers\Datatable\OccupationDatatableController;
@@ -68,6 +69,7 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
 
         Route::prefix('kategori-bangunan-desa')->controller(CategoryController::class)->group(function () {
             Route::get('/', 'index')->name('category');
+            Route::post('tambah-kategori', 'store')->name('categorySave');
         });
 
         Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {
@@ -101,6 +103,10 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
             'daftar-survey',
             [StatisticsDatatableController::class, 'getSurveys']
         )->name('surveys');
+        Route::get(
+            'daftar-kategori',
+            [CategoryDatatableController::class, 'getCategories']
+        )->name('categories');
 
         Route::get(
             'daftar-fasilitas/{surveyID}/{category}',

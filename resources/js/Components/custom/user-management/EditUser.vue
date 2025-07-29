@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { router } from '@inertiajs/vue3'
-import { Button } from '@/Components/ui/button'
+import Button from '@/components/ui/button/Button.vue'
 import {
     FormControl,
     FormField,
@@ -10,14 +10,6 @@ import {
 } from '@/Components/ui/form'
 import { Input } from '@/Components/ui/input'
 import { Textarea } from '@/Components/ui/textarea'
-import {
-    Select, SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from '@/Components/ui/select'
 
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
@@ -105,7 +97,7 @@ const onSubmit = handleSubmit((values) => {
             </FormItem>
         </FormField>
         <div class="flex justify-end">
-            <Button class="shadcn-btn detail-btn" type="submit">
+            <Button class="shadcn-btn edit-btn" type="submit">
                 Perbarui Pengguna
             </Button>
         </div>
