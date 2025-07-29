@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BuildingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StatisticsController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Datatable\GeneralDatatableController;
 use App\Http\Controllers\Datatable\OccupationDatatableController;
 use App\Http\Controllers\Datatable\PopuCategoryDatatableController;
 use App\Http\Controllers\Datatable\PopuGroupDatatableController;
+use App\Http\Controllers\Datatable\ReportDatatableController;
 use App\Http\Controllers\Datatable\ScheduleDatatableController;
 use App\Http\Controllers\Datatable\StatisticsDatatableController;
 use Illuminate\Support\Facades\Route;
@@ -72,6 +74,10 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
             Route::post('tambah-kategori', 'store')->name('categorySave');
         });
 
+        Route::prefix('laporan-masuk')->controller(ReportController::class)->group(function(){
+            Route::get('/', 'index')->name('report');
+        });
+
         Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {
             Route::get('/', 'index')->name('userManagement');
             Route::get('daftar-pengguna', 'getUsers')->name('userList');
@@ -107,6 +113,10 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
             'daftar-kategori',
             [CategoryDatatableController::class, 'getCategories']
         )->name('categories');
+        Route::get(
+            'daftar-laporan',
+            [ReportDatatableController::class, 'getReports']
+        )->name('reports');
 
         Route::get(
             'daftar-fasilitas/{surveyID}/{category}',

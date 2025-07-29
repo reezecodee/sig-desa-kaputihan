@@ -26,8 +26,8 @@ import { Link } from '@inertiajs/vue3'
         :class="{ 'text-muted-foreground': !$page.url.startsWith('/manajemen-pengguna') }">
       Pengguna
       </Link>
-      <Link :href="route('admin.userManagement')" class="text-sm font-medium transition-colors hover:text-primary"
-        :class="{ 'text-muted-foreground': !$page.url.startsWith('/manajemen-pengguna') }">
+      <Link :href="route('admin.report')" class="text-sm font-medium transition-colors hover:text-primary"
+        :class="{ 'text-muted-foreground': !$page.url.startsWith('/laporan-masuk') }">
       Laporan
       </Link>
       <Link :href="route('admin.setting')" class="text-sm font-medium transition-colors hover:text-primary"
