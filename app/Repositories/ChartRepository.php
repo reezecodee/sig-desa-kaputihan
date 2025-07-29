@@ -63,7 +63,7 @@ class ChartRepository
     public function generalData($usingFor, $category, $id)
     {
         $id = $id ?? $this->survey->id;
-        $attributes = ['id', 'label', 'jumlah', 'satuan'];
+        $attributes = ['id', 'label', 'jumlah', 'satuan', 'jenis_data'];
         $rawData = StatsGeneralData::select($attributes)->where('jenis_data', $category)->where('survey_id', $id)->orderBy('created_at', 'asc');
 
         if ($usingFor == 'json') {

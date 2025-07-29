@@ -23,38 +23,46 @@ class StatisticsController extends Controller
         return Inertia::render('Admin/Statistics/ChartMenu', compact('title', 'id'));
     }
 
-    public function facility()
+    public function facility($surveyID, $category)
     {
         $title = 'Grafik Statistik Fasilitas';
+        $id = $surveyID;
+        $category = $category;
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/FacilityInfrastructure', compact('title'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/FacilityInfrastructure', compact('title', 'id', 'category'));
     }
 
-    public function generalData()
+    public function generalData($surveyID, $category)
     {
         $title = 'Grafik Statistik Data Umum';
+        $id = $surveyID;
+        $category = $category;
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/GeneralData', compact('title'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/GeneralData', compact('title', 'id', 'category'));
     }
 
-    public function occupation()
+    public function occupation($surveyID)
     {
         $title = 'Grafik Statistik Mata Pencaharian';
+        $id = $surveyID;
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/Occupation', compact('title'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/Occupation', compact('title', 'id'));
     }
 
-    public function populationCategory()
+    public function populationCategory($surveyID, $category)
     {
-        $title = 'Grafik Statistik Kategori Populasi';
+        $title = 'Grafik Statistik Kategori Penduduk';
+        $id = $surveyID;
+        $category = $category;
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationCategory', compact('title'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationCategory', compact('title', 'id', 'category'));
     }
 
-    public function populationGroup()
+    public function populationGroup($surveyID)
     {
-        $title = 'Grafik Statistik Kelompok Populasi';
+        $title = 'Grafik Statistik Kelompok Penduduk';
+        $id = $surveyID;
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationGroup', compact('title'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationGroup', compact('title', 'id'));
     }
 }

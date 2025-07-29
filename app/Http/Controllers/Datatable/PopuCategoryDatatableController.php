@@ -16,7 +16,7 @@ class PopuCategoryDatatableController extends Controller
         $this->chartService = $chartService;
     }
 
-    public function getPopulationCategory($surveyID, $category)
+    public function getPopulationCategories($surveyID, $category)
     {
         $populationCategories = $this->chartService->getPopulationCategory('datatable', $category, $surveyID);
 

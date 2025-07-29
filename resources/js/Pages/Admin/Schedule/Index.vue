@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, router } from '@inertiajs/vue3';
 import { Card, CardHeader, CardTitle, CardContent } from '@/Components/ui/card';
-import { Button } from '@/Components/ui/button';
 import Table from '@/Components/custom/schedule/Table.vue';
 import { onMounted, ref } from 'vue'
 import FullCalendar from '@/Components/customv2/Schedule.vue';

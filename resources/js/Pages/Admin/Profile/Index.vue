@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
 import App from '@/Layouts/App.vue';
-import { Button } from '@/Components/ui/button';
 import FormEdit from '@/Components/custom/profile/FormEdit.vue';
 import FormPassword from '@/Components/custom/profile/FormPassword.vue';
 

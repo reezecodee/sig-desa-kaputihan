@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
-import { Head, Link, router } from '@inertiajs/vue3';
-import { Card, CardHeader, CardTitle, CardContent } from '@/Components/ui/card';
-import { Button } from '@/Components/ui/button';
+import { Head, router } from '@inertiajs/vue3';
+import { Card, CardContent } from '@/Components/ui/card';
+import Button from '@/components/ui/button/Button.vue';
 import { onMounted, ref } from 'vue'
 import {
     AlertDialog,

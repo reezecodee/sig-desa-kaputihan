@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
 import { Head } from '@inertiajs/vue3'
-import { Button } from '@/Components/ui/button'
 import FormSetting from '@/Components/custom/setting/FormSetting.vue'
 import { provide, shallowReactive } from 'vue'
 

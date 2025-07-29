@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
 import { Head, Link, router } from '@inertiajs/vue3';
-import { Button } from '@/Components/ui/button';
+import Button from '@/components/ui/button/Button.vue';
 import { onMounted, ref } from 'vue';
 import {
   AlertDialog,

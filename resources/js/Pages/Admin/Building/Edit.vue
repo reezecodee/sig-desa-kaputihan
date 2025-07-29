@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
 import { Head, Link } from '@inertiajs/vue3'
-import { Button } from '@/Components/ui/button'
+import Button from '@/components/ui/button/Button.vue'
 import EditBuilding from '@/Components/custom/building/EditBuilding.vue'
 import { provide, shallowReactive } from 'vue'
 

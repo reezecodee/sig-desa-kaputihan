@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
-import { Head } from '@inertiajs/vue3'
+import { Head, Link } from '@inertiajs/vue3'
 import { Card, CardHeader, CardContent, CardTitle } from '@/Components/ui/card';
 import TablePopulationGroups from '@/Components/custom/statistics/TablePopulationGroups.vue';
+import Button from '@/components/ui/button/Button.vue';
 
 defineProps({
     title: String,
@@ -18,6 +19,11 @@ defineProps({
             <h2 class="text-3xl font-bold tracking-tight">
                 {{ title }}
             </h2>
+            <Link :href="route('admin.chartMenu', id)">
+            <Button class="shadcn-btn delete-btn">
+                Kembali
+            </Button>
+            </Link>
         </template>
 
         <Card>

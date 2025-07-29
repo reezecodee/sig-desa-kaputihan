@@ -3,6 +3,7 @@ import { BarChart, PieChart, LineChart, ChartBarIncreasing, ChevronRight } from 
 import App from '@/Layouts/App.vue'
 import { Head, Link } from '@inertiajs/vue3'
 import { Card, CardHeader, CardContent, CardTitle } from '@/Components/ui/card';
+import Button from '@/components/ui/button/Button.vue';
 
 defineProps({
     title: String,
@@ -19,6 +20,13 @@ defineProps({
             <h2 class="text-3xl font-bold tracking-tight">
                 {{ title }}
             </h2>
+            <div class="flex items-center space-x-2">
+                <Link :href="route('admin.statistics')">
+                <Button class="shadcn-btn delete-btn">
+                    Kembali
+                </Button>
+                </Link>
+            </div>
         </template>
 
         <Card>
