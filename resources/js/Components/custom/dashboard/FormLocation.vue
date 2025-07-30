@@ -75,7 +75,7 @@ const onSubmit = handleSubmit((values) => {
 <template>
     <Dialog>
         <DialogTrigger>
-            <Button class="shadcn-btn edit-btn">Tambah Lokasi Baru</Button>
+            <Button class="shadcn-btn edit-btn"><i class="fa-solid fa-plus"></i> Tambah Lokasi Baru</Button>
         </DialogTrigger>
 
         <DialogContent class="flex h-[90vh] flex-col">

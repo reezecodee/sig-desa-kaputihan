@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { Button } from '@/Components/ui/button'
 
 onMounted(() => {
     $('#myTable').DataTable({

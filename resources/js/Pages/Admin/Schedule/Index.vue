@@ -3,7 +3,7 @@ import App from '@/Layouts/App.vue'
 import { Head, router } from '@inertiajs/vue3';
 import { Card, CardHeader, CardTitle, CardContent } from '@/Components/ui/card';
 import Table from '@/Components/custom/schedule/Table.vue';
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import FullCalendar from '@/Components/customv2/Schedule.vue';
 import {
     AlertDialog,
@@ -21,29 +21,43 @@ defineProps({
     title: String
 })
 
-const showDialog = ref(false);
-const selectedId = ref(null);
+const showDialog = ref<boolean>(false);
+const selectedId = ref<string | null>(null);
 
-const confirmDelete = (id) => {
+const confirmDelete = (id: string | null): void => {
+  if (id) {
     selectedId.value = id;
     showDialog.value = true;
+  }
 };
 
-const deleteData = () => {
-    if (!selectedId.value) return;
+const deleteData = (): void => {
+  if (!selectedId.value) return;
+  router.delete(route("admin.scheduleDestroy", selectedId.value), {
+    onFinish: () => {
+      showDialog.value = false;
+      selectedId.value = null; 
+    },
+  });
+};
 
-    router.delete(route("admin.scheduleDestroy", selectedId.value))
-    showDialog.value = false;
+const handleClick = (event: MouseEvent): void => {
+  if (event.target instanceof Element) {
+    const deleteButton = event.target.closest('.delete-btn');
+    if (deleteButton) {
+      const id = deleteButton.getAttribute('data-id');
+      confirmDelete(id);
+    }
+  }
 };
 
 onMounted(() => {
-    document.addEventListener('click', function (event) {
-        if (event.target.classList.contains('delete-btn')) {
-            const id = event.target.getAttribute('data-id')
-            confirmDelete(id)
-        }
-    })
-})
+  document.addEventListener('click', handleClick);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClick);
+});
 </script>
 
 <template>

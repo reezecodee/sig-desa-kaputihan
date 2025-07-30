@@ -8,7 +8,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/Components/ui/dialog'
-import { Button } from '@/Components/ui/button'
+import Button from '@/components/ui/button/Button.vue'
 import {
     FormControl,
     FormField,
@@ -61,7 +61,7 @@ const onSubmit = handleSubmit((values) => {
 <template>
     <Dialog>
         <DialogTrigger>
-            <Button class="shadcn-btn edit-btn">Tambah Survey Baru</Button>
+            <Button class="shadcn-btn edit-btn"><i class="fa-solid fa-plus"></i> Tambah Survey Baru</Button>
         </DialogTrigger>
         <DialogContent class="flex flex-col">
             <DialogHeader>

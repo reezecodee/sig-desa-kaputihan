@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
 import { Head, router } from '@inertiajs/vue3'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import MapVillage from '@/Components/custom/landing/MapVillage.vue'
 import MapTable from '@/Components/custom/dashboard/MapTable.vue'
 import FormLocation from '@/Components/custom/dashboard/FormLocation.vue'
@@ -29,29 +29,43 @@ defineProps({
 
 const currentYear: number = new Date().getFullYear()
 
-const showDialog = ref(false);
-const selectedId = ref(null);
+const showDialog = ref<boolean>(false);
+const selectedId = ref<string | null>(null);
 
-const confirmDelete = (id) => {
+const confirmDelete = (id: string | null): void => {
+  if (id) {
     selectedId.value = id;
     showDialog.value = true;
+  }
 };
 
-const deleteData = () => {
-    if (!selectedId.value) return;
+const deleteData = (): void => {
+  if (!selectedId.value) return;
+  router.delete(route("admin.locationDestroy", selectedId.value), {
+    onFinish: () => {
+      showDialog.value = false;
+      selectedId.value = null; 
+    },
+  });
+};
 
-    router.delete(route("admin.locationDestroy", selectedId.value))
-    showDialog.value = false;
+const handleClick = (event: MouseEvent): void => {
+  if (event.target instanceof Element) {
+    const deleteButton = event.target.closest('.delete-btn');
+    if (deleteButton) {
+      const id = deleteButton.getAttribute('data-id');
+      confirmDelete(id);
+    }
+  }
 };
 
 onMounted(() => {
-    document.addEventListener('click', function (event) {
-        if (event.target.classList.contains('delete-btn')) {
-            const id = event.target.getAttribute('data-id')
-            confirmDelete(id)
-        }
-    })
-})
+  document.addEventListener('click', handleClick);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClick);
+});
 </script>
 
 <template>

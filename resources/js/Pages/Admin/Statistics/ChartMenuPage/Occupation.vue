@@ -1,15 +1,63 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
-import { Head, Link } from '@inertiajs/vue3'
+import { Head, Link, router } from '@inertiajs/vue3'
 import { Card, CardHeader, CardContent, CardTitle } from '@/Components/ui/card';
 import TableOccupations from '@/Components/custom/statistics/TableOccupations.vue';
 import Button from '@/components/ui/button/Button.vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction
+} from "@/Components/ui/alert-dialog";
 
 defineProps({
     title: String,
     id: String,
 })
 
+const showDialog = ref<boolean>(false);
+const selectedId = ref<string | null>(null);
+
+const confirmDelete = (id: string | null): void => {
+    if (id) {
+        selectedId.value = id;
+        showDialog.value = true;
+    }
+};
+
+const deleteData = (): void => {
+    if (!selectedId.value) return;
+    router.delete(route("admin.chartOccupationDestroy", selectedId.value), {
+        onFinish: () => {
+            showDialog.value = false;
+            selectedId.value = null;
+        },
+    });
+};
+
+const handleClick = (event: MouseEvent): void => {
+    if (event.target instanceof Element) {
+        const deleteButton = event.target.closest('.delete-btn');
+        if (deleteButton) {
+            const id = deleteButton.getAttribute('data-id');
+            confirmDelete(id);
+        }
+    }
+};
+
+onMounted(() => {
+    document.addEventListener('click', handleClick);
+});
+
+onUnmounted(() => {
+    document.removeEventListener('click', handleClick);
+});
 </script>
 
 <template>
@@ -34,9 +82,24 @@ defineProps({
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <TableOccupations :surveyID="id"/>
+                <TableOccupations :surveyID="id" />
             </CardContent>
         </Card>
+
+        <AlertDialog v-model:open="showDialog">
+            <AlertDialogContent>
+                <AlertDialogHeader>
+                    <AlertDialogTitle>Konfirmasi Penghapusan</AlertDialogTitle>
+                    <AlertDialogDescription>
+                        Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat dibatalkan.
+                    </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                    <AlertDialogCancel @click="showDialog = false">Batal</AlertDialogCancel>
+                    <AlertDialogAction @click="deleteData">Hapus</AlertDialogAction>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+        </AlertDialog>
     </App>
 </template>
 

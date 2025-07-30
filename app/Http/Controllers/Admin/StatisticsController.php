@@ -3,11 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\StatsFacilityInfrastructure;
+use App\Models\StatsGeneralData;
+use App\Models\StatsMainOccupation;
+use App\Models\StatsPopulationCategory;
+use App\Models\StatsPopulationGroup;
+use App\Services\StatisticsService;
 use Inertia\Inertia;
 
 class StatisticsController extends Controller
 {
+    protected $statisticsService;
+
+    public function __construct(StatisticsService $statisticsService)
+    {
+        $this->statisticsService = $statisticsService;
+    }
+
     public function index()
     {
         $title = 'Statistik Data Desa';
@@ -64,5 +76,80 @@ class StatisticsController extends Controller
         $id = $surveyID;
 
         return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationGroup', compact('title', 'id'));
+    }
+
+    public function destroyFacility($id)
+    {
+        $model = new StatsFacilityInfrastructure();
+
+        try {
+            $this->statisticsService->deleteDataChart($model, $id);
+
+            session()->flash('success', 'Berhasil menghapus data fasilitas');
+            return Inertia::location(back());
+        } catch (\Exception $e) {
+            session()->flash('failed', $e->getMessage());
+            return Inertia::location(back());
+        }
+    }
+
+    public function destroyGeneralData($id)
+    {
+        $model = new StatsGeneralData();
+
+        try {
+            $this->statisticsService->deleteDataChart($model, $id);
+
+            session()->flash('success', 'Berhasil menghapus data umum');
+            return Inertia::location(back());
+        } catch (\Exception $e) {
+            session()->flash('failed', $e->getMessage());
+            return Inertia::location(back());
+        }
+    }
+
+    public function destroyOccupation($id)
+    {
+        $model = new StatsMainOccupation();
+
+        try {
+            $this->statisticsService->deleteDataChart($model, $id);
+
+            session()->flash('success', 'Berhasil menghapus data pekerjaan');
+            return Inertia::location(back());
+        } catch (\Exception $e) {
+            session()->flash('failed', $e->getMessage());
+            return Inertia::location(back());
+        }
+    }
+
+    public function destroyPopulationCategory($id)
+    {
+        $model = new StatsPopulationCategory();
+
+        try {
+            $this->statisticsService->deleteDataChart($model, $id);
+
+            session()->flash('success', 'Berhasil menghapus data kategori penduduk');
+            return Inertia::location(back());
+        } catch (\Exception $e) {
+            session()->flash('failed', $e->getMessage());
+            return Inertia::location(back());
+        }
+    }
+
+    public function destroyPopulationGroup($id)
+    {
+        $model = new StatsPopulationGroup();
+
+        try {
+            $this->statisticsService->deleteDataChart($model, $id);
+
+            session()->flash('success', 'Berhasil menghapus data kelompok penduduk');
+            return Inertia::location(back());
+        } catch (\Exception $e) {
+            session()->flash('failed', $e->getMessage());
+            return Inertia::location(back());
+        }
     }
 }

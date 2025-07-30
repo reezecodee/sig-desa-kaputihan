@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
 import { Head, Link, router } from '@inertiajs/vue3'
-import { Button } from '@/Components/ui/button'
+import Button from '@/components/ui/button/Button.vue';
+import { Card, CardHeader, CardContent, CardTitle } from '@/Components/ui/card';
 import Table from '@/Components/custom/user-management/Table.vue';
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import {
   AlertDialog,
   AlertDialogContent,
@@ -25,32 +26,43 @@ const redirectToEdit = (id) => {
   })
 }
 
-const showDialog = ref(false);
-const selectedId = ref(null);
+const showDialog = ref<boolean>(false);
+const selectedId = ref<string | null>(null);
 
-const confirmDelete = (id) => {
-  selectedId.value = id;
-  showDialog.value = true;
+const confirmDelete = (id: string | null): void => {
+  if (id) {
+    selectedId.value = id;
+    showDialog.value = true;
+  }
 };
 
-const deleteData = () => {
+const deleteData = (): void => {
   if (!selectedId.value) return;
+  router.delete(route("admin.userDestroy", selectedId.value), {
+    onFinish: () => {
+      showDialog.value = false;
+      selectedId.value = null; 
+    },
+  });
+};
 
-  router.delete(route("admin.userDestroy", selectedId.value))
-  showDialog.value = false;
+const handleClick = (event: MouseEvent): void => {
+  if (event.target instanceof Element) {
+    const deleteButton = event.target.closest('.delete-btn');
+    if (deleteButton) {
+      const id = deleteButton.getAttribute('data-id');
+      confirmDelete(id);
+    }
+  }
 };
 
 onMounted(() => {
-  document.addEventListener('click', function (event) {
-    if (event.target.classList.contains('delete-btn')) {
-      const id = event.target.getAttribute('data-id')
-      confirmDelete(id)
-    } else if (event.target.classList.contains('edit-btn')) {
-      const id = event.target.getAttribute('data-id')
-      redirectToEdit(id)
-    }
-  })
-})
+  document.addEventListener('click', handleClick);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClick);
+});
 </script>
 
 <template>
@@ -63,11 +75,22 @@ onMounted(() => {
       </h2>
       <div class="flex items-center space-x-2">
         <Link :href="route('admin.userCreate')">
-        <Button class="shadcn-btn edit-btn">Tambah Pengguna Baru</Button>
+        <Button class="shadcn-btn edit-btn"><i class="fa-solid fa-plus"></i> Tambah Pengguna Baru</Button>
         </Link>
       </div>
     </template>
-    <Table></Table>
+
+    <Card>
+      <CardHeader>
+        <CardTitle>
+          Daftar pengguna aplikasi
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Table />
+      </CardContent>
+    </Card>
+
     <AlertDialog v-model:open="showDialog">
       <AlertDialogContent>
         <AlertDialogHeader>

@@ -67,6 +67,12 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
                 Route::get('grafik-kategori-populasi/{surveyID}/{category}', 'populationCategory')->name('populationCategory');
                 Route::get('grafik-kelompok-populasi/{surveyID}', 'populationGroup')->name('populationGroup');
             });
+
+            Route::delete('hapus-fasilitas/{id}', 'destroyFacility')->name('chartFacilityDestroy');
+            Route::delete('hapus-data-umum/{id}', 'destroyGeneralData')->name('chartGeneralDestroy');
+            Route::delete('hapus-pekerjaan/{id}', 'destroyOccupation')->name('chartOccupationDestroy');
+            Route::delete('hapus-kategori-populasi/{id}', 'destroyPopulationCategory')->name('popuCategoryDestroy');
+            Route::delete('hapus-kelompok-populasi/{id}', 'destroyPopulationGroup')->name('popuGroupDestroy');
         });
 
         Route::prefix('kategori-bangunan-desa')->controller(CategoryController::class)->group(function () {

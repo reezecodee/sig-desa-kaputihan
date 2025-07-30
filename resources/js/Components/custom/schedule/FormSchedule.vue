@@ -90,7 +90,7 @@ const onSubmit = handleSubmit((values) => {
 <template>
   <Dialog>
     <DialogTrigger>
-      <Button class="shadcn-btn edit-btn">Tambah Jadwal Baru</Button>
+      <Button class="shadcn-btn edit-btn"><i class="fa-solid fa-plus"></i> Tambah Jadwal Baru</Button>
     </DialogTrigger>
     <DialogContent class="flex h-[90vh] flex-col">
       <DialogHeader>

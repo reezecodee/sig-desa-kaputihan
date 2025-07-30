@@ -22,13 +22,24 @@ class StatisticsDatatableController extends Controller
 
         return DataTables::of($surveys)
             ->addIndexColumn()
-            ->addColumn('action', function ($row) {
-                return '
-                <button class="shadcn-btn detail-btn" data-id="' . $row->id . '">Cek Detail</button>
-                <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Hapus</button>
-            ';
+            ->addColumn('diaktifkan', function($row) {
+                $html = ' <select class="shadcn-input status-select" data-id="' . $row->id . '">';
+                $html .= '<option value="Ya"' . ($row->diaktifkan == 'Ya' ? ' selected' : '') . '>Ya</option>';
+                $html .= '<option value="Tidak"' . ($row->diaktifkan == 'Tidak' ? ' selected' : '') . '>Tidak</option>';
+                $html .= '</select>';
+
+                return $html;
             })
-            ->rawColumns(['action'])
+            ->addColumn('action', function ($row) {
+                $html = '<button class="shadcn-btn detail-btn" data-id="' . $row->id . '">Cek Detail</button>';
+
+                if ($row->diaktifkan !== 'Ya') {
+                    $html .= ' <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Hapus</button>';
+                }
+
+                return $html;
+            })
+            ->rawColumns(['diaktifkan', 'action'])
             ->make(true);
     }
 }
