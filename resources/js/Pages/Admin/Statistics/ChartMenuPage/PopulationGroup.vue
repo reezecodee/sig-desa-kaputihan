@@ -16,6 +16,7 @@ import {
     AlertDialogAction
 } from "@/Components/ui/alert-dialog";
 import WorldPopulationChart from '@/Pages/LandingV2/StatisticVillage/charts/WorldPopulationChart.vue';
+import FormPopulationGroup from '@/Components/custom/statistics/FormPopulationGroup.vue';
 
 defineProps({
     title: String,
@@ -96,6 +97,9 @@ onUnmounted(() => {
                 </CardTitle>
             </CardHeader>
             <CardContent>
+                <div class="flex justify-end mb-5">
+                    <FormPopulationGroup :surveyID="id"/>
+                </div>
                 <TablePopulationGroups :surveyID="id" />
             </CardContent>
         </Card>

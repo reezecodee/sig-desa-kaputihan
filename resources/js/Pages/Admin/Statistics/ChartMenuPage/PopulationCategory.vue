@@ -16,6 +16,7 @@ import {
   AlertDialogAction
 } from "@/Components/ui/alert-dialog";
 import StackedLineChart from '@/Pages/LandingV2/StatisticVillage/charts/StackedLineChart.vue';
+import FormPopulationCategory from '@/Components/custom/statistics/FormPopulationCategory.vue';
 
 defineProps({
     title: String,
@@ -97,6 +98,9 @@ onUnmounted(() => {
                 </CardTitle>
             </CardHeader>
             <CardContent>
+                <div class="flex justify-end mb-5">
+                    <FormPopulationCategory :surveyID="id" :category="category" />
+                </div>
                 <TablePopulationCategories :surveyID="id" :category="category" />
             </CardContent>
         </Card>

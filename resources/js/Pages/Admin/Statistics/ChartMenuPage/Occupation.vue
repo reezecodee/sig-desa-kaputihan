@@ -16,6 +16,7 @@ import {
   AlertDialogAction
 } from "@/Components/ui/alert-dialog";
 import PieChart from '@/Pages/LandingV2/StatisticVillage/charts/PieChart.vue';
+import FormOccupation from '@/Components/custom/statistics/FormOccupation.vue';
 
 defineProps({
     title: String,
@@ -96,6 +97,9 @@ onUnmounted(() => {
                 </CardTitle>
             </CardHeader>
             <CardContent>
+                <div class="flex justify-end mb-5">
+                    <FormOccupation :surveyID="id"/>
+                </div>
                 <TableOccupations :surveyID="id" />
             </CardContent>
         </Card>

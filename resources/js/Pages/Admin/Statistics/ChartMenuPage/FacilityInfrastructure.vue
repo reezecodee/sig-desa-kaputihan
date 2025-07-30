@@ -16,6 +16,7 @@ import {
   AlertDialogAction
 } from "@/Components/ui/alert-dialog";
 import BarChart from '@/Pages/LandingV2/StatisticVillage/charts/BarChart.vue';
+import FormFacility from '@/Components/custom/statistics/FormFacility.vue';
 
 defineProps({
     title: String,
@@ -97,6 +98,9 @@ onUnmounted(() => {
                 </CardTitle>
             </CardHeader>
             <CardContent>
+                <div class="flex justify-end mb-5">
+                    <FormFacility :surveyID="id" :category="category" />
+                </div>
                 <TableFacilities :surveyID="id" :category="category" />
             </CardContent>
         </Card>
