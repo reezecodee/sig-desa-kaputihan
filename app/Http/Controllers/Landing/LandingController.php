@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
-use App\Models\Building;
-use App\Models\BuildingPhoto;
 use App\Services\BuildingService;
 use App\Services\LandingService;
 use Illuminate\Http\Request;

@@ -247,10 +247,10 @@ defineProps({
                             <ChartBarIncreasing class="h-8 w-8 text-blue-600 dark:text-blue-400" />
                         </div>
                         <div class="flex-1">
-                            <div class="font-semibold text-blue-900 dark:text-blue-200">Penduduk yang Pindah dan Datang
+                            <div class="font-semibold text-blue-900 dark:text-blue-200">Kelompok Penduduk Berdasarkan Umur
                             </div>
                             <div class="text-sm text-blue-700 dark:text-blue-400">
-                                Kategori penduduk yang pindah dan datang.
+                                Kelompok penduduk yang dikategorikan berdasarkan umur.
                             </div>
                         </div>
                         <div class="flex-shrink-0">

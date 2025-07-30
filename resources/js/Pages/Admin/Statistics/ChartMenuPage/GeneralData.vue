@@ -15,11 +15,13 @@ import {
   AlertDialogCancel,
   AlertDialogAction
 } from "@/Components/ui/alert-dialog";
+import PieChart from '@/Pages/LandingV2/StatisticVillage/charts/PieChart.vue';
 
 defineProps({
     title: String,
     id: String,
     category: String,
+    chartData: Object,
 })
 
 const showDialog = ref<boolean>(false);
@@ -79,7 +81,19 @@ onUnmounted(() => {
         <Card>
             <CardHeader>
                 <CardTitle>
-                    Daftar data fasilitas.
+                    Grafik Statistik Data Umum {{ category }}
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <PieChart v-if="chartData" :title="category"
+                            :data="chartData" />
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardHeader>
+                <CardTitle>
+                    Daftar Data Umum {{ category }}.
                 </CardTitle>
             </CardHeader>
             <CardContent>

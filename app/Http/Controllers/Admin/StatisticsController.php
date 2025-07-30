@@ -8,16 +8,19 @@ use App\Models\StatsGeneralData;
 use App\Models\StatsMainOccupation;
 use App\Models\StatsPopulationCategory;
 use App\Models\StatsPopulationGroup;
+use App\Services\ChartService;
 use App\Services\StatisticsService;
 use Inertia\Inertia;
 
 class StatisticsController extends Controller
 {
     protected $statisticsService;
+    protected $chartService;
 
-    public function __construct(StatisticsService $statisticsService)
+    public function __construct(StatisticsService $statisticsService, ChartService $chartService)
     {
         $this->statisticsService = $statisticsService;
+        $this->chartService = $chartService;
     }
 
     public function index()
@@ -40,8 +43,9 @@ class StatisticsController extends Controller
         $title = 'Grafik Statistik Fasilitas';
         $id = $surveyID;
         $category = $category;
+        $chartData = $this->chartService->getFacilities('json', $category, $surveyID);
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/FacilityInfrastructure', compact('title', 'id', 'category'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/FacilityInfrastructure', compact('title', 'id', 'category', 'chartData'));
     }
 
     public function generalData($surveyID, $category)
@@ -49,16 +53,19 @@ class StatisticsController extends Controller
         $title = 'Grafik Statistik Data Umum';
         $id = $surveyID;
         $category = $category;
+        $chartData = $this->chartService->getGeneralData('json', $category, $surveyID);
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/GeneralData', compact('title', 'id', 'category'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/GeneralData', compact('title', 'id', 'category', 'chartData'));
     }
 
     public function occupation($surveyID)
     {
         $title = 'Grafik Statistik Mata Pencaharian';
         $id = $surveyID;
+        $chartData = $this->chartService->getMainOccupations('json', $surveyID);
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/Occupation', compact('title', 'id'));
+
+        return Inertia::render('Admin/Statistics/ChartMenuPage/Occupation', compact('title', 'id', 'chartData'));
     }
 
     public function populationCategory($surveyID, $category)
@@ -66,16 +73,18 @@ class StatisticsController extends Controller
         $title = 'Grafik Statistik Kategori Penduduk';
         $id = $surveyID;
         $category = $category;
+        $chartData = $this->chartService->getPopulationCategory('json', $category, $surveyID);
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationCategory', compact('title', 'id', 'category'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationCategory', compact('title', 'id', 'category', 'chartData'));
     }
 
     public function populationGroup($surveyID)
     {
         $title = 'Grafik Statistik Kelompok Penduduk';
         $id = $surveyID;
+        $chartData = $this->chartService->getPopulationByAgeGroup('json', $surveyID);
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationGroup', compact('title', 'id'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationGroup', compact('title', 'id', 'chartData'));
     }
 
     public function destroyFacility($id)

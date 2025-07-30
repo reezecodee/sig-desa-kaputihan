@@ -15,10 +15,12 @@ import {
     AlertDialogCancel,
     AlertDialogAction
 } from "@/Components/ui/alert-dialog";
+import WorldPopulationChart from '@/Pages/LandingV2/StatisticVillage/charts/WorldPopulationChart.vue';
 
 defineProps({
     title: String,
     id: String,
+    chartData: Object,
 })
 
 const showDialog = ref<boolean>(false);
@@ -74,6 +76,18 @@ onUnmounted(() => {
             </Button>
             </Link>
         </template>
+
+        <Card>
+            <CardHeader>
+                <CardTitle>
+                    Grafik Statistik Kelompok Penduduk Berdasarkan Umur
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <WorldPopulationChart v-if="chartData" title="Kelompok Penduduk Berdasarkan Umur"
+                            :data="chartData" />
+            </CardContent>
+        </Card>
 
         <Card>
             <CardHeader>

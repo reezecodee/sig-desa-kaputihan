@@ -15,11 +15,13 @@ import {
   AlertDialogCancel,
   AlertDialogAction
 } from "@/Components/ui/alert-dialog";
+import BarChart from '@/Pages/LandingV2/StatisticVillage/charts/BarChart.vue';
 
 defineProps({
     title: String,
     id: String,
     category: String,
+    chartData: Object,
 })
 
 const showDialog = ref<boolean>(false);
@@ -79,7 +81,19 @@ onUnmounted(() => {
         <Card>
             <CardHeader>
                 <CardTitle>
-                    Daftar data fasilitas.
+                    Grafik Statistik Fasilitas {{ category }}
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <BarChart v-if="chartData" :title="category"
+                            :data="chartData" />
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardHeader>
+                <CardTitle>
+                    Daftar data Fasilitas {{ category }}.
                 </CardTitle>
             </CardHeader>
             <CardContent>
