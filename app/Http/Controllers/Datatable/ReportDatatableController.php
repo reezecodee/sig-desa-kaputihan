@@ -25,7 +25,7 @@ class ReportDatatableController extends Controller
             ->addColumn('action', function ($row) {
                 return '
                 <div class="flex flex-wrap gap-1">
-                <button class="shadcn-btn edit-btn" data-id="' . $row->id . '"><i class="fas fa-book-open"></i></button>
+                <button class="shadcn-btn detail-btn" data-id="' . $row->id . '"><i class="fas fa-book-open"></i></button>
                 <button class="shadcn-btn delete-btn" data-id="' . $row->id . '"><i class="fas fa-trash"></i></button>
                 </div>
             ';

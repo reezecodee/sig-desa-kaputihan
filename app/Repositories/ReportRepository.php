@@ -13,4 +13,11 @@ class ReportRepository
 
         return $reports;
     }
+
+    public function findReport($id)
+    {
+        $reports = Report::findOrFail($id);
+
+        return $reports;
+    }
 }

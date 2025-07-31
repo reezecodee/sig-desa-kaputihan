@@ -15,4 +15,9 @@ class ReportService {
     {
         return $this->reportRepository->reports();
     }
+
+    public function find($id)
+    {
+        return $this->reportRepository->findReport($id);
+    }
 }

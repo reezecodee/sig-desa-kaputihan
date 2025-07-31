@@ -7,7 +7,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/Components/ui/card'
-import { Button } from '@/Components/ui/button'
+import Button from '@/components/ui/button/Button.vue'
 import { router } from '@inertiajs/vue3'
 import {
     FormControl,
@@ -91,15 +91,12 @@ const { values, isFieldDirty, handleSubmit, setErrors, setFieldValue } = useForm
     initialValues: {
         nama_kades: village.nama_kades,
         periode: village.periode,
-        jumlah_penduduk: village.jumlah_penduduk,
-        foto: null,
-        nama_aplikasi: village.nama_aplikasi,
+        pesan_kades: village.pesan_kades,
         logo: null,
         logo_aktif: village.logo_aktif,
         telepon: village.telepon,
         email: village.email,
-        organisasi: null,
-        favicon: null,
+        foto_organisasi: null,
     },
 })
 
@@ -151,18 +148,6 @@ const onSubmit = handleSubmit((values) => {
             <div class="self-start">
                 <Card class="shadow-md mb-7">
                     <CardHeader>
-                        <CardTitle class="text-xl font-bold">Kepala Desa Kaputihan</CardTitle>
-                        <CardDescription class="text-gray-500">Periode {{ values.periode }}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <div class="w-full flex justify-center">
-                            <img :src="previewKepdes ?? ''" alt="Gambar kepdes" class="w-48 h-auto rounded-md">
-                        </div>
-                        <p class="text-center text-gray-700 font-medium text-sm mt-2">{{ values.nama_kades }}</p>
-                    </CardContent>
-                </Card>
-                <Card class="shadow-md mb-7">
-                    <CardHeader>
                         <CardTitle class="text-xl font-bold">Logo Aplikasi</CardTitle>
                         <CardDescription class="text-gray-500">Logo aplikasi: {{ values.logo_aktif == 'On' ?
                             'Ditampilkan' : 'Disembunyikan' }}</CardDescription>
@@ -190,53 +175,6 @@ const onSubmit = handleSubmit((values) => {
 
             <Card class="shadow-md self-start">
                 <CardHeader>
-                    <CardTitle class="text-xl font-bold">Data Kepala Desa</CardTitle>
-                    <CardDescription class="text-gray-500">Masukkan data berikut:</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <FormField v-slot="{ componentField }" name="foto" :validate-on-blur="!isFieldDirty">
-                        <FormItem>
-                            <FormLabel>Upload Foto Kepala Desa</FormLabel>
-                            <FormControl>
-                                <Input type="file" @change="(event) => handleFileChange('foto', event)"
-                                    accept=".png, .jpg" placeholder="Upload foto" v-bind="componentField"
-                                    :key="fileInputKey" />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    </FormField>
-                    <FormField v-slot="{ componentField }" name="nama_kades" :validate-on-blur="!isFieldDirty">
-                        <FormItem>
-                            <FormLabel>Nama Kepala Desa</FormLabel>
-                            <FormControl>
-                                <Input type="text" autocomplete="off" placeholder="Masukkan nama kepala desa"
-                                    v-bind="componentField" />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    </FormField>
-                    <FormField v-slot="{ componentField }" name="periode" :validate-on-blur="!isFieldDirty">
-                        <FormItem>
-                            <FormLabel>Periode Kepala Desa</FormLabel>
-                            <FormControl>
-                                <Input type="text" autocomplete="off" placeholder="Masukkan periode kepala desa"
-                                    v-bind="componentField" />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    </FormField>
-                    <FormField v-slot="{ componentField }" name="jumlah_penduduk" :validate-on-blur="!isFieldDirty">
-                        <FormItem>
-                            <FormLabel>Jumlah Penduduk</FormLabel>
-                            <FormControl>
-                                <Input type="text" autocomplete="off" placeholder="Masukkan jumlah penduduk desa desa"
-                                    v-bind="componentField" />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    </FormField>
-                </CardContent>
-                <CardHeader>
                     <CardTitle class="text-xl font-bold">Data Aplikasi</CardTitle>
                     <CardDescription class="text-gray-500">Masukkan data berikut:</CardDescription>
                 </CardHeader>
@@ -248,26 +186,6 @@ const onSubmit = handleSubmit((values) => {
                                 <Input type="file" @change="(event) => handleFileChange('logo', event)"
                                     accept=".png, .jpg" placeholder="Upload logo" v-bind="componentField"
                                     :key="fileInputKey" />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    </FormField>
-                    <FormField v-slot="{ componentField }" name="favicon" :validate-on-blur="!isFieldDirty">
-                        <FormItem>
-                            <FormLabel>Upload Favicon Aplikasi</FormLabel>
-                            <FormControl>
-                                <Input type="file" @change="(event) => handleFileChange('favicon', event)" accept=".ico" placeholder="Upload favicon" v-bind="componentField"
-                                    :key="fileInputKey" />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    </FormField>
-                    <FormField v-slot="{ componentField }" name="nama_aplikasi" :validate-on-blur="!isFieldDirty">
-                        <FormItem>
-                            <FormLabel>Nama Aplikasi (gunakan singkatan)</FormLabel>
-                            <FormControl>
-                                <Input type="text" autocomplete="off" placeholder="Masukkan nama aplikasi ini"
-                                    v-bind="componentField" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

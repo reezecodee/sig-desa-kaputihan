@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { router } from '@inertiajs/vue3'
-import { Button } from '@/Components/ui/button'
+import Button from '@/components/ui/button/Button.vue'
 import {
     FormControl,
     FormField,

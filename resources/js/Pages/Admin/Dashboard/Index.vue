@@ -33,38 +33,38 @@ const showDialog = ref<boolean>(false);
 const selectedId = ref<string | null>(null);
 
 const confirmDelete = (id: string | null): void => {
-  if (id) {
-    selectedId.value = id;
-    showDialog.value = true;
-  }
+    if (id) {
+        selectedId.value = id;
+        showDialog.value = true;
+    }
 };
 
 const deleteData = (): void => {
-  if (!selectedId.value) return;
-  router.delete(route("admin.locationDestroy", selectedId.value), {
-    onFinish: () => {
-      showDialog.value = false;
-      selectedId.value = null; 
-    },
-  });
+    if (!selectedId.value) return;
+    router.delete(route("admin.locationDestroy", selectedId.value), {
+        onFinish: () => {
+            showDialog.value = false;
+            selectedId.value = null;
+        },
+    });
 };
 
 const handleClick = (event: MouseEvent): void => {
-  if (event.target instanceof Element) {
-    const deleteButton = event.target.closest('.delete-btn');
-    if (deleteButton) {
-      const id = deleteButton.getAttribute('data-id');
-      confirmDelete(id);
+    if (event.target instanceof Element) {
+        const deleteButton = event.target.closest('.delete-btn');
+        if (deleteButton) {
+            const id = deleteButton.getAttribute('data-id');
+            confirmDelete(id);
+        }
     }
-  }
 };
 
 onMounted(() => {
-  document.addEventListener('click', handleClick);
+    document.addEventListener('click', handleClick);
 });
 
 onUnmounted(() => {
-  document.removeEventListener('click', handleClick);
+    document.removeEventListener('click', handleClick);
 });
 </script>
 
@@ -88,7 +88,7 @@ onUnmounted(() => {
                     </CardTitle>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-users">
+                        class="h-4 w-4 text-blue-500">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
                         <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
@@ -102,6 +102,7 @@ onUnmounted(() => {
                     </div>
                 </CardContent>
             </Card>
+
             <Card>
                 <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle class="text-sm font-medium">
@@ -109,7 +110,7 @@ onUnmounted(() => {
                     </CardTitle>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-week">
+                        class="h-4 w-4 text-red-500">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
                         <path d="M16 3v4" />
@@ -117,11 +118,6 @@ onUnmounted(() => {
                         <path d="M4 11h16" />
                         <path d="M7 14h.013" />
                         <path d="M10.01 14h.005" />
-                        <path d="M13.01 14h.005" />
-                        <path d="M16.015 14h.005" />
-                        <path d="M13.015 17h.005" />
-                        <path d="M7.01 17h.005" />
-                        <path d="M10.01 17h.005" />
                     </svg>
                 </CardHeader>
                 <CardContent>
@@ -130,26 +126,19 @@ onUnmounted(() => {
                     </div>
                 </CardContent>
             </Card>
+
             <Card>
                 <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle class="text-sm font-medium">
-                        Total Keseluruhan Bangunan
+                        Total Bangunan
                     </CardTitle>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-buildings">
+                        class="h-4 w-4 text-orange-500">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M4 21v-15c0 -1 1 -2 2 -2h5c1 0 2 1 2 2v15" />
-                        <path d="M16 8h2c1 0 2 1 2 2v11" />
-                        <path d="M3 21h18" />
-                        <path d="M10 12v0" />
-                        <path d="M10 16v0" />
-                        <path d="M10 8v0" />
-                        <path d="M7 12v0" />
-                        <path d="M7 16v0" />
-                        <path d="M7 8v0" />
-                        <path d="M17 12v0" />
-                        <path d="M17 16v0" />
+                        <path d="M3 21v-13l9 -4l9 4v13" />
+                        <path d="M13 13h4v8h-10v-6h6" />
+                        <path d="M13 21v-9a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v3" />
                     </svg>
                 </CardHeader>
                 <CardContent>
@@ -158,6 +147,7 @@ onUnmounted(() => {
                     </div>
                 </CardContent>
             </Card>
+
             <Card>
                 <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle class="text-sm font-medium">
@@ -165,7 +155,7 @@ onUnmounted(() => {
                     </CardTitle>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-user-shield">
+                        class="h-4 w-4 text-green-500">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M6 21v-2a4 4 0 0 1 4 -4h2" />
                         <path d="M22 16c0 4 -2.5 6 -3.5 6s-3.5 -2 -3.5 -6c1 0 2.5 -.5 3.5 -1.5c1 1 2.5 1.5 3.5 1.5z" />
@@ -178,20 +168,79 @@ onUnmounted(() => {
                     </div>
                 </CardContent>
             </Card>
+
+            <Card>
+                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle class="text-sm font-medium">
+                        Total Survey Statistik
+                    </CardTitle>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-4 w-4 text-purple-500">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                            d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8" />
+                        <path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a1 1 0 0 1 -1 -1v-4.5" />
+                    </svg>
+                </CardHeader>
+                <CardContent>
+                    <div class="text-2xl font-bold">
+                        {{ data.survey }} </div>
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle class="text-sm font-medium">
+                        Total Kategori Bangunan
+                    </CardTitle>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-4 w-4 text-teal-500">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M4 4h6v6h-6z" />
+                        <path d="M4 14h6v6h-6z" />
+                        <path d="M14 14h6v6h-6z" />
+                        <path d="M14 4h6v6h-6z" />
+                    </svg>
+                </CardHeader>
+                <CardContent>
+                    <div class="text-2xl font-bold">
+                        {{ data.kategori }} </div>
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle class="text-sm font-medium">
+                        Total Laporan Masuk
+                    </CardTitle>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-4 w-4 text-pink-500">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M8 9h8" />
+                        <path d="M8 13h6" />
+                        <path
+                            d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" />
+                    </svg>
+                </CardHeader>
+                <CardContent>
+                    <div class="text-2xl font-bold">
+                        {{ data.laporan }} </div>
+                </CardContent>
+            </Card>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
-            <div>
-                <MapVillage height="500" />
-            </div>
-            <div>
-                <div class="embed-container">
-                    <iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                        title="Batas RT-RW dan Dusun"
-                        src="//www.arcgis.com/apps/Embed/index.html?webmap=4b81724f0ed943e5958afdaa62e5903c&extent=108.2301,-7.4766,108.2707,-7.4549&home=true&zoom=true&previewImage=false&scale=true&details=true&legend=true&active_panel=details&basemap_gallery=true&disable_scroll=true&theme=dark"></iframe>
-                </div>
-            </div>
+        <br>
+        <div class="w-full">
+            <MapVillage height="500" />
         </div>
+        <br>
         <MapTable />
+        <br>
+        <div>
+            <img src="/placeholder/batas-dusun-rt-rw.jpg" alt="" srcset="">
+        </div>
         <AlertDialog v-model:open="showDialog">
             <AlertDialogContent>
                 <AlertDialogHeader>

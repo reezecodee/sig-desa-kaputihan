@@ -86,6 +86,7 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
 
         Route::prefix('laporan-masuk')->controller(ReportController::class)->group(function () {
             Route::get('/', 'index')->name('report');
+            Route::get('/detail/{reportID}', 'detail')->name('reportDetail');
         });
 
         Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {

@@ -2,7 +2,7 @@
 import App from '@/Layouts/App.vue'
 import { Head, router } from '@inertiajs/vue3';
 import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import {
     AlertDialog,
     AlertDialogContent,
@@ -19,29 +19,53 @@ defineProps({
     title: String
 })
 
-const showDialog = ref(false);
-const selectedId = ref(null);
+const showDialog = ref<boolean>(false);
+const selectedId = ref<string | null>(null);
 
-const confirmDelete = (id) => {
+const confirmDelete = (id: string | null): void => {
+  if (id) {
     selectedId.value = id;
     showDialog.value = true;
+  }
 };
 
-const deleteData = () => {
-    if (!selectedId.value) return;
-
-    router.delete(route("admin.scheduleDestroy", selectedId.value))
-    showDialog.value = false;
+const deleteData = (): void => {
+  if (!selectedId.value) return;
+  router.delete(route("admin.categoryDestroy", selectedId.value), {
+    onFinish: () => {
+      showDialog.value = false;
+      selectedId.value = null; 
+    },
+  });
 };
+
+const redirectToDetail = (id: string) => {
+  router.visit(route('admin.reportDetail', id), {
+    preserveState: false
+  })
+}
+
+const handleButtonClick = (event: Event): void => {
+  if (event.target instanceof HTMLElement) {
+    const targetElement = event.target;
+    const id = targetElement.getAttribute('data-id');
+
+    if (targetElement.classList.contains('delete-btn')) {
+      confirmDelete(id);
+    } 
+    else if (targetElement.classList.contains('detail-btn')) {
+      redirectToDetail(id);
+    }
+  }
+}
 
 onMounted(() => {
-    document.addEventListener('click', function (event) {
-        if (event.target.classList.contains('delete-btn')) {
-            const id = event.target.getAttribute('data-id')
-            confirmDelete(id)
-        }
-    })
-})
+  document.addEventListener('click', handleButtonClick);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleButtonClick);
+});
 </script>
 
 <template>
