@@ -17,8 +17,7 @@ class LandingLayoutMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Inertia::setRootView('landing');
-        Inertia::setRootView('landingv2');
+        Inertia::setRootView('landing');
 
         Inertia::share([
             'village' => function () {
