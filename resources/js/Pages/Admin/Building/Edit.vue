@@ -3,16 +3,12 @@ import App from '@/Layouts/App.vue'
 import { Head, Link } from '@inertiajs/vue3'
 import Button from '@/components/ui/button/Button.vue'
 import EditBuilding from '@/Components/custom/building/EditBuilding.vue'
-import { provide, shallowReactive } from 'vue'
 
-const props = defineProps<{ 
+defineProps<{ 
     title: string,               
     building: Record<string, string>,
+    categories: Record<string, string>,
 }>()
-
-const reactiveBuilding = shallowReactive(props.building)
-
-provide('building', reactiveBuilding)
 </script>
 
 <template>
@@ -24,13 +20,13 @@ provide('building', reactiveBuilding)
                 {{ title }}
             </h2>
             <div class="flex items-center space-x-2">
-                <Link :href="route('admin.building')">
+                <Link :href="route('admin.building', building.kategori_id)">
                 <Button class="shadcn-btn back-btn">Kembali</Button>
                 </Link>
             </div>
         </template>
         <div class="flex justify-center">
-            <EditBuilding />
+            <EditBuilding :building="building" :categories="categories" />
         </div>
     </App>
 </template>

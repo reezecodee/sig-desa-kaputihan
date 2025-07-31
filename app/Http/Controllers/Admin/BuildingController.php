@@ -5,16 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BuildingRequest;
 use App\Services\BuildingService;
+use App\Services\CategoryService;
 use Inertia\Inertia;
-use Yajra\DataTables\Facades\DataTables;
 
 class BuildingController extends Controller
 {
     protected $buildingService;
+    protected $categoryService;
 
-    public function __construct(BuildingService $buildingService)
+    public function __construct(BuildingService $buildingService, CategoryService $categoryService)
     {
         $this->buildingService = $buildingService;
+        $this->categoryService = $categoryService;
     }
 
     public function index($categoryID)
@@ -49,8 +51,9 @@ class BuildingController extends Controller
     {
         $title = 'Edit Bangunan';
         $building = $this->buildingService->find($id);
+        $categories = $this->categoryService->getCategories()->get();
 
-        return Inertia::render('Admin/Building/Edit', compact('title', 'building'));
+        return Inertia::render('Admin/Building/Edit', compact('title', 'building', 'categories'));
     }
 
     public function update(BuildingRequest $request, $id)

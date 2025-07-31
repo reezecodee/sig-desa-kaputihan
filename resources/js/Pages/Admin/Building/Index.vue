@@ -2,7 +2,7 @@
 import App from '@/Layouts/App.vue'
 import { Head, Link, router } from '@inertiajs/vue3';
 import Button from '@/components/ui/button/Button.vue';
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import {
   AlertDialog,
   AlertDialogContent,
@@ -21,39 +21,58 @@ defineProps({
   categoryID: String,
 })
 
-const redirectToEdit = (id) => {
+const showDialog = ref<boolean>(false);
+const selectedId = ref<string | null>(null);
+
+const confirmDelete = (id: string | null): void => {
+  if (id) {
+    selectedId.value = id;
+    showDialog.value = true;
+  }
+};
+
+const deleteData = (): void => {
+  if (!selectedId.value) return;
+  router.delete(route("admin.buildingDestroy", selectedId.value), {
+    onFinish: () => {
+      showDialog.value = false;
+      selectedId.value = null; 
+    },
+  });
+};
+
+const redirectToDetail = (slug: string) => {
+  router.visit(route('landing.detailBuilding', slug), {
+    preserveState: false
+  })
+}
+
+const redirectToEdit = (id: string) => {
   router.visit(route('admin.buildingEdit', id), {
     preserveState: false
   })
 }
 
-const showDialog = ref(false);
-const selectedId = ref(null);
+const handleButtonClick = (event: Event): void => {
+  if (event.target instanceof HTMLElement) {
+    const targetElement = event.target;
+    const id = targetElement.getAttribute('data-id');
 
-const confirmDelete = (id: string) => {
-  selectedId.value = id;
-  showDialog.value = true;
-};
-
-const deleteData = () => {
-  if (!selectedId.value) return;
-
-  router.delete(route("admin.buildingDestroy", selectedId.value))
-  showDialog.value = false;
-};
+    if (targetElement.classList.contains('delete-btn')) {
+      confirmDelete(id);
+    } else if (targetElement.classList.contains('edit-btn')) {
+      redirectToEdit(id);
+    }
+  }
+}
 
 onMounted(() => {
-  document.addEventListener('click', function (event) {
-    if (event.target.classList.contains('delete-btn')) {
-      const id = event.target.getAttribute('data-id')
-      confirmDelete(id)
-    } else if (event.target.classList.contains('edit-btn')) {
-      const id = event.target.getAttribute('data-id')
-      redirectToEdit(id)
-    }
-  })
-})
+  document.addEventListener('click', handleButtonClick);
+});
 
+onUnmounted(() => {
+  document.removeEventListener('click', handleButtonClick);
+});
 </script>
 
 <template>

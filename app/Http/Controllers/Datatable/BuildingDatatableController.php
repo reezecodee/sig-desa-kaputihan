@@ -41,7 +41,9 @@ class BuildingDatatableController extends Controller
             })
             ->addColumn('action', function ($row) {
                 return '
-                <button class="shadcn-btn detail-btn" data-id="' . $row->id . '"><i class="fas fa-book-open"></i></button>
+                <a href="' . route('landing.detailBuilding', $row->slug) . '">
+                <button class="shadcn-btn detail-btn" data-slug="' . $row->slug . '"><i class="fas fa-book-open"></i></button>
+                </a>
                 <button class="shadcn-btn edit-btn" data-id="' . $row->id . '"><i class="fas fa-pen"></i></button>
                 <button class="shadcn-btn delete-btn" data-id="' . $row->id . '"><i class="fas fa-trash"></i></button>
             ';
