@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { onMounted, nextTick } from 'vue';
-import { Button } from '@/Components/ui/button'
 
 const props = defineProps({
-    category: String
+    categoryID: String
 });
 
 onMounted(() => {
@@ -11,7 +10,7 @@ onMounted(() => {
         $('#myTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: route('admin.buildingList', props.category),
+            ajax: route('datatable.buildings', props.categoryID),
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                 { data: 'foto_bangunan', name: 'foto_bangunan' },

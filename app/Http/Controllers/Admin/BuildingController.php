@@ -17,11 +17,12 @@ class BuildingController extends Controller
         $this->buildingService = $buildingService;
     }
 
-    public function index()
+    public function index($categoryID)
     {
-        $title = 'Bangunan Umum';
+        $title = 'Bangunan Desa';
+        $categoryID = $categoryID;
 
-        return Inertia::render('Admin/Building/Index', compact('title'));
+        return Inertia::render('Admin/Building/Index', compact('title', 'categoryID'));
     }
 
     public function create()

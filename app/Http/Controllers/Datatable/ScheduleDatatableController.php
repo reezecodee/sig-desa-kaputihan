@@ -35,7 +35,7 @@ class ScheduleDatatableController extends Controller
             })
             ->addColumn('action', function ($row) {
                 return '
-                <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Hapus</button>
+                <button class="shadcn-btn delete-btn" data-id="' . $row->id . '"><i class="fas fa-trash"></i></button>
             ';
             })
             ->rawColumns(['action'])

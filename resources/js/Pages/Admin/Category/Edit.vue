@@ -2,11 +2,13 @@
 import App from '@/Layouts/App.vue'
 import { Head, Link } from '@inertiajs/vue3'
 import Button from '@/components/ui/button/Button.vue';
-import CreateUser from '@/Components/custom/user-management/CreateUser.vue';
+import EditCategory from '@/Components/custom/category/EditCategory.vue';
 
 defineProps({
-    title: String
+    title: String,
+    category: Object,
 })
+
 </script>
 
 <template>
@@ -18,17 +20,13 @@ defineProps({
                 {{ title }}
             </h2>
             <div class="flex items-center space-x-2">
-                <Link :href="route('admin.userManagement')">
+                <Link :href="route('admin.category')">
                 <Button class="shadcn-btn back-btn">Kembali</Button>
                 </Link>
             </div>
         </template>
         <div class="flex justify-center">
-            <img src="/placeholder/profile.png" alt="" srcset=""
-                style="width: 120px; aspect-ratio: 1 / 1; object-fit: cover;">
-        </div>
-        <div class="flex justify-center">
-            <CreateUser />
+            <EditCategory :category="category" />
         </div>
     </App>
 </template>

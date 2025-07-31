@@ -73,7 +73,7 @@ onUnmounted(() => {
                 {{ title }}
             </h2>
             <Link :href="route('admin.chartMenu', id)">
-            <Button class="shadcn-btn delete-btn">
+            <Button class="shadcn-btn back-btn">
                 Kembali
             </Button>
             </Link>

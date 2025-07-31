@@ -17,7 +17,7 @@ import {
 import Table from '@/Components/custom/category/Table.vue';
 
 defineProps({
-    title: String
+    title: String,
 })
 
 const showDialog = ref<boolean>(false);
@@ -40,22 +40,39 @@ const deleteData = (): void => {
   });
 };
 
-const handleClick = (event: MouseEvent): void => {
-  if (event.target instanceof Element) {
-    const deleteButton = event.target.closest('.delete-btn');
-    if (deleteButton) {
-      const id = deleteButton.getAttribute('data-id');
+const redirectToDetail = (id: string) => {
+  router.visit(route('admin.building', id), {
+    preserveState: false
+  })
+}
+
+const redirectToEdit = (id: string) => {
+  router.visit(route('admin.categoryEdit', id), {
+    preserveState: false
+  })
+}
+
+const handleButtonClick = (event: Event): void => {
+  if (event.target instanceof HTMLElement) {
+    const targetElement = event.target;
+    const id = targetElement.getAttribute('data-id');
+
+    if (targetElement.classList.contains('delete-btn')) {
       confirmDelete(id);
+    } else if (targetElement.classList.contains('detail-btn')) {
+      redirectToDetail(id);
+    } else if (targetElement.classList.contains('edit-btn')) {
+      redirectToEdit(id);
     }
   }
-};
+}
 
 onMounted(() => {
-  document.addEventListener('click', handleClick);
+  document.addEventListener('click', handleButtonClick);
 });
 
 onUnmounted(() => {
-  document.removeEventListener('click', handleClick);
+  document.removeEventListener('click', handleButtonClick);
 });
 </script>
 

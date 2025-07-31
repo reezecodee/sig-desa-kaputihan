@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Http\Requests\Admin\UserRequest;
 use App\Services\UserService;
 use Inertia\Inertia;
-use Yajra\DataTables\Facades\DataTables;
 
 class UserManagementController extends Controller
 {
@@ -22,26 +21,6 @@ class UserManagementController extends Controller
         $title = 'Manajemen Pengguna';
 
         return Inertia::render('Admin/UserManagement/Index', compact('title'));
-    }
-
-    public function getUsers()
-    {
-        $users = $this->userService->getUsers();
-
-        return DataTables::of($users)
-            ->addIndexColumn()
-            ->addColumn('action', function ($row) {
-                if (!$row->email_verified_at) {
-                    return '
-                    <button class="shadcn-btn edit-btn" data-id="' . $row->id . '">Edit</button>
-                    <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Hapus</button>
-                ';
-                } else {
-                    return 'Akun sudah aktif';
-                }
-            })
-            ->rawColumns(['action'])
-            ->make(true);
     }
 
     public function create()

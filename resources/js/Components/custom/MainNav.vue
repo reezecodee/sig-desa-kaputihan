@@ -19,7 +19,7 @@ import { Link } from '@inertiajs/vue3'
       Statistik
       </Link>
       <Link :href="route('admin.category')" class="text-sm font-medium transition-colors hover:text-primary"
-        :class="{ 'text-muted-foreground': !$page.url.startsWith('/kategori-bangunan-desa') }">
+        :class="{ 'text-muted-foreground': !$page.url.startsWith('/kategori-bangunan') }">
       Kategori
       </Link>
       <Link :href="route('admin.userManagement')" class="text-sm font-medium transition-colors hover:text-primary"

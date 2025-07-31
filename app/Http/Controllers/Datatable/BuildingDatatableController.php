@@ -22,10 +22,13 @@ class BuildingDatatableController extends Controller
 
         return DataTables::of($buildings)
             ->addIndexColumn()
+            ->addColumn('kategori_bangunan', function($row){
+                return $row->category->nama_kategori;
+            })
             ->addColumn('foto_bangunan', function ($row) {
                 $placeholder = asset('placeholder/blog.svg');
                 $imageUrl = $row->foto_bangunan
-                    ? asset('storage/' . $row->foto_bangunan)
+                    ? asset('storage/foto-bangunan/' . $row->foto_bangunan)
                     : $placeholder;
 
                 return '<div style="width: 100px; aspect-ratio: 16 / 9; overflow: hidden;">
@@ -38,11 +41,9 @@ class BuildingDatatableController extends Controller
             })
             ->addColumn('action', function ($row) {
                 return '
-                <a href="' . route('landing.buildingInformation', $row->id) . '">
-                <button class="shadcn-btn detail-btn">Lihat</button>
-                </a>
-                <button class="shadcn-btn edit-btn" data-id="' . $row->id . '">Edit</button>
-                <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Hapus</button>
+                <button class="shadcn-btn detail-btn" data-id="' . $row->id . '"><i class="fas fa-book-open"></i></button>
+                <button class="shadcn-btn edit-btn" data-id="' . $row->id . '"><i class="fas fa-pen"></i></button>
+                <button class="shadcn-btn delete-btn" data-id="' . $row->id . '"><i class="fas fa-trash"></i></button>
             ';
             })
             ->rawColumns(['foto_bangunan', 'action'])

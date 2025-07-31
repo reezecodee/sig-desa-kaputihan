@@ -5,7 +5,6 @@ import Button from '@/components/ui/button/Button.vue';
 import { onMounted, ref } from 'vue';
 import {
   AlertDialog,
-  AlertDialogTrigger,
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -14,10 +13,12 @@ import {
   AlertDialogCancel,
   AlertDialogAction
 } from "@/Components/ui/alert-dialog";
-
+import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
+import BuildingTable from '@/Components/custom/building/BuildingTable.vue';
 
 defineProps({
-  title: String
+  title: String,
+  categoryID: String,
 })
 
 const redirectToEdit = (id) => {
@@ -29,7 +30,7 @@ const redirectToEdit = (id) => {
 const showDialog = ref(false);
 const selectedId = ref(null);
 
-const confirmDelete = (id) => {
+const confirmDelete = (id: string) => {
   selectedId.value = id;
   showDialog.value = true;
 };
@@ -64,11 +65,23 @@ onMounted(() => {
         {{ title }}
       </h2>
       <div class="flex items-center space-x-2">
-        <Link :href="route('admin.buildingCreate')">
-        <Button class="shadcn-btn detail-btn">Tambah Bangunan Baru</Button>
+        <Link :href="route('admin.category')">
+        <Button class="shadcn-btn back-btn">Kembali</Button>
         </Link>
       </div>
     </template>
+
+    <Card>
+      <CardHeader>
+        <CardTitle>
+          Daftar bangunan desa.
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <BuildingTable :categoryID="categoryID" />
+      </CardContent>
+    </Card>
+
     <AlertDialog v-model:open="showDialog">
       <AlertDialogContent>
         <AlertDialogHeader>

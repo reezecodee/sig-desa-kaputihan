@@ -21,9 +21,9 @@ class BuildingService
         return $this->buildingRepository->find($id);
     }
 
-    public function getBuildings($category)
+    public function getBuildings($categoryID)
     {
-        return $this->buildingRepository->lists($category);
+        return $this->buildingRepository->buildings($categoryID);
     }
 
     public function store($data)

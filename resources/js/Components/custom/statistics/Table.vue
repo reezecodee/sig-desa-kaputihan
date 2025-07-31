@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { router } from '@inertiajs/vue3';
 
 onMounted(() => {
     $('#myTable').DataTable({
@@ -14,28 +13,6 @@ onMounted(() => {
             { data: 'action', name: 'action', orderable: false, searchable: false },
         ]
     });
-});
-
-const redirectToDetail = (id) => {
-    router.visit(route('admin.chartMenu', id), {
-        preserveState: false
-    })
-}
-
-onMounted(() => {
-    document.addEventListener('click', function (event) {
-        if (event.target instanceof HTMLElement) {
-            const targetElement = event.target;
-
-            if (targetElement.classList.contains('delete-btn')) {
-                const id = targetElement.getAttribute('data-id');
-                // confirmDelete(id);
-            } else if (targetElement.classList.contains('detail-btn')) {
-                const id = targetElement.getAttribute('data-id');
-                redirectToDetail(id);
-            }
-        }
-    })
 });
 </script>
 

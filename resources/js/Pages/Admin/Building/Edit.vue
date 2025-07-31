@@ -25,7 +25,7 @@ provide('building', reactiveBuilding)
             </h2>
             <div class="flex items-center space-x-2">
                 <Link :href="route('admin.building')">
-                <Button class="shadcn-btn delete-btn">Kembali</Button>
+                <Button class="shadcn-btn back-btn">Kembali</Button>
                 </Link>
             </div>
         </template>

@@ -13,11 +13,11 @@ class BuildingRepository
         return Building::findOrFail($id);
     }
 
-    public function lists($category)
+    public function buildings($categoryID)
     {
-        $blogs = Building::where('kategori_bangunan', $category)->orderBy('created_at', 'desc')->get();
+        $buildings = Building::with('category')->where('kategori_id', $categoryID)->orderBy('created_at', 'desc');
 
-        return $blogs;
+        return $buildings;
     }
 
     public function existsBySlug(string $slug): bool

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\API\APIController;
+use App\Http\Controllers\Datatable\BuildingDatatableController;
 use App\Http\Controllers\Datatable\CategoryDatatableController;
 use App\Http\Controllers\Datatable\FacilityDatatableController;
 use App\Http\Controllers\Datatable\GeneralDatatableController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\Datatable\PopuGroupDatatableController;
 use App\Http\Controllers\Datatable\ReportDatatableController;
 use App\Http\Controllers\Datatable\ScheduleDatatableController;
 use App\Http\Controllers\Datatable\StatisticsDatatableController;
+use App\Http\Controllers\Datatable\UserDatatableController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -34,15 +36,6 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
         Route::prefix('lokasi')->controller(LocationController::class)->group(function () {
             Route::post('simpan-lokasi', 'store')->name('locationSave');
             Route::delete('hapus-lokasi/{id}', 'destroy')->name('locationDestroy');
-        });
-
-        Route::prefix('bangunan')->controller(BuildingController::class)->group(function () {
-            Route::get('/', 'index')->name('building');
-            Route::get('tambah-bangunan', 'create')->name('buildingCreate');
-            Route::post('tambah-bangunan-baru', 'store')->name('buildingSave');
-            Route::get('edit-bangunan/{id}', 'edit')->name('buildingEdit');
-            Route::post('update-bangunan/{id}', 'update')->name('buildingUpdate');
-            Route::delete('hapus-bangunan/{id}', 'destroy')->name('buildingDestroy');
         });
 
         Route::prefix('pengaturan-desa')->controller(SettingController::class)->group(function () {
@@ -75,18 +68,28 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
             Route::delete('hapus-kelompok-populasi/{id}', 'destroyPopulationGroup')->name('popuGroupDestroy');
         });
 
-        Route::prefix('kategori-bangunan-desa')->controller(CategoryController::class)->group(function () {
+        Route::prefix('kategori-bangunan')->controller(CategoryController::class)->group(function () {
             Route::get('/', 'index')->name('category');
             Route::post('tambah-kategori', 'store')->name('categorySave');
+            Route::get('edit-kategori/{id}', 'edit')->name('categoryEdit');
+            Route::post('udpdate-kategori/{id}', 'update')->name('categoryUpdate');
         });
 
-        Route::prefix('laporan-masuk')->controller(ReportController::class)->group(function(){
+        Route::prefix('kategori-bangunan')->controller(BuildingController::class)->group(function () {
+            Route::get('detail/{categoryID}', 'index')->name('building');
+            Route::get('tambah-bangunan', 'create')->name('buildingCreate');
+            Route::post('tambah-bangunan-baru', 'store')->name('buildingSave');
+            Route::get('edit-bangunan/{id}', 'edit')->name('buildingEdit');
+            Route::post('update-bangunan/{id}', 'update')->name('buildingUpdate');
+            Route::delete('hapus-bangunan/{id}', 'destroy')->name('buildingDestroy');
+        });
+
+        Route::prefix('laporan-masuk')->controller(ReportController::class)->group(function () {
             Route::get('/', 'index')->name('report');
         });
 
         Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {
             Route::get('/', 'index')->name('userManagement');
-            Route::get('daftar-pengguna', 'getUsers')->name('userList');
             Route::get('tambah', 'create')->name('userCreate');
             Route::post('simpan-pengguna', 'store')->name('userSave');
             Route::get('pengguna/{id}/edit', 'edit')->name('userEdit');
@@ -109,7 +112,7 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
         )->name('schedule');
         Route::get(
             'daftar-bangunan/{categoryID}',
-            [ScheduleDatatableController::class, 'getBuildings']
+            [BuildingDatatableController::class, 'getBuildings']
         )->name('buildings');
         Route::get(
             'daftar-survey',
@@ -123,6 +126,11 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
             'daftar-laporan',
             [ReportDatatableController::class, 'getReports']
         )->name('reports');
+        Route::get(
+            'daftar-pengguna',
+            [UserDatatableController::class, 'getUsers']
+        )->name('users');
+
 
         Route::get(
             'daftar-fasilitas/{surveyID}/{category}',

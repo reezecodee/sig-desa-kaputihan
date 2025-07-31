@@ -13,4 +13,9 @@ class CategoryRepository
 
         return $categories;
     }
+
+    public function findCategory($id)
+    {
+        return Category::findOrFail($id);
+    }
 }

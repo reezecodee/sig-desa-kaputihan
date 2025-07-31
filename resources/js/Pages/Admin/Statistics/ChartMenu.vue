@@ -22,7 +22,7 @@ defineProps({
             </h2>
             <div class="flex items-center space-x-2">
                 <Link :href="route('admin.statistics')">
-                <Button class="shadcn-btn delete-btn">
+                <Button class="shadcn-btn back-btn">
                     Kembali
                 </Button>
                 </Link>

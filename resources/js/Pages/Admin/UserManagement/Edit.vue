@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
 import { Head, Link } from '@inertiajs/vue3'
-import { Button } from '@/Components/ui/button'
+import Button from '@/components/ui/button/Button.vue';
 import EditUser from '@/Components/custom/user-management/EditUser.vue';
 import { provide, shallowReactive } from 'vue';
 
@@ -24,7 +24,7 @@ provide('user', reactiveUser)
             </h2>
             <div class="flex items-center space-x-2">
                 <Link :href="route('admin.userManagement')">
-                <Button class="shadcn-btn delete-btn">Kembali</Button>
+                <Button class="shadcn-btn back-btn">Kembali</Button>
                 </Link>
             </div>
         </template>

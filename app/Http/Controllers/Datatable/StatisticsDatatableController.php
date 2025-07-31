@@ -31,10 +31,10 @@ class StatisticsDatatableController extends Controller
                 return $html;
             })
             ->addColumn('action', function ($row) {
-                $html = '<button class="shadcn-btn detail-btn" data-id="' . $row->id . '">Cek Detail</button>';
+                $html = '<button class="shadcn-btn detail-btn" data-id="' . $row->id . '"><i class="fas fa-book-open"></i></button>';
 
                 if ($row->diaktifkan !== 'Ya') {
-                    $html .= ' <button class="shadcn-btn delete-btn" data-id="' . $row->id . '">Hapus</button>';
+                    $html .= '<button class="shadcn-btn delete-btn" data-id="' . $row->id . '"><i class="fas fa-trash"></i></button>';
                 }
 
                 return $html;

@@ -5,7 +5,7 @@ onMounted(() => {
     $('#myTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: route('admin.userList'),
+        ajax: route('datatable.users'),
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
             { data: 'nama', name: 'nama' },

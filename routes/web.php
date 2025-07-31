@@ -18,7 +18,7 @@ Route::middleware(['landing-layout'])->controller(LandingController::class)->gro
 
 Route::controller(APIController::class)->group(function(){
     Route::get('jadwal-landing-page', 'scheduleForLanding')->name('landing.scheduleForLanding');
-    Route::get('kategori-bangunan', 'buildingCategories')->name('landing.buildingCategories');
+    Route::get('kategori-bangunan-desa', 'buildingCategories')->name('landing.buildingCategories');
 });
 
 Route::get('charts', [ChartAPIController::class, 'charts'])->name('landing.charts');
