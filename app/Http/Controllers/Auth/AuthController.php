@@ -48,6 +48,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerate();
 
-        return Inertia::location(route('landing.index'));
+        return Inertia::location(route('landing.home'));
     }
 }

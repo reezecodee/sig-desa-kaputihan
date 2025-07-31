@@ -1,19 +1,26 @@
 <script setup lang="ts">
-import { Button } from '@/Components/ui/button'
+import { Button } from '@/components/ui/button'
 import { Input } from '@/Components/ui/input'
-import { Label } from '@/Components/ui/label'
+import { Label } from '@/components/ui/label'
 
 import { cn } from '@/lib/utils'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useForm } from '@inertiajs/vue3'
+import type { Ref } from 'vue'
 
-const form = useForm({
+interface LoginForm {
+  [key: string]: any;
+  login: string | null;
+  password: string | null;
+}
+
+// 2. Gunakan interface pada useForm
+const form = useForm<LoginForm>({
   login: null,
   password: null,
-  remember: false,
 })
 
-const isLoading = ref(false)
+const isLoading: Ref<boolean> = ref(false)
 
 async function onSubmit(event: Event) {
   event.preventDefault()
