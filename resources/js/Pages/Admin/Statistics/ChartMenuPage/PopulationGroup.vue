@@ -20,7 +20,7 @@ import FormPopulationGroup from '@/Components/custom/statistics/FormPopulationGr
 
 defineProps({
     title: String,
-    id: String,
+    surveyID: String,
     chartData: Object,
 })
 
@@ -71,22 +71,21 @@ onUnmounted(() => {
             <h2 class="text-3xl font-bold tracking-tight">
                 {{ title }}
             </h2>
-            <Link :href="route('admin.chartMenu', id)">
+            <Link :href="route('admin.chartMenu', surveyID)">
             <Button class="shadcn-btn back-btn">
                 Kembali
             </Button>
             </Link>
         </template>
 
-        <Card>
+        <Card v-if="chartData && chartData.rentang_umur && chartData.rentang_umur.length > 0">
             <CardHeader>
                 <CardTitle>
                     Grafik Statistik Kelompok Penduduk Berdasarkan Umur
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <WorldPopulationChart v-if="chartData" title="Kelompok Penduduk Berdasarkan Umur"
-                            :data="chartData" />
+                <WorldPopulationChart title="Kelompok Penduduk Berdasarkan Umur" :data="chartData" />
             </CardContent>
         </Card>
 
@@ -98,9 +97,9 @@ onUnmounted(() => {
             </CardHeader>
             <CardContent>
                 <div class="flex justify-end mb-5">
-                    <FormPopulationGroup :surveyID="id"/>
+                    <FormPopulationGroup :surveyID="surveyID" />
                 </div>
-                <TablePopulationGroups :surveyID="id" />
+                <TablePopulationGroups :surveyID="surveyID" />
             </CardContent>
         </Card>
 

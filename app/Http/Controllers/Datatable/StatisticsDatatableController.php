@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Datatable;
 
 use App\Http\Controllers\Controller;
 use App\Services\SurveyService;
-use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class StatisticsDatatableController extends Controller
@@ -31,11 +30,14 @@ class StatisticsDatatableController extends Controller
                 return $html;
             })
             ->addColumn('action', function ($row) {
-                $html = '<button class="shadcn-btn detail-btn" data-id="' . $row->id . '"><i class="fas fa-book-open"></i></button>';
+                $html = '<div class="flex flex-wrap gap-1">
+                <button class="shadcn-btn detail-btn" data-id="' . $row->id . '"><i class="fas fa-book-open"></i></button>';
 
                 if ($row->diaktifkan !== 'Ya') {
                     $html .= '<button class="shadcn-btn delete-btn" data-id="' . $row->id . '"><i class="fas fa-trash"></i></button>';
                 }
+
+                $html .= '</div>';
 
                 return $html;
             })

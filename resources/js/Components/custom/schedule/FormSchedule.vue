@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/Components/ui/dialog'
-import { Button } from '@/Components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
   FormControl,
   FormField,
@@ -22,16 +22,20 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue
-} from '@/components/ui/select'
-import { Textarea } from '@/components/ui/textarea'
+} from '@/Components/ui/select'
+import { Textarea } from '@/Components/ui/textarea'
 import { Input } from '@/Components/ui/input'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
 import { router } from '@inertiajs/vue3'
+import { ref } from 'vue';
+import type { Ref } from 'vue'; 
 
 const today = new Date();
 today.setHours(0, 0, 0, 0);
+
+const isDialogOpen: Ref<boolean> = ref(false);
 
 const formSchema = toTypedSchema(z.object({
   kegiatan: z.string()
@@ -54,7 +58,7 @@ const formSchema = toTypedSchema(z.object({
     .max(255, { message: 'Keterangan tidak boleh lebih dari 255 karakter.' }),
 }).refine((data) => {
   if (!data.mulai || !data.selesai) return true;
-  
+
   const startDate = new Date(data.mulai);
   startDate.setHours(0, 0, 0, 0);
 
@@ -67,7 +71,7 @@ const formSchema = toTypedSchema(z.object({
   path: ["selesai"],
 }));
 
-const { handleSubmit, setErrors } = useForm({
+const { handleSubmit, setErrors, resetForm } = useForm({
   validationSchema: formSchema,
   initialValues: {
     kegiatan: undefined,
@@ -82,13 +86,18 @@ const onSubmit = handleSubmit((values) => {
   router.post(route('admin.scheduleSave'), values, {
     onError: (backendErrors) => {
       setErrors(backendErrors);
-    }
+    },
+    onSuccess: () => {
+      isDialogOpen.value = false;
+      resetForm();
+    },
+    preserveScroll: true,
   });
 });
 </script>
 
 <template>
-  <Dialog>
+  <Dialog v-model:open="isDialogOpen">
     <DialogTrigger>
       <Button class="shadcn-btn edit-btn"><i class="fa-solid fa-plus"></i> Tambah Jadwal Baru</Button>
     </DialogTrigger>
@@ -161,7 +170,7 @@ const onSubmit = handleSubmit((values) => {
           </FormItem>
         </FormField>
       </form>
-      
+
       <DialogFooter>
         <Button type="submit" form="add-schedule-form" class="shadcn-btn edit-btn">Tambahkan</Button>
       </DialogFooter>

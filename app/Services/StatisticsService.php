@@ -11,6 +11,11 @@ class StatisticsService{
         $this->statisticsRepository = $statisticsRepository;
     }
 
+    public function storeSurvey($data)
+    {
+        $this->statisticsRepository->storeSurvey($data);
+    }
+
     public function deleteDataChart($model, $id)
     {
         $this->statisticsRepository->destroyChart($model, $id);

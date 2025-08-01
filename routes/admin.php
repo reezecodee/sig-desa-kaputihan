@@ -53,6 +53,10 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
             Route::get('/', 'index')->name('statistics');
             Route::get('menu-charts/{surveyID}', 'chartMenu')->name('chartMenu');
 
+            Route::post('tambah-survey', 'storeSurvey')->name('surveySave');
+            Route::patch('update-status-survey{surveyID}', 'updateStatusSurvey')->name('surveyUpdateStatus');
+            Route::delete('hapus-survey/{id}', 'destroySurvey')->name('destroySurvey');
+
             Route::name('chart.')->group(function () {
                 Route::get('grafik-fasilitas/{surveyID}/{category}', 'facility')->name('facility');
                 Route::get('grafik-data-umum/{surveyID}/{category}', 'generalData')->name('generalData');

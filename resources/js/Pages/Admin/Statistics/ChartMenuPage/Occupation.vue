@@ -20,7 +20,7 @@ import FormOccupation from '@/Components/custom/statistics/FormOccupation.vue';
 
 defineProps({
     title: String,
-    id: String,
+    surveyID: String,
     chartData: Object,
 })
 
@@ -71,21 +71,20 @@ onUnmounted(() => {
             <h2 class="text-3xl font-bold tracking-tight">
                 {{ title }}
             </h2>
-            <Link :href="route('admin.chartMenu', id)">
+            <Link :href="route('admin.chartMenu', surveyID)">
             <Button class="shadcn-btn back-btn">
                 Kembali
             </Button>
             </Link>
         </template>
-
-        <Card>
+        <Card v-if="chartData && chartData.length > 0">
             <CardHeader>
                 <CardTitle>
                     Grafik Statistik Mata Pencaharian Penduduk
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <PieChart v-if="chartData" title="Mata Pencaharian Penduduk"
+                <PieChart title="Mata Pencaharian Penduduk"
                             :data="chartData" />
             </CardContent>
         </Card>
@@ -98,9 +97,9 @@ onUnmounted(() => {
             </CardHeader>
             <CardContent>
                 <div class="flex justify-end mb-5">
-                    <FormOccupation :surveyID="id"/>
+                    <FormOccupation :surveyID="surveyID"/>
                 </div>
-                <TableOccupations :surveyID="id" />
+                <TableOccupations :surveyID="surveyID" />
             </CardContent>
         </Card>
 

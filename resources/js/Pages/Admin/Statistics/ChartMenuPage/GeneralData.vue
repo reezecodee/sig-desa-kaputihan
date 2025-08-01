@@ -20,7 +20,7 @@ import FormGeneralData from '@/Components/custom/statistics/FormGeneralData.vue'
 
 defineProps({
     title: String,
-    id: String,
+    surveyID: String,
     category: String,
     chartData: Object,
 })
@@ -72,21 +72,21 @@ onUnmounted(() => {
             <h2 class="text-3xl font-bold tracking-tight">
                 {{ title }}
             </h2>
-            <Link :href="route('admin.chartMenu', id)">
+            <Link :href="route('admin.chartMenu', surveyID)">
             <Button class="shadcn-btn back-btn">
                 Kembali
             </Button>
             </Link>
         </template>
-
-        <Card>
+        
+        <Card v-if="chartData && chartData.length > 0">
             <CardHeader>
                 <CardTitle>
                     Grafik Statistik Data Umum {{ category }}
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <PieChart v-if="chartData" :title="category"
+                <PieChart :title="category"
                             :data="chartData" />
             </CardContent>
         </Card>
@@ -99,9 +99,9 @@ onUnmounted(() => {
             </CardHeader>
             <CardContent>
                 <div class="flex justify-end mb-5">
-                    <FormGeneralData :surveyID="id" :category="category" />
+                    <FormGeneralData :surveyID="surveyID" :category="category" />
                 </div>
-                <TableGeneralData :surveyID="id" :category="category" />
+                <TableGeneralData :surveyID="surveyID" :category="category" />
             </CardContent>
         </Card>
 

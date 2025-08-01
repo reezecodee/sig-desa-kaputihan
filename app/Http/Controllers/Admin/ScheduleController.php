@@ -28,7 +28,7 @@ class ScheduleController extends Controller
             $this->scheduleService->store($request->validated());
 
             session()->flash('success', 'Berhasil menambahkan jadwal kegiatan baru');
-            return redirect()->route('admin.schedule');
+             return Inertia::location(route('admin.schedule'));
         }catch(\Exception $e){
             session()->flash('failed', $e->getMessage());
             return Inertia::location(route('admin.schedule'));

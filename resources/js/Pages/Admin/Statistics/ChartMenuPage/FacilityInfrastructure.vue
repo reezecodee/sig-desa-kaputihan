@@ -6,21 +6,21 @@ import TableFacilities from '@/Components/custom/statistics/TableFacilities.vue'
 import Button from '@/components/ui/button/Button.vue';
 import { ref, onMounted, onUnmounted } from 'vue';
 import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogCancel,
-  AlertDialogAction
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogCancel,
+    AlertDialogAction
 } from "@/Components/ui/alert-dialog";
 import BarChart from '@/Pages/LandingV2/StatisticVillage/charts/BarChart.vue';
 import FormFacility from '@/Components/custom/statistics/FormFacility.vue';
 
 defineProps({
     title: String,
-    id: String,
+    surveyID: String,
     category: String,
     chartData: Object,
 })
@@ -72,22 +72,21 @@ onUnmounted(() => {
             <h2 class="text-3xl font-bold tracking-tight">
                 {{ title }}
             </h2>
-            <Link :href="route('admin.chartMenu', id)">
+            <Link :href="route('admin.chartMenu', surveyID)">
             <Button class="shadcn-btn back-btn">
                 Kembali
             </Button>
             </Link>
         </template>
 
-        <Card>
+        <Card v-if="chartData && chartData.label && chartData.label.length > 0">
             <CardHeader>
                 <CardTitle>
                     Grafik Statistik Fasilitas {{ category }}
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <BarChart v-if="chartData" :title="category"
-                            :data="chartData" />
+                <BarChart :title="category" :data="chartData" />
             </CardContent>
         </Card>
 
@@ -99,9 +98,9 @@ onUnmounted(() => {
             </CardHeader>
             <CardContent>
                 <div class="flex justify-end mb-5">
-                    <FormFacility :surveyID="id" :category="category" />
+                    <FormFacility :surveyID="surveyID" :category="category" />
                 </div>
-                <TableFacilities :surveyID="id" :category="category" />
+                <TableFacilities :surveyID="surveyID" :category="category" />
             </CardContent>
         </Card>
 

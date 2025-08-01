@@ -3,13 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\SurveyRequest;
 use App\Models\StatsFacilityInfrastructure;
 use App\Models\StatsGeneralData;
 use App\Models\StatsMainOccupation;
 use App\Models\StatsPopulationCategory;
 use App\Models\StatsPopulationGroup;
+use App\Models\SurveyYear;
 use App\Services\ChartService;
 use App\Services\StatisticsService;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class StatisticsController extends Controller
@@ -33,58 +38,106 @@ class StatisticsController extends Controller
     public function chartMenu($id)
     {
         $title = 'Menu Charts Statistik';
-        $id = $id;
 
         return Inertia::render('Admin/Statistics/ChartMenu', compact('title', 'id'));
+    }
+
+    public function storeSurvey(SurveyRequest $request)
+    {
+        try {
+            $this->statisticsService->storeSurvey($request->validated());
+
+            session()->flash('success', 'Berhasil menambahkan tahun survey baru');
+            return Inertia::location(route('admin.statistics'));
+        } catch (\Exception $e) {
+            session()->flash('failed', 'Terjadi kesalahan. Data gagal disimpan.');
+            return Inertia::location(route('admin.statistics'));
+        }
+    }
+
+    public function updateStatusSurvey(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'diaktifkan' => ['required', 'string', 'in:Ya,Tidak'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $validated = $validator->validated();
+        $surveyToUpdate = SurveyYear::findOrFail($id);
+
+        try {
+            if ($validated['diaktifkan'] === 'Ya') {
+                SurveyYear::where('id', '!=', $surveyToUpdate->id)
+                    ->where('diaktifkan', 'Ya')
+                    ->update(['diaktifkan' => 'Tidak']);
+            }
+
+            $surveyToUpdate->update([
+                'diaktifkan' => $validated['diaktifkan']
+            ]);
+
+            return response()->json([
+                'message' => 'Status survey berhasil diperbarui.'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Terjadi kesalahan saat memperbarui status.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function destroySurvey($id)
+    {
+        $survey = SurveyYear::findOrFail($id);
+        $survey->delete();
+
+        session()->flash('success', 'Berhasil menghapus tahun survey');
+        return Inertia::location(route('admin.statistics'));
     }
 
     public function facility($surveyID, $category)
     {
         $title = 'Grafik Statistik Fasilitas';
-        $id = $surveyID;
-        $category = $category;
         $chartData = $this->chartService->getFacilities('json', $category, $surveyID);
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/FacilityInfrastructure', compact('title', 'id', 'category', 'chartData'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/FacilityInfrastructure', compact('title', 'surveyID', 'category', 'chartData'));
     }
 
     public function generalData($surveyID, $category)
     {
         $title = 'Grafik Statistik Data Umum';
-        $id = $surveyID;
-        $category = $category;
         $chartData = $this->chartService->getGeneralData('json', $category, $surveyID);
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/GeneralData', compact('title', 'id', 'category', 'chartData'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/GeneralData', compact('title', 'surveyID', 'category', 'chartData'));
     }
 
     public function occupation($surveyID)
     {
         $title = 'Grafik Statistik Mata Pencaharian';
-        $id = $surveyID;
         $chartData = $this->chartService->getMainOccupations('json', $surveyID);
 
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/Occupation', compact('title', 'id', 'chartData'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/Occupation', compact('title', 'surveyID', 'chartData'));
     }
 
     public function populationCategory($surveyID, $category)
     {
         $title = 'Grafik Statistik Kategori Penduduk';
-        $id = $surveyID;
-        $category = $category;
         $chartData = $this->chartService->getPopulationCategory('json', $category, $surveyID);
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationCategory', compact('title', 'id', 'category', 'chartData'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationCategory', compact('title', 'surveyID', 'category', 'chartData'));
     }
 
     public function populationGroup($surveyID)
     {
         $title = 'Grafik Statistik Kelompok Penduduk';
-        $id = $surveyID;
         $chartData = $this->chartService->getPopulationByAgeGroup('json', $surveyID);
 
-        return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationGroup', compact('title', 'id', 'chartData'));
+        return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationGroup', compact('title', 'surveyID', 'chartData'));
     }
 
     public function destroyFacility($id)

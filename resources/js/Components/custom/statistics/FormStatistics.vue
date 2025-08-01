@@ -8,7 +8,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/Components/ui/dialog'
-import Button from '@/components/ui/button/Button.vue'
+import { Button } from '@/components/ui/button'
 import {
     FormControl,
     FormField,
@@ -22,26 +22,31 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue
-} from '@/components/ui/select'
+} from '@/Components/ui/select'
 import { Input } from '@/Components/ui/input'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
 import { router } from '@inertiajs/vue3'
+import { ref } from 'vue';
+import type { Ref } from 'vue';
 
-const today = new Date();
-today.setHours(0, 0, 0, 0);
+const isDialogOpen: Ref<boolean> = ref(false);
 
 const formSchema = toTypedSchema(z.object({
-    tahun_survey: z.string()
-        .length(4, { message: 'Tahun survey harus terdiri dari 4 digit.' })
-        .regex(/^\d{4}$/, { message: 'Tahun survey harus berupa angka.' }),
+    tahun_survey: z.number({
+        required_error: "Tahun survey wajib diisi.",
+        invalid_type_error: "Tahun survey harus berupa angka.",
+    })
+        .int({ message: 'Tahun survey harus berupa bilangan bulat.' })
+        .min(1000, { message: 'Tahun survey harus terdiri dari 4 digit.' })
+        .max(9999, { message: 'Tahun survey harus terdiri dari 4 digit.' }),
     diaktifkan: z.enum(['Ya', 'Tidak'], {
         required_error: 'Status survey wajib diisi.',
     }),
 }));
 
-const { handleSubmit, setErrors } = useForm({
+const { handleSubmit, setErrors, resetForm } = useForm({
     validationSchema: formSchema,
     initialValues: {
         tahun_survey: undefined,
@@ -50,16 +55,21 @@ const { handleSubmit, setErrors } = useForm({
 });
 
 const onSubmit = handleSubmit((values) => {
-    router.post(route('admin.scheduleSave'), values, {
+    router.post(route('admin.surveySave'), values, {
         onError: (backendErrors) => {
             setErrors(backendErrors);
-        }
+        },
+        onSuccess: () => {
+            isDialogOpen.value = false;
+            resetForm();
+        },
+        preserveScroll: true,
     });
 });
 </script>
 
 <template>
-    <Dialog>
+    <Dialog v-model:open="isDialogOpen">
         <DialogTrigger>
             <Button class="shadcn-btn edit-btn"><i class="fa-solid fa-plus"></i> Tambah Survey Baru</Button>
         </DialogTrigger>
@@ -84,11 +94,11 @@ const onSubmit = handleSubmit((values) => {
 
                 <FormField v-slot="{ componentField }" name="diaktifkan">
                     <FormItem>
-                        <FormLabel>Status Survey</FormLabel>
+                        <FormLabel>Aktifkan Survey</FormLabel>
                         <Select v-bind="componentField">
                             <FormControl>
                                 <SelectTrigger>
-                                    <SelectValue placeholder="Pilih status aktif survey statistik" />
+                                    <SelectValue placeholder="Pilih status keaktifan survey statistik" />
                                 </SelectTrigger>
                             </FormControl>
                             <SelectContent>

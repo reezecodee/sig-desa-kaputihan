@@ -6,21 +6,21 @@ import TablePopulationCategories from '@/Components/custom/statistics/TablePopul
 import Button from '@/components/ui/button/Button.vue';
 import { ref, onMounted, onUnmounted } from 'vue';
 import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogCancel,
-  AlertDialogAction
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogCancel,
+    AlertDialogAction
 } from "@/Components/ui/alert-dialog";
 import StackedLineChart from '@/Pages/LandingV2/StatisticVillage/charts/StackedLineChart.vue';
 import FormPopulationCategory from '@/Components/custom/statistics/FormPopulationCategory.vue';
 
 defineProps({
     title: String,
-    id: String,
+    surveyID: String,
     category: String,
     chartData: Object,
 })
@@ -72,22 +72,21 @@ onUnmounted(() => {
             <h2 class="text-3xl font-bold tracking-tight">
                 {{ title }}
             </h2>
-            <Link :href="route('admin.chartMenu', id)">
+            <Link :href="route('admin.chartMenu', surveyID)">
             <Button class="shadcn-btn back-btn">
                 Kembali
             </Button>
             </Link>
         </template>
 
-        <Card>
+        <Card v-if="chartData && chartData.series && chartData.series.length > 0">
             <CardHeader>
                 <CardTitle>
                     Grafik Statistik Kategori Penduduk {{ category }}
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <StackedLineChart v-if="chartData" :title="category"
-                            :data="chartData" />
+                <StackedLineChart :title="category" :data="chartData" />
             </CardContent>
         </Card>
 
@@ -99,9 +98,9 @@ onUnmounted(() => {
             </CardHeader>
             <CardContent>
                 <div class="flex justify-end mb-5">
-                    <FormPopulationCategory :surveyID="id" :category="category" />
+                    <FormPopulationCategory :surveyID="surveyID" :category="category" />
                 </div>
-                <TablePopulationCategories :surveyID="id" :category="category" />
+                <TablePopulationCategories :surveyID="surveyID" :category="category" />
             </CardContent>
         </Card>
 

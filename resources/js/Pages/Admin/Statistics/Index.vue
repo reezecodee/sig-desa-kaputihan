@@ -32,7 +32,7 @@ const confirmDelete = (id) => {
 const deleteData = () => {
   if (!selectedId.value) return;
 
-  router.delete(route("admin.scheduleDestroy", selectedId.value))
+  router.delete(route("admin.destroySurvey", selectedId.value))
   showDialog.value = false;
 };
 
@@ -46,14 +46,14 @@ const updateStatus = async (id: string, status: string): Promise<void> => {
   }
 
   try {
-    await axios.patch(`/api/nama-rute-anda/${id}/update-status`, {
+    await axios.patch(route('admin.surveyUpdateStatus', id), {
       diaktifkan: status
     });
-    console.log('Update berhasil!');
-  } catch (error) {
-    console.error('Gagal memperbarui status:', error);
-    alert('Gagal memperbarui status.');
 
+    router.visit(window.location.href, {
+      preserveScroll: true,
+    });
+  } catch (error) {
     if (selectElement) {
       selectElement.value = status === 'Ya' ? 'Tidak' : 'Ya';
     }
