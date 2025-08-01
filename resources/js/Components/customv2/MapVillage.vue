@@ -64,7 +64,7 @@ onMounted(async () => {
 
 
   try {
-    const response = await axios.get(route('admin.locationList', 'map'));
+    const response = await axios.get(route('admin.locationList'));
 
     response.data.forEach((lokasi) => {
       L.marker([lokasi.latitude, lokasi.longitude], { icon: getIcon(lokasi.warna) })

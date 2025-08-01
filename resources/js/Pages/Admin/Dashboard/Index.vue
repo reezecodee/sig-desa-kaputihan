@@ -130,6 +130,47 @@ onUnmounted(() => {
             <Card>
                 <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle class="text-sm font-medium">
+                        Total Survey Statistik
+                    </CardTitle>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-4 w-4 text-purple-500">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                            d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8" />
+                        <path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a1 1 0 0 1 -1 -1v-4.5" />
+                    </svg>
+                </CardHeader>
+                <CardContent>
+                    <div class="text-2xl font-bold">
+                        {{ data.survey }} </div>
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle class="text-sm font-medium">
+                        Total Kategori Bangunan
+                    </CardTitle>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-4 w-4 text-teal-500">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M4 4h6v6h-6z" />
+                        <path d="M4 14h6v6h-6z" />
+                        <path d="M14 14h6v6h-6z" />
+                        <path d="M14 4h6v6h-6z" />
+                    </svg>
+                </CardHeader>
+                <CardContent>
+                    <div class="text-2xl font-bold">
+                        {{ data.kategori }} </div>
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle class="text-sm font-medium">
                         Total Bangunan
                     </CardTitle>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -172,47 +213,6 @@ onUnmounted(() => {
             <Card>
                 <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle class="text-sm font-medium">
-                        Total Survey Statistik
-                    </CardTitle>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-4 w-4 text-purple-500">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path
-                            d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8" />
-                        <path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a1 1 0 0 1 -1 -1v-4.5" />
-                    </svg>
-                </CardHeader>
-                <CardContent>
-                    <div class="text-2xl font-bold">
-                        {{ data.survey }} </div>
-                </CardContent>
-            </Card>
-
-            <Card>
-                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle class="text-sm font-medium">
-                        Total Kategori Bangunan
-                    </CardTitle>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-4 w-4 text-teal-500">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M4 4h6v6h-6z" />
-                        <path d="M4 14h6v6h-6z" />
-                        <path d="M14 14h6v6h-6z" />
-                        <path d="M14 4h6v6h-6z" />
-                    </svg>
-                </CardHeader>
-                <CardContent>
-                    <div class="text-2xl font-bold">
-                        {{ data.kategori }} </div>
-                </CardContent>
-            </Card>
-
-            <Card>
-                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle class="text-sm font-medium">
                         Total Laporan Masuk
                     </CardTitle>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -227,7 +227,28 @@ onUnmounted(() => {
                 </CardHeader>
                 <CardContent>
                     <div class="text-2xl font-bold">
-                        {{ data.laporan }} </div>
+                        {{ data.laporan }}
+                    </div>
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle class="text-sm font-medium">
+                        Total Titik Lokasi
+                    </CardTitle>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-4 w-4 text-emerald-500">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                        <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
+                    </svg>
+                </CardHeader>
+                <CardContent>
+                    <div class="text-2xl font-bold">
+                        {{ data.lokasi }}
+                    </div>
                 </CardContent>
             </Card>
         </div>

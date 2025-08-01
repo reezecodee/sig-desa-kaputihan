@@ -15,6 +15,7 @@ use App\Http\Controllers\Datatable\BuildingDatatableController;
 use App\Http\Controllers\Datatable\CategoryDatatableController;
 use App\Http\Controllers\Datatable\FacilityDatatableController;
 use App\Http\Controllers\Datatable\GeneralDatatableController;
+use App\Http\Controllers\Datatable\LocationDatatableController;
 use App\Http\Controllers\Datatable\OccupationDatatableController;
 use App\Http\Controllers\Datatable\PopuCategoryDatatableController;
 use App\Http\Controllers\Datatable\PopuGroupDatatableController;
@@ -25,9 +26,8 @@ use App\Http\Controllers\Datatable\UserDatatableController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('daftar-lokasi/{type}', [LocationController::class, 'getLocations'])->name('admin.locationList');
+Route::get('daftar-titik-lokasi', [LocationController::class, 'getLocations'])->name('admin.locationList');
 Route::get('jadwal-admin-page', [APIController::class, 'scheduleForAdmin'])->name('landing.scheduleForAdmin');
-
 
 Route::middleware(['app-layout', 'auth'])->group(function () {
     Route::name('admin.')->group(function () {
@@ -107,6 +107,10 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
 
 
     Route::name('datatable.')->group(function () {
+        Route::get(
+            'daftar-lokasi/{type}',
+            [LocationDatatableController::class, 'getLocations']
+        )->name('locationList');
         Route::get(
             'daftar-jadwal',
             [ScheduleDatatableController::class, 'getSchedules']

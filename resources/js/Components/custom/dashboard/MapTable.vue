@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { onMounted, nextTick } from 'vue';
-import { Button } from '@/Components/ui/button'
 
 onMounted(() => {
     nextTick(() => {
         $('#myTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: route('admin.locationList', 'datatable'),
+            ajax: route('datatable.locationList', 'datatable'),
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                 { data: 'nama_lokasi', name: 'nama_lokasi' },

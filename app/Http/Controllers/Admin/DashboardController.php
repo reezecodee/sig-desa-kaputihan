@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Building;
 use App\Models\Category;
+use App\Models\Map;
 use App\Models\Report;
 use App\Models\Schedule;
 use App\Models\SurveyYear;
@@ -25,6 +26,7 @@ class DashboardController extends Controller
             'kategori' => Category::count(),
             'laporan' => Report::count(),
             'survey' => SurveyYear::count(),
+            'lokasi' => Map::count(),
         ];
 
         return Inertia::render('Admin/Dashboard/Index', compact('title', 'data'));
