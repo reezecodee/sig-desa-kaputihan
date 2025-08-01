@@ -16,7 +16,7 @@ import {
     FormLabel,
     FormMessage,
 } from '@/Components/ui/form'
-import { Textarea } from '@/components/ui/textarea'
+import { Textarea } from '@/Components/ui/textarea'
 import { Input } from '@/Components/ui/input'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
@@ -93,7 +93,7 @@ const onSubmit = handleSubmit((values) => {
 
                 <div class="mt-2 flex justify-end">
                     <a href="https://fontawesome.com/v5/search" target="_blank">
-                        <Button class="shadcn-btn detail-btn">
+                        <Button type="button" class="shadcn-btn detail-btn">
                             <i class="bi bi-search"></i> 
                             Cari icon
                         </Button>

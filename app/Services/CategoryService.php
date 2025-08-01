@@ -18,6 +18,16 @@ class CategoryService
         return $this->categoryRepository->findCategory($id);
     }
 
+    public function store($data)
+    {
+        return $this->categoryRepository->storeCategory($data);
+    }
+
+    public function update($data, $id)
+    {
+        return $this->categoryRepository->updateCategory($data, $id);
+    }
+
     public function getCategories()
     {
         return $this->categoryRepository->categories();

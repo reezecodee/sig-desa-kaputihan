@@ -73,7 +73,7 @@ const onSubmit = handleSubmit((values) => {
         </FormField>
         <div class="mt-2 flex justify-end">
             <a href="https://fontawesome.com/v5/search" target="_blank">
-                <Button class="shadcn-btn detail-btn">
+                <Button type="button" class="shadcn-btn detail-btn">
                     <i class="bi bi-search"></i>
                     Cari icon
                 </Button>

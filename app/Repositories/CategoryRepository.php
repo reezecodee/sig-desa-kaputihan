@@ -18,4 +18,15 @@ class CategoryRepository
     {
         return Category::findOrFail($id);
     }
+
+    public function storeCategory($data)
+    {
+        Category::create($data);
+    }
+
+    public function updateCategory($data, $id)
+    {
+        $category = Category::findOrFail($id);
+        $category->update($data);
+    }
 }

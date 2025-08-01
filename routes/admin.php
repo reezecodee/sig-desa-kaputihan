@@ -83,7 +83,8 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
             Route::get('/', 'index')->name('category');
             Route::post('tambah-kategori', 'store')->name('categorySave');
             Route::get('edit-kategori/{id}', 'edit')->name('categoryEdit');
-            Route::post('udpdate-kategori/{id}', 'update')->name('categoryUpdate');
+            Route::put('update-kategori/{id}', 'update')->name('categoryUpdate');
+            Route::delete('hapus-kategori/{id}', 'destroy')->name('categoryDestroy');
         });
 
         Route::prefix('kategori-bangunan')->controller(BuildingController::class)->group(function () {
