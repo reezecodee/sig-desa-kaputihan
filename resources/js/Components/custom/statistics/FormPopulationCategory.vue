@@ -22,7 +22,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue
-} from '@/components/ui/select'
+} from '@/Components/ui/select'
 import { Input } from '@/Components/ui/input'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
@@ -43,9 +43,13 @@ const formSchema = toTypedSchema(z.object({
     label: z.string()
         .nonempty('Label tidak boleh kosong.')
         .max(255, 'Label tidak boleh lebih dari 255 karakter.'),
-    tahun: z.string()
-        .length(4, { message: 'Tahun harus terdiri dari 4 digit.' })
-        .regex(/^\d{4}$/, { message: 'Tahun harus berupa angka.' }),
+    tahun: z.number({
+        required_error: "Tahun survey wajib diisi.",
+        invalid_type_error: "Tahun survey harus berupa angka.",
+    })
+        .int({ message: 'Tahun survey harus berupa bilangan bulat.' })
+        .min(1000, { message: 'Tahun survey harus terdiri dari 4 digit.' })
+        .max(9999, { message: 'Tahun survey harus terdiri dari 4 digit.' }),
     jumlah: z.coerce.number({
         required_error: 'Jumlah wajib diisi.',
         invalid_type_error: 'Jumlah harus berupa angka.',
@@ -64,7 +68,7 @@ const { handleSubmit, setErrors } = useForm({
 });
 
 const onSubmit = handleSubmit((values) => {
-    router.post(route('admin.scheduleSave'), values, {
+    router.post(route('admin.storePopulationCategory', props.surveyID), values, {
         onError: (backendErrors) => {
             setErrors(backendErrors);
         }
@@ -108,7 +112,7 @@ const onSubmit = handleSubmit((values) => {
                             </FormControl>
                             <SelectContent>
                                 <SelectItem value="Datang">Datang</SelectItem>
-                                <SelectItem value="Pergi">Pergi</SelectItem>
+                                <SelectItem value="Pindah">Pindah</SelectItem>
                             </SelectContent>
                         </Select>
                         <FormMessage />

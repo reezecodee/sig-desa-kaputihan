@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\FacilityRequest;
+use App\Http\Requests\Admin\GeneralDataRequest;
+use App\Http\Requests\Admin\OccupationRequest;
+use App\Http\Requests\Admin\PopulationCategoryRequest;
+use App\Http\Requests\Admin\PopulationGroupRequest;
 use App\Http\Requests\Admin\SurveyRequest;
 use App\Models\StatsFacilityInfrastructure;
 use App\Models\StatsGeneralData;
@@ -38,8 +43,9 @@ class StatisticsController extends Controller
     public function chartMenu($id)
     {
         $title = 'Menu Charts Statistik';
+        $survey = SurveyYear::findOrFail($id);
 
-        return Inertia::render('Admin/Statistics/ChartMenu', compact('title', 'id'));
+        return Inertia::render('Admin/Statistics/ChartMenu', compact('title', 'id', 'survey'));
     }
 
     public function storeSurvey(SurveyRequest $request)
@@ -87,6 +93,32 @@ class StatisticsController extends Controller
                 'message' => 'Terjadi kesalahan saat memperbarui status.',
                 'error' => $e->getMessage(),
             ], 500);
+        }
+    }
+
+    public function updateYearSurvey(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'tahun_survey' => ['required', 'numeric', 'digits:4'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $validated = $validator->validated();
+        $surveyToUpdate = SurveyYear::findOrFail($id);
+
+        try {
+            $surveyToUpdate->update([
+                'tahun_survey' => $validated['tahun_survey']
+            ]);
+
+            session()->flash('success', 'Berhasil memperbarui tahun survey.');
+            return Inertia::location(back());
+        } catch (Exception $e) {
+            session()->flash('failed', 'Terjadi kesalahan saat memperbarui tahun survey.');
+            return Inertia::location(back());
         }
     }
 
@@ -138,6 +170,71 @@ class StatisticsController extends Controller
         $chartData = $this->chartService->getPopulationByAgeGroup('json', $surveyID);
 
         return Inertia::render('Admin/Statistics/ChartMenuPage/PopulationGroup', compact('title', 'surveyID', 'chartData'));
+    }
+
+    public function storeFacility(FacilityRequest $request)
+    {
+        try {
+            $this->statisticsService->storeFacility($request->validated());
+
+            session()->flash('success', 'Berhasil menambahkan data baru');
+            return Inertia::location(back());
+        } catch (\Exception $e) {
+            session()->flash('failed', $e->getMessage());
+            return Inertia::location(back());
+        }
+    }
+
+    public function storeGeneralData(GeneralDataRequest $request)
+    {
+        try {
+            $this->statisticsService->storeGeneralData($request->validated());
+
+            session()->flash('success', 'Berhasil menambahkan data baru');
+            return Inertia::location(back());
+        } catch (\Exception $e) {
+            session()->flash('failed', $e->getMessage());
+            return Inertia::location(back());
+        }
+    }
+
+    public function storeOccupation(OccupationRequest $request)
+    {
+        try {
+            $this->statisticsService->storeOccupation($request->validated());
+
+            session()->flash('success', 'Berhasil menambahkan data baru');
+            return Inertia::location(back());
+        } catch (\Exception $e) {
+            session()->flash('failed', $e->getMessage());
+            return Inertia::location(back());
+        }
+    }
+
+    public function storePopulationCategory(PopulationCategoryRequest $request)
+    {
+        try {
+            $this->statisticsService->storePopulationCategory($request->validated());
+
+            session()->flash('success', 'Berhasil menambahkan data baru');
+            return Inertia::location(back());
+        } catch (\Exception $e) {
+            session()->flash('failed', $e->getMessage());
+            return Inertia::location(back());
+        }
+    }
+
+    public function storePopulationGroup(PopulationGroupRequest $request)
+    {
+        try {
+            $this->statisticsService->storePopulationGroup($request->validated());
+
+            session()->flash('success', 'Berhasil menambahkan data baru');
+            return Inertia::location(back());
+        } catch (\Exception $e) {
+            session()->flash('failed', $e->getMessage());
+            return Inertia::location(back());
+        }
     }
 
     public function destroyFacility($id)

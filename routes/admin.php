@@ -54,6 +54,7 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
             Route::get('menu-charts/{surveyID}', 'chartMenu')->name('chartMenu');
 
             Route::post('tambah-survey', 'storeSurvey')->name('surveySave');
+            Route::patch('update-tahun-survey{surveyID}', 'updateYearSurvey')->name('surveyUpdateYear');
             Route::patch('update-status-survey{surveyID}', 'updateStatusSurvey')->name('surveyUpdateStatus');
             Route::delete('hapus-survey/{id}', 'destroySurvey')->name('destroySurvey');
 
@@ -64,6 +65,12 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
                 Route::get('grafik-kategori-populasi/{surveyID}/{category}', 'populationCategory')->name('populationCategory');
                 Route::get('grafik-kelompok-populasi/{surveyID}', 'populationGroup')->name('populationGroup');
             });
+
+            Route::post('tambah-fasilitas', 'storeFacility')->name('storeFacility');
+            Route::post('tambah-data-umum', 'storeGeneralData')->name('storeGeneralData');
+            Route::post('tambah-pekerjaan', 'storeOccupation')->name('storeOccupation');
+            Route::post('tambah-kategori-populasi', 'storePopulationCategory')->name('storePopulationCategory');
+            Route::post('tambah-kelompok-populasi', 'storePopulationGroup')->name('storePopulationGroup');
 
             Route::delete('hapus-fasilitas/{id}', 'destroyFacility')->name('chartFacilityDestroy');
             Route::delete('hapus-data-umum/{id}', 'destroyGeneralData')->name('chartGeneralDestroy');

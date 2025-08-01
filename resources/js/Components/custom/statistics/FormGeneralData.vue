@@ -57,7 +57,7 @@ const { handleSubmit, setErrors } = useForm({
 });
 
 const onSubmit = handleSubmit((values) => {
-    router.post(route('admin.scheduleSave'), values, {
+    router.post(route('admin.storeGeneralData', props.surveyID), values, {
         onError: (backendErrors) => {
             setErrors(backendErrors);
         }

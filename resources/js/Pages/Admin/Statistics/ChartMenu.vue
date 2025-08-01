@@ -1,15 +1,51 @@
 <script setup lang="ts">
 import { BarChart, PieChart, LineChart, ChartBarIncreasing, ChevronRight } from 'lucide-vue-next'
 import App from '@/Layouts/App.vue'
-import { Head, Link } from '@inertiajs/vue3'
+import { Head, Link, router } from '@inertiajs/vue3'
 import { Card, CardHeader, CardContent, CardTitle } from '@/Components/ui/card';
 import Button from '@/components/ui/button/Button.vue';
+import { Input } from '@/Components/ui/input'
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
+import * as z from 'zod'
+import {
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from '@/Components/ui/form'
 
-defineProps({
+const props = defineProps({
     title: String,
     id: String,
+    survey: Object,
 })
 
+const formSchema = toTypedSchema(z.object({
+    tahun_survey: z.number({
+        required_error: "Tahun survey wajib diisi.",
+        invalid_type_error: "Tahun survey harus berupa angka.",
+    })
+        .int({ message: 'Tahun survey harus berupa bilangan bulat.' })
+        .min(1000, { message: 'Tahun survey harus terdiri dari 4 digit.' })
+        .max(9999, { message: 'Tahun survey harus terdiri dari 4 digit.' }),
+}));
+
+const { handleSubmit, setErrors } = useForm({
+    validationSchema: formSchema,
+    initialValues: {
+        tahun_survey: props.survey.tahun_survey
+    }
+});
+
+const onSubmit = handleSubmit((values) => {
+    router.patch(route('admin.surveyUpdateYear', props.survey.id), values, {
+        onError: (backendErrors) => {
+            setErrors(backendErrors);
+        }
+    });
+});
 </script>
 
 <template>
@@ -28,6 +64,31 @@ defineProps({
                 </Link>
             </div>
         </template>
+
+        <Card>
+            <CardHeader>
+                <CardTitle>
+                    Edit tahun survey.
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <form @submit="onSubmit" id="add-schedule-form">
+                    <FormField v-slot="{ componentField }" name="tahun_survey">
+                        <FormItem>
+                            <FormLabel>Tahun Survey</FormLabel>
+                            <FormControl>
+                                <Input type="number" placeholder="Contoh: 2025" v-bind="componentField" />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    </FormField>
+
+                    <div class="flex justify-end mt-4">
+                        <Button type="submit" form="add-schedule-form" class="shadcn-btn edit-btn">Edit Tahun</Button>
+                    </div>
+                </form>
+            </CardContent>
+        </Card>
 
         <Card>
             <CardHeader>
@@ -247,7 +308,8 @@ defineProps({
                             <ChartBarIncreasing class="h-8 w-8 text-blue-600 dark:text-blue-400" />
                         </div>
                         <div class="flex-1">
-                            <div class="font-semibold text-blue-900 dark:text-blue-200">Kelompok Penduduk Berdasarkan Umur
+                            <div class="font-semibold text-blue-900 dark:text-blue-200">Kelompok Penduduk Berdasarkan
+                                Umur
                             </div>
                             <div class="text-sm text-blue-700 dark:text-blue-400">
                                 Kelompok penduduk yang dikategorikan berdasarkan umur.
