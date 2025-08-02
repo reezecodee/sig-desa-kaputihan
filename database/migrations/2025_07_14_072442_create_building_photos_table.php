@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('building_photos', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->foreignUuid('bangunan_id')->constrained('buildings')->cascadeOnDelete();
             $table->string('nama_file');
             $table->timestamps();

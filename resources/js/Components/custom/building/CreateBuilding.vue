@@ -10,19 +10,15 @@ import {
 } from '@/Components/ui/form'
 import { Input } from '@/Components/ui/input'
 import { Textarea } from '@/Components/ui/textarea'
-import {
-    Select, SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from '@/Components/ui/select'
-
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
 import { ref, onBeforeUnmount } from 'vue'
+
+const props = defineProps({
+    errors: Object,
+    categoryID: String,
+})
 
 const previewUrl = ref<string | null>(null)
 
@@ -36,6 +32,9 @@ const handleFileChange = (event: Event) => {
     } else {
         previewUrl.value = null
         setFieldValue('foto_bangunan', null)
+        if (target) {
+            target.value = ''
+        }
     }
 }
 
@@ -58,26 +57,25 @@ const formSchema = toTypedSchema(z.object({
     deskripsi: z.string({ message: 'Deskripsi bangunan wajib di isi' }).trim(),
     google_maps: z.string({ message: 'Google maps iframe wajib di isi' }).trim(),
     link_lokasi: z.string({ message: 'Link lokasi google maps wajib di isi' }).trim().nullable(),
-    kategori_bangunan: z.enum(['Ibadah', 'Pemerintahan', 'Pendidikan', 'Kesehatan', 'Usaha', 'Olahraga', 'Keamanan', 'Lainnya'], { message: 'Kategori bangunan wajib di isi' }),
+    kategori_id: z.string(),
 }))
-
-defineProps<{ errors: Record<string, string[]> }>()
 
 const { values, isFieldDirty, handleSubmit, setErrors, setFieldValue } = useForm({
     validationSchema: formSchema,
     initialValues: {
-        nama_bangunan: null,
+        nama_bangunan: '',
         foto_bangunan: null,
-        deskripsi: null,
-        google_maps: null,
-        link_lokasi: null,
-        kategori_bangunan: null
+        deskripsi: '',
+        google_maps: '',
+        link_lokasi: '',
+        kategori_id: props.categoryID
     }
 })
 
 const onSubmit = handleSubmit((values) => {
-    router.post(route('admin.buildingSave'), values, {
+    router.post(route('admin.buildingSave', props.categoryID), values, {
         onError: (backendErrors) => {
+            console.log('Backend errors:', backendErrors)
             setErrors(backendErrors)
         }
     })
@@ -85,15 +83,14 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-    <form class="w-full md:w-1/2 space-y-6" @submit.prevent="onSubmit">
+    <form id="add-schedule-form" class="w-full md:w-1/2 space-y-6" @submit="onSubmit">
         <img :src="previewUrl ?? '/placeholder/blog.svg'" alt="" srcset=""
             style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover;">
-        <FormField v-slot="{ componentField }" name="foto_bangunan" :validate-on-blur="!isFieldDirty">
+        <FormField v-slot="{ componentField }" name="foto_bangunan">
             <FormItem>
                 <FormLabel>Upload Foto Bangunan</FormLabel>
                 <FormControl>
-                    <Input type="file" @change="handleFileChange" accept=".png, .jpg" placeholder="Upload foto bangunan"
-                        v-bind="componentField" />
+                    <Input type="file" @change="handleFileChange" accept=".png, .jpg, .jpeg" ref="fileInput" />
                 </FormControl>
                 <FormMessage />
             </FormItem>
@@ -137,50 +134,8 @@ const onSubmit = handleSubmit((values) => {
                 <FormMessage />
             </FormItem>
         </FormField>
-        <FormField v-slot="{ componentField }" name="kategori_bangunan" :validate-on-blur="!isFieldDirty">
-            <FormItem>
-                <FormLabel>Kategori Bangunan</FormLabel>
-                <FormControl>
-                    <Select v-bind="componentField">
-                        <SelectTrigger>
-                            <SelectValue placeholder="Pilih kategori" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectGroup>
-                                <SelectLabel>Kategori</SelectLabel>
-                                <SelectItem value="Ibadah">
-                                    Bangunan Ibadah
-                                </SelectItem>
-                                <SelectItem value="Pemerintahan">
-                                    Bangunan Desa/Pemerintahan
-                                </SelectItem>
-                                <SelectItem value="Pendidikan">
-                                    Bangunan Pendidikan
-                                </SelectItem>
-                                <SelectItem value="Kesehatan">
-                                    Bangunan Kesehatan
-                                </SelectItem>
-                                <SelectItem value="Usaha">
-                                    Tempat Usaha/Bisnis
-                                </SelectItem>
-                                <SelectItem value="Olahraga">
-                                    Tempat Olahraga
-                                </SelectItem>
-                                <SelectItem value="Keamanan">
-                                    Pos Keamanan
-                                </SelectItem>
-                                <SelectItem value="Lainnya">
-                                    Bangunan Lainnya
-                                </SelectItem>
-                            </SelectGroup>
-                        </SelectContent>
-                    </Select>
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-        </FormField>
         <div class="flex justify-end">
-            <Button class="shadcn-btn detail-btn" type="submit">
+            <Button class="shadcn-btn edit-btn" type="submit">
                 Simpan Bangunan
             </Button>
         </div>

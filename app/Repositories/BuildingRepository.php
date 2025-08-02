@@ -48,9 +48,17 @@ class BuildingRepository
     {
         try {
             $building = Building::findOrFail($id);
-
-            if ($building->foto_bangunan && Storage::disk('public')->exists($building->foto_bangunan)) {
-                Storage::disk('public')->delete($building->foto_bangunan);
+            $oldPhoto = "foto-bangunan/{$building->foto_bangunan}";
+            $photos = BuildingPhoto::where('bangunan_id', $building->id)->get();
+            
+            if ($building->foto_bangunan && Storage::disk('public')->exists($oldPhoto)) {
+                Storage::disk('public')->delete($oldPhoto);
+            }
+            
+            if($photos->isNotEmpty()){
+                foreach($photos as $photo){
+                    Storage::disk('public')->delete('foto-bangunan/'.$photo->nama_file);
+                }
             }
 
             return $building->delete();
@@ -94,5 +102,28 @@ class BuildingRepository
             'building' => $building,
             'photos' => $photos,
         ];
+    }
+
+    public function buildingPhotos($buildingID)
+    {
+        $photos = BuildingPhoto::select(['id', 'nama_file'])->where('bangunan_id', $buildingID)->get();
+
+        return $photos;
+    }
+
+    public function destroyPhoto($id)
+    {
+        try {
+            $photo = BuildingPhoto::findOrFail($id);
+            $oldPhoto = "foto-bangunan/{$photo->nama_file}";
+
+            if ($photo->nama_file && Storage::disk('public')->exists($oldPhoto)) {
+                Storage::disk('public')->delete($oldPhoto);
+            }
+
+            return $photo->delete();
+        } catch (\Exception $e) {
+            throw new \Exception('Terjadi kesalahan saat mencoba menghapus data');
+        }
     }
 }

@@ -4,10 +4,25 @@ import { Head, Link } from '@inertiajs/vue3'
 import Button from '@/components/ui/button/Button.vue'
 import EditBuilding from '@/Components/custom/building/EditBuilding.vue'
 
+interface Photo {
+    id: string;
+    nama_file: string;
+}
+
+interface Building {
+    id: string;
+    nama_bangunan: string;
+    deskripsi: string;
+    google_maps: string;
+    link_lokasi: string;
+    kategori_id: string;
+    foto_bangunan: string;
+}
+
 defineProps<{ 
     title: string,               
-    building: Record<string, string>,
-    categories: Record<string, string>,
+    building: Building;
+    buildingPhotos: Photo[];
 }>()
 </script>
 
@@ -26,7 +41,7 @@ defineProps<{
             </div>
         </template>
         <div class="flex justify-center">
-            <EditBuilding :building="building" :categories="categories" />
+            <EditBuilding :building="building" :building-photos="buildingPhotos" />
         </div>
     </App>
 </template>

@@ -89,11 +89,13 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
 
         Route::prefix('kategori-bangunan')->controller(BuildingController::class)->group(function () {
             Route::get('detail/{categoryID}', 'index')->name('building');
-            Route::get('tambah-bangunan', 'create')->name('buildingCreate');
-            Route::post('tambah-bangunan-baru', 'store')->name('buildingSave');
-            Route::get('edit-bangunan/{id}', 'edit')->name('buildingEdit');
-            Route::post('update-bangunan/{id}', 'update')->name('buildingUpdate');
-            Route::delete('hapus-bangunan/{id}', 'destroy')->name('buildingDestroy');
+            Route::get('tambah-bangunan/{categoryID}', 'create')->name('buildingCreate');
+            Route::post('tambah-bangunan-baru/{categoryID}', 'store')->name('buildingSave');
+            Route::get('edit-bangunan/{buildingID}', 'edit')->name('buildingEdit');
+            Route::put('update-bangunan/{buildingID}', 'update')->name('buildingUpdate');
+            Route::delete('hapus-bangunan/{buildingID}', 'destroy')->name('buildingDestroy');
+            Route::post('tambah-gambar-bangunan/{buildingID}', 'storeBuildingImages')->name('storeBuildingImages');
+            Route::delete('hapus-gambar-bangunan/{photoID}', 'destroyBuildingImages')->name('destroyBuildingImage');
         });
 
         Route::prefix('laporan-masuk')->controller(ReportController::class)->group(function () {

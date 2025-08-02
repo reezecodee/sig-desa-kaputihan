@@ -42,9 +42,9 @@ class BuildingService
             if (isset($data['foto_bangunan'])) {
                 $originalExtension = $data['foto_bangunan']->getClientOriginalExtension();
                 $uniqueFileName = uniqid() . '.' . $originalExtension;
-                $filePath = $data['foto_bangunan']->storeAs('foto-bangunan', $uniqueFileName, 'public');
+                $data['foto_bangunan']->storeAs('foto-bangunan', $uniqueFileName, 'public');
 
-                $data['foto_bangunan'] = $filePath;
+                $data['foto_bangunan'] = $uniqueFileName;
             }
 
             $this->buildingRepository->store($data);
@@ -72,15 +72,16 @@ class BuildingService
             }
 
             if (isset($data['foto_bangunan'])) {
-                if ($building->foto_bangunan && Storage::disk('public')->exists($building->foto_bangunan)) {
-                    Storage::disk('public')->delete($building->foto_bangunan);
+                $oldPhoto = "foto-bangunan/{$building->foto_bangunan}";
+                if ($building->foto_bangunan && Storage::disk('public')->exists($oldPhoto)) {
+                    Storage::disk('public')->delete($oldPhoto);
                 }
 
                 $originalExtension = $data['foto_bangunan']->getClientOriginalExtension();
                 $uniqueFileName = uniqid() . '.' . $originalExtension;
-                $filePath = $data['foto_bangunan']->storeAs('foto-bangunan', $uniqueFileName, 'public');
+                $data['foto_bangunan']->storeAs('foto-bangunan', $uniqueFileName, 'public');
 
-                $data['foto_bangunan'] = $filePath;
+                $data['foto_bangunan'] = $uniqueFileName;
             } else {
                 $data['foto_bangunan'] = $building->foto_bangunan;
             }
@@ -99,7 +100,7 @@ class BuildingService
             throw new \Exception($e->getMessage());
         }
     }
-
+    
     public function paginatedResult($id, $search)
     {
         return $this->buildingRepository->paginated($id, $search);
@@ -108,5 +109,19 @@ class BuildingService
     public function buildingData(string $slug)
     {
         return $this->buildingRepository->buildingData($slug);
+    }
+    
+    public function getBuildingPhotos($buildingID)
+    {
+        return $this->buildingRepository->buildingPhotos($buildingID);
+    }
+    
+    public function deleteBuildingImages($photoID)
+    {
+        try {
+            return $this->buildingRepository->destroyPhoto($photoID);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
 }

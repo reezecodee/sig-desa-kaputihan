@@ -27,7 +27,7 @@ class BuildingRequest extends FormRequest
             'deskripsi' => 'required|string',
             'google_maps' => 'required|string',
             'link_lokasi' => 'nullable|string',
-            'kategori_bangunan' => 'required|in:Ibadah,Pemerintahan,Pendidikan,Kesehatan,Usaha,Olahraga,Keamanan,Lainnya',
+            'kategori_id' => 'required|string|uuid',
         ];
     }
 
@@ -41,8 +41,8 @@ class BuildingRequest extends FormRequest
             'foto_bangunan.mimes' => 'Format gambar harus png atau jpg',
             'deskripsi.required' => 'Deskripsi bangunan wajib di isi',
             'google_maps.required' => 'Google maps iframe wajib di isi',
-            'kategori_bangunan.required' => 'Kategori bangunan wajib di isi',
-            'kategori_bangunan.in' => 'Kategori bangunan tidak valid',
+            'kategori_id.required' => 'ID Survey wajib diisi.',
+            'kategori_id.uuid'     => 'Format ID Survey tidak valid.',
         ];
     }
 }

@@ -36,7 +36,7 @@ const deleteData = (): void => {
   router.delete(route("admin.buildingDestroy", selectedId.value), {
     onFinish: () => {
       showDialog.value = false;
-      selectedId.value = null; 
+      selectedId.value = null;
     },
   });
 };
@@ -84,7 +84,7 @@ onUnmounted(() => {
         {{ title }}
       </h2>
       <div class="flex items-center space-x-2">
-        <Link :href="route('admin.category')">
+        <Link :href="route('admin.category', categoryID)">
         <Button class="shadcn-btn back-btn">Kembali</Button>
         </Link>
       </div>
@@ -97,6 +97,11 @@ onUnmounted(() => {
         </CardTitle>
       </CardHeader>
       <CardContent>
+        <div class="flex justify-end mb-4">
+          <Link :href="route('admin.buildingCreate', categoryID)">
+          <Button class="shadcn-btn edit-btn">Tambah Bangunan</Button>
+          </Link>
+        </div>
         <BuildingTable :categoryID="categoryID" />
       </CardContent>
     </Card>
