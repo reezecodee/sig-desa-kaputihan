@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 
+const props = defineProps({
+    status: String
+});
+
 onMounted(() => {
     $('#myTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: route('datatable.reports'),
+        ajax: route('datatable.reports', props.status),
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
             { data: 'nama_pelapor', name: 'nama_pelapor' },

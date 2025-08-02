@@ -11,9 +11,9 @@ class ReportService {
         $this->reportRepository = $reportRepository;
     }
 
-    public function getReports()
+    public function getReports($status)
     {
-        return $this->reportRepository->reports();
+        return $this->reportRepository->reports($status);
     }
 
     public function find($id)

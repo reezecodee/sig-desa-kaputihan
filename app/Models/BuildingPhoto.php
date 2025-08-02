@@ -10,4 +10,9 @@ class BuildingPhoto extends Model
     use HasUuids;
 
     protected $guarded = ['id'];
+
+    public function building()
+    {
+        return $this->belongsTo(Building::class, 'bangunan_id');
+    }
 }

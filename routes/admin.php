@@ -99,8 +99,10 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
         });
 
         Route::prefix('laporan-masuk')->controller(ReportController::class)->group(function () {
-            Route::get('/', 'index')->name('report');
-            Route::get('/detail/{reportID}', 'detail')->name('reportDetail');
+            Route::get('/{status}', 'index')->name('report');
+            Route::get('detail/{reportID}', 'detail')->name('reportDetail');
+            Route::delete('hapus-laporan/{reportID}', 'destroy')->name('reportDestroy');
+            Route::patch('update-status-laporan/{reportID}', 'updateStatus')->name('reportUpdateStatus');
         });
 
         Route::prefix('manajemen-pengguna')->controller(UserManagementController::class)->group(function () {
@@ -142,7 +144,7 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
             [CategoryDatatableController::class, 'getCategories']
         )->name('categories');
         Route::get(
-            'daftar-laporan',
+            'daftar-laporan/{status}',
             [ReportDatatableController::class, 'getReports']
         )->name('reports');
         Route::get(

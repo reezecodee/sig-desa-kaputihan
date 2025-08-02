@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import App from '@/Layouts/App.vue'
-import { Head } from '@inertiajs/vue3';
+import { Head, router } from '@inertiajs/vue3';
 import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
 import Separator from '@/Components/ui/separator/Separator.vue';
 import { computed } from 'vue';
@@ -12,6 +12,16 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/Components/ui/select'
+import {
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from '@/Components/ui/form';
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
+import * as z from 'zod'
 
 const props = defineProps({
     title: String,
@@ -33,6 +43,30 @@ const statusClasses = computed(() => {
             return 'bg-gray-100 text-gray-800';
     }
 });
+
+const formSchema = toTypedSchema(z.object({
+    status: z.enum(
+        ['Dikirim', 'Diverifikasi', 'Diproses', 'Selesai', 'Ditolak'],
+        {
+            required_error: 'Status wajib dipilih.',
+        }
+    ),
+}));
+
+const { values, isFieldDirty, handleSubmit, setErrors } = useForm({
+    validationSchema: formSchema,
+    initialValues: {
+        status: props.report.status,
+    }
+})
+
+const onSubmit = handleSubmit((value) => {
+    router.patch(route('admin.reportUpdateStatus', props.report.id), value, {
+        onError: (backendErrors) => {
+            setErrors(backendErrors)
+        }
+    });
+})
 </script>
 
 <template>
@@ -88,25 +122,32 @@ const statusClasses = computed(() => {
                 </CardTitle>
             </CardHeader>
             <CardContent class="space-y-6">
-                <form action="">
-                    <div class="space-y-2 mb-3">
-                        <Label for="status-update" class="text-sm font-medium">Ubah Status Laporan</Label>
-                        <Select>
-                            <SelectTrigger id="status-update">
-                                <SelectValue placeholder="Pilih status baru..." />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="Dikirim">Dikirim</SelectItem>
-                                <SelectItem value="Diverifikasi">Diverifikasi</SelectItem>
-                                <SelectItem value="Diproses">Diproses</SelectItem>
-                                <SelectItem value="Selesai">Selesai</SelectItem>
-                                <SelectItem value="Ditolak">Ditolak</SelectItem>
-                            </SelectContent>
-                        </Select>
+                <form @submit.prevent="onSubmit">
+                    <div class="space-y-2 mb-4">
+                        <FormField v-slot="{ componentField }" name="status">
+                            <FormItem>
+                                <FormLabel>Ubah Status Laporan</FormLabel>
+                                <Select v-bind="componentField" :validate-on-blur="!isFieldDirty">
+                                    <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Pilih status baru..." />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        <SelectItem value="Dikirim">Dikirim</SelectItem>
+                                        <SelectItem value="Diverifikasi">Diverifikasi</SelectItem>
+                                        <SelectItem value="Diproses">Diproses</SelectItem>
+                                        <SelectItem value="Selesai">Selesai</SelectItem>
+                                        <SelectItem value="Ditolak">Ditolak</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                <FormMessage />
+                            </FormItem>
+                        </FormField>
                     </div>
 
                     <div class="flex justify-end">
-                        <Button class="shadcn-btn edit-btn">
+                        <Button class="shadcn-btn edit-btn" type="submit">
                             Simpan Perubahan
                         </Button>
                     </div>

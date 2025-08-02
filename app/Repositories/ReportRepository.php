@@ -6,10 +6,10 @@ use App\Models\Report;
 
 class ReportRepository
 {
-    public function reports()
+    public function reports($status)
     {
         $attributes = ['id', 'nama_pelapor', 'kontak_pelapor', 'judul_laporan', 'kategori_laporan', 'status'];
-        $reports = Report::select($attributes)->latest();
+        $reports = Report::select($attributes)->where('status', $status)->latest();
 
         return $reports;
     }

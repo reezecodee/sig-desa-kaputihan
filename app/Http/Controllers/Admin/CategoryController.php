@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
+use App\Models\Building;
 use App\Models\Category;
 use App\Services\CategoryService;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class CategoryController extends Controller
@@ -60,10 +62,30 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $survey = Category::findOrFail($id);
-        $survey->delete();
+        $category = Category::findOrFail($id);
+        $buildings = Building::with('buildingPhotos')->where('kategori_id', $id)->get();
 
-        session()->flash('success', 'Berhasil menghapus kategori bangunan');
+        foreach ($buildings as $building) {
+
+            foreach ($building->buildingPhotos as $photo) {
+                $galleryPhotoPath = "foto-bangunan/{$photo->nama_file}";
+                if (Storage::disk('public')->exists($galleryPhotoPath)) {
+                    Storage::disk('public')->delete($galleryPhotoPath);
+                }
+                $photo->delete();
+            }
+
+            $mainPhotoPath = "foto-bangunan/{$building->foto_bangunan}";
+            if ($building->foto_bangunan && Storage::disk('public')->exists($mainPhotoPath)) {
+                Storage::disk('public')->delete($mainPhotoPath);
+            }
+
+            $building->delete();
+        }
+
+        $category->delete();
+
+        session()->flash('success', 'Berhasil menghapus kategori beserta semua bangunannya');
         return Inertia::location(back());
     }
 }

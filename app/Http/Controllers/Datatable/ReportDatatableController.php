@@ -16,9 +16,9 @@ class ReportDatatableController extends Controller
         $this->reportService = $reportService;
     }
 
-    public function getReports()
+    public function getReports($status)
     {
-        $reports = $this->reportService->getReports();
+        $reports = $this->reportService->getReports($status);
 
         return DataTables::of($reports)
             ->addIndexColumn()
