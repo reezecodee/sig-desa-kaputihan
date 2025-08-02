@@ -2,10 +2,23 @@
 import App from '@/Layouts/App.vue'
 import { Head } from '@inertiajs/vue3'
 import FormSetting from '@/Components/custom/setting/FormSetting.vue'
+import FormVillageProfile from '@/Components/custom/setting/FormVillageProfile.vue'
+
+interface VillageData {
+    jumlah_penduduk: number;
+    jumlah_dusun: number;
+    jumlah_rt: number;
+    jumlah_rw: number;
+    suhu_rata_rata: string;
+    lokasi_elevasi: string;
+    luas_wilayah: string;
+    alamat_desa: string;
+}
 
 defineProps<{ 
     title: string,               
-    village: Record<string, string>,
+    setting: Record<string, string>,
+    village: VillageData,
 }>()
 </script>
 
@@ -18,7 +31,8 @@ defineProps<{
                 {{ title }}
             </h2>
         </template>
-        <FormSetting :village="village" />
+        <FormSetting :setting="setting" />
+        <FormVillageProfile :village="village" />
     </App>
 </template>
 

@@ -40,7 +40,8 @@ Route::middleware(['app-layout', 'auth'])->group(function () {
 
         Route::prefix('pengaturan-desa')->controller(SettingController::class)->group(function () {
             Route::get('/', 'index')->name('setting');
-            Route::post('perbarui-pengaturan', 'update')->name('settingUpdate');
+            Route::post('perbarui-pengaturan', 'updateSetting')->name('settingUpdate');
+            Route::post('perbarui-profile-desa', 'updateVillageProfile')->name('villageProfileUpdate');
         });
 
         Route::prefix('jadwal-kegiatan-desa')->controller(ScheduleController::class)->group(function () {

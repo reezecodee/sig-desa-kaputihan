@@ -24,6 +24,7 @@ class SettingRequest extends FormRequest
         return [
             'nama_kades' => 'required|string|max:255',
             'periode' => 'required|string|max:255',
+            'pesan_kades'     => 'required|string',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
             'logo_aktif' => 'required|in:On,Off',
             'telepon' => 'required|string|max:255',
@@ -39,6 +40,7 @@ class SettingRequest extends FormRequest
             'nama_kades.max' => 'Nama kepala desa tidak boleh lebih dari 255 karakter',
             'periode.required' => 'Periode kepala desa wajib di isi',
             'periode.max' => 'Periode tidak boleh lebih dari 255 karakter',
+            'pesan_kades.required'  => 'Pesan kepala desa wajib diisi.',
             'logo.image' => 'Logo harus berupa gambar',
             'logo.mimes' => 'Format logo tidak didukung',
             'logo.max' => 'Ukuran file maksimal 5MB',

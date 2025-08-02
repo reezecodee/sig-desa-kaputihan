@@ -23,7 +23,7 @@ class SettingService
         }
     }
 
-    public function update($data)
+    public function updateSetting($data)
     {
         try {
             $setting = $this->settingRepository->findFirst();
@@ -60,5 +60,10 @@ class SettingService
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
+    }
+
+    public function updateVillageProfile($data)
+    {
+        return $this->settingRepository->updateVillageProfile($data);
     }
 }

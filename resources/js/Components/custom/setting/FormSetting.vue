@@ -26,11 +26,11 @@ import Textarea from '@/Components/ui/textarea/Textarea.vue'
 
 const props = defineProps<{
     errors?: Record<string, string[]>,
-    village: Record<string, string>
+    setting: Record<string, string>
 }>()
 
-const previewLogo = ref<string>(props.village.logo ? `/storage/${props.village.logo}` : '/placeholder/logo-desa.webp')
-const previewOrganisasi = ref<string>(props.village.foto_organisasi ? `/storage/${props.village.foto_organisasi}` : '/placeholder/organisasi.png')
+const previewLogo = ref<string>(props.setting.logo ? `/storage/${props.setting.logo}` : '/placeholder/logo-desa.webp')
+const previewOrganisasi = ref<string>(props.setting.foto_organisasi ? `/storage/${props.setting.foto_organisasi}` : '/placeholder/organisasi.png')
 
 onBeforeUnmount(() => {
     if (previewOrganisasi.value || previewLogo.value) {
@@ -46,6 +46,7 @@ const formSchema = toTypedSchema(z.object({
     periode: z.string({ message: 'Periode kepala desa wajib di isi' })
         .max(255, { message: 'Periode tidak boleh lebih dari 255 karakter' })
         .trim(),
+    pesan_kades: z.string().trim().min(1, 'Pesan kepala desa wajib diisi.'),
     logo: z.union([
         z.instanceof(File).refine(file => file.size < 5 * 1024 * 1024, {
             message: 'Ukuran file maksimal 5MB'
@@ -70,13 +71,13 @@ const formSchema = toTypedSchema(z.object({
 const { values, isFieldDirty, handleSubmit, setErrors, setFieldValue } = useForm({
     validationSchema: formSchema,
     initialValues: {
-        nama_kades: props.village.nama_kades,
-        periode: props.village.periode,
-        pesan_kades: props.village.pesan_kades,
+        nama_kades: props.setting.nama_kades,
+        periode: props.setting.periode,
+        pesan_kades: props.setting.pesan_kades,
         logo: null,
-        logo_aktif: props.village.logo_aktif,
-        telepon: props.village.telepon,
-        email: props.village.email,
+        logo_aktif: props.setting.logo_aktif as 'On' | 'Off',
+        telepon: props.setting.telepon,
+        email: props.setting.email,
         foto_organisasi: null,
     },
 })
