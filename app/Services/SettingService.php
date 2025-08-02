@@ -26,25 +26,11 @@ class SettingService
     public function update($data)
     {
         try {
-            $building = $this->settingRepository->findFirst();
-
-            if (isset($data['foto'])) {
-                if ($building->foto && Storage::disk('public')->exists($building->foto)) {
-                    Storage::disk('public')->delete($building->foto);
-                }
-
-                $originalExtension = $data['foto']->getClientOriginalExtension();
-                $uniqueFileName = uniqid() . '.' . $originalExtension;
-                $filePath = $data['foto']->storeAs('foto-kades', $uniqueFileName, 'public');
-
-                $data['foto'] = $filePath;
-            } else {
-                $data['foto'] = $building->foto;
-            }
+            $setting = $this->settingRepository->findFirst();
 
             if (isset($data['logo'])) {
-                if ($building->logo && Storage::disk('public')->exists($building->logo)) {
-                    Storage::disk('public')->delete($building->logo);
+                if ($setting->logo && Storage::disk('public')->exists($setting->logo)) {
+                    Storage::disk('public')->delete($setting->logo);
                 }
 
                 $originalExtension = $data['logo']->getClientOriginalExtension();
@@ -53,32 +39,21 @@ class SettingService
 
                 $data['logo'] = $filePath;
             } else {
-                $data['logo'] = $building->logo;
+                $data['logo'] = $setting->logo;
             }
 
-            if (isset($data['organisasi'])) {
-                if ($building->organisasi && Storage::disk('public')->exists($building->organisasi)) {
-                    Storage::disk('public')->delete($building->organisasi);
+            if (isset($data['foto_organisasi'])) {
+                if ($setting->foto_organisasi && Storage::disk('public')->exists($setting->foto_organisasi)) {
+                    Storage::disk('public')->delete($setting->foto_organisasi);
                 }
 
-                $originalExtension = $data['organisasi']->getClientOriginalExtension();
+                $originalExtension = $data['foto_organisasi']->getClientOriginalExtension();
                 $uniqueFileName = uniqid() . '.' . $originalExtension;
-                $filePath = $data['organisasi']->storeAs('organisasi', $uniqueFileName, 'public');
+                $filePath = $data['foto_organisasi']->storeAs('foto_organisasi', $uniqueFileName, 'public');
 
-                $data['organisasi'] = $filePath;
+                $data['foto_organisasi'] = $filePath;
             } else {
-                $data['organisasi'] = $building->organisasi;
-            }
-
-            if (isset($data['favicon'])) {
-                $publicPath = public_path('favicon.ico');
-                
-                if (file_exists($publicPath)) {
-                    unlink($publicPath);
-                }
-                $data['favicon']->move(public_path(), 'favicon.ico');
-
-                unset($data['favicon']);
+                $data['foto_organisasi'] = $setting->foto_organisasi;
             }
 
             $this->settingRepository->update($data);

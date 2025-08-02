@@ -2,17 +2,11 @@
 import App from '@/Layouts/App.vue'
 import { Head } from '@inertiajs/vue3'
 import FormSetting from '@/Components/custom/setting/FormSetting.vue'
-import { provide, shallowReactive } from 'vue'
 
-
-const props = defineProps<{ 
+defineProps<{ 
     title: string,               
     village: Record<string, string>,
 }>()
-
-const reactiveVillage = shallowReactive(props.village)
-
-provide('village', reactiveVillage)
 </script>
 
 <template>
@@ -24,7 +18,7 @@ provide('village', reactiveVillage)
                 {{ title }}
             </h2>
         </template>
-        <FormSetting />
+        <FormSetting :village="village" />
     </App>
 </template>
 

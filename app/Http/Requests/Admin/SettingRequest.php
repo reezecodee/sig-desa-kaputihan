@@ -24,15 +24,11 @@ class SettingRequest extends FormRequest
         return [
             'nama_kades' => 'required|string|max:255',
             'periode' => 'required|string|max:255',
-            'jumlah_penduduk' => 'required|string|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'nama_aplikasi' => 'required|string|max:255',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
             'logo_aktif' => 'required|in:On,Off',
             'telepon' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'organisasi' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'favicon' => 'nullable|mimes:ico|max:5120',
+            'foto_organisasi' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ];
     }
 
@@ -43,13 +39,6 @@ class SettingRequest extends FormRequest
             'nama_kades.max' => 'Nama kepala desa tidak boleh lebih dari 255 karakter',
             'periode.required' => 'Periode kepala desa wajib di isi',
             'periode.max' => 'Periode tidak boleh lebih dari 255 karakter',
-            'jumlah_penduduk.required' => 'Jumlah penduduk desa wajib di isi',
-            'jumlah_penduduk.max' => 'Jumlah penduduk tidak boleh lebih dari 255 karakter',
-            'foto.image' => 'Foto harus berupa gambar',
-            'foto.mimes' => 'Format foto tidak didukung',
-            'foto.max' => 'Ukuran file maksimal 5MB',
-            'nama_aplikasi.required' => 'Nama aplikasi wajib di isi',
-            'nama_aplikasi.max' => 'Nama aplikasi tidak boleh lebih dari 255 karakter',
             'logo.image' => 'Logo harus berupa gambar',
             'logo.mimes' => 'Format logo tidak didukung',
             'logo.max' => 'Ukuran file maksimal 5MB',
@@ -60,11 +49,9 @@ class SettingRequest extends FormRequest
             'email.required' => 'Email desa wajib di isi',
             'email.email' => 'Format email tidak valid',
             'email.max' => 'Email tidak boleh lebih dari 255 karakter',
-            'organisasi.image' => 'File harus berupa gambar',
-            'organisasi.mimes' => 'Format gambar tidak didukung',
-            'organisasi.max' => 'Ukuran file maksimal 5MB',
-            'favicon.mimes' => 'Format favicon tidak didukung',
-            'favicon.max' => 'Ukuran file maksimal 5MB',
+            'foto_organisasi.image' => 'File harus berupa gambar',
+            'foto_organisasi.mimes' => 'Format gambar tidak didukung',
+            'foto_organisasi.max' => 'Ukuran file maksimal 5MB',
         ];
     }
 }

@@ -2,14 +2,14 @@
 
 namespace App\Repositories;
 
-use App\Models\VillageProfile;
+use App\Models\Setting;
 
 class SettingRepository
 {
     public function findFirst()
     {
         try {
-            return VillageProfile::first();
+            return Setting::first();
         } catch (\Exception $e) {
             throw new \Exception('Terjadi kesalahan saat mencoba mengambil data');
         }
@@ -18,7 +18,7 @@ class SettingRepository
     public function update($data)
     {
         try {
-            $village = VillageProfile::findOrFail($this->findFirst()->id);
+            $village = Setting::findOrFail($this->findFirst()->id);
             
             return $village->update($data);
         } catch (\Exception $e) {

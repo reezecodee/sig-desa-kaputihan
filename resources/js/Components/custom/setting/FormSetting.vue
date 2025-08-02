@@ -21,20 +21,19 @@ import { Input } from '@/Components/ui/input'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
-import { ref, onBeforeUnmount, inject } from 'vue'
+import { ref, onBeforeUnmount } from 'vue'
+import Textarea from '@/Components/ui/textarea/Textarea.vue'
 
 const props = defineProps<{
-    errors: Record<string, string[]>
+    errors?: Record<string, string[]>,
+    village: Record<string, string>
 }>()
 
-const village = inject('village')
-const previewKepdes = ref<string>(village.foto ? `/storage/${village.foto}` : '/placeholder/kepdes.webp')
-const previewLogo = ref<string>(village.logo ? `/storage/${village.logo}` : '/placeholder/logo-desa.webp')
-const previewOrganisasi = ref<string>(village.organisasi ? `/storage/${village.organisasi}` : '/placeholder/organisasi.png')
+const previewLogo = ref<string>(props.village.logo ? `/storage/${props.village.logo}` : '/placeholder/logo-desa.webp')
+const previewOrganisasi = ref<string>(props.village.foto_organisasi ? `/storage/${props.village.foto_organisasi}` : '/placeholder/organisasi.png')
 
 onBeforeUnmount(() => {
-    if (previewKepdes.value || previewLogo.value) {
-        URL.revokeObjectURL(previewKepdes.value)
+    if (previewOrganisasi.value || previewLogo.value) {
         URL.revokeObjectURL(previewLogo.value)
         URL.revokeObjectURL(previewOrganisasi.value)
     }
@@ -46,18 +45,6 @@ const formSchema = toTypedSchema(z.object({
         .trim(),
     periode: z.string({ message: 'Periode kepala desa wajib di isi' })
         .max(255, { message: 'Periode tidak boleh lebih dari 255 karakter' })
-        .trim(),
-    jumlah_penduduk: z.string({ message: 'Jumlah penduduk desa wajib di isi' })
-        .max(255, { message: 'jumlah penduduk tidak boleh lebih dari 255 karakter' })
-        .trim(),
-    foto: z.union([
-        z.instanceof(File).refine(file => file.size < 5 * 1024 * 1024, {
-            message: 'Ukuran file maksimal 5MB'
-        }),
-        z.null()
-    ]),
-    nama_aplikasi: z.string({ message: 'Nama aplikasi wajib di isi' })
-        .max(255, { message: 'Nama aplikasi tidak boleh lebih dari 255 karakter' })
         .trim(),
     logo: z.union([
         z.instanceof(File).refine(file => file.size < 5 * 1024 * 1024, {
@@ -72,13 +59,7 @@ const formSchema = toTypedSchema(z.object({
     email: z.string({ message: 'Email desa wajib di isi' })
         .max(255, { message: 'Email tidak boleh lebih dari 255 karakter' })
         .trim(),
-    organisasi: z.union([
-        z.instanceof(File).refine(file => file.size < 5 * 1024 * 1024, {
-            message: 'Ukuran file maksimal 5MB'
-        }),
-        z.null()
-    ]),
-    favicon: z.union([
+    foto_organisasi: z.union([
         z.instanceof(File).refine(file => file.size < 5 * 1024 * 1024, {
             message: 'Ukuran file maksimal 5MB'
         }),
@@ -89,13 +70,13 @@ const formSchema = toTypedSchema(z.object({
 const { values, isFieldDirty, handleSubmit, setErrors, setFieldValue } = useForm({
     validationSchema: formSchema,
     initialValues: {
-        nama_kades: village.nama_kades,
-        periode: village.periode,
-        pesan_kades: village.pesan_kades,
+        nama_kades: props.village.nama_kades,
+        periode: props.village.periode,
+        pesan_kades: props.village.pesan_kades,
         logo: null,
-        logo_aktif: village.logo_aktif,
-        telepon: village.telepon,
-        email: village.email,
+        logo_aktif: props.village.logo_aktif,
+        telepon: props.village.telepon,
+        email: props.village.email,
         foto_organisasi: null,
     },
 })
@@ -105,30 +86,20 @@ const handleFileChange = (type: string, event: Event) => {
     const file = target.files?.[0] ?? null
 
     if (file) {
-        if (type === 'foto') {
-            previewKepdes.value = URL.createObjectURL(file)
-            setFieldValue('foto', file)
-        } else if (type === 'logo') {
+        if (type === 'logo') {
             previewLogo.value = URL.createObjectURL(file)
             setFieldValue('logo', file)
-        } else if (type === 'organisasi') {
+        } else if (type === 'foto_organisasi') {
             previewOrganisasi.value = URL.createObjectURL(file)
-            setFieldValue('organisasi', file)
-        } else {
-            setFieldValue('favicon', file)
+            setFieldValue('foto_organisasi', file)
         }
     } else {
-        if (type === 'foto') {
-            previewKepdes.value = 'null'
-            setFieldValue('foto', 'null')
-        } else if (type === 'logo') {
-            previewLogo.value = 'null'
-            setFieldValue('logo', 'null')
-        } else if (type === 'organisasi') {
-            previewOrganisasi.value = 'null'
-            setFieldValue('organisasi', 'null')
-        }else{
-            setFieldValue('favicon', 'null')
+        if (type === 'logo') {
+            previewLogo.value = null
+            setFieldValue('logo', null)
+        } else if (type === 'foto_organisasi') {
+            previewOrganisasi.value = null
+            setFieldValue('foto_organisasi', null)
         }
     }
 }
@@ -182,14 +153,15 @@ const onSubmit = handleSubmit((values) => {
                     <FormField v-slot="{ componentField }" name="logo" :validate-on-blur="!isFieldDirty">
                         <FormItem>
                             <FormLabel>Upload Logo Aplikasi</FormLabel>
+                            <br>
                             <FormControl>
-                                <Input type="file" @change="(event) => handleFileChange('logo', event)"
-                                    accept=".png, .jpg" placeholder="Upload logo" v-bind="componentField"
-                                    :key="fileInputKey" />
+                                <input type="file" @change="(event) => handleFileChange('logo', event)"
+                                    accept=".png, .jpg" placeholder="Upload logo" v-bind="componentField" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     </FormField>
+                    <br>
                     <FormField v-slot="{ componentField }" name="logo_aktif" :validate-on-blur="!isFieldDirty">
                         <FormItem>
                             <FormLabel>Aktifkan logo?</FormLabel>
@@ -208,23 +180,56 @@ const onSubmit = handleSubmit((values) => {
                             <FormMessage />
                         </FormItem>
                     </FormField>
+                    <br>
+                    <FormField v-slot="{ componentField }" name="nama_kades" :validate-on-blur="!isFieldDirty">
+                        <FormItem>
+                            <FormLabel>Nama Kepala Desa</FormLabel>
+                            <FormControl>
+                                <Input type="text" autocomplete="off" placeholder="Masukkan nama kepala desa"
+                                    v-bind="componentField" />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    </FormField>
+                    <br>
+                    <FormField v-slot="{ componentField }" name="periode" :validate-on-blur="!isFieldDirty">
+                        <FormItem>
+                            <FormLabel>Periode Kepala Desa</FormLabel>
+                            <FormControl>
+                                <Input type="text" autocomplete="off" placeholder="Contoh: 2025 - 2030"
+                                    v-bind="componentField" />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    </FormField>
+                    <br>
+                    <FormField v-slot="{ componentField }" name="pesan_kades" :validate-on-blur="!isFieldDirty">
+                        <FormItem>
+                            <FormLabel>Pesan Kepala Desa</FormLabel>
+                            <FormControl>
+                                <Textarea placeholder="Masukan pesan kepala desa" class="resize-none"
+                                    v-bind="componentField" />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    </FormField>
                 </CardContent>
                 <CardHeader>
                     <CardTitle class="text-xl font-bold">Data Organisasi & Kontak Desa</CardTitle>
                     <CardDescription class="text-gray-500">Masukkan data berikut:</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <FormField v-slot="{ componentField }" name="organisasi" :validate-on-blur="!isFieldDirty">
+                    <FormField v-slot="{ componentField }" name="foto_organisasi" :validate-on-blur="!isFieldDirty">
                         <FormItem>
                             <FormLabel>Upload Struktur Organisasi Desa</FormLabel>
                             <FormControl>
-                                <Input type="file" @change="(event) => handleFileChange('organisasi', event)"
-                                    accept=".png, .jpg" placeholder="Upload organisasi" v-bind="componentField"
-                                    :key="fileInputKey" />
+                                <input type="file" @change="(event) => handleFileChange('foto_organisasi', event)"
+                                    accept=".png, .jpg" placeholder="Upload foto organisasi" v-bind="componentField" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     </FormField>
+                    <br>
                     <FormField v-slot="{ componentField }" name="email" :validate-on-blur="!isFieldDirty">
                         <FormItem>
                             <FormLabel>Email Desa</FormLabel>
@@ -235,6 +240,7 @@ const onSubmit = handleSubmit((values) => {
                             <FormMessage />
                         </FormItem>
                     </FormField>
+                    <br>
                     <FormField v-slot="{ componentField }" name="telepon" :validate-on-blur="!isFieldDirty">
                         <FormItem>
                             <FormLabel>Telepon Desa</FormLabel>
@@ -247,7 +253,7 @@ const onSubmit = handleSubmit((values) => {
                     </FormField>
                 </CardContent>
                 <CardFooter class="text-right">
-                    <Button class="shadcn-btn detail-btn">Perbarui Data</Button>
+                    <Button type="submit" class="shadcn-btn edit-btn">Perbarui Pengaturan</Button>
                 </CardFooter>
             </Card>
         </div>
