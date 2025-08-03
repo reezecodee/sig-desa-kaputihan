@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('periode');
             $table->text('pesan_kades');
             $table->string('logo')->nullable();
-            $table->enum('logo_aktif', ['On', 'Off']);
             $table->string('telepon');
             $table->string('email');
             $table->string('foto_organisasi')->nullable();

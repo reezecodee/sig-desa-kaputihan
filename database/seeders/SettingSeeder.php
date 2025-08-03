@@ -19,7 +19,6 @@ class SettingSeeder extends Seeder
             'periode' => '2021-2027',
             'pesan_kades' => 'Mari kita jadikan sejarah ini sebagai cermin untuk introspeksi dan sebagai cambuk penyemangat untuk membangun Kaputihan menjadi desa yang lebih maju, sejahtera, dan berwibawa, sesuai dengan amanat namanya.',
             'logo' => null,
-            'logo_aktif' => 'Off',
             'telepon' => '+62 81320800480',
             'email' => 'sdgsdesakaputihan@gmail.com',
             'foto_organisasi' => 'organisasi.png',

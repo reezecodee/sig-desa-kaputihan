@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\APIController;
 use App\Http\Controllers\API\ChartAPIController;
 use App\Http\Controllers\Landing\LandingController;
+use App\Http\Controllers\Landing\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['landing-layout'])->controller(LandingController::class)->group(function(){
@@ -21,6 +22,7 @@ Route::controller(APIController::class)->group(function(){
     Route::get('kategori-bangunan-desa', 'buildingCategories')->name('landing.buildingCategories');
 });
 
+Route::post('kirim-laporan', [ReportController::class, 'store'])->name('landing.storeReport');
 Route::get('charts', [ChartAPIController::class, 'charts'])->name('landing.charts');
 
 require __DIR__.'/auth.php';

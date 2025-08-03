@@ -18,7 +18,6 @@ onMounted(async () => {
     try {
         let response = await axios.get('/charts');
         chartsData.value = response.data;
-        console.log(chartsData.value);
     } catch (e) {
         console.error("Terjadi error saat fetch data:", e);
     }
@@ -37,59 +36,71 @@ onMounted(async () => {
                             Statistik
                         </span>
                         <h2 class="mb-3" data-aos="fade-up" data-aos-delay="100">
-                            Statistik Desa Kaputihan
+                            Statistik Desa Kaputihan {{ chartsData.surveyYear ? `Survey ${chartsData.surveyYear}` : '' }}
                         </h2>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-12 col-lg-6 mb-4">
-                        <BarChart v-if="chartsData.educationalFacilities" title="Sarana Pendidikan"
-                            :data="chartsData.educationalFacilities" />
+                <div v-if="chartsData.surveyYear">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 mb-4">
+                            <BarChart v-if="chartsData.educationalFacilities" title="Sarana Pendidikan"
+                                :data="chartsData.educationalFacilities" />
+                        </div>
+                        <div class="col-12 col-lg-6 mb-4">
+                            <BarChart v-if="chartsData.educators" title="Tenaga Pengajar"
+                                :data="chartsData.educators" />
+                        </div>
+                        <div class="col-12 col-lg-6 mb-4">
+                            <BarChart v-if="chartsData.healthFacilities" title="Sarana Kesehatan"
+                                :data="chartsData.healthFacilities" />
+                        </div>
+                        <div class="col-12 col-lg-6 mb-4">
+                            <BarChart v-if="chartsData.otherFacilities" title="Sarana dan Prasaran lain"
+                                :data="chartsData.otherFacilities" />
+                        </div>
                     </div>
-                    <div class="col-12 col-lg-6 mb-4">
-                        <BarChart v-if="chartsData.educators" title="Tenaga Pengajar" :data="chartsData.educators" />
-                    </div>
-                    <div class="col-12 col-lg-6 mb-4">
-                        <BarChart v-if="chartsData.healthFacilities" title="Sarana Kesehatan"
-                            :data="chartsData.healthFacilities" />
-                    </div>
-                    <div class="col-12 col-lg-6 mb-4">
-                        <BarChart v-if="chartsData.otherFacilities" title="Sarana dan Prasaran lain"
-                            :data="chartsData.otherFacilities" />
-                    </div>
-                </div>
 
-                <div class="mb-5">
-                    <PieChart v-if="chartsData.mainOccupations" title="Mata Pencaharian Penduduk"
-                        :data="chartsData.mainOccupations" />
-                </div>
-                <br>
+                    <div class="mb-5">
+                        <PieChart v-if="chartsData.mainOccupations" title="Mata Pencaharian Penduduk"
+                            :data="chartsData.mainOccupations" />
+                    </div>
+                    <br>
 
-                <div class="row mb-5">
-                    <div class="col-12 col-lg-6 mb-4">
-                        <PieChart v-if="chartsData.populationPotential" title="Potensi Penduduk" :data="chartsData.populationPotential" />
+                    <div class="row mb-5">
+                        <div class="col-12 col-lg-6 mb-4">
+                            <PieChart v-if="chartsData.populationPotential" title="Potensi Penduduk"
+                                :data="chartsData.populationPotential" />
+                        </div>
+                        <div class="col-12 col-lg-6 mb-4">
+                            <PieChart v-if="chartsData.educationalAttainment" title="Pendidikan Penduduk"
+                                :data="chartsData.educationalAttainment" />
+                        </div>
                     </div>
-                    <div class="col-12 col-lg-6 mb-4">
-                        <PieChart v-if="chartsData.educationalAttainment" title="Pendidikan Penduduk" :data="chartsData.educationalAttainment" />
-                    </div>
-                </div>
-                <br>
+                    <br>
 
-                <div class="row mb-5">
-                    <div class="col-12 col-lg-6 mb-4">
-                        <StackedLineChart v-if="chartsData.populationMigration" title="Penduduk yang Pindah dan Datang" :data="chartsData.populationMigration" />
+                    <div class="row mb-5">
+                        <div class="col-12 col-lg-6 mb-4">
+                            <StackedLineChart v-if="chartsData.populationMigration"
+                                title="Penduduk yang Pindah dan Datang" :data="chartsData.populationMigration" />
+                        </div>
+                        <div class="col-12 col-lg-6 mb-4">
+                            <StackedLineChart v-if="chartsData.populationByOccupation"
+                                title="Penduduk Berdasarkan Mata Pencaharian"
+                                :data="chartsData.populationByOccupation" />
+                        </div>
                     </div>
-                    <div class="col-12 col-lg-6 mb-4">
-                        <StackedLineChart v-if="chartsData.populationByOccupation" title="Penduduk Berdasarkan Mata Pencaharian" :data="chartsData.populationByOccupation" />
-                    </div>
-                </div>
-                <br>
+                    <br>
 
-                <div class="mb-5">
-                    <WorldPopulationChart v-if="chartsData.populationByAgeGroup" title="Kelompok Penduduk Berdasarkan Umur" :data="chartsData.populationByAgeGroup" />
+                    <div class="mb-5">
+                        <WorldPopulationChart v-if="chartsData.populationByAgeGroup"
+                            title="Kelompok Penduduk Berdasarkan Umur" :data="chartsData.populationByAgeGroup" />
+                    </div>
+                    <br>
                 </div>
-                <br>
+                <div v-else>
+                    <p class="text-center">Data statistik tidak tersedia saat ini.</p>
+                </div>
             </div>
         </section>
     </LandingV2>

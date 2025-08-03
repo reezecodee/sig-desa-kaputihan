@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\SurveyYear;
 use App\Services\ChartService;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,8 @@ class ChartAPIController extends Controller
 
     public function charts()
     {
+        $survey = SurveyYear::where('diaktifkan', 'Ya')->first();
+
         $charts = [
             'educationalFacilities' => $this->chartService->getFacilities('json', 'Sarana Pendidikan'),
             'educators' => $this->chartService->getFacilities('json', 'Tenaga Pengajar'),
@@ -28,6 +31,7 @@ class ChartAPIController extends Controller
             'populationMigration' => $this->chartService->getPopulationCategory('json', 'Berdasarkan yang Pindah dan Datang'),
             'populationByOccupation' => $this->chartService->getPopulationCategory('json', 'Berdasarkan Mata Pencaharian'),
             'populationByAgeGroup' => $this->chartService->getPopulationByAgeGroup('json'),
+            'surveyYear' => $survey->tahun_survey,
         ];
 
         return response()->json($charts);

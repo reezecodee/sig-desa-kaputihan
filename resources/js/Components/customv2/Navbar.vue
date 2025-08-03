@@ -4,6 +4,7 @@ import { computed } from 'vue';
 
 const page = usePage();
 const village = computed(() => page.props.village);
+const user = computed(() => usePage().props.auth.user);
 </script>
 
 <template>
@@ -70,8 +71,8 @@ const village = computed(() => page.props.village);
 
             <div class="ms-auto w-auto">
                 <div class="header-social d-flex align-items-center gap-1">
-                    <a class="btn btn-primary py-2" :href="route('login')">Login</a>
-
+                    <a v-if="user" class="btn btn-primary py-2" :href="route('admin.dashboard')">Dashboard</a>
+                    <a v-else class="btn btn-primary py-2" :href="route('login')">Login</a>
                     <button class="fbs__net-navbar-toggler justify-content-center align-items-center ms-auto"
                         data-bs-toggle="offcanvas" data-bs-target="#fbs__net-navbars" aria-controls="fbs__net-navbars"
                         aria-label="Toggle navigation" aria-expanded="false">

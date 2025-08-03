@@ -16,7 +16,6 @@ import {
     FormLabel,
     FormMessage,
 } from '@/Components/ui/form'
-import { RadioGroup, RadioGroupItem } from '@/Components/ui/radio-group'
 import { Input } from '@/Components/ui/input'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
@@ -53,7 +52,6 @@ const formSchema = toTypedSchema(z.object({
         }),
         z.null()
     ]),
-    logo_aktif: z.enum(['On', 'Off'], { message: 'Status keaktifan logo wajib di isi' }),
     telepon: z.string({ message: 'Nomor Telepon desa wajib di isi' })
         .max(255, { message: 'Nomor telepon tidak boleh lebih dari 255 karakter' })
         .trim(),
@@ -75,7 +73,6 @@ const { values, isFieldDirty, handleSubmit, setErrors, setFieldValue } = useForm
         periode: props.setting.periode,
         pesan_kades: props.setting.pesan_kades,
         logo: null,
-        logo_aktif: props.setting.logo_aktif as 'On' | 'Off',
         telepon: props.setting.telepon,
         email: props.setting.email,
         foto_organisasi: null,
@@ -121,8 +118,6 @@ const onSubmit = handleSubmit((values) => {
                 <Card class="shadow-md mb-7">
                     <CardHeader>
                         <CardTitle class="text-xl font-bold">Logo Aplikasi</CardTitle>
-                        <CardDescription class="text-gray-500">Logo aplikasi: {{ values.logo_aktif == 'On' ?
-                            'Ditampilkan' : 'Disembunyikan' }}</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div class="w-full flex justify-center">
@@ -158,25 +153,6 @@ const onSubmit = handleSubmit((values) => {
                             <FormControl>
                                 <input type="file" @change="(event) => handleFileChange('logo', event)"
                                     accept=".png, .jpg" placeholder="Upload logo" v-bind="componentField" />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    </FormField>
-                    <br>
-                    <FormField v-slot="{ componentField }" name="logo_aktif" :validate-on-blur="!isFieldDirty">
-                        <FormItem>
-                            <FormLabel>Aktifkan logo?</FormLabel>
-                            <FormControl>
-                                <RadioGroup :orientation="'vertical'" v-bind="componentField">
-                                    <div class="flex items-center space-x-2">
-                                        <RadioGroupItem id="r1" value="On" />
-                                        <Label for="r1">Ya</Label>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <RadioGroupItem id="r2" value="Off" />
-                                        <Label for="r2">Tidak</Label>
-                                    </div>
-                                </RadioGroup>
                             </FormControl>
                             <FormMessage />
                         </FormItem>

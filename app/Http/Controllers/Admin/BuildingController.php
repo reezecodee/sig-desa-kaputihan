@@ -23,8 +23,8 @@ class BuildingController extends Controller
 
     public function index($categoryID)
     {
-        $title = 'Bangunan Desa';
-        $categoryID = $categoryID;
+        $category =  $this->categoryService->find($categoryID);
+        $title = "Bangunan Desa: {$category->nama_kategori}";
 
         return Inertia::render('Admin/Building/Index', compact('title', 'categoryID'));
     }
