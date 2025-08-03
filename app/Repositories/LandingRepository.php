@@ -31,7 +31,7 @@ class LandingRepository
 
     public function setting()
     {
-        $setting = Setting::select(['nama_kades', 'periode', 'pesan_kades', 'logo', 'logo_aktif', 'foto_organisasi'])->firstOrFail();
+        $setting = Setting::select(['nama_kades', 'periode', 'pesan_kades', 'logo', 'foto_organisasi'])->firstOrFail();
 
         return $setting;
     }
