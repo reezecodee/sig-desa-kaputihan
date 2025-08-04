@@ -19,6 +19,14 @@ watch(search, debounce(value => {
         replace: true
     })
 }, 300));
+
+function cropText(text, limit) {
+    if (text.length > limit) {
+        return text.substring(0, limit) + '...';
+    }
+
+    return text;
+}
 </script>
 
 <template>
@@ -41,8 +49,8 @@ watch(search, debounce(value => {
                     <div class="col-md-6">
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" id="searchInput" class="form-control form-control-lg" v-model="search" autocomplete="off"
-                                placeholder="Cari nama atau kategori bangunan...">
+                            <input type="text" id="searchInput" class="form-control form-control-lg" v-model="search"
+                                autocomplete="off" placeholder="Cari nama atau kategori bangunan...">
                         </div>
                     </div>
                 </div>
@@ -53,11 +61,13 @@ watch(search, debounce(value => {
                                 :alt="`Foto ${building.nama_bangunan}`">
                             <div class="card-body d-flex flex-column">
                                 <div>
-                                    <span class="badge rounded-pill text-bg-primary mb-2">{{ building.category?.nama_kategori }}</span>
+                                    <span class="badge rounded-pill text-bg-primary mb-2">{{
+                                        building.category?.nama_kategori }}</span>
                                 </div>
                                 <h5 class="card-title">{{ building.nama_bangunan }}</h5>
-                                <p class="card-text">{{ building.deskripsi }}</p>
-                                <Link :href="route('landing.detailBuilding', building.slug)" class="btn btn-primary mt-auto">Lihat Detail</Link>
+                                <p class="card-text">{{ cropText(building.deskripsi, 130) }}</p>
+                                <Link :href="route('landing.detailBuilding', building.slug)"
+                                    class="btn btn-primary mt-auto">Lihat Detail</Link>
                             </div>
                         </div>
                     </div>
