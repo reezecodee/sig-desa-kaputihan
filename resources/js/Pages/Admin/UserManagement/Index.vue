@@ -49,9 +49,14 @@ const deleteData = (): void => {
 const handleClick = (event: MouseEvent): void => {
   if (event.target instanceof Element) {
     const deleteButton = event.target.closest('.delete-btn');
+    const editButton = event.target.closest('.edit-btn');
     if (deleteButton) {
       const id = deleteButton.getAttribute('data-id');
       confirmDelete(id);
+    }
+    if (editButton) {
+      const id = editButton.getAttribute('data-id');
+      redirectToEdit(id);
     }
   }
 };

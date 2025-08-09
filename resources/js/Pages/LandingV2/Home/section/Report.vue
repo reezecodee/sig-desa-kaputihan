@@ -59,6 +59,16 @@ const submit = () => {
 <template>
     <section class="section contact__v2" id="report">
         <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-6 col-lg-7 mx-auto text-center"><span class="subtitle text-uppercase mb-3"
+                        data-aos="fade-up" data-aos-delay="0">Laporkan Masalah</span>
+                    <h2 class="h2 fw-bold mb-3" data-aos="fade-up" data-aos-delay="0">Laporkan Masalah
+                    </h2>
+                    <p data-aos="fade-up" data-aos-delay="100">
+                        Jangan ragu untuk melaporkan masalah, laporan Anda sangat berarti bagi kami.
+                    </p>
+                </div>
+            </div>
             <div v-if="$page.props.flash.success" class="alert alert-success mb-4" role="alert">
                 {{ $page.props.flash.success }}
             </div>

@@ -74,7 +74,7 @@ const onSubmit = handleSubmit((values) => {
                 </FormItem>
             </FormField>
         </div>
-        <Button class="shadcn-btn detail-btn" type="submit">
+        <Button class="shadcn-btn edit-btn" type="submit">
             Perbarui Password
         </Button>
     </form>
