@@ -31,7 +31,12 @@ function cropText(text, limit) {
 
 <template>
 
-    <Head :title="title" />
+    <Head>
+        <title>{{ title }}</title>
+        <meta name="description"
+            content="Cari informasi bangunan yang tersedia untuk mengetahui lebih lanjut mengenai bangunan vital desa kaputihan">
+    </Head>
+
     <LandingV2>
         <section class="services__v3 section" id="home">
             <div class="container">

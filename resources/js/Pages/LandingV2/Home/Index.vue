@@ -11,8 +11,8 @@ import FAQ from '@/Pages/LandingV2/Home/section/FAQ.vue';
 import Report from '@/Pages/LandingV2/Home/section/Report.vue';
 
 const props = defineProps({
-    title: String,
-    landingPageData: Object
+  title: String,
+  landingPageData: Object
 });
 
 function pickFromObject(sourceObject, keys) {
@@ -32,15 +32,19 @@ const villageProfile = pickFromObject(props.landingPageData.villageProfile, prof
 </script>
 
 <template>
-    <Head :title="title" />
-    <LandingV2>
-        <Hero/>
-        <About :data="landingPageData.setting"/>
-        <OrganizationStructure :organization="landingPageData.setting.foto_organisasi"/>
-        <NatureCondition :villageProfile="villageProfile"/>
-        <CountVillage :count="countOrg"/>
-        <BuildingCategory/>
-        <FAQ/>
-        <Report/>
-    </LandingV2>
+  <Head>
+    <title>{{ title }}</title>
+    <meta name="description" content="Temukan data geografis dan peta interaktif Desa Kaputihan dalam satu platform.">
+  </Head>
+
+  <LandingV2>
+    <Hero />
+    <About :data="landingPageData.setting" />
+    <OrganizationStructure :organization="landingPageData.setting.foto_organisasi" />
+    <NatureCondition :villageProfile="villageProfile" />
+    <CountVillage :count="countOrg" />
+    <BuildingCategory />
+    <FAQ />
+    <Report />
+  </LandingV2>
 </template>

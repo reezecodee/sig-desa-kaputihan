@@ -11,7 +11,11 @@ defineProps({
 
 <template>
 
-    <Head :title="title" />
+    <Head>
+        <title>{{ title }}</title>
+        <meta name="description"
+            :content="detailBuilding.deskripsi">
+    </Head>
     <LandingV2>
         <section class="hero__v6 section" id="home">
             <div class="container">
@@ -27,8 +31,8 @@ defineProps({
                     </div>
 
                     <div class="col-md-6">
-                        <img :src="`/storage/foto-bangunan/${detailBuilding.foto_bangunan}`"
-                            style="height: 400px;" class="img-fluid rounded-3 w-full mb-4">
+                        <img :src="`/storage/foto-bangunan/${detailBuilding.foto_bangunan}`" style="height: 400px;"
+                            class="img-fluid rounded-3 w-full mb-4">
                     </div>
                 </div>
 

@@ -9,8 +9,12 @@ defineProps({
 </script>
 
 <template>
+    <Head>
+        <title>{{ title }}</title>
+        <meta name="description"
+            content="Peta geografis interaktif desa kaputihan beserta batas wilayah dan titik lokasi suatu bangunan">
+    </Head>
 
-    <Head :title="title" />
     <LandingV2>
         <section class="services__v3 section" id="map-interactive">
             <div class="container">

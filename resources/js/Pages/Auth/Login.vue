@@ -39,7 +39,7 @@ defineProps({
         </div>
         <UserAuthForm />
         <p class="px-8 text-center text-sm text-muted-foreground">
-          <a href="https://kaputihan.desa.id/kebijakan-privasi/" target="_blank" class="hover:text-primary">
+          <a href="/" target="_blank" class="hover:text-primary">
             Kembali ke halaman utama
           </a>
         </p>

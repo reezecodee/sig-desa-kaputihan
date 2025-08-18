@@ -6,7 +6,7 @@ import FullCalendar from '@/Components/customv2/Schedule.vue';
 const date = new Date();
 const year = date.getFullYear();
 const month = new Intl.DateTimeFormat('id-ID', {
-  month: 'long' 
+    month: 'long'
 }).format(date);
 
 defineProps({
@@ -16,7 +16,12 @@ defineProps({
 
 <template>
 
-    <Head :title="title" />
+    <Head>
+        <title>{{ title }}</title>
+        <meta name="description"
+            content="Temukan informasi jadwal kegiatan yang akan diselenggarakan oleh pihak desa dalam kalender interaktif">
+    </Head>
+
     <LandingV2>
         <section class="services__v3 section" id="home">
             <div class="container">
@@ -30,7 +35,7 @@ defineProps({
                         </h2>
                     </div>
                 </div>
-                <FullCalendar :endpoint="route('landing.scheduleForLanding')"/>
+                <FullCalendar :endpoint="route('landing.scheduleForLanding')" />
             </div>
         </section>
     </LandingV2>

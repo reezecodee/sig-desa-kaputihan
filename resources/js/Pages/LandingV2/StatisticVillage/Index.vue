@@ -26,7 +26,11 @@ onMounted(async () => {
 
 <template>
 
-    <Head :title="title" />
+    <Head>
+        <title>{{ title }}</title>
+        <meta name="description"
+            content="Informasi grafik statistik desa kaputihan dalam bentuk chart interaktif">
+    </Head>
     <LandingV2>
         <section class="services__v3 section" id="home">
             <div class="container">
@@ -36,7 +40,8 @@ onMounted(async () => {
                             Statistik
                         </span>
                         <h2 class="mb-3" data-aos="fade-up" data-aos-delay="100">
-                            Statistik Desa Kaputihan {{ chartsData.surveyYear ? `Survey ${chartsData.surveyYear}` : '' }}
+                            Statistik Desa Kaputihan {{ chartsData.surveyYear ? `Survey ${chartsData.surveyYear}` : ''
+                            }}
                         </h2>
                     </div>
                 </div>
